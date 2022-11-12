@@ -22,6 +22,7 @@
 		D0496DE9291F7856008BEDA5 /* EnergramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DE8291F7856008BEDA5 /* EnergramTests.swift */; };
 		D0496DF3291F7856008BEDA5 /* EnergramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DF2291F7856008BEDA5 /* EnergramUITests.swift */; };
 		D0496DF5291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */; };
+		D0819195291F9E8E008AB5EA /* LastDayChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0819194291F9E8E008AB5EA /* LastDayChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		D0496DEE291F7856008BEDA5 /* EnergramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnergramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0496DF2291F7856008BEDA5 /* EnergramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramUITests.swift; sourceTree = "<group>"; };
 		D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D0819194291F9E8E008AB5EA /* LastDayChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastDayChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			children = (
 				D035A960291F7A2B00426722 /* LastDayJsonView.swift */,
 				D035A967291F7B7B00426722 /* DebugView.swift */,
+				D0819194291F9E8E008AB5EA /* LastDayChartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -100,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				D035A969291F7DF900426722 /* DayPrice.swift */,
-				D035A970291F8EEC00426722 /* ApiInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -117,6 +119,7 @@
 		D035A96B291F80D400426722 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D035A970291F8EEC00426722 /* ApiInfo.swift */,
 				D035A96C291F80E800426722 /* PriceService.swift */,
 			);
 			path = Services;
@@ -320,6 +323,7 @@
 				D035A96A291F7DF900426722 /* DayPrice.swift in Sources */,
 				D035A966291F7B3400426722 /* Log.swift in Sources */,
 				D035A968291F7B7B00426722 /* DebugView.swift in Sources */,
+				D0819195291F9E8E008AB5EA /* LastDayChartView.swift in Sources */,
 				D035A964291F7AA400426722 /* Palette.swift in Sources */,
 				D035A95D291F794500426722 /* Config.swift in Sources */,
 				D035A961291F7A2B00426722 /* LastDayJsonView.swift in Sources */,
