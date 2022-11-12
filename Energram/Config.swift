@@ -10,6 +10,8 @@ import Foundation
 struct Config {
     
     
+    
+    
     static let urlWeb: String = "https://energram.ress.ws"
     static let urlApi: String = "https://energram-api.ress.ws"
     

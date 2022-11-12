@@ -14,6 +14,7 @@
 		D035A968291F7B7B00426722 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A967291F7B7B00426722 /* DebugView.swift */; };
 		D035A96A291F7DF900426722 /* DayPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A969291F7DF900426722 /* DayPrice.swift */; };
 		D035A96D291F80E800426722 /* PriceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A96C291F80E800426722 /* PriceService.swift */; };
+		D035A971291F8EEC00426722 /* ApiInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A970291F8EEC00426722 /* ApiInfo.swift */; };
 		D0496DD8291F7855008BEDA5 /* EnergramApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DD7291F7855008BEDA5 /* EnergramApp.swift */; };
 		D0496DDA291F7855008BEDA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DD9291F7855008BEDA5 /* ContentView.swift */; };
 		D0496DDC291F7856008BEDA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0496DDB291F7856008BEDA5 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		D035A967291F7B7B00426722 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		D035A969291F7DF900426722 /* DayPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPrice.swift; sourceTree = "<group>"; };
 		D035A96C291F80E800426722 /* PriceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceService.swift; sourceTree = "<group>"; };
+		D035A970291F8EEC00426722 /* ApiInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiInfo.swift; sourceTree = "<group>"; };
 		D0496DD4291F7855008BEDA5 /* Energram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Energram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0496DD7291F7855008BEDA5 /* EnergramApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramApp.swift; sourceTree = "<group>"; };
 		D0496DD9291F7855008BEDA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				D035A969291F7DF900426722 /* DayPrice.swift */,
+				D035A970291F8EEC00426722 /* ApiInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			files = (
 				D035A96D291F80E800426722 /* PriceService.swift in Sources */,
 				D0496DDA291F7855008BEDA5 /* ContentView.swift in Sources */,
+				D035A971291F8EEC00426722 /* ApiInfo.swift in Sources */,
 				D0496DD8291F7855008BEDA5 /* EnergramApp.swift in Sources */,
 				D035A96A291F7DF900426722 /* DayPrice.swift in Sources */,
 				D035A966291F7B3400426722 /* Log.swift in Sources */,

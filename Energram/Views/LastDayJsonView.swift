@@ -9,21 +9,17 @@ import SwiftUI
 
 struct LastDayJsonView: View {
     
-    @ObservedObject var networkManager = NetworkManager()
+    @ObservedObject var priceService = PriceService()
     
-//    let day = DayPrice(
-//        id: UUID(), benchmark: 0.0001, datasource: "sex", measure: "Inch", data:[0.1,0.2,0.3]
-//    )
-    
-    
+    let jsonFont = Font.system(size: 12).monospaced()
     
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.vertical) {
                 VStack(alignment: .leading, spacing: 15) {
                     Text("RAW JSON:")
-                    if let pr = networkManager.dayPrice {
-                        Text(pr.as_json_string)
+                    if let dp = priceService.dayPrice {
+                        Text(dp.as_json_string).font(jsonFont)
                     }
                     
                     
@@ -32,7 +28,7 @@ struct LastDayJsonView: View {
                 .frame(width: geometry.size.width, alignment: .leading)
             }
             .onAppear {
-                self.networkManager.fetchData()
+                self.priceService.fetchData()
             }
         }}
 }

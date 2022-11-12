@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class NetworkManager: ObservableObject {
+class PriceService: ObservableObject {
     
     @Published var dayPrice: DayPrice?
     
