@@ -1,0 +1,648 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D035A95D291F794500426722 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A95C291F794500426722 /* Config.swift */; };
+		D035A961291F7A2B00426722 /* LastDayJsonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A960291F7A2B00426722 /* LastDayJsonView.swift */; };
+		D035A964291F7AA400426722 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A963291F7AA400426722 /* Palette.swift */; };
+		D035A966291F7B3400426722 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A965291F7B3400426722 /* Log.swift */; };
+		D035A968291F7B7B00426722 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A967291F7B7B00426722 /* DebugView.swift */; };
+		D035A96A291F7DF900426722 /* DayPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A969291F7DF900426722 /* DayPrice.swift */; };
+		D035A96D291F80E800426722 /* PriceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A96C291F80E800426722 /* PriceService.swift */; };
+		D0496DD8291F7855008BEDA5 /* EnergramApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DD7291F7855008BEDA5 /* EnergramApp.swift */; };
+		D0496DDA291F7855008BEDA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DD9291F7855008BEDA5 /* ContentView.swift */; };
+		D0496DDC291F7856008BEDA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0496DDB291F7856008BEDA5 /* Assets.xcassets */; };
+		D0496DDF291F7856008BEDA5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0496DDE291F7856008BEDA5 /* Preview Assets.xcassets */; };
+		D0496DE9291F7856008BEDA5 /* EnergramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DE8291F7856008BEDA5 /* EnergramTests.swift */; };
+		D0496DF3291F7856008BEDA5 /* EnergramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DF2291F7856008BEDA5 /* EnergramUITests.swift */; };
+		D0496DF5291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D0496DE5291F7856008BEDA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0496DCC291F7855008BEDA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0496DD3291F7855008BEDA5;
+			remoteInfo = Energram;
+		};
+		D0496DEF291F7856008BEDA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0496DCC291F7855008BEDA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0496DD3291F7855008BEDA5;
+			remoteInfo = Energram;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D035A95C291F794500426722 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		D035A960291F7A2B00426722 /* LastDayJsonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastDayJsonView.swift; sourceTree = "<group>"; };
+		D035A963291F7AA400426722 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		D035A965291F7B3400426722 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		D035A967291F7B7B00426722 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
+		D035A969291F7DF900426722 /* DayPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPrice.swift; sourceTree = "<group>"; };
+		D035A96C291F80E800426722 /* PriceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceService.swift; sourceTree = "<group>"; };
+		D0496DD4291F7855008BEDA5 /* Energram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Energram.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0496DD7291F7855008BEDA5 /* EnergramApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramApp.swift; sourceTree = "<group>"; };
+		D0496DD9291F7855008BEDA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D0496DDB291F7856008BEDA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D0496DDE291F7856008BEDA5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D0496DE4291F7856008BEDA5 /* EnergramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnergramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0496DE8291F7856008BEDA5 /* EnergramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramTests.swift; sourceTree = "<group>"; };
+		D0496DEE291F7856008BEDA5 /* EnergramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnergramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0496DF2291F7856008BEDA5 /* EnergramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramUITests.swift; sourceTree = "<group>"; };
+		D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D0496DD1291F7855008BEDA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0496DE1291F7856008BEDA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0496DEB291F7856008BEDA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D035A95E291F7A0900426722 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D035A960291F7A2B00426722 /* LastDayJsonView.swift */,
+				D035A967291F7B7B00426722 /* DebugView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D035A95F291F7A1400426722 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D035A969291F7DF900426722 /* DayPrice.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D035A962291F7A9A00426722 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				D035A963291F7AA400426722 /* Palette.swift */,
+				D035A965291F7B3400426722 /* Log.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		D035A96B291F80D400426722 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D035A96C291F80E800426722 /* PriceService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D0496DCB291F7855008BEDA5 = {
+			isa = PBXGroup;
+			children = (
+				D0496DD6291F7855008BEDA5 /* Energram */,
+				D0496DE7291F7856008BEDA5 /* EnergramTests */,
+				D0496DF1291F7856008BEDA5 /* EnergramUITests */,
+				D0496DD5291F7855008BEDA5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0496DD5291F7855008BEDA5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0496DD4291F7855008BEDA5 /* Energram.app */,
+				D0496DE4291F7856008BEDA5 /* EnergramTests.xctest */,
+				D0496DEE291F7856008BEDA5 /* EnergramUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0496DD6291F7855008BEDA5 /* Energram */ = {
+			isa = PBXGroup;
+			children = (
+				D035A96B291F80D400426722 /* Services */,
+				D035A962291F7A9A00426722 /* Misc */,
+				D035A95F291F7A1400426722 /* Models */,
+				D035A95E291F7A0900426722 /* Views */,
+				D0496DD7291F7855008BEDA5 /* EnergramApp.swift */,
+				D035A95C291F794500426722 /* Config.swift */,
+				D0496DD9291F7855008BEDA5 /* ContentView.swift */,
+				D0496DDB291F7856008BEDA5 /* Assets.xcassets */,
+				D0496DDD291F7856008BEDA5 /* Preview Content */,
+			);
+			path = Energram;
+			sourceTree = "<group>";
+		};
+		D0496DDD291F7856008BEDA5 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D0496DDE291F7856008BEDA5 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D0496DE7291F7856008BEDA5 /* EnergramTests */ = {
+			isa = PBXGroup;
+			children = (
+				D0496DE8291F7856008BEDA5 /* EnergramTests.swift */,
+			);
+			path = EnergramTests;
+			sourceTree = "<group>";
+		};
+		D0496DF1291F7856008BEDA5 /* EnergramUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D0496DF2291F7856008BEDA5 /* EnergramUITests.swift */,
+				D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */,
+			);
+			path = EnergramUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D0496DD3291F7855008BEDA5 /* Energram */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0496DF8291F7856008BEDA5 /* Build configuration list for PBXNativeTarget "Energram" */;
+			buildPhases = (
+				D0496DD0291F7855008BEDA5 /* Sources */,
+				D0496DD1291F7855008BEDA5 /* Frameworks */,
+				D0496DD2291F7855008BEDA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Energram;
+			productName = Energram;
+			productReference = D0496DD4291F7855008BEDA5 /* Energram.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D0496DE3291F7856008BEDA5 /* EnergramTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0496DFB291F7856008BEDA5 /* Build configuration list for PBXNativeTarget "EnergramTests" */;
+			buildPhases = (
+				D0496DE0291F7856008BEDA5 /* Sources */,
+				D0496DE1291F7856008BEDA5 /* Frameworks */,
+				D0496DE2291F7856008BEDA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0496DE6291F7856008BEDA5 /* PBXTargetDependency */,
+			);
+			name = EnergramTests;
+			productName = EnergramTests;
+			productReference = D0496DE4291F7856008BEDA5 /* EnergramTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D0496DED291F7856008BEDA5 /* EnergramUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0496DFE291F7856008BEDA5 /* Build configuration list for PBXNativeTarget "EnergramUITests" */;
+			buildPhases = (
+				D0496DEA291F7856008BEDA5 /* Sources */,
+				D0496DEB291F7856008BEDA5 /* Frameworks */,
+				D0496DEC291F7856008BEDA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0496DF0291F7856008BEDA5 /* PBXTargetDependency */,
+			);
+			name = EnergramUITests;
+			productName = EnergramUITests;
+			productReference = D0496DEE291F7856008BEDA5 /* EnergramUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D0496DCC291F7855008BEDA5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					D0496DD3291F7855008BEDA5 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					D0496DE3291F7856008BEDA5 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = D0496DD3291F7855008BEDA5;
+					};
+					D0496DED291F7856008BEDA5 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = D0496DD3291F7855008BEDA5;
+					};
+				};
+			};
+			buildConfigurationList = D0496DCF291F7855008BEDA5 /* Build configuration list for PBXProject "Energram" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D0496DCB291F7855008BEDA5;
+			productRefGroup = D0496DD5291F7855008BEDA5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0496DD3291F7855008BEDA5 /* Energram */,
+				D0496DE3291F7856008BEDA5 /* EnergramTests */,
+				D0496DED291F7856008BEDA5 /* EnergramUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D0496DD2291F7855008BEDA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0496DDF291F7856008BEDA5 /* Preview Assets.xcassets in Resources */,
+				D0496DDC291F7856008BEDA5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0496DE2291F7856008BEDA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0496DEC291F7856008BEDA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D0496DD0291F7855008BEDA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D035A96D291F80E800426722 /* PriceService.swift in Sources */,
+				D0496DDA291F7855008BEDA5 /* ContentView.swift in Sources */,
+				D0496DD8291F7855008BEDA5 /* EnergramApp.swift in Sources */,
+				D035A96A291F7DF900426722 /* DayPrice.swift in Sources */,
+				D035A966291F7B3400426722 /* Log.swift in Sources */,
+				D035A968291F7B7B00426722 /* DebugView.swift in Sources */,
+				D035A964291F7AA400426722 /* Palette.swift in Sources */,
+				D035A95D291F794500426722 /* Config.swift in Sources */,
+				D035A961291F7A2B00426722 /* LastDayJsonView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0496DE0291F7856008BEDA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0496DE9291F7856008BEDA5 /* EnergramTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0496DEA291F7856008BEDA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0496DF5291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift in Sources */,
+				D0496DF3291F7856008BEDA5 /* EnergramUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D0496DE6291F7856008BEDA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0496DD3291F7855008BEDA5 /* Energram */;
+			targetProxy = D0496DE5291F7856008BEDA5 /* PBXContainerItemProxy */;
+		};
+		D0496DF0291F7856008BEDA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0496DD3291F7855008BEDA5 /* Energram */;
+			targetProxy = D0496DEF291F7856008BEDA5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D0496DF6291F7856008BEDA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D0496DF7291F7856008BEDA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D0496DF9291F7856008BEDA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Energram/Preview Content\"";
+				DEVELOPMENT_TEAM = 7R7Q2CDK95;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ress.Energram;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D0496DFA291F7856008BEDA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Energram/Preview Content\"";
+				DEVELOPMENT_TEAM = 7R7Q2CDK95;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ress.Energram;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D0496DFC291F7856008BEDA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7R7Q2CDK95;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ress.EnergramTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Energram.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Energram";
+			};
+			name = Debug;
+		};
+		D0496DFD291F7856008BEDA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7R7Q2CDK95;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ress.EnergramTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Energram.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Energram";
+			};
+			name = Release;
+		};
+		D0496DFF291F7856008BEDA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7R7Q2CDK95;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ress.EnergramUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Energram;
+			};
+			name = Debug;
+		};
+		D0496E00291F7856008BEDA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7R7Q2CDK95;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ress.EnergramUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Energram;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D0496DCF291F7855008BEDA5 /* Build configuration list for PBXProject "Energram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0496DF6291F7856008BEDA5 /* Debug */,
+				D0496DF7291F7856008BEDA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0496DF8291F7856008BEDA5 /* Build configuration list for PBXNativeTarget "Energram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0496DF9291F7856008BEDA5 /* Debug */,
+				D0496DFA291F7856008BEDA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0496DFB291F7856008BEDA5 /* Build configuration list for PBXNativeTarget "EnergramTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0496DFC291F7856008BEDA5 /* Debug */,
+				D0496DFD291F7856008BEDA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0496DFE291F7856008BEDA5 /* Build configuration list for PBXNativeTarget "EnergramUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0496DFF291F7856008BEDA5 /* Debug */,
+				D0496E00291F7856008BEDA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D0496DCC291F7855008BEDA5 /* Project object */;
+}
