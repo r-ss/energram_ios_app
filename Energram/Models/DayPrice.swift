@@ -10,19 +10,66 @@ import SwiftUI
 
 let jsonEncoder = JSONEncoder()
 
-struct DayPriceResponse: Codable {
-    var resource: String
-    var content: DayPrice
-    
+//let date = Date()
+//let format = date.getFormattedDate(format: "yyyy-MM-dd HH:mm:ss") // Set output format
+
+extension Date {
+   func getFormattedDate(format: String) -> String {
+        let dateformat = DateFormatter()
+        dateformat.dateFormat = format
+        return dateformat.string(from: self)
+    }
 }
 
-struct DayPrice: Codable {
+struct MultipleDaysPriceResponse1: Codable {
+    // price/latest
+    var resource: String
+    var content: MultipleDaysPriceResponse2
+}
+
+struct MultipleDaysPriceResponse2: Codable {
+    var items: [DayPrice]
+}
+
+struct DayPriceResponse: Codable {
+    // price/latest
+    var resource: String
+    var content: DayPrice
+}
+
+struct DayPrice: Codable, Identifiable {
+    var id: UUID = UUID()
     var benchmark: Float
     var datasource: String
-    var date: String
-    var received: String
+    var date: Date
+    var received: Date
     var measure: String
     var data: [Float]
+    
+    var dateFormatted: String {
+//        return Date.getFormattedDate(self.received)
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateFormat = self.date.getFormattedDate(format: "EEEE, MMM d, yyyy")
+        return dateFormatter.string(from: self.date)
+    }
+    
+    var receivedFormatted: String {
+//        return Date.getFormattedDate(self.received)
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateFormat = self.received.getFormattedDate(format: "yyyy-MM-dd HH:mm")
+        return dateFormatter.string(from: self.received)
+    }
+    
+    enum CodingKeys: CodingKey {
+        case benchmark // note that id is not listed here
+        case datasource
+        case date
+        case received
+        case measure
+        case data
+    }
     
 }
 

@@ -18,8 +18,8 @@ struct LastDayJsonView: View {
             ScrollView(.vertical) {
                 VStack(alignment: .leading, spacing: 15) {
                     Text("RAW JSON:")
-                    if let dp = priceService.dayPrice {
-                        Text(dp.as_json_string).font(jsonFont)
+                    if let dp = priceService.dayPriceRAWJSON {
+                        Text(dp).font(jsonFont)
                     }
                     
                     

@@ -18,6 +18,12 @@ struct ContentView: View {
         VStack {
             TabView {
                 
+                MultipleDaysChartView()
+                    .tabItem {
+                        Label("Prices", systemImage: "chart.xyaxis.line")
+                    }
+//                    .tag(uuidLasttDayChart)
+                
                 LastDayChartView()
                     .tabItem {
                         Label("Latest Price", systemImage: "chart.xyaxis.line")

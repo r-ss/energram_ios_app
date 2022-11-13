@@ -105,6 +105,7 @@ struct Palette {
     static let e: Color = Color(hex: "F7E4BE")!
     
     static let background = b
+    static let textColor = Color(hex: "FFFFFF")!
 
 
 }

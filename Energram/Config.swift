@@ -14,5 +14,6 @@ struct Config {
     
     static let urlApiInfo: String = urlApi + "/info"
     static let urlLatestPrice: String = urlApi + "/price/latest"
+    static let urlMultiplePrices: String = urlApi + "/price/all"
     
 }
