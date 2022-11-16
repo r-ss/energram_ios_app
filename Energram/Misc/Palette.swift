@@ -106,6 +106,10 @@ struct Palette {
     
     static let background = b
     static let textColor = Color(hex: "FFFFFF")!
+    
+    static let chartTickColor = Color(hex: "F9F2E7")!
+    static let chartRedTickColor = Color(hex: "ED303C")!
+    static let chartGreenTickColor = Color(hex: "8FBE00")!
 
 
 }

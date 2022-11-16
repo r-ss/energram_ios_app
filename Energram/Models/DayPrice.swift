@@ -47,19 +47,23 @@ struct DayPrice: Codable, Identifiable {
     var data: [Float]
     
     var dateFormatted: String {
-//        return Date.getFormattedDate(self.received)
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.dateFormat = self.date.getFormattedDate(format: "EEEE, MMM d, yyyy")
-        return dateFormatter.string(from: self.date)
+        let ftt = DateFormatter()
+        ftt.locale = Locale(identifier: "en_US")
+        ftt.setLocalizedDateFormatFromTemplate("EEEE, dMMMM")
+        return ftt.string(from: self.date)
     }
     
     var receivedFormatted: String {
 //        return Date.getFormattedDate(self.received)
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.dateFormat = self.received.getFormattedDate(format: "yyyy-MM-dd HH:mm")
-        return dateFormatter.string(from: self.received)
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale(identifier: "en_US")
+//        dateFormatter.dateFormat = self.received.getFormattedDate(format: "yyyy-MM-dd HH:mm")
+//        return dateFormatter.string(from: self.received)
+//
+        let ftt = DateFormatter()
+        ftt.locale = Locale(identifier: "en_US")
+        ftt.setLocalizedDateFormatFromTemplate("yyyy-MM-dd HH:mm")
+        return ftt.string(from: self.received)
     }
     
     enum CodingKeys: CodingKey {
@@ -74,7 +78,6 @@ struct DayPrice: Codable, Identifiable {
 }
 
 extension DayPrice {
-    
     
 //    jsonEncoder.outputFormatting = .prettyPrinted
     

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+
 class PriceService: ObservableObject {
     
     @Published var dayPrice: DayPrice?
@@ -80,7 +81,6 @@ class PriceService: ObservableObject {
                         do {
                             let result = try decoder.decode(MultipleDaysPriceResponse1.self, from: safeData)
                             DispatchQueue.main.async {
-//                                print(result)
                                 self.multipleDaysPrices = result.content.items.reversed()
                                 self.dayPriceRAWJSON = safeData.prettyPrintedJSONString!
                             }

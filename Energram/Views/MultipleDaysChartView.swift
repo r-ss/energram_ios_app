@@ -26,12 +26,10 @@ struct MultipleDaysChartView: View {
                 VStack(alignment: .leading, spacing: 15) {
                     
                     if let days = priceService.multipleDaysPrices {
-                        Text("Electricity price").fontWeight(.bold)
+                        Text("Electricity price 🇪🇸").font(.system(size: 32)).fontWeight(.bold)
                         
                         ForEach(days) { day in
-                            Text(day.dateFormatted)
-                            Text("Received: \( day.receivedFormatted )").font(jsonFont)
-                            
+                            Text(day.dateFormatted).fontWeight(.bold)
                             MiniChart(forDay: day)
                         }
                     }
