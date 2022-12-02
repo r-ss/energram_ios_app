@@ -18,23 +18,28 @@ struct ContentView: View {
         VStack {
             TabView {
                 
-                MultipleDaysChartView()
+                MultipleDaysChartView(country: "es")
                     .tabItem {
-                        Label("Prices", systemImage: "chart.xyaxis.line")
+                        Label("Price ES", systemImage: "chart.xyaxis.line")
                     }
 //                    .tag(uuidLasttDayChart)
                 
-                LastDayChartView()
+                MultipleDaysChartView(country: "cz")
                     .tabItem {
-                        Label("Latest Price", systemImage: "chart.xyaxis.line")
+                        Label("Price CZ", systemImage: "chart.xyaxis.line")
                     }
 //                    .tag(uuidLasttDayChart)
                 
-                LastDayJsonView()
+//                LastDayJsonView()
+//                    .tabItem {
+//                        Label("Latest Price Raw", systemImage: "text.word.spacing")
+//                    }
+////                    .tag(uuidLasttDayJson)
+                
+                AppliancesListView()
                     .tabItem {
-                        Label("Latest Price Raw", systemImage: "text.word.spacing")
+                        Label("Appliances", systemImage: "fan.desk.fill")
                     }
-//                    .tag(uuidLasttDayJson)
                 
                 
                 DebugView()

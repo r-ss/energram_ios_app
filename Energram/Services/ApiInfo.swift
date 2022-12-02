@@ -13,7 +13,7 @@ class ApiInfoService: ObservableObject {
     @Published var apiInfo: String = "- no data -"
     
     func fetchData(){
-        if let url = URL(string: Config.urlApiInfo) {
+        if let url = URL(string: Config.urlApi + "/info") {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error == nil {

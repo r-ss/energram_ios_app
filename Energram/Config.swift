@@ -10,10 +10,12 @@ import Foundation
 struct Config {
     
     static let urlWeb: String = "https://energram.ress.ws"
-    static let urlApi: String = "https://energram-api.ress.ws"
+    static let urlApi: String = "https://energram-newapi.ress.ws"
     
-    static let urlApiInfo: String = urlApi + "/info"
-    static let urlLatestPrice: String = urlApi + "/price/latest"
-    static let urlMultiplePrices: String = urlApi + "/price/all"
+//    static let urlApiInfo: String = urlApi + "/info"
+//    static let urlLatestPrice: String = urlApi + "/price/latest"
+//    static let urlMultiplePrices: String = urlApi + "/price/all"
+    
+    static let appliencesListURL: String = "https://energram-newapi.ress.ws/appliance/all"
     
 }

@@ -14,6 +14,9 @@ struct LastDayChartView: View {
     
     @ObservedObject var priceService = PriceService()
     
+    
+    
+    
     let jsonFont = Font.system(size: 12).monospaced()
     
 //    let y_labels = Array(0...23)
@@ -29,6 +32,10 @@ struct LastDayChartView: View {
 //            }
 //        }
 //        return bin
+//    }
+    
+//    init(country: String) {
+//        _countryCode = State(initialValue: country)
 //    }
     
     var body: some View {
@@ -48,7 +55,7 @@ struct LastDayChartView: View {
                 .frame(width: geometry.size.width, alignment: .leading)
             }
             .onAppear {
-                self.priceService.fetchData()
+                self.priceService.fetchData(for_country: "es")
             }
         }}
 }

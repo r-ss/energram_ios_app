@@ -28,7 +28,7 @@ struct LastDayJsonView: View {
                 .frame(width: geometry.size.width, alignment: .leading)
             }
             .onAppear {
-                self.priceService.fetchData()
+                self.priceService.fetchData(for_country: "cz")
             }
         }}
 }

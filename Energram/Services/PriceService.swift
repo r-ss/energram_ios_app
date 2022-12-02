@@ -17,8 +17,8 @@ class PriceService: ObservableObject {
     @Published var multipleDaysPrices: [DayPrice]?
     
     
-    func fetchData(){
-        if let url = URL(string: Config.urlLatestPrice) {
+    func fetchData(for_country: String){
+        if let url = URL(string: Config.urlApi + "/price/" + for_country + "/latest") {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error == nil {
@@ -41,9 +41,9 @@ class PriceService: ObservableObject {
                     
                     if let safeData = data {
                         do {
-                            let result = try decoder.decode(DayPriceResponse.self, from: safeData)
+                            let result = try decoder.decode(DayPrice.self, from: safeData)
                             DispatchQueue.main.async {
-                                self.dayPrice = result.content
+                                self.dayPrice = result
                                 self.dayPriceRAWJSON = safeData.prettyPrintedJSONString!
                             }
                         } catch {
@@ -56,8 +56,11 @@ class PriceService: ObservableObject {
         }
     }
     
-    func fetchMultipleDaysData(){
-        if let url = URL(string: Config.urlMultiplePrices) {
+    func fetchMultipleDaysData(for_country: String){
+        
+        let url = Config.urlApi + "/price/" + for_country + "/all"
+        
+        if let url = URL(string: url) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error == nil {
@@ -79,9 +82,9 @@ class PriceService: ObservableObject {
                     
                     if let safeData = data {
                         do {
-                            let result = try decoder.decode(MultipleDaysPriceResponse1.self, from: safeData)
+                            let result = try decoder.decode([DayPrice].self, from: safeData)
                             DispatchQueue.main.async {
-                                self.multipleDaysPrices = result.content.items.reversed()
+                                self.multipleDaysPrices = result.reversed()
                                 self.dayPriceRAWJSON = safeData.prettyPrintedJSONString!
                             }
                         } catch {

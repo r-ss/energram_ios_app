@@ -16,9 +16,15 @@ struct BarTick2: Identifiable {
 
 struct MultipleDaysChartView: View {
     
+    @State var countryCode: String = "es" // es, cz
+    
     @ObservedObject var priceService = PriceService()
     
     let jsonFont = Font.system(size: 12).monospaced()
+    
+    init(country: String) {
+        _countryCode = State(initialValue: country)
+    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -26,7 +32,14 @@ struct MultipleDaysChartView: View {
                 VStack(alignment: .leading, spacing: 15) {
                     
                     if let days = priceService.multipleDaysPrices {
-                        Text("Electricity price 🇪🇸").font(.system(size: 32)).fontWeight(.bold)
+                        
+                        if countryCode == "es" {
+                            Text("Electricity price 🇪🇸").font(.system(size: 32)).fontWeight(.bold)
+                        }
+                        if countryCode == "cz" {
+                            Text("Electricity price 🇨🇿").font(.system(size: 32)).fontWeight(.bold)
+                        }
+                        
                         
                         ForEach(days) { day in
                             Text(day.dateFormatted).fontWeight(.bold)
@@ -39,13 +52,13 @@ struct MultipleDaysChartView: View {
                 .frame(width: geometry.size.width, alignment: .leading)
             }
             .onAppear {
-                self.priceService.fetchMultipleDaysData()
+                self.priceService.fetchMultipleDaysData(for_country: countryCode)
             }
         }}
 }
 
 struct MultipleDaysChartView_Previews: PreviewProvider {
     static var previews: some View {
-        LastDayJsonView()
+        MultipleDaysChartView(country: "es")
     }
 }
