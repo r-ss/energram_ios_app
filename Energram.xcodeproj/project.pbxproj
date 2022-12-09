@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D01366AD293368CB0004CE50 /* DayTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01366AC293368CB0004CE50 /* DayTileView.swift */; };
+		D00D4CB22941C05E002807FC /* ConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D4CB12941C05E002807FC /* ConfigTests.swift */; };
+		D01366AD293368CB0004CE50 /* DayPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01366AC293368CB0004CE50 /* DayPlanView.swift */; };
+		D02968D92939E1A6003C7DA1 /* ApplianceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */; };
 		D035A95D291F794500426722 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A95C291F794500426722 /* Config.swift */; };
 		D035A961291F7A2B00426722 /* LastDayJsonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A960291F7A2B00426722 /* LastDayJsonView.swift */; };
 		D035A964291F7AA400426722 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A963291F7AA400426722 /* Palette.swift */; };
@@ -50,7 +52,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D01366AC293368CB0004CE50 /* DayTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTileView.swift; sourceTree = "<group>"; };
+		D00D4CB12941C05E002807FC /* ConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTests.swift; sourceTree = "<group>"; };
+		D01366AC293368CB0004CE50 /* DayPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPlanView.swift; sourceTree = "<group>"; };
+		D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceLabel.swift; sourceTree = "<group>"; };
 		D035A95C291F794500426722 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D035A960291F7A2B00426722 /* LastDayJsonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastDayJsonView.swift; sourceTree = "<group>"; };
 		D035A963291F7AA400426722 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
@@ -109,11 +113,12 @@
 			children = (
 				D035A960291F7A2B00426722 /* LastDayJsonView.swift */,
 				D035A967291F7B7B00426722 /* DebugView.swift */,
-				D01366AC293368CB0004CE50 /* DayTileView.swift */,
+				D01366AC293368CB0004CE50 /* DayPlanView.swift */,
 				D0E2C7A729212A56003F4DD9 /* MiniChart.swift */,
 				D0819194291F9E8E008AB5EA /* LastDayChartView.swift */,
 				D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */,
 				D0B6198F2938A58A00887F00 /* AppliancesListView.swift */,
+				D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				D0496DE8291F7856008BEDA5 /* EnergramTests.swift */,
+				D00D4CB12941C05E002807FC /* ConfigTests.swift */,
 			);
 			path = EnergramTests;
 			sourceTree = "<group>";
@@ -342,7 +348,7 @@
 				D035A96D291F80E800426722 /* PriceService.swift in Sources */,
 				D0496DDA291F7855008BEDA5 /* ContentView.swift in Sources */,
 				D035A971291F8EEC00426722 /* ApiInfo.swift in Sources */,
-				D01366AD293368CB0004CE50 /* DayTileView.swift in Sources */,
+				D01366AD293368CB0004CE50 /* DayPlanView.swift in Sources */,
 				D0496DD8291F7855008BEDA5 /* EnergramApp.swift in Sources */,
 				D035A96A291F7DF900426722 /* DayPrice.swift in Sources */,
 				D0E2C7A829212A56003F4DD9 /* MiniChart.swift in Sources */,
@@ -357,6 +363,7 @@
 				D035A961291F7A2B00426722 /* LastDayJsonView.swift in Sources */,
 				D0E2C7A4292122DE003F4DD9 /* DataPrettyPrint.swift in Sources */,
 				D0B619922938A5D800887F00 /* ApplianceService.swift in Sources */,
+				D02968D92939E1A6003C7DA1 /* ApplianceLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0496DE9291F7856008BEDA5 /* EnergramTests.swift in Sources */,
+				D00D4CB22941C05E002807FC /* ConfigTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -84,7 +84,7 @@ class PriceService: ObservableObject {
                         do {
                             let result = try decoder.decode([DayPrice].self, from: safeData)
                             DispatchQueue.main.async {
-                                self.multipleDaysPrices = result.reversed()
+                                self.multipleDaysPrices = result
                                 self.dayPriceRAWJSON = safeData.prettyPrintedJSONString!
                             }
                         } catch {

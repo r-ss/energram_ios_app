@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct DayTileView: View {
+struct DayPlanView: View {
+    
+    
+    let appliances: [Appliance] = []
     
     let tileHeight: CGFloat = 390
     
@@ -25,12 +28,18 @@ struct DayTileView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     
                     Text("Tomorrow's consumers:").font(.title)
-                    
+
                     Text("🧦 Washing machine").frame(maxWidth: .infinity, alignment: .leading)
                     Text("🥵 heater").frame(maxWidth: .infinity, alignment: .leading)
                     Text("🥘 oven").frame(maxWidth: .infinity, alignment: .leading)
                     Text("📺 television").frame(maxWidth: .infinity, alignment: .leading)
                     
+//                    if let choosenAppliances = ApplianceService.choosenAppliances {
+//                        ForEach(choosenAppliances) { appliance in
+//                            Text(appliance.name)
+//                        }
+//                    }
+//
                     
                     Text("Daily plan:").font(.title).padding(.top, 20)
                     HStack(spacing: 1) {
@@ -118,9 +127,9 @@ struct DayTileView: View {
         }}
 }
 
-struct DayTileView_Previews: PreviewProvider {
-    static var previews: some View {
-        DayTileView()
-    }
-}
+//struct DayPlanView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DayPlanView()
+//    }
+//}
 

@@ -12,9 +12,33 @@ import SwiftUI
 
 
 class ApplianceService: ObservableObject {
-    
+   
     
     @Published var appliances: [Appliance]?
+    
+    @Published var selectedAppliances: [Appliance] = []
+    
+//    @Published var choosenAppliances: [Appliance]?
+    
+    
+    @Published var appliancesCountBadge: Int = 0
+    
+    
+    
+    
+    func toggleApplianceLabel(applianceLabel: ApplianceLabel) {
+//        log("\(appliancesCountBadge)")
+        applianceLabel.isSelected.toggle()
+        
+        if (applianceLabel.isSelected){
+            self.selectedAppliances.append(applianceLabel.appliance)
+        } else {
+//            self.selectedAppliances.remove(at: 0)
+            self.selectedAppliances = self.selectedAppliances.filter { $0.name != applianceLabel.appliance.name }
+        }
+        
+        appliancesCountBadge = selectedAppliances.count
+    }
     
         
     func fetchAppliancesData(){
@@ -45,7 +69,6 @@ class ApplianceService: ObservableObject {
                             
                             
                             DispatchQueue.main.async {
-//                                print(result)
                                 self.appliances = result
                             }
                         } catch {

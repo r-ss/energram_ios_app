@@ -10,9 +10,12 @@ import SwiftUI
 
 struct AppliancesListView: View {
     
+   
 
-    @ObservedObject var applianceService = ApplianceService()
+//    @ObservedObject var applianceService = ApplianceService()
     
+//    var applianceService: ApplianceService
+    @EnvironmentObject var applianceService: ApplianceService
 
     
     var body: some View {
@@ -21,27 +24,45 @@ struct AppliancesListView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Appliances").font(.title)
                     
+                    
+                    
                     if let receivedAppliances = applianceService.appliances {
-                        
-                        
                         ForEach(receivedAppliances) { appliance in
-                            Text(appliance.name)
+                            ApplianceLabel(appliance: appliance, isSelected: false, service: applianceService)
                         }
-                        
-                        
                     }
+                    
+//
+                    
+                    Text("Selected Appliances").font(.title)
+//
+//
+                    if let selectedAppliances = applianceService.selectedAppliances {
+                        ForEach(selectedAppliances) { appliance in
+                            ApplianceLabel(appliance: appliance, isSelected: false, service: applianceService, disableInteraction: true)
+                        }
+                    }
+                    
+//                    DayPlanView().frame(width: geometry.size.width, height: 700).padding(0)
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                 }
                 .padding()
                 .frame(width: geometry.size.width, alignment: .leading)
-                .onAppear {
-                    self.applianceService.fetchAppliancesData()
-                }
+//                .onAppear {
+//                    self.applianceService.fetchAppliancesData()
+//                }
             }
         }}
 }
 
-struct AppliancesListView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppliancesListView()
-    }
-}
+//struct AppliancesListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AppliancesListView()
+//    }
+//}

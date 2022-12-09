@@ -18,7 +18,7 @@ struct MultipleDaysChartView: View {
     
     @State var countryCode: String = "es" // es, cz
     
-    @ObservedObject var priceService = PriceService()
+    @StateObject var priceService = PriceService()
     
     let jsonFont = Font.system(size: 12).monospaced()
     

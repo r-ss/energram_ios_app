@@ -7,11 +7,18 @@
 
 import SwiftUI
 
+
+
 struct ContentView: View {
     
 //    @State private var uuidLasttDayChart = UUID()
 //    @State private var uuidLasttDayJson = UUID()
 //    @State private var uuidDebug = UUID()
+    
+    @StateObject var applianceService = ApplianceService()
+    
+//    @State var appliancesCountBadge: Int = 5
+    
     
     
     var body: some View {
@@ -41,6 +48,12 @@ struct ContentView: View {
                         Label("Appliances", systemImage: "fan.desk.fill")
                     }
                 
+                DayPlanView()
+                    .tabItem {
+                        Label("Daily plan", systemImage: "list.bullet.clipboard")
+                    }
+                    .badge(applianceService.appliancesCountBadge)
+                
                 
                 DebugView()
                     .tabItem {
@@ -51,6 +64,12 @@ struct ContentView: View {
             }
         }
         .background(Palette.background)
+        .onAppear {
+            self.applianceService.fetchAppliancesData()
+        }
+        .environmentObject(applianceService)
+        
+        
     }
 }
 
