@@ -26,6 +26,8 @@
 		D0496DF3291F7856008BEDA5 /* EnergramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DF2291F7856008BEDA5 /* EnergramUITests.swift */; };
 		D0496DF5291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */; };
 		D0819195291F9E8E008AB5EA /* LastDayChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0819194291F9E8E008AB5EA /* LastDayChartView.swift */; };
+		D08C1EDF2962B307004BF768 /* ApplianceSlotInDailyPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C1EDE2962B307004BF768 /* ApplianceSlotInDailyPlan.swift */; };
+		D0B56B8329447A29004AE2E5 /* HourLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B56B8229447A29004AE2E5 /* HourLabel.swift */; };
 		D0B6198E2938A47400887F00 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6198D2938A47400887F00 /* Appliance.swift */; };
 		D0B619902938A58A00887F00 /* AppliancesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6198F2938A58A00887F00 /* AppliancesListView.swift */; };
 		D0B619922938A5D800887F00 /* ApplianceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B619912938A5D800887F00 /* ApplianceService.swift */; };
@@ -74,6 +76,9 @@
 		D0496DF2291F7856008BEDA5 /* EnergramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramUITests.swift; sourceTree = "<group>"; };
 		D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D0819194291F9E8E008AB5EA /* LastDayChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastDayChartView.swift; sourceTree = "<group>"; };
+		D08C1EDD2962B030004BF768 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D08C1EDE2962B307004BF768 /* ApplianceSlotInDailyPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceSlotInDailyPlan.swift; sourceTree = "<group>"; };
+		D0B56B8229447A29004AE2E5 /* HourLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourLabel.swift; sourceTree = "<group>"; };
 		D0B6198D2938A47400887F00 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
 		D0B6198F2938A58A00887F00 /* AppliancesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliancesListView.swift; sourceTree = "<group>"; };
 		D0B619912938A5D800887F00 /* ApplianceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceService.swift; sourceTree = "<group>"; };
@@ -119,6 +124,8 @@
 				D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */,
 				D0B6198F2938A58A00887F00 /* AppliancesListView.swift */,
 				D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */,
+				D0B56B8229447A29004AE2E5 /* HourLabel.swift */,
+				D08C1EDE2962B307004BF768 /* ApplianceSlotInDailyPlan.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -175,6 +182,7 @@
 		D0496DD6291F7855008BEDA5 /* Energram */ = {
 			isa = PBXGroup;
 			children = (
+				D08C1EDD2962B030004BF768 /* Info.plist */,
 				D0EFCB0F2920E51000EC32C3 /* Energram.entitlements */,
 				D035A96B291F80D400426722 /* Services */,
 				D035A962291F7A9A00426722 /* Misc */,
@@ -347,6 +355,7 @@
 			files = (
 				D035A96D291F80E800426722 /* PriceService.swift in Sources */,
 				D0496DDA291F7855008BEDA5 /* ContentView.swift in Sources */,
+				D08C1EDF2962B307004BF768 /* ApplianceSlotInDailyPlan.swift in Sources */,
 				D035A971291F8EEC00426722 /* ApiInfo.swift in Sources */,
 				D01366AD293368CB0004CE50 /* DayPlanView.swift in Sources */,
 				D0496DD8291F7855008BEDA5 /* EnergramApp.swift in Sources */,
@@ -361,6 +370,7 @@
 				D035A964291F7AA400426722 /* Palette.swift in Sources */,
 				D035A95D291F794500426722 /* Config.swift in Sources */,
 				D035A961291F7A2B00426722 /* LastDayJsonView.swift in Sources */,
+				D0B56B8329447A29004AE2E5 /* HourLabel.swift in Sources */,
 				D0E2C7A4292122DE003F4DD9 /* DataPrettyPrint.swift in Sources */,
 				D0B619922938A5D800887F00 /* ApplianceService.swift in Sources */,
 				D02968D92939E1A6003C7DA1 /* ApplianceLabel.swift in Sources */,
@@ -527,7 +537,7 @@
 				DEVELOPMENT_TEAM = 7R7Q2CDK95;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = Energram/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -558,7 +568,7 @@
 				DEVELOPMENT_TEAM = 7R7Q2CDK95;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = Energram/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

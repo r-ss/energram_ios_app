@@ -15,6 +15,7 @@ struct ContentView: View {
 //    @State private var uuidLasttDayJson = UUID()
 //    @State private var uuidDebug = UUID()
     
+//    @StateObject var priceService = PriceService()
     @StateObject var applianceService = ApplianceService()
     
 //    @State var appliancesCountBadge: Int = 5
@@ -61,6 +62,9 @@ struct ContentView: View {
                     }
 //                    .tag(uuidDebug)
                     //.badge(6)
+                
+                
+                
             }
         }
         .background(Palette.background)
@@ -68,13 +72,18 @@ struct ContentView: View {
             self.applianceService.fetchAppliancesData()
         }
         .environmentObject(applianceService)
+//        .environmentObject(priceService)
         
         
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
+    static var applianceService = ApplianceService()
+    
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(applianceService).onAppear {
+            self.applianceService.fetchAppliancesData()
+        }
     }
 }

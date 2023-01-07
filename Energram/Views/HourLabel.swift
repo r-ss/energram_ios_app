@@ -1,0 +1,110 @@
+//
+//  HourLabel.swift
+//  Energram
+//
+//  Created by Alex Antipov on 10.12.2022.
+//
+
+
+import SwiftUI
+
+struct HourLabel: View {
+    
+    
+    var hour: Int = 0
+    
+    var selectedAppliances: [SelectedAppliance] = []
+    
+    var appliancesForHour: [SelectedAppliance] {
+        return self.selectedAppliances.filter { $0.time_start == self.hour }
+    }
+    
+    @EnvironmentObject var applianceService: ApplianceService
+    
+    
+    //    var selectedAppliances: [SelectedAppliance] = []
+    
+    @State private var draggedApplianceItem: Appliance?
+    
+    @State private var borderColor: Color = .black
+    @State private var borderWidth: CGFloat = 0.0
+    
+    
+    
+    var body: some View {
+        
+        
+        VStack {
+            
+            Text("\(hour):00").frame(maxWidth: 100, alignment: .leading).padding(7).foregroundColor(.black)
+            
+            ForEach(appliancesForHour) { appl in
+                Text(appl.appliance.name)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                    .frame(width: 80, height: 20, alignment: .leading)
+                    .contentShape(Rectangle())
+                    .padding(0)
+                    .foregroundColor(.black)
+                    .draggable(appl.appliance) {
+                        Text(appl.appliance.name)
+                    }
+            }
+            
+            
+            //            if draggedApplianceItem != nil {
+            //                Text(draggedApplianceItem!.name)
+            //            } //else {
+            //                //Text("Drag here!").foregroundColor(.secondary)
+            //            //}
+        }
+        .frame(maxWidth: 100, alignment: .leading)
+        //            .frame(width: 80, minHeight: 20)
+        .contentShape(Rectangle())
+        .border(borderColor, width: borderWidth)
+        .dropDestination(for: Appliance.self) { items, location in
+            draggedApplianceItem = items.first
+            //                print(location)
+            
+            //                draggedApplianceItem!.name = "zzz"
+            if let safeAppliance = draggedApplianceItem {
+                applianceService.changeApplianceRunTime(appliance: safeAppliance, newStartTime: hour)
+                
+            }
+            
+            
+            
+            
+            return true
+        } isTargeted: { inDropArea in
+            //                print("In drop area", inDropArea)
+            borderColor = inDropArea ? .accentColor : .black
+            borderWidth = inDropArea ? 2.0 : 0.0
+        }
+        
+        
+        
+        
+        
+        //        ForEach(appliancesForHour) { appl in
+        //            Text(appl.appliance.name).fontWeight(.bold).padding(7).foregroundColor(.black)
+        //                .frame(width: 80, height: 20)
+        //                .contentShape(Rectangle())
+        //                .padding(0)
+        //                .foregroundColor(.black)
+        //                .draggable(appl.appliance) {
+        //                    Text(appl.appliance.name)
+        //                }
+        //        }
+        
+    }
+    
+    
+    
+}
+
+struct HourLabel_Previews: PreviewProvider {
+    static var previews: some View {
+        HourLabel(hour: 5, selectedAppliances: [])
+    }
+}

@@ -27,6 +27,8 @@ struct DebugView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.vertical) {
+                
+                
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Debug").font(.title)
                     Text("Screen: \(screenWidth)x\(screenHeight)")

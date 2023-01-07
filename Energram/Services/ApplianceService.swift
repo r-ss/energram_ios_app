@@ -16,13 +16,49 @@ class ApplianceService: ObservableObject {
     
     @Published var appliances: [Appliance]?
     
-    @Published var selectedAppliances: [Appliance] = []
+    @Published var selectedAppliances: [SelectedAppliance] = []
     
 //    @Published var choosenAppliances: [Appliance]?
     
     
     @Published var appliancesCountBadge: Int = 0
     
+//    @EnvironmentObject var priceService: PriceService
+    
+//    self.priceService.fetchData(for_country: "es")
+    
+    let myLocalPriceService = PriceService()
+//    myLocalPriceService.fetchData(for_country: "es")
+    
+        
+    var totalCost: Float {
+        
+
+        print("> countTotalCost")
+        var total: Float = 0.0
+        
+        if let dp: DayPrice = myLocalPriceService.dayPrice {
+            
+            
+            
+            for selAppliance in selectedAppliances {
+                
+                let price = ( dp.data[selAppliance.time_start] * Float(selAppliance.appliance.power) ) / 1000
+                
+                total += price
+            }
+            
+            return total
+            
+        } else {
+            return total
+        }
+
+        
+        
+
+        
+    }
     
     
     
@@ -31,13 +67,25 @@ class ApplianceService: ObservableObject {
         applianceLabel.isSelected.toggle()
         
         if (applianceLabel.isSelected){
-            self.selectedAppliances.append(applianceLabel.appliance)
+            
+            let time_start = Int.random(in: 0..<23)
+            
+            let selected = SelectedAppliance(time_start: time_start, time_end: time_start+1, appliance: applianceLabel.appliance)
+            
+            
+            self.selectedAppliances.append(selected)
         } else {
 //            self.selectedAppliances.remove(at: 0)
-            self.selectedAppliances = self.selectedAppliances.filter { $0.name != applianceLabel.appliance.name }
+            self.selectedAppliances = self.selectedAppliances.filter { $0.appliance.name != applianceLabel.appliance.name }
         }
         
         appliancesCountBadge = selectedAppliances.count
+    }
+    
+    
+    func changeApplianceRunTime(appliance: Appliance, newStartTime: Int) {
+        let idx: Int = selectedAppliances.firstIndex(where: {$0.appliance.name == appliance.name})!
+        self.selectedAppliances[idx].time_start = newStartTime
     }
     
         

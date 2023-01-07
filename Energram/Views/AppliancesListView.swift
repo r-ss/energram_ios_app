@@ -34,16 +34,13 @@ struct AppliancesListView: View {
                     
 //
                     
-                    Text("Selected Appliances").font(.title)
+//                    Text("Selected Appliances").font(.title)
 //
-//
-                    if let selectedAppliances = applianceService.selectedAppliances {
-                        ForEach(selectedAppliances) { appliance in
-                            ApplianceLabel(appliance: appliance, isSelected: false, service: applianceService, disableInteraction: true)
-                        }
-                    }
-                    
-//                    DayPlanView().frame(width: geometry.size.width, height: 700).padding(0)
+//                    if let selectedAppliances = applianceService.selectedAppliances {
+//                        ForEach(selectedAppliances) { appliance in
+//                            ApplianceLabel(appliance: appliance, isSelected: false, service: applianceService, disableInteraction: true)
+//                        }
+//                    }
                     
                     
                     
@@ -61,8 +58,18 @@ struct AppliancesListView: View {
         }}
 }
 
-//struct AppliancesListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AppliancesListView()
-//    }
-//}
+struct AppliancesListView_Previews: PreviewProvider {
+    
+    @State static var applianceService = ApplianceService()
+    
+    
+
+    
+    static var previews: some View {
+        
+        AppliancesListView().environmentObject(applianceService)
+            .onAppear {self.applianceService.fetchAppliancesData()}
+        
+        
+    }
+}

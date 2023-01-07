@@ -10,6 +10,9 @@ import SwiftUI
 struct DayPlanView: View {
     
     
+    @EnvironmentObject var applianceService: ApplianceService
+    
+    
     let appliances: [Appliance] = []
     
     let tileHeight: CGFloat = 390
@@ -20,20 +23,25 @@ struct DayPlanView: View {
         
         return (screenWidth - 40 - 3) / 4
     }
-    
+     
     
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.vertical) {
                 VStack(alignment: .leading, spacing: 10) {
                     
-                    Text("Tomorrow's consumers:").font(.title)
-
-                    Text("🧦 Washing machine").frame(maxWidth: .infinity, alignment: .leading)
-                    Text("🥵 heater").frame(maxWidth: .infinity, alignment: .leading)
-                    Text("🥘 oven").frame(maxWidth: .infinity, alignment: .leading)
-                    Text("📺 television").frame(maxWidth: .infinity, alignment: .leading)
+                    Text("Consumers:").font(.title)
                     
+                    if let selectedAppliances = applianceService.selectedAppliances {
+                        ForEach(selectedAppliances) { selected in
+                            HStack {
+                                Text(selected.appliance.name).fontWeight(.bold)
+                                Text("start_hour: \(selected.time_start), power: \(selected.appliance.power)")
+                            }
+                            
+                        }
+                    }
+
 //                    if let choosenAppliances = ApplianceService.choosenAppliances {
 //                        ForEach(choosenAppliances) { appliance in
 //                            Text(appliance.name)
@@ -45,71 +53,60 @@ struct DayPlanView: View {
                     HStack(spacing: 1) {
                         
                         
+                                              
+                        
+                        
                         ZStack {
                             Rectangle().fill(Palette.b).frame(width: quarterWidth, height: tileHeight)
-                            VStack(alignment: .leading, spacing: 6) {
-                                Text("Night").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold)
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text("Night").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.black)
                                 
-                                Text("00:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("01:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("02:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("03:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
+                                ForEach(0 ..< 6, id:\.self) { hour in
+                                    HourLabel(hour: hour, selectedAppliances: applianceService.selectedAppliances)
+//                                    ApplianceSlotInDailyPlan()
+                                }
                                 
-                                Text("🧦 Washing machine").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold)
-                                
-                                Text("04:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("05:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
                             }.frame(width: quarterWidth, height: tileHeight, alignment: .topTrailing)
                         }
                         
                         ZStack {
                             Rectangle().fill(Palette.d).frame(width: quarterWidth, height: tileHeight)
-                            VStack(alignment: .leading, spacing: 6) {
-                                Text("Morning").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold)
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text("Morning").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.black)
                                 
-                                Text("06:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("07:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
+                                ForEach(6 ..< 12, id:\.self) { hour in
+                                    HourLabel(hour: hour, selectedAppliances: applianceService.selectedAppliances)
+//                                    ApplianceSlotInDailyPlan()
+                                }
                                 
-                                Text("🥵 heater").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold)
                                 
-                                Text("08:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("09:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("10:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("11:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
                             }.frame(width: quarterWidth, height: tileHeight, alignment: .topTrailing)
                         }
                         
                         ZStack {
                             Rectangle().fill(Palette.e).frame(width: quarterWidth, height: tileHeight)
-                            VStack(alignment: .leading, spacing: 6) {
-                                Text("Day").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold)
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text("Day").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.black)
                                 
-                                Text("12:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("13:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("14:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
                                 
-                                Text("🥘 oven").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold)
+                                ForEach(12 ..< 18, id:\.self) { hour in
+                                    HourLabel(hour: hour, selectedAppliances: applianceService.selectedAppliances)
+//                                    ApplianceSlotInDailyPlan()
+                                }
                                 
-                                Text("15:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("16:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("17:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
                             }.frame(width: quarterWidth, height: tileHeight, alignment: .topTrailing)
                         }
                         
                         ZStack {
                             Rectangle().fill(Palette.c).frame(width: quarterWidth, height: tileHeight)
-                            VStack(alignment: .leading, spacing: 6) {
-                                Text("Evening").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold)
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text("Evening").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.black)
                                 
-                                Text("18:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("19:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("20:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("21:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
+                                ForEach(18 ..< 24, id:\.self) { hour in
+                                    HourLabel(hour: hour, selectedAppliances: applianceService.selectedAppliances)
+//                                    ApplianceSlotInDailyPlan()
+                                }
                                 
-                                Text("📺 television").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold)
-                                
-                                Text("22:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
-                                Text("23:00").frame(maxWidth: quarterWidth, alignment: .leading).padding(7)
                             }.frame(width: quarterWidth, height: tileHeight, alignment: .topTrailing)
                         }
                         
@@ -118,18 +115,28 @@ struct DayPlanView: View {
                         
                     }
                     
-                    Text("Cost: €6.56 — optimal 🌿").font(.title).padding(.top, 10)
+                    Text("Cost: €\(applianceService.totalCost)").font(.title).padding(.top, 10)
                     
                 }
                 .padding()
                 .frame(width: geometry.size.width, alignment: .leading)
+                .onAppear {
+                    self.applianceService.myLocalPriceService.fetchData(for_country: "es")
+                }
             }
         }}
 }
 
-//struct DayPlanView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DayPlanView()
-//    }
-//}
+struct DayPlanView_Previews: PreviewProvider {
+    
+    @State static var applianceService = ApplianceService()
+    
+    
+    static var previews: some View {
+        DayPlanView().environmentObject(applianceService)
+            .onAppear {
+                self.applianceService.fetchAppliancesData()
+            }
+    }
+}
 
