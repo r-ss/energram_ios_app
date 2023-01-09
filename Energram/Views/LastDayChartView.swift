@@ -60,8 +60,8 @@ struct LastDayChartView: View {
         }}
 }
 
-struct LastDayChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        LastDayJsonView()
-    }
-}
+//struct LastDayChartView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LastDayJsonView()
+//    }
+//}

@@ -36,16 +36,17 @@ struct HourLabel: View {
         
         VStack {
             
-            Text("\(hour):00").frame(maxWidth: 100, alignment: .leading).padding(7).foregroundColor(.black)
+            Text("\(hour):00").frame(maxWidth: 100, alignment: .leading).padding(7).foregroundColor(.black)//.border(.green, width: 1.0)
             
             ForEach(appliancesForHour) { appl in
                 Text(appl.appliance.name)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                     .frame(width: 80, height: 20, alignment: .leading)
-                    .contentShape(Rectangle())
+//                    .contentShape(Rectangle())
                     .padding(0)
                     .foregroundColor(.black)
+//                    .border(.red, width: 1.0)
                     .draggable(appl.appliance) {
                         Text(appl.appliance.name)
                     }

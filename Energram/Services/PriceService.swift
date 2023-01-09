@@ -84,8 +84,8 @@ class PriceService: ObservableObject {
                         do {
                             let result = try decoder.decode([DayPrice].self, from: safeData)
                             DispatchQueue.main.async {
-                                self.multipleDaysPrices = result
-                                self.dayPriceRAWJSON = safeData.prettyPrintedJSONString!
+                                self.multipleDaysPrices = Array(result[0 ..< 10]) // Limiting result to 10
+//                                self.dayPriceRAWJSON = safeData.prettyPrintedJSONString!
                             }
                         } catch {
                             print(error)

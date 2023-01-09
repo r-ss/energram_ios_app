@@ -10,20 +10,12 @@ import SwiftUI
 
 import UniformTypeIdentifiers
 
-//let jsonEncoder = JSONEncoder()
-
-//let date = Date()
-//let format = date.getFormattedDate(format: "yyyy-MM-dd HH:mm:ss") // Set output format
-
 
 struct Appliance: Codable, Identifiable {
     var id: UUID = UUID()
     var name: String
     var typical_duration: Int
     var power: Int
-    
-    
-    
 
     enum CodingKeys: CodingKey {
         case name // note that id is not listed here
@@ -31,6 +23,16 @@ struct Appliance: Codable, Identifiable {
         case power
     }
     
+}
+
+struct SelectedAppliance: Identifiable {
+    
+    /* Struct used in labels that selects which appliances will be used during the day */
+    
+    var id: UUID = UUID()
+    var time_start: Int
+    var time_end: Int
+    var appliance: Appliance
 }
 
 extension Appliance {
@@ -61,22 +63,6 @@ extension Appliance: Transferable {
         CodableRepresentation(for: Appliance.self, contentType: .applianceUItype)
     }
     
-
 }
 
 
-struct SelectedAppliance: Identifiable {
-    var id: UUID = UUID()
-    var time_start: Int
-    var time_end: Int
-    var appliance: Appliance
-    
-
-//    enum CodingKeys: CodingKey {
-//        case name // note that id is not listed here
-//        case time_start
-//        case time_end
-//        case appliance
-//    }
-    
-}

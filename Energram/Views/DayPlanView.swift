@@ -11,6 +11,8 @@ struct DayPlanView: View {
     
     
     @EnvironmentObject var applianceService: ApplianceService
+    @EnvironmentObject var priceService: PriceService
+    
     
     
     let appliances: [Appliance] = []
@@ -20,8 +22,18 @@ struct DayPlanView: View {
     var quarterWidth: CGFloat {
         let screenSize: CGRect = UIScreen.main.bounds
         let screenWidth = screenSize.width
-        
         return (screenWidth - 40 - 3) / 4
+    }
+    
+    var totalCost: Float {
+        var total: Float = 0.0
+        if let dp: DayPrice = priceService.dayPrice {
+            for selAppliance in applianceService.selectedAppliances {
+                let price = ( dp.data[selAppliance.time_start] * Float(selAppliance.appliance.power) ) / 1000
+                total += price
+            }
+        }
+        return total
     }
      
     
@@ -30,26 +42,36 @@ struct DayPlanView: View {
             ScrollView(.vertical) {
                 VStack(alignment: .leading, spacing: 10) {
                     
-                    Text("Consumers:").font(.title)
                     
-                    if let selectedAppliances = applianceService.selectedAppliances {
+                    if let dateFmt = priceService.dayPrice?.dateFormatted {
+                        Text("Choose Consumers for \(dateFmt)").font(.title)
+                    } else {
+                        Text("Consumers").font(.title)
+                    }
+                    
+                    if let receivedAppliances = applianceService.appliances {
+                        ForEach(receivedAppliances) { appliance in
+                            ApplianceLabel(appliance: appliance, isSelected: false, service: applianceService)
+                        }
+                    }
+                    
+                    
+                    /*if let selectedAppliances = applianceService.selectedAppliances {
                         ForEach(selectedAppliances) { selected in
                             HStack {
                                 Text(selected.appliance.name).fontWeight(.bold)
                                 Text("start_hour: \(selected.time_start), power: \(selected.appliance.power)")
                             }
-                            
                         }
-                    }
+                    }*/
 
-//                    if let choosenAppliances = ApplianceService.choosenAppliances {
-//                        ForEach(choosenAppliances) { appliance in
-//                            Text(appliance.name)
-//                        }
-//                    }
-//
+
+                  
+                    Text("Daily plan").font(.title).padding(.top, 20)
                     
-                    Text("Daily plan:").font(.title).padding(.top, 20)
+                        
+                        
+                    
                     HStack(spacing: 1) {
                         
                         
@@ -115,14 +137,14 @@ struct DayPlanView: View {
                         
                     }
                     
-                    Text("Cost: €\(applianceService.totalCost)").font(.title).padding(.top, 10)
+                    Text("Cost: €\(totalCost)").font(.title).padding(.top, 10)
                     
                 }
                 .padding()
                 .frame(width: geometry.size.width, alignment: .leading)
-                .onAppear {
-                    self.applianceService.myLocalPriceService.fetchData(for_country: "es")
-                }
+//                .onAppear {
+//                    self.applianceService.myLocalPriceService.fetchData(for_country: "es")
+//                }
             }
         }}
 }

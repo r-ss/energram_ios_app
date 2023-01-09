@@ -17,53 +17,10 @@ class ApplianceService: ObservableObject {
     @Published var appliances: [Appliance]?
     
     @Published var selectedAppliances: [SelectedAppliance] = []
-    
-//    @Published var choosenAppliances: [Appliance]?
-    
-    
-    @Published var appliancesCountBadge: Int = 0
-    
-//    @EnvironmentObject var priceService: PriceService
-    
-//    self.priceService.fetchData(for_country: "es")
-    
-    let myLocalPriceService = PriceService()
-//    myLocalPriceService.fetchData(for_country: "es")
-    
-        
-    var totalCost: Float {
-        
-
-        print("> countTotalCost")
-        var total: Float = 0.0
-        
-        if let dp: DayPrice = myLocalPriceService.dayPrice {
-            
-            
-            
-            for selAppliance in selectedAppliances {
-                
-                let price = ( dp.data[selAppliance.time_start] * Float(selAppliance.appliance.power) ) / 1000
-                
-                total += price
-            }
-            
-            return total
-            
-        } else {
-            return total
-        }
-
-        
-        
-
-        
-    }
-    
+//    @Published var appliancesCountBadge: Int = 0
     
     
     func toggleApplianceLabel(applianceLabel: ApplianceLabel) {
-//        log("\(appliancesCountBadge)")
         applianceLabel.isSelected.toggle()
         
         if (applianceLabel.isSelected){
@@ -75,11 +32,10 @@ class ApplianceService: ObservableObject {
             
             self.selectedAppliances.append(selected)
         } else {
-//            self.selectedAppliances.remove(at: 0)
             self.selectedAppliances = self.selectedAppliances.filter { $0.appliance.name != applianceLabel.appliance.name }
         }
         
-        appliancesCountBadge = selectedAppliances.count
+//        appliancesCountBadge = selectedAppliances.count
     }
     
     

@@ -11,13 +11,15 @@
 		D01366AD293368CB0004CE50 /* DayPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01366AC293368CB0004CE50 /* DayPlanView.swift */; };
 		D02968D92939E1A6003C7DA1 /* ApplianceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */; };
 		D035A95D291F794500426722 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A95C291F794500426722 /* Config.swift */; };
-		D035A961291F7A2B00426722 /* LastDayJsonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A960291F7A2B00426722 /* LastDayJsonView.swift */; };
 		D035A964291F7AA400426722 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A963291F7AA400426722 /* Palette.swift */; };
 		D035A966291F7B3400426722 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A965291F7B3400426722 /* Log.swift */; };
 		D035A968291F7B7B00426722 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A967291F7B7B00426722 /* DebugView.swift */; };
 		D035A96A291F7DF900426722 /* DayPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A969291F7DF900426722 /* DayPrice.swift */; };
 		D035A96D291F80E800426722 /* PriceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A96C291F80E800426722 /* PriceService.swift */; };
 		D035A971291F8EEC00426722 /* ApiInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A970291F8EEC00426722 /* ApiInfo.swift */; };
+		D0409439296AB3BA007F5625 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0409438296AB3BA007F5625 /* SettingsManager.swift */; };
+		D040943B296AB47A007F5625 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040943A296AB47A007F5625 /* SettingsView.swift */; };
+		D040943D296BD0C5007F5625 /* SettingsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040943C296BD0C5007F5625 /* SettingsManagerTests.swift */; };
 		D0496DD8291F7855008BEDA5 /* EnergramApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DD7291F7855008BEDA5 /* EnergramApp.swift */; };
 		D0496DDA291F7855008BEDA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DD9291F7855008BEDA5 /* ContentView.swift */; };
 		D0496DDC291F7856008BEDA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0496DDB291F7856008BEDA5 /* Assets.xcassets */; };
@@ -29,7 +31,7 @@
 		D08C1EDF2962B307004BF768 /* ApplianceSlotInDailyPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C1EDE2962B307004BF768 /* ApplianceSlotInDailyPlan.swift */; };
 		D0B56B8329447A29004AE2E5 /* HourLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B56B8229447A29004AE2E5 /* HourLabel.swift */; };
 		D0B6198E2938A47400887F00 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6198D2938A47400887F00 /* Appliance.swift */; };
-		D0B619902938A58A00887F00 /* AppliancesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6198F2938A58A00887F00 /* AppliancesListView.swift */; };
+		D0B619902938A58A00887F00 /* AppliancesListView-DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6198F2938A58A00887F00 /* AppliancesListView-DEPRECATED.swift */; };
 		D0B619922938A5D800887F00 /* ApplianceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B619912938A5D800887F00 /* ApplianceService.swift */; };
 		D0E2C7A4292122DE003F4DD9 /* DataPrettyPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2C7A3292122DD003F4DD9 /* DataPrettyPrint.swift */; };
 		D0E2C7A6292124DF003F4DD9 /* MultipleDaysChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */; };
@@ -58,13 +60,15 @@
 		D01366AC293368CB0004CE50 /* DayPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPlanView.swift; sourceTree = "<group>"; };
 		D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceLabel.swift; sourceTree = "<group>"; };
 		D035A95C291F794500426722 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		D035A960291F7A2B00426722 /* LastDayJsonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastDayJsonView.swift; sourceTree = "<group>"; };
 		D035A963291F7AA400426722 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		D035A965291F7B3400426722 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D035A967291F7B7B00426722 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		D035A969291F7DF900426722 /* DayPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPrice.swift; sourceTree = "<group>"; };
 		D035A96C291F80E800426722 /* PriceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceService.swift; sourceTree = "<group>"; };
 		D035A970291F8EEC00426722 /* ApiInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiInfo.swift; sourceTree = "<group>"; };
+		D0409438296AB3BA007F5625 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		D040943A296AB47A007F5625 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D040943C296BD0C5007F5625 /* SettingsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerTests.swift; sourceTree = "<group>"; };
 		D0496DD4291F7855008BEDA5 /* Energram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Energram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0496DD7291F7855008BEDA5 /* EnergramApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramApp.swift; sourceTree = "<group>"; };
 		D0496DD9291F7855008BEDA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,7 +84,7 @@
 		D08C1EDE2962B307004BF768 /* ApplianceSlotInDailyPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceSlotInDailyPlan.swift; sourceTree = "<group>"; };
 		D0B56B8229447A29004AE2E5 /* HourLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourLabel.swift; sourceTree = "<group>"; };
 		D0B6198D2938A47400887F00 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
-		D0B6198F2938A58A00887F00 /* AppliancesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliancesListView.swift; sourceTree = "<group>"; };
+		D0B6198F2938A58A00887F00 /* AppliancesListView-DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppliancesListView-DEPRECATED.swift"; sourceTree = "<group>"; };
 		D0B619912938A5D800887F00 /* ApplianceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceService.swift; sourceTree = "<group>"; };
 		D0E2C7A3292122DD003F4DD9 /* DataPrettyPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPrettyPrint.swift; sourceTree = "<group>"; };
 		D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleDaysChartView.swift; sourceTree = "<group>"; };
@@ -116,16 +120,16 @@
 		D035A95E291F7A0900426722 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D035A960291F7A2B00426722 /* LastDayJsonView.swift */,
 				D035A967291F7B7B00426722 /* DebugView.swift */,
 				D01366AC293368CB0004CE50 /* DayPlanView.swift */,
 				D0E2C7A729212A56003F4DD9 /* MiniChart.swift */,
 				D0819194291F9E8E008AB5EA /* LastDayChartView.swift */,
 				D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */,
-				D0B6198F2938A58A00887F00 /* AppliancesListView.swift */,
+				D0B6198F2938A58A00887F00 /* AppliancesListView-DEPRECATED.swift */,
 				D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */,
 				D0B56B8229447A29004AE2E5 /* HourLabel.swift */,
 				D08C1EDE2962B307004BF768 /* ApplianceSlotInDailyPlan.swift */,
+				D040943A296AB47A007F5625 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -155,6 +159,7 @@
 				D035A970291F8EEC00426722 /* ApiInfo.swift */,
 				D035A96C291F80E800426722 /* PriceService.swift */,
 				D0B619912938A5D800887F00 /* ApplianceService.swift */,
+				D0409438296AB3BA007F5625 /* SettingsManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 			children = (
 				D0496DE8291F7856008BEDA5 /* EnergramTests.swift */,
 				D00D4CB12941C05E002807FC /* ConfigTests.swift */,
+				D040943C296BD0C5007F5625 /* SettingsManagerTests.swift */,
 			);
 			path = EnergramTests;
 			sourceTree = "<group>";
@@ -361,7 +367,7 @@
 				D0496DD8291F7855008BEDA5 /* EnergramApp.swift in Sources */,
 				D035A96A291F7DF900426722 /* DayPrice.swift in Sources */,
 				D0E2C7A829212A56003F4DD9 /* MiniChart.swift in Sources */,
-				D0B619902938A58A00887F00 /* AppliancesListView.swift in Sources */,
+				D0B619902938A58A00887F00 /* AppliancesListView-DEPRECATED.swift in Sources */,
 				D0B6198E2938A47400887F00 /* Appliance.swift in Sources */,
 				D035A966291F7B3400426722 /* Log.swift in Sources */,
 				D035A968291F7B7B00426722 /* DebugView.swift in Sources */,
@@ -369,11 +375,12 @@
 				D0819195291F9E8E008AB5EA /* LastDayChartView.swift in Sources */,
 				D035A964291F7AA400426722 /* Palette.swift in Sources */,
 				D035A95D291F794500426722 /* Config.swift in Sources */,
-				D035A961291F7A2B00426722 /* LastDayJsonView.swift in Sources */,
 				D0B56B8329447A29004AE2E5 /* HourLabel.swift in Sources */,
+				D0409439296AB3BA007F5625 /* SettingsManager.swift in Sources */,
 				D0E2C7A4292122DE003F4DD9 /* DataPrettyPrint.swift in Sources */,
 				D0B619922938A5D800887F00 /* ApplianceService.swift in Sources */,
 				D02968D92939E1A6003C7DA1 /* ApplianceLabel.swift in Sources */,
+				D040943B296AB47A007F5625 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +390,7 @@
 			files = (
 				D0496DE9291F7856008BEDA5 /* EnergramTests.swift in Sources */,
 				D00D4CB22941C05E002807FC /* ConfigTests.swift in Sources */,
+				D040943D296BD0C5007F5625 /* SettingsManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

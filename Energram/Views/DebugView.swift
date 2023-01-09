@@ -24,13 +24,19 @@ struct DebugView: View {
     let jsonFont = Font.system(size: 12).monospaced()
     
     
+//    @EnvironmentObject var priceService: PriceService
+    
+    
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.vertical) {
                 
-                
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Debug").font(.title)
+                    Text("Debug Info").font(.title)
+                    
+//                    Text(priceService.dayPriceRAWJSON)
+                    
+                    
                     Text("Screen: \(screenWidth)x\(screenHeight)")
                     Text("Device: \(modelIdentifier())")
                     Text("Palette:").fontWeight(.bold)
@@ -46,7 +52,7 @@ struct DebugView: View {
                         Text(ai).font(jsonFont)
                     }
                 }
-                .padding()
+                //.padding()
                 .frame(width: geometry.size.width, alignment: .leading)
                 .onAppear {
                     self.apiInfoService.fetchData()
