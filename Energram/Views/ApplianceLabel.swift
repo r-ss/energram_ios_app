@@ -14,6 +14,8 @@ struct ApplianceLabel: View {
     
 //    @Binding var appliancesBadgeCount: Int?
     
+    @EnvironmentObject var priceService: PriceService
+    
     
     
     @State var isSelected: Bool
@@ -33,19 +35,9 @@ struct ApplianceLabel: View {
     var body: some View {
         
         
-        
-        
         Button {
-//            isSelected.toggle()
             if !disableInteraction {
-                service.toggleApplianceLabel(applianceLabel: self)
-                
-                
-//                self.appliancesBadgeCount = 40;
-                
-//                appliancesBadgeCount = 5
-                
-                
+                service.toggleApplianceLabel(applianceLabel: self, priceService: priceService)
             }
         } label: {
             ZStack{

@@ -13,7 +13,11 @@ struct HourLabel: View {
     
     var hour: Int = 0
     
+    
+    
     var selectedAppliances: [SelectedAppliance] = []
+    
+    var dayPrices: DayPrice?
     
     var appliancesForHour: [SelectedAppliance] {
         return self.selectedAppliances.filter { $0.time_start == self.hour }
@@ -31,12 +35,23 @@ struct HourLabel: View {
     
     
     
+    
+    
     var body: some View {
         
         
         VStack {
+
             
             Text("\(hour):00").frame(maxWidth: 100, alignment: .leading).padding(7).foregroundColor(.black)//.border(.green, width: 1.0)
+            
+                       
+//            if let dp = dayPrices {
+//                Text("\(dp.data[hour])")
+//            }
+            
+            
+            
             
             ForEach(appliancesForHour) { appl in
                 Text(appl.appliance.name)

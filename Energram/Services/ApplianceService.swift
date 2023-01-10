@@ -19,13 +19,17 @@ class ApplianceService: ObservableObject {
     @Published var selectedAppliances: [SelectedAppliance] = []
 //    @Published var appliancesCountBadge: Int = 0
     
+    @EnvironmentObject var priceService: PriceService
     
-    func toggleApplianceLabel(applianceLabel: ApplianceLabel) {
+    
+    func toggleApplianceLabel(applianceLabel: ApplianceLabel, priceService: PriceService) {
         applianceLabel.isSelected.toggle()
         
         if (applianceLabel.isSelected){
             
-            let time_start = Int.random(in: 0..<23)
+//            let time_start = Int.random(in: 0..<23)
+            
+            let time_start: Int = proposeApplinceRunningTime(selectedAppliances: selectedAppliances, newAppliance: applianceLabel.appliance, dayPrice: priceService.dayPrice!)
             
             let selected = SelectedAppliance(time_start: time_start, time_end: time_start+1, appliance: applianceLabel.appliance)
             
@@ -42,6 +46,20 @@ class ApplianceService: ObservableObject {
     func changeApplianceRunTime(appliance: Appliance, newStartTime: Int) {
         let idx: Int = selectedAppliances.firstIndex(where: {$0.appliance.name == appliance.name})!
         self.selectedAppliances[idx].time_start = newStartTime
+    }
+    
+    func proposeApplinceRunningTime(selectedAppliances: [SelectedAppliance], newAppliance: Appliance, dayPrice: DayPrice) -> Int {
+        
+        let prices: [Float] = dayPrice.data
+        
+        func get_index_of_minimal() -> Int {
+            let idx: Int = dayPrice.data.firstIndex(where: {$0 == prices.min()})!
+            return idx
+        }
+        
+        return get_index_of_minimal()
+        
+        
     }
     
         
