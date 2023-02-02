@@ -44,9 +44,9 @@ struct DayPlanView: View {
                     
                     
                     if let dateFmt = priceService.dayPrice?.dateFormatted {
-                        Text("Choose Consumers for \(dateFmt)").font(.title)
+                        Text("Choose Consumers for \(dateFmt)").font(.headlineCustom)
                     } else {
-                        Text("Consumers").font(.title)
+                        Text("Consumers").font(.headlineCustom)
                     }
                     
                     if let receivedAppliances = applianceService.appliances {
@@ -67,7 +67,7 @@ struct DayPlanView: View {
 
 
                   
-                    Text("Daily plan").font(.title).padding(.top, 20)
+                    Text("Daily plan").font(.headlineCustom).padding(.top, 20)
                     
                         
                         
@@ -79,9 +79,9 @@ struct DayPlanView: View {
                         
                         
                         ZStack {
-                            Rectangle().fill(Palette.b).frame(width: quarterWidth, height: tileHeight)
+                            Rectangle().fill(Palette.dayPlanNight).frame(width: quarterWidth, height: tileHeight)
                             VStack(alignment: .leading, spacing: 0) {
-                                Text("Night").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.black)
+                                Text("Night").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
                                 
                                 ForEach(0 ..< 6, id:\.self) { hour in
                                     HourLabel(hour: hour, selectedAppliances: applianceService.selectedAppliances, dayPrices: priceService.dayPrice)
@@ -92,9 +92,9 @@ struct DayPlanView: View {
                         }
                         
                         ZStack {
-                            Rectangle().fill(Palette.d).frame(width: quarterWidth, height: tileHeight)
+                            Rectangle().fill(Palette.dayPlanMorning).frame(width: quarterWidth, height: tileHeight)
                             VStack(alignment: .leading, spacing: 0) {
-                                Text("Morning").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.black)
+                                Text("Morning").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
                                 
                                 ForEach(6 ..< 12, id:\.self) { hour in
                                     HourLabel(hour: hour, selectedAppliances: applianceService.selectedAppliances, dayPrices: priceService.dayPrice)
@@ -106,9 +106,9 @@ struct DayPlanView: View {
                         }
                         
                         ZStack {
-                            Rectangle().fill(Palette.e).frame(width: quarterWidth, height: tileHeight)
+                            Rectangle().fill(Palette.dayPlanDay).frame(width: quarterWidth, height: tileHeight)
                             VStack(alignment: .leading, spacing: 0) {
-                                Text("Day").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.black)
+                                Text("Day").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
                                 
                                 
                                 ForEach(12 ..< 18, id:\.self) { hour in
@@ -120,9 +120,9 @@ struct DayPlanView: View {
                         }
                         
                         ZStack {
-                            Rectangle().fill(Palette.c).frame(width: quarterWidth, height: tileHeight)
+                            Rectangle().fill(Palette.dayPlanEvening).frame(width: quarterWidth, height: tileHeight)
                             VStack(alignment: .leading, spacing: 0) {
-                                Text("Evening").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.black)
+                                Text("Evening").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
                                 
                                 ForEach(18 ..< 24, id:\.self) { hour in
                                     HourLabel(hour: hour, selectedAppliances: applianceService.selectedAppliances, dayPrices: priceService.dayPrice)
@@ -137,7 +137,7 @@ struct DayPlanView: View {
                         
                     }
                     
-                    Text("Cost: €\(totalCost)").font(.title).padding(.top, 10)
+                    Text("Cost: €\(totalCost)").font(.headlineCustom).padding(.top, 10)
                     
                     if let dp = priceService.dayPrice {
                         MiniChart(forDay: dp)

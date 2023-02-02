@@ -29,9 +29,13 @@
 		D0496DF5291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */; };
 		D0819195291F9E8E008AB5EA /* LastDayChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0819194291F9E8E008AB5EA /* LastDayChartView.swift */; };
 		D08C1EDF2962B307004BF768 /* ApplianceSlotInDailyPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C1EDE2962B307004BF768 /* ApplianceSlotInDailyPlan.swift */; };
+		D0922CB8297ED82600743426 /* ArgentumSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB4297ED82600743426 /* ArgentumSans-Medium.ttf */; };
+		D0922CB9297ED82600743426 /* ArgentumSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB5297ED82600743426 /* ArgentumSans-Regular.ttf */; };
+		D0922CBA297ED82600743426 /* ArgentumSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB6297ED82600743426 /* ArgentumSans-Bold.ttf */; };
+		D0922CBB297ED82600743426 /* ArgentumSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB7297ED82600743426 /* ArgentumSans-Light.ttf */; };
+		D0922CBE297EDBAC00743426 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0922CBD297EDBAC00743426 /* Fonts.swift */; };
 		D0B56B8329447A29004AE2E5 /* HourLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B56B8229447A29004AE2E5 /* HourLabel.swift */; };
 		D0B6198E2938A47400887F00 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6198D2938A47400887F00 /* Appliance.swift */; };
-		D0B619902938A58A00887F00 /* AppliancesListView-DEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6198F2938A58A00887F00 /* AppliancesListView-DEPRECATED.swift */; };
 		D0B619922938A5D800887F00 /* ApplianceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B619912938A5D800887F00 /* ApplianceService.swift */; };
 		D0E2C7A4292122DE003F4DD9 /* DataPrettyPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2C7A3292122DD003F4DD9 /* DataPrettyPrint.swift */; };
 		D0E2C7A6292124DF003F4DD9 /* MultipleDaysChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */; };
@@ -82,9 +86,13 @@
 		D0819194291F9E8E008AB5EA /* LastDayChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastDayChartView.swift; sourceTree = "<group>"; };
 		D08C1EDD2962B030004BF768 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D08C1EDE2962B307004BF768 /* ApplianceSlotInDailyPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceSlotInDailyPlan.swift; sourceTree = "<group>"; };
+		D0922CB4297ED82600743426 /* ArgentumSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Medium.ttf"; sourceTree = "<group>"; };
+		D0922CB5297ED82600743426 /* ArgentumSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Regular.ttf"; sourceTree = "<group>"; };
+		D0922CB6297ED82600743426 /* ArgentumSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Bold.ttf"; sourceTree = "<group>"; };
+		D0922CB7297ED82600743426 /* ArgentumSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Light.ttf"; sourceTree = "<group>"; };
+		D0922CBD297EDBAC00743426 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		D0B56B8229447A29004AE2E5 /* HourLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourLabel.swift; sourceTree = "<group>"; };
 		D0B6198D2938A47400887F00 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
-		D0B6198F2938A58A00887F00 /* AppliancesListView-DEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppliancesListView-DEPRECATED.swift"; sourceTree = "<group>"; };
 		D0B619912938A5D800887F00 /* ApplianceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceService.swift; sourceTree = "<group>"; };
 		D0E2C7A3292122DD003F4DD9 /* DataPrettyPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPrettyPrint.swift; sourceTree = "<group>"; };
 		D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleDaysChartView.swift; sourceTree = "<group>"; };
@@ -125,7 +133,6 @@
 				D0E2C7A729212A56003F4DD9 /* MiniChart.swift */,
 				D0819194291F9E8E008AB5EA /* LastDayChartView.swift */,
 				D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */,
-				D0B6198F2938A58A00887F00 /* AppliancesListView-DEPRECATED.swift */,
 				D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */,
 				D0B56B8229447A29004AE2E5 /* HourLabel.swift */,
 				D08C1EDE2962B307004BF768 /* ApplianceSlotInDailyPlan.swift */,
@@ -149,6 +156,7 @@
 				D035A963291F7AA400426722 /* Palette.swift */,
 				D035A965291F7B3400426722 /* Log.swift */,
 				D0E2C7A3292122DD003F4DD9 /* DataPrettyPrint.swift */,
+				D0922CBD297EDBAC00743426 /* Fonts.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -197,6 +205,7 @@
 				D035A95C291F794500426722 /* Config.swift */,
 				D0496DD9291F7855008BEDA5 /* ContentView.swift */,
 				D0496DDB291F7856008BEDA5 /* Assets.xcassets */,
+				D0922CBC297ED82D00743426 /* Fonts */,
 				D0496DDD291F7856008BEDA5 /* Preview Content */,
 			);
 			path = Energram;
@@ -227,6 +236,17 @@
 				D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */,
 			);
 			path = EnergramUITests;
+			sourceTree = "<group>";
+		};
+		D0922CBC297ED82D00743426 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D0922CB6297ED82600743426 /* ArgentumSans-Bold.ttf */,
+				D0922CB7297ED82600743426 /* ArgentumSans-Light.ttf */,
+				D0922CB4297ED82600743426 /* ArgentumSans-Medium.ttf */,
+				D0922CB5297ED82600743426 /* ArgentumSans-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,8 +353,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0922CB8297ED82600743426 /* ArgentumSans-Medium.ttf in Resources */,
+				D0922CBB297ED82600743426 /* ArgentumSans-Light.ttf in Resources */,
 				D0496DDF291F7856008BEDA5 /* Preview Assets.xcassets in Resources */,
 				D0496DDC291F7856008BEDA5 /* Assets.xcassets in Resources */,
+				D0922CBA297ED82600743426 /* ArgentumSans-Bold.ttf in Resources */,
+				D0922CB9297ED82600743426 /* ArgentumSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +391,7 @@
 				D0496DD8291F7855008BEDA5 /* EnergramApp.swift in Sources */,
 				D035A96A291F7DF900426722 /* DayPrice.swift in Sources */,
 				D0E2C7A829212A56003F4DD9 /* MiniChart.swift in Sources */,
-				D0B619902938A58A00887F00 /* AppliancesListView-DEPRECATED.swift in Sources */,
+				D0922CBE297EDBAC00743426 /* Fonts.swift in Sources */,
 				D0B6198E2938A47400887F00 /* Appliance.swift in Sources */,
 				D035A966291F7B3400426722 /* Log.swift in Sources */,
 				D035A968291F7B7B00426722 /* DebugView.swift in Sources */,

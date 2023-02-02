@@ -20,7 +20,8 @@ class SettingsManager {
     private var settings: [SettingsItem] = [
         SettingsItem(name: "TestParameter", type: "Bool", defaultValue: true), // Used only in tests
         SettingsItem(name: "ShowDebugInfo", type: "Bool", defaultValue: true),
-        SettingsItem(name: "CountryCode", type: "String", defaultValue: "es")
+        SettingsItem(name: "CountryCode", type: "String", defaultValue: "es"),
+        SettingsItem(name: "ReservedPower", type: "Integer", defaultValue: 4600), // Watts
     ]
     
     
@@ -85,6 +86,8 @@ class SettingsManager {
         switch item.type {
             case "Bool":
                 return UserDefaults.standard.bool(forKey: item.name)
+            case "Integer":
+                return UserDefaults.standard.integer(forKey: item.name)
             default:
                 // in other cases we assume String
                 return UserDefaults.standard.string(forKey: item.name)!
@@ -116,6 +119,12 @@ class SettingsManager {
 //        } else {
 //            return item.defaultValue as! Bool
 //        }
+    }
+    
+    public func getIntegerValue(name: String) -> Int {
+//        print("> getBoolValue for \(name)")
+        let item = getSettingItem(withName: name)
+        return UserDefaults.standard.integer(forKey: item.name)
     }
     
     

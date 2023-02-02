@@ -9,13 +9,13 @@ import Foundation
 
 struct Config {
     
-    static let urlWeb: String = "https://energram.ress.ws"
-    static let urlApi: String = "https://energram-newapi.ress.ws"
+    static let urlWeb: String = "https://beta.energram.co"
+    static let urlApi: String = "https://api.energram.co"
     
 //    static let urlApiInfo: String = urlApi + "/info"
 //    static let urlLatestPrice: String = urlApi + "/price/latest"
 //    static let urlMultiplePrices: String = urlApi + "/price/all"
     
-    static let appliencesListURL: String = "https://energram-newapi.ress.ws/appliance/all"
+    static let appliencesListURL: String = urlApi + "/appliance/all"
     
 }

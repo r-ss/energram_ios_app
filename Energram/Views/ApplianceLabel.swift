@@ -24,13 +24,13 @@ struct ApplianceLabel: View {
     
     var disableInteraction: Bool = false
     
-    func random_label_color() -> Color {
-        return Color(
-            red: .random(in: 0.15...0.85),
-            green: .random(in: 0.15...0.85),
-            blue: .random(in: 0.15...0.85)
-        )
-    }
+//    func random_label_color() -> Color {
+//        return Color(
+//            red: .random(in: 0.15...0.85),
+//            green: .random(in: 0.15...0.85),
+//            blue: .random(in: 0.15...0.85)
+//        )
+//    }
     
     var body: some View {
         
@@ -41,7 +41,7 @@ struct ApplianceLabel: View {
             }
         } label: {
             ZStack{
-                RoundedRectangle(cornerRadius: 8).foregroundColor(random_label_color())
+                RoundedRectangle(cornerRadius: 8).foregroundColor( isSelected ? Palette.brandGreen : Palette.brandPurple )
                 HStack(spacing: 0){
                     Image(systemName: isSelected ? "checkmark.circle.fill" : "checkmark.circle").resizable().padding(10).foregroundColor(.white).scaledToFit()
                     Text(appliance.name).font(.headline).foregroundColor(.white).padding(8)

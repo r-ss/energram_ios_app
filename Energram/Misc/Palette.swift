@@ -104,12 +104,22 @@ struct Palette {
     static let d: Color = Color(hex: "F0B49E")!
     static let e: Color = Color(hex: "F7E4BE")!
     
-    static let background = b
+    static let brandPurpleDark: Color = Color(hex: "3E0A63")!
+    static let brandPurple: Color = Color(hex: "5D0E8B")!
+    static let brandPurpleLight: Color = Color(hex: "C6A1E5")!
+    static let brandGreen: Color = Color(hex: "00C4BF")!
+    
+    static let background = Color(hex: "5D0E8B")!
     static let textColor = Color(hex: "FFFFFF")!
     
     static let chartTickColor = Color(hex: "F9F2E7")!
     static let chartRedTickColor = Color(hex: "ED303C")!
-    static let chartGreenTickColor = Color(hex: "8FBE00")!
+    static let chartGreenTickColor = brandGreen
+    
+    static let dayPlanNight = brandPurpleDark // was b
+    static let dayPlanMorning = brandPurple // was d
+    static let dayPlanDay = brandPurpleDark// was e
+    static let dayPlanEvening = brandPurple // was c
 
 
 }

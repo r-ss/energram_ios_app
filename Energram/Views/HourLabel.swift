@@ -30,7 +30,7 @@ struct HourLabel: View {
     
     @State private var draggedApplianceItem: Appliance?
     
-    @State private var borderColor: Color = .black
+//    @State private var borderColor: Color = .black
     @State private var borderWidth: CGFloat = 0.0
     
     
@@ -43,7 +43,7 @@ struct HourLabel: View {
         VStack {
 
             
-            Text("\(hour):00").frame(maxWidth: 100, alignment: .leading).padding(7).foregroundColor(.black)//.border(.green, width: 1.0)
+            Text("\(hour):00").frame(maxWidth: 100, alignment: .leading).padding(7).foregroundColor(.white)//.border(.green, width: 1.0)
             
                        
 //            if let dp = dayPrices {
@@ -56,14 +56,14 @@ struct HourLabel: View {
             ForEach(appliancesForHour) { appl in
                 Text(appl.appliance.name)
                     .fontWeight(.bold)
-                    .foregroundColor(.black)
+//                    .foregroundColor(.black)
                     .frame(width: 80, height: 20, alignment: .leading)
 //                    .contentShape(Rectangle())
                     .padding(0)
-                    .foregroundColor(.black)
+                    .foregroundColor(Palette.brandGreen)
 //                    .border(.red, width: 1.0)
                     .draggable(appl.appliance) {
-                        Text(appl.appliance.name)
+                        Text(appl.appliance.name).foregroundColor(Palette.brandGreen)
                     }
             }
             
@@ -77,7 +77,7 @@ struct HourLabel: View {
         .frame(maxWidth: 100, alignment: .leading)
         //            .frame(width: 80, minHeight: 20)
         .contentShape(Rectangle())
-        .border(borderColor, width: borderWidth)
+        .border(Palette.brandGreen, width: borderWidth)
         .dropDestination(for: Appliance.self) { items, location in
             draggedApplianceItem = items.first
             //                print(location)
@@ -94,7 +94,7 @@ struct HourLabel: View {
             return true
         } isTargeted: { inDropArea in
             //                print("In drop area", inDropArea)
-            borderColor = inDropArea ? .accentColor : .black
+//            borderColor = inDropArea ? .accentColor : .black
             borderWidth = inDropArea ? 2.0 : 0.0
         }
         

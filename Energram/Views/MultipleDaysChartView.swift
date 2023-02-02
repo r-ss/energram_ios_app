@@ -36,10 +36,10 @@ struct MultipleDaysChartView: View {
                     if let days = priceService.multipleDaysPrices {
                         
                         if countryCode == "es" {
-                            Text("Electricity price 🇪🇸").font(.system(size: 32)).fontWeight(.bold)
+                            Text("Electricity price 🇪🇸").font(.headlineCustom)
                         }
                         if countryCode == "cz" {
-                            Text("Electricity price 🇨🇿").font(.system(size: 32)).fontWeight(.bold)
+                            Text("Electricity price 🇨🇿").font(.headlineCustom)
                         }
                         
                         
