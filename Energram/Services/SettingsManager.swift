@@ -14,27 +14,35 @@ struct SettingsItem {
     var defaultValue: Any
 }
 
-class SettingsManager {
+struct SettingsManager {
+    
+
+    static let shared = SettingsManager()
+
+//    private init() { }
+    
     
     private let defaults = UserDefaults.standard
     private var settings: [SettingsItem] = [
         SettingsItem(name: "TestParameter", type: "Bool", defaultValue: true), // Used only in tests
+        SettingsItem(name: "Existence", type: "Bool", defaultValue: true), // Used to determine existence of settings and writing default values routine if not
         SettingsItem(name: "ShowDebugInfo", type: "Bool", defaultValue: true),
         SettingsItem(name: "CountryCode", type: "String", defaultValue: "es"),
         SettingsItem(name: "ReservedPower", type: "Integer", defaultValue: 4600), // Watts
     ]
     
     
-//    init(){
-//
-////        print("> SettingsManager Init")
-////        print(UserDefaults.standard.dictionaryRepresentation())
-//
-//
-//    }
+    private init(){
+        print("> SettingsManager's privete Init")
+        if UserDefaults.standard.object(forKey: "Existence") == nil {
+            self.createAndSaveDefault()
+        }
+    }
         
 
     func createAndSaveDefault() {
+        defaults.set(25, forKey: "Age")
+        
         for item in self.settings {
             print("Writing default setting for \(item.name)")
             defaults.set(item.defaultValue, forKey: item.name)
@@ -47,40 +55,6 @@ class SettingsManager {
     }
     
     
-//
-//    private func getSettingItem(withName: String) -> SettingsItem {
-//
-//
-//        if let idx = self.settings.firstIndex(where: { $0.name == withName }){
-//            return self.settings[idx]
-//        } else {
-//            print("Writing default settings")
-//            self.createAndSaveDefault()
-//
-//            let idx2 = self.settings.firstIndex(where: { $0.name == withName })!
-//            return self.settings[idx2]
-//
-//        }
-//
-//
-//
-//
-////        do {
-////            let idx = try self.settings.firstIndex(where: { $0.name == withName })
-////            return self.settings[idx]
-////        }
-////        catch {
-////            print(error.localizedDescription)
-////            self.createAndSaveDefault()
-////            let idx = self.settings.firstIndex(where: { $0.name == withName })!
-////            return self.settings[idx]
-////        }
-////
-//
-//
-//
-//    }
-//
     public func getValue(name: String) -> Any {
         let item = getSettingItem(withName: name)
         switch item.type {

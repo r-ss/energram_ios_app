@@ -12,20 +12,28 @@ import SwiftUI
 struct SettingsView: View {
     
     
-    let settingsManager = SettingsManager()
+//    let settingsManager = SettingsManager()
     
     @State private var showDebugInfo: Bool = true
-    @State private var userReservedPower: Int = 4
+    @State private var userReservedPower: Int = 0
     
     
-    func readSettings() {
-        self.showDebugInfo = settingsManager.getBoolValue(name: "ShowDebugInfo")
-        self.userReservedPower = settingsManager.getIntegerValue(name: "ReservedPower")
-    }
+    
     
     @State private var country_code_from_settings = "none"
     @State private var selection = "Spain"
-    let countries = ["Spain", "Czech"]
+    let countries = ["Spain", "Czech Republic"]
+    
+    
+    func readSettings() {
+        self.showDebugInfo = SettingsManager.shared.getBoolValue(name: "ShowDebugInfo")
+        self.userReservedPower = SettingsManager.shared.getIntegerValue(name: "ReservedPower")
+    }
+    
+    
+    func submitReservedPower() {
+        SettingsManager.shared.setValue(name: "ReservedPower", value: userReservedPower)
+    }
     
 
     
@@ -54,16 +62,25 @@ struct SettingsView: View {
                     print("Picked item: \(item)")
                     
                     if item == "Spain" {
-                        settingsManager.setValue(name: "CountryCode", value: "es")
+                        SettingsManager.shared.setValue(name: "CountryCode", value: "es")
                     }
                     
-                    if item == "Czech" {
-                        settingsManager.setValue(name: "CountryCode", value: "cz")
+                    if item == "Czech Republic" {
+                        SettingsManager.shared.setValue(name: "CountryCode", value: "cz")
                     }
                     
                 }
                 
-                Text("Reserved Power: \(userReservedPower)")
+                                
+                Group{
+                       Text("Your Reserved Power (Watts):")
+                       TextField("Reserved Power:", value: $userReservedPower, formatter: NumberFormatter())
+                        .onSubmit {
+                            submitReservedPower()
+                        }
+                    }
+                
+                
                 
                 //Text("Selected country: \(selection)")
                 //Text("country_code_from_settings: \(country_code_from_settings)")
@@ -73,7 +90,7 @@ struct SettingsView: View {
                 
                 Toggle("Show Debug Info", isOn: $showDebugInfo)
                     .onChange(of: showDebugInfo) { value in
-                        settingsManager.setValue(name: "ShowDebugInfo", value: value)
+                        SettingsManager.shared.setValue(name: "ShowDebugInfo", value: value)
                     }.font(.regularCustom)
                 
                 
@@ -88,7 +105,7 @@ struct SettingsView: View {
                 
                 
                 
-                let country_code = settingsManager.getStringValue(name: "CountryCode")
+                let country_code = SettingsManager.shared.getStringValue(name: "CountryCode")
                 
                 self.country_code_from_settings = country_code
                 
@@ -97,7 +114,7 @@ struct SettingsView: View {
                 }
                 
                 if country_code == "cz" {
-                    self.selection = "Czech"
+                    self.selection = "Czech Republic"
                 }
                 
             }

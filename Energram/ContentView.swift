@@ -15,7 +15,6 @@ struct ContentView: View {
     //    @State private var uuidLasttDayJson = UUID()
     //    @State private var uuidDebug = UUID()
     
-    let settingsManager = SettingsManager()
     
     @State private var country_code: String = "es"
     
@@ -59,7 +58,7 @@ struct ContentView: View {
         .background(Palette.background)
         .onAppear {
             
-            self.country_code = settingsManager.getStringValue(name: "CountryCode")
+            self.country_code = SettingsManager.shared.getStringValue(name: "CountryCode")
             
             // At launch, we send 2 requests to get initial data from API server to make our calculations possible
             self.applianceService.fetchAppliancesData()

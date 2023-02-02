@@ -16,7 +16,6 @@ struct BarTick2: Identifiable {
 
 struct MultipleDaysChartView: View {
     
-    let settingsManager = SettingsManager()
     
     @State private var countryCode: String = "es" // es, cz
     
@@ -55,7 +54,7 @@ struct MultipleDaysChartView: View {
             }
             .onAppear {
                 
-                countryCode = settingsManager.getStringValue(name: "CountryCode")
+                countryCode = SettingsManager.shared.getStringValue(name: "CountryCode")
                 
                 self.priceService.fetchMultipleDaysData(for_country: countryCode)
             }

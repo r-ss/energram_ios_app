@@ -14,6 +14,9 @@ struct DayPlanView: View {
     @EnvironmentObject var priceService: PriceService
     
     
+    @State private var userReservedPower: Int = 0
+    
+    
     
     let appliances: [Appliance] = []
     
@@ -137,6 +140,8 @@ struct DayPlanView: View {
                         
                     }
                     
+                    Text("Reserved Power: \(self.userReservedPower) Watts")
+                    
                     Text("Cost: €\(totalCost)").font(.headlineCustom).padding(.top, 10)
                     
                     if let dp = priceService.dayPrice {
@@ -146,9 +151,10 @@ struct DayPlanView: View {
                 }
                 .padding()
                 .frame(width: geometry.size.width, alignment: .leading)
-//                .onAppear {
-//                    self.applianceService.myLocalPriceService.fetchData(for_country: "es")
-//                }
+                .onAppear {
+                    //self.applianceService.myLocalPriceService.fetchData(for_country: "es")
+                    self.userReservedPower = SettingsManager.shared.getIntegerValue(name: "ReservedPower")
+                }
             }
         }}
 }
