@@ -12,16 +12,39 @@ struct HourLabel: View {
     
     
     var hour: Int = 0
+//    var dailyPlan: DailyPlan?
     
     
     
-    var selectedAppliances: [SelectedAppliance] = []
+    //    var selectedAppliances: [SelectedAppliance] = []
     
-    var dayPrices: DayPrice?
+//    var appliancesForHour: [Appliance] = []
     
-    var appliancesForHour: [SelectedAppliance] {
-        return self.selectedAppliances.filter { $0.time_start == self.hour }
+    @EnvironmentObject var priceService: PriceService
+    
+
+    
+    var appliancesForHour: [Appliance] {
+        return []
+    
+//            if let have = self.dailyPlan?.hours[self.hour].appliancesAssigned {
+//                return have
+//            } else {
+//                return []
+//            }
+    
+    
+    
     }
+    
+    //        return String(self.dailyPlan?.hours.filter { $0.id == self.hour })
+    
+    
+    
+    
+    //        return self.selectedAppliances.filter { $0.time_start == self.hour }
+    
+    
     
     @EnvironmentObject var applianceService: ApplianceService
     
@@ -30,7 +53,7 @@ struct HourLabel: View {
     
     @State private var draggedApplianceItem: Appliance?
     
-//    @State private var borderColor: Color = .black
+    //    @State private var borderColor: Color = .black
     @State private var borderWidth: CGFloat = 0.0
     
     
@@ -41,29 +64,32 @@ struct HourLabel: View {
         
         
         VStack {
-
+            
+            if let plan = priceService.dailyPlan {
+                Text("\(plan.statevar),\(plan.publishedvar)")
+            }
             
             Text("\(hour):00").frame(maxWidth: 100, alignment: .leading).padding(7).foregroundColor(.white)//.border(.green, width: 1.0)
             
-                       
-//            if let dp = dayPrices {
-//                Text("\(dp.data[hour])")
-//            }
+            
+            //            if let dp = dayPrices {
+            //                Text("\(dp.data[hour])")
+            //            }
             
             
             
             
             ForEach(appliancesForHour) { appl in
-                Text(appl.appliance.name)
+                Text(appl.name)
                     .fontWeight(.bold)
-//                    .foregroundColor(.black)
+                //                    .foregroundColor(.black)
                     .frame(width: 80, height: 20, alignment: .leading)
-//                    .contentShape(Rectangle())
+                //                    .contentShape(Rectangle())
                     .padding(0)
                     .foregroundColor(Palette.brandGreen)
-//                    .border(.red, width: 1.0)
-                    .draggable(appl.appliance) {
-                        Text(appl.appliance.name).foregroundColor(Palette.brandGreen)
+                //                    .border(.red, width: 1.0)
+                    .draggable(appl) {
+                        Text(appl.name).foregroundColor(Palette.brandGreen)
                     }
             }
             
@@ -94,7 +120,7 @@ struct HourLabel: View {
             return true
         } isTargeted: { inDropArea in
             //                print("In drop area", inDropArea)
-//            borderColor = inDropArea ? .accentColor : .black
+            //            borderColor = inDropArea ? .accentColor : .black
             borderWidth = inDropArea ? 2.0 : 0.0
         }
         
@@ -121,6 +147,6 @@ struct HourLabel: View {
 
 struct HourLabel_Previews: PreviewProvider {
     static var previews: some View {
-        HourLabel(hour: 5, selectedAppliances: [])
+        HourLabel(hour: 5)
     }
 }

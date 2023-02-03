@@ -11,6 +11,7 @@ import Foundation
 import SwiftUI
 
 
+
 class ApplianceService: ObservableObject {
    
     
@@ -21,24 +22,30 @@ class ApplianceService: ObservableObject {
     
     @EnvironmentObject var priceService: PriceService
     
+//    @Published var dailyPlan: DailyPlan?
+    
+    
     
     func toggleApplianceLabel(applianceLabel: ApplianceLabel, priceService: PriceService) {
         applianceLabel.isSelected.toggle()
         
         if (applianceLabel.isSelected){
             
-//            let time_start = Int.random(in: 0..<23)
             
-            let time_start: Int = proposeApplinceRunningTime(selectedAppliances: selectedAppliances, newAppliance: applianceLabel.appliance, dayPrice: priceService.dayPrice!)
+                        priceService.dailyPlan?.addAppliance(appliance: applianceLabel.appliance)
             
-            let selected = SelectedAppliance(time_start: time_start, time_end: time_start+1, appliance: applianceLabel.appliance)
+            //            let time_start = Int.random(in: 0..<23)
+            
+            //            let time_start: Int = proposeApplianceRunningTime(selectedAppliances: selectedAppliances, newAppliance: applianceLabel.appliance, priceService: priceService)
+            
+            //            let selected = SelectedAppliance(time_start: time_start, time_end: time_start+1, appliance: applianceLabel.appliance)
             
             
-            self.selectedAppliances.append(selected)
-        } else {
-            self.selectedAppliances = self.selectedAppliances.filter { $0.appliance.name != applianceLabel.appliance.name }
+            //            self.selectedAppliances.append(selected)
+            //        } else {
+            //            self.selectedAppliances = self.selectedAppliances.filter { $0.appliance.name != applianceLabel.appliance.name }
+            //        }
         }
-        
 //        appliancesCountBadge = selectedAppliances.count
     }
     
@@ -48,16 +55,51 @@ class ApplianceService: ObservableObject {
         self.selectedAppliances[idx].time_start = newStartTime
     }
     
-    func proposeApplinceRunningTime(selectedAppliances: [SelectedAppliance], newAppliance: Appliance, dayPrice: DayPrice) -> Int {
+    func proposeApplianceRunningTime(selectedAppliances: [SelectedAppliance], newAppliance: Appliance, priceService: PriceService) -> Int {
         
-        let prices: [Float] = dayPrice.data
+//        print(selectedAppliances)
         
-        func get_index_of_minimal() -> Int {
-            let idx: Int = dayPrice.data.firstIndex(where: {$0 == prices.min()})!
-            return idx
+//        let prices: [Float] = priceService.dayPrice.data
+//
+//
+////        for price in prices {
+//
+//
+//
+//
+//        func get_index_of_minimal() -> Int {
+//            let idx: Int = priceService.dayPrice.data.firstIndex(where: {$0 == prices.min()})!
+//            return idx
+//        }
+//
+        
+        
+        
+        
+        
+        
+        
+//        let index_minimal = get_index_of_minimal()
+        
+//        for (index, price) in prices.enumerated() {
+//
+//            if index_minimal == index {
+//                print("\(index): \(price) <<")
+//            } else {
+//                print("\(index): \(price)")
+//            }
+//
+//        }
+        
+        if let plan = priceService.dailyPlan {
+            plan.printPlan()
         }
         
-        return get_index_of_minimal()
+        return 1
+        
+        
+        
+//        return(index_minimal)
         
         
     }

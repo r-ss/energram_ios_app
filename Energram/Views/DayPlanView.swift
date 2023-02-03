@@ -18,7 +18,7 @@ struct DayPlanView: View {
     
     
     
-    let appliances: [Appliance] = []
+//    let appliances: [Appliance] = []
     
     let tileHeight: CGFloat = 400
     
@@ -44,6 +44,10 @@ struct DayPlanView: View {
         GeometryReader { geometry in
             ScrollView(.vertical) {
                 VStack(alignment: .leading, spacing: 10) {
+                    
+                    if let plan = priceService.dailyPlan {
+                        Text("\(plan.statevar),\(plan.publishedvar)")
+                    }
                     
                     
                     if let dateFmt = priceService.dayPrice?.dateFormatted {
@@ -87,7 +91,7 @@ struct DayPlanView: View {
                                 Text("Night").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
                                 
                                 ForEach(0 ..< 6, id:\.self) { hour in
-                                    HourLabel(hour: hour, selectedAppliances: applianceService.selectedAppliances, dayPrices: priceService.dayPrice)
+                                    HourLabel(hour: hour)
 //                                    ApplianceSlotInDailyPlan()
                                 }
                                 
@@ -100,7 +104,7 @@ struct DayPlanView: View {
                                 Text("Morning").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
                                 
                                 ForEach(6 ..< 12, id:\.self) { hour in
-                                    HourLabel(hour: hour, selectedAppliances: applianceService.selectedAppliances, dayPrices: priceService.dayPrice)
+                                    HourLabel(hour: hour)
 //                                    ApplianceSlotInDailyPlan()
                                 }
                                 
@@ -115,7 +119,7 @@ struct DayPlanView: View {
                                 
                                 
                                 ForEach(12 ..< 18, id:\.self) { hour in
-                                    HourLabel(hour: hour, selectedAppliances: applianceService.selectedAppliances, dayPrices: priceService.dayPrice)
+                                    HourLabel(hour: hour)
 //                                    ApplianceSlotInDailyPlan()
                                 }
                                 
@@ -128,7 +132,7 @@ struct DayPlanView: View {
                                 Text("Evening").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
                                 
                                 ForEach(18 ..< 24, id:\.self) { hour in
-                                    HourLabel(hour: hour, selectedAppliances: applianceService.selectedAppliances, dayPrices: priceService.dayPrice)
+                                    HourLabel(hour: hour)
 //                                    ApplianceSlotInDailyPlan()
                                 }
                                 
