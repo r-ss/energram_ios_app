@@ -16,6 +16,8 @@ struct DayPlanView: View {
     
     @State private var userReservedPower: Int = 0
     
+    @ObservedObject var dailyPlan = DailyPlan()
+    
     
     
 //    let appliances: [Appliance] = []
@@ -45,9 +47,9 @@ struct DayPlanView: View {
             ScrollView(.vertical) {
                 VStack(alignment: .leading, spacing: 10) {
                     
-                    if let plan = priceService.dailyPlan {
-                        Text("\(plan.statevar),\(plan.publishedvar)")
-                    }
+                    
+                        Text("\(dailyPlan.publishedvar)")
+
                     
                     
                     if let dateFmt = priceService.dayPrice?.dateFormatted {
@@ -58,7 +60,7 @@ struct DayPlanView: View {
                     
                     if let receivedAppliances = applianceService.appliances {
                         ForEach(receivedAppliances) { appliance in
-                            ApplianceLabel(appliance: appliance, isSelected: false, service: applianceService)
+                            ApplianceLabel(appliance: appliance, isSelected: false, service: applianceService, dailyPlan: dailyPlan)
                         }
                     }
                     
@@ -91,7 +93,7 @@ struct DayPlanView: View {
                                 Text("Night").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
                                 
                                 ForEach(0 ..< 6, id:\.self) { hour in
-                                    HourLabel(hour: hour)
+                                    HourLabel(hour: hour, dailyPlan: dailyPlan)
 //                                    ApplianceSlotInDailyPlan()
                                 }
                                 
@@ -104,7 +106,7 @@ struct DayPlanView: View {
                                 Text("Morning").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
                                 
                                 ForEach(6 ..< 12, id:\.self) { hour in
-                                    HourLabel(hour: hour)
+                                    HourLabel(hour: hour, dailyPlan: dailyPlan)
 //                                    ApplianceSlotInDailyPlan()
                                 }
                                 
@@ -119,7 +121,7 @@ struct DayPlanView: View {
                                 
                                 
                                 ForEach(12 ..< 18, id:\.self) { hour in
-                                    HourLabel(hour: hour)
+                                    HourLabel(hour: hour, dailyPlan: dailyPlan)
 //                                    ApplianceSlotInDailyPlan()
                                 }
                                 
@@ -132,7 +134,7 @@ struct DayPlanView: View {
                                 Text("Evening").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
                                 
                                 ForEach(18 ..< 24, id:\.self) { hour in
-                                    HourLabel(hour: hour)
+                                    HourLabel(hour: hour, dailyPlan: dailyPlan)
 //                                    ApplianceSlotInDailyPlan()
                                 }
                                 
@@ -158,6 +160,14 @@ struct DayPlanView: View {
                 .onAppear {
                     //self.applianceService.myLocalPriceService.fetchData(for_country: "es")
                     self.userReservedPower = SettingsManager.shared.getIntegerValue(name: "ReservedPower")
+                    
+                    self.dailyPlan.priceService = priceService
+                    
+//                    if let data = priceService.dayPrice {
+//                        self.dailyPlan.fillPrices(dayPrice: data)
+//                    } else {
+//                        print("no prices data")
+//                    }
                 }
             }
         }}

@@ -20,15 +20,30 @@ struct HourLabel: View {
     
 //    var appliancesForHour: [Appliance] = []
     
-    @EnvironmentObject var priceService: PriceService
+//    @EnvironmentObject var priceService: PriceService
+    
+    @ObservedObject var dailyPlan: DailyPlan
     
 
     
     var appliancesForHour: [Appliance] {
-        return []
-    
-//            if let have = self.dailyPlan?.hours[self.hour].appliancesAssigned {
-//                return have
+//        return []
+        
+        if dailyPlan.hours.isEmpty {
+            return []
+        } else {
+            return dailyPlan.hours[hour].appliancesAssigned
+        }
+        
+//        if dailyPlan.hours[hour].appliancesAssigned != nil {
+//
+//            return dailyPlan.hours[hour].appliancesAssigned
+//        } else {
+//            return []
+//        }
+//
+//            if let have = dailyPlan.hours[hour].appliancesAssigned {
+//
 //            } else {
 //                return []
 //            }
@@ -65,12 +80,14 @@ struct HourLabel: View {
         
         VStack {
             
-            if let plan = priceService.dailyPlan {
-                Text("\(plan.statevar),\(plan.publishedvar)")
-            }
+//            if let aplan = priceService.dailyPlan {
+//                Text("\(aplan.statevar),\(aplan.publishedvar)")
+//            }
             
             Text("\(hour):00").frame(maxWidth: 100, alignment: .leading).padding(7).foregroundColor(.white)//.border(.green, width: 1.0)
             
+            
+            Text(dailyPlan.publishedvar)
             
             //            if let dp = dayPrices {
             //                Text("\(dp.data[hour])")
@@ -145,8 +162,8 @@ struct HourLabel: View {
     
 }
 
-struct HourLabel_Previews: PreviewProvider {
-    static var previews: some View {
-        HourLabel(hour: 5)
-    }
-}
+//struct HourLabel_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HourLabel(hour: 5)
+//    }
+//}

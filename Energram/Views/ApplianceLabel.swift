@@ -14,13 +14,15 @@ struct ApplianceLabel: View {
     
 //    @Binding var appliancesBadgeCount: Int?
     
-    @EnvironmentObject var priceService: PriceService
+//    @EnvironmentObject var priceService: PriceService
     
     
     
     @State var isSelected: Bool
     
     var service: ApplianceService
+    
+    var dailyPlan: DailyPlan
     
     var disableInteraction: Bool = false
     
@@ -37,7 +39,8 @@ struct ApplianceLabel: View {
         
         Button {
             if !disableInteraction {
-                service.toggleApplianceLabel(applianceLabel: self, priceService: priceService)
+                dailyPlan.toggleApplianceLabel(applianceLabel: self)
+//                service.toggleApplianceLabel(applianceLabel: self, priceService: priceService)
             }
         } label: {
             ZStack{
@@ -54,8 +57,8 @@ struct ApplianceLabel: View {
     
 }
 
-struct ApplianceLabel_Previews: PreviewProvider {
-    static var previews: some View {
-        ApplianceLabel(appliance: Appliance(name: "Device", typical_duration: 20, power: 200), isSelected: false, service: ApplianceService())
-    }
-}
+//struct ApplianceLabel_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ApplianceLabel(appliance: Appliance(name: "Device", typical_duration: 20, power: 200), isSelected: false, service: ApplianceService())
+//    }
+//}
