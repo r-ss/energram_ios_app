@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-func modelIdentifier() -> String {
+private func modelIdentifier() -> String {
     if let simulatorModelIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] { return simulatorModelIdentifier }
     var sysinfo = utsname()
     uname(&sysinfo) // ignore return value
@@ -21,11 +21,6 @@ struct DebugView: View {
     
     @ObservedObject var apiInfoService = ApiInfoService()
     
-    let jsonFont = Font.system(size: 12).monospaced()
-    
-    
-//    @EnvironmentObject var priceService: PriceService
-    
     
     var body: some View {
         GeometryReader { geometry in
@@ -33,9 +28,6 @@ struct DebugView: View {
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Debug Info").font(.title)
-                    
-//                    Text(priceService.dayPriceRAWJSON)
-                    
                     
                     Text("Screen: \(screenWidth)x\(screenHeight)")
                     Text("Device: \(modelIdentifier())")
@@ -48,15 +40,9 @@ struct DebugView: View {
                         Rectangle().fill(Palette.e).frame(width: 200, height: 20)
                     }
                     Text("API info:").fontWeight(.bold)
-                    if let ai = apiInfoService.apiInfo {
-                        Text(ai).font(jsonFont)
-                    }
+                    ApiInfoView()
                 }
-                //.padding()
                 .frame(width: geometry.size.width, alignment: .leading)
-                .onAppear {
-                    self.apiInfoService.fetchData()
-                }
             }
         }}
 }

@@ -38,6 +38,21 @@
 		D0B56B8329447A29004AE2E5 /* HourLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B56B8229447A29004AE2E5 /* HourLabel.swift */; };
 		D0B6198E2938A47400887F00 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6198D2938A47400887F00 /* Appliance.swift */; };
 		D0B619922938A5D800887F00 /* ApplianceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B619912938A5D800887F00 /* ApplianceService.swift */; };
+		D0D5BD7629A10EBC00CCDC5D /* price_all_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD6F29A10EBC00CCDC5D /* price_all_response.json */; };
+		D0D5BD7729A10EBC00CCDC5D /* auth_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD7029A10EBC00CCDC5D /* auth_success_response.json */; };
+		D0D5BD7829A10EBC00CCDC5D /* user_specific_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD7129A10EBC00CCDC5D /* user_specific_response.json */; };
+		D0D5BD7929A10EBC00CCDC5D /* users_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD7229A10EBC00CCDC5D /* users_response.json */; };
+		D0D5BD7A29A10EBC00CCDC5D /* info_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD7329A10EBC00CCDC5D /* info_response.json */; };
+		D0D5BD7B29A10EBC00CCDC5D /* appliance_all_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD7429A10EBC00CCDC5D /* appliance_all_response.json */; };
+		D0D5BD7C29A10EBC00CCDC5D /* price_latest_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD7529A10EBC00CCDC5D /* price_latest_response.json */; };
+		D0D5BD8129A10F3300CCDC5D /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D5BD7E29A10F3300CCDC5D /* HTTPClient.swift */; };
+		D0D5BD8229A10F3300CCDC5D /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D5BD7F29A10F3300CCDC5D /* RequestError.swift */; };
+		D0D5BD8329A10F3300CCDC5D /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D5BD8029A10F3300CCDC5D /* Endpoint.swift */; };
+		D0D5BD8529A10F5F00CCDC5D /* EnergramEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D5BD8429A10F5F00CCDC5D /* EnergramEndpoint.swift */; };
+		D0D5BD8729A1100300CCDC5D /* EnergramService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D5BD8629A1100300CCDC5D /* EnergramService.swift */; };
+		D0D5BD8C29A1107C00CCDC5D /* GithubServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D5BD8A29A1107C00CCDC5D /* GithubServiceTests.swift */; };
+		D0D5BD8D29A1107C00CCDC5D /* Mockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D5BD8B29A1107C00CCDC5D /* Mockable.swift */; };
+		D0D5BD8F29A11F6600CCDC5D /* ApiInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D5BD8E29A11F6600CCDC5D /* ApiInfoView.swift */; };
 		D0E2C7A4292122DE003F4DD9 /* DataPrettyPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2C7A3292122DD003F4DD9 /* DataPrettyPrint.swift */; };
 		D0E2C7A6292124DF003F4DD9 /* MultipleDaysChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */; };
 		D0E2C7A829212A56003F4DD9 /* MiniChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2C7A729212A56003F4DD9 /* MiniChart.swift */; };
@@ -96,6 +111,21 @@
 		D0B56B8229447A29004AE2E5 /* HourLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourLabel.swift; sourceTree = "<group>"; };
 		D0B6198D2938A47400887F00 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
 		D0B619912938A5D800887F00 /* ApplianceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceService.swift; sourceTree = "<group>"; };
+		D0D5BD6F29A10EBC00CCDC5D /* price_all_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = price_all_response.json; sourceTree = "<group>"; };
+		D0D5BD7029A10EBC00CCDC5D /* auth_success_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = auth_success_response.json; sourceTree = "<group>"; };
+		D0D5BD7129A10EBC00CCDC5D /* user_specific_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user_specific_response.json; sourceTree = "<group>"; };
+		D0D5BD7229A10EBC00CCDC5D /* users_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_response.json; sourceTree = "<group>"; };
+		D0D5BD7329A10EBC00CCDC5D /* info_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = info_response.json; sourceTree = "<group>"; };
+		D0D5BD7429A10EBC00CCDC5D /* appliance_all_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appliance_all_response.json; sourceTree = "<group>"; };
+		D0D5BD7529A10EBC00CCDC5D /* price_latest_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = price_latest_response.json; sourceTree = "<group>"; };
+		D0D5BD7E29A10F3300CCDC5D /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		D0D5BD7F29A10F3300CCDC5D /* RequestError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		D0D5BD8029A10F3300CCDC5D /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		D0D5BD8429A10F5F00CCDC5D /* EnergramEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergramEndpoint.swift; sourceTree = "<group>"; };
+		D0D5BD8629A1100300CCDC5D /* EnergramService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergramService.swift; sourceTree = "<group>"; };
+		D0D5BD8A29A1107C00CCDC5D /* GithubServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubServiceTests.swift; sourceTree = "<group>"; };
+		D0D5BD8B29A1107C00CCDC5D /* Mockable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mockable.swift; sourceTree = "<group>"; };
+		D0D5BD8E29A11F6600CCDC5D /* ApiInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiInfoView.swift; sourceTree = "<group>"; };
 		D0E2C7A3292122DD003F4DD9 /* DataPrettyPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPrettyPrint.swift; sourceTree = "<group>"; };
 		D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleDaysChartView.swift; sourceTree = "<group>"; };
 		D0E2C7A729212A56003F4DD9 /* MiniChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniChart.swift; sourceTree = "<group>"; };
@@ -130,10 +160,11 @@
 		D035A95E291F7A0900426722 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D035A967291F7B7B00426722 /* DebugView.swift */,
+				D0D5BD9029A12DF900CCDC5D /* Misc */,
 				D01366AC293368CB0004CE50 /* DayPlanView.swift */,
 				D0E2C7A729212A56003F4DD9 /* MiniChart.swift */,
 				D0819194291F9E8E008AB5EA /* LastDayChartView.swift */,
+				D035A967291F7B7B00426722 /* DebugView.swift */,
 				D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */,
 				D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */,
 				D0B56B8229447A29004AE2E5 /* HourLabel.swift */,
@@ -167,10 +198,13 @@
 		D035A96B291F80D400426722 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D0D5BD7D29A10F3300CCDC5D /* Network */,
 				D035A970291F8EEC00426722 /* ApiInfo.swift */,
 				D035A96C291F80E800426722 /* PriceService.swift */,
 				D0B619912938A5D800887F00 /* ApplianceService.swift */,
 				D0409438296AB3BA007F5625 /* SettingsManager.swift */,
+				D0D5BD8629A1100300CCDC5D /* EnergramService.swift */,
+				D0D5BD8429A10F5F00CCDC5D /* EnergramEndpoint.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -200,9 +234,9 @@
 			children = (
 				D08C1EDD2962B030004BF768 /* Info.plist */,
 				D0EFCB0F2920E51000EC32C3 /* Energram.entitlements */,
+				D035A95F291F7A1400426722 /* Models */,
 				D035A96B291F80D400426722 /* Services */,
 				D035A962291F7A9A00426722 /* Misc */,
-				D035A95F291F7A1400426722 /* Models */,
 				D035A95E291F7A0900426722 /* Views */,
 				D0496DD7291F7855008BEDA5 /* EnergramApp.swift */,
 				D035A95C291F794500426722 /* Config.swift */,
@@ -225,6 +259,9 @@
 		D0496DE7291F7856008BEDA5 /* EnergramTests */ = {
 			isa = PBXGroup;
 			children = (
+				D0D5BD8A29A1107C00CCDC5D /* GithubServiceTests.swift */,
+				D0D5BD8B29A1107C00CCDC5D /* Mockable.swift */,
+				D0D5BD6E29A10EBC00CCDC5D /* JSON */,
 				D0496DE8291F7856008BEDA5 /* EnergramTests.swift */,
 				D00D4CB12941C05E002807FC /* ConfigTests.swift */,
 				D040943C296BD0C5007F5625 /* SettingsManagerTests.swift */,
@@ -250,6 +287,38 @@
 				D0922CB5297ED82600743426 /* ArgentumSans-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D0D5BD6E29A10EBC00CCDC5D /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				D0D5BD6F29A10EBC00CCDC5D /* price_all_response.json */,
+				D0D5BD7029A10EBC00CCDC5D /* auth_success_response.json */,
+				D0D5BD7129A10EBC00CCDC5D /* user_specific_response.json */,
+				D0D5BD7229A10EBC00CCDC5D /* users_response.json */,
+				D0D5BD7329A10EBC00CCDC5D /* info_response.json */,
+				D0D5BD7429A10EBC00CCDC5D /* appliance_all_response.json */,
+				D0D5BD7529A10EBC00CCDC5D /* price_latest_response.json */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		D0D5BD7D29A10F3300CCDC5D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D0D5BD7E29A10F3300CCDC5D /* HTTPClient.swift */,
+				D0D5BD7F29A10F3300CCDC5D /* RequestError.swift */,
+				D0D5BD8029A10F3300CCDC5D /* Endpoint.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D0D5BD9029A12DF900CCDC5D /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				D0D5BD8E29A11F6600CCDC5D /* ApiInfoView.swift */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,6 +438,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0D5BD7B29A10EBC00CCDC5D /* appliance_all_response.json in Resources */,
+				D0D5BD7829A10EBC00CCDC5D /* user_specific_response.json in Resources */,
+				D0D5BD7729A10EBC00CCDC5D /* auth_success_response.json in Resources */,
+				D0D5BD7A29A10EBC00CCDC5D /* info_response.json in Resources */,
+				D0D5BD7629A10EBC00CCDC5D /* price_all_response.json in Resources */,
+				D0D5BD7C29A10EBC00CCDC5D /* price_latest_response.json in Resources */,
+				D0D5BD7929A10EBC00CCDC5D /* users_response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +464,7 @@
 			files = (
 				D035A96D291F80E800426722 /* PriceService.swift in Sources */,
 				D0496DDA291F7855008BEDA5 /* ContentView.swift in Sources */,
+				D0D5BD8129A10F3300CCDC5D /* HTTPClient.swift in Sources */,
 				D08C1EDF2962B307004BF768 /* ApplianceSlotInDailyPlan.swift in Sources */,
 				D035A971291F8EEC00426722 /* ApiInfo.swift in Sources */,
 				D01366AD293368CB0004CE50 /* DayPlanView.swift in Sources */,
@@ -395,16 +472,21 @@
 				D035A96A291F7DF900426722 /* DayPrice.swift in Sources */,
 				D0E2C7A829212A56003F4DD9 /* MiniChart.swift in Sources */,
 				D0922CBE297EDBAC00743426 /* Fonts.swift in Sources */,
+				D0D5BD8729A1100300CCDC5D /* EnergramService.swift in Sources */,
 				D0B6198E2938A47400887F00 /* Appliance.swift in Sources */,
+				D0D5BD8229A10F3300CCDC5D /* RequestError.swift in Sources */,
 				D035A966291F7B3400426722 /* Log.swift in Sources */,
 				D035A968291F7B7B00426722 /* DebugView.swift in Sources */,
 				D0E2C7A6292124DF003F4DD9 /* MultipleDaysChartView.swift in Sources */,
 				D05C5B5E298F906E00854C05 /* DailyPlan.swift in Sources */,
+				D0D5BD8329A10F3300CCDC5D /* Endpoint.swift in Sources */,
 				D0819195291F9E8E008AB5EA /* LastDayChartView.swift in Sources */,
 				D035A964291F7AA400426722 /* Palette.swift in Sources */,
+				D0D5BD8F29A11F6600CCDC5D /* ApiInfoView.swift in Sources */,
 				D035A95D291F794500426722 /* Config.swift in Sources */,
 				D0B56B8329447A29004AE2E5 /* HourLabel.swift in Sources */,
 				D0409439296AB3BA007F5625 /* SettingsManager.swift in Sources */,
+				D0D5BD8529A10F5F00CCDC5D /* EnergramEndpoint.swift in Sources */,
 				D0E2C7A4292122DE003F4DD9 /* DataPrettyPrint.swift in Sources */,
 				D0B619922938A5D800887F00 /* ApplianceService.swift in Sources */,
 				D02968D92939E1A6003C7DA1 /* ApplianceLabel.swift in Sources */,
@@ -418,6 +500,8 @@
 			files = (
 				D0496DE9291F7856008BEDA5 /* EnergramTests.swift in Sources */,
 				D00D4CB22941C05E002807FC /* ConfigTests.swift in Sources */,
+				D0D5BD8D29A1107C00CCDC5D /* Mockable.swift in Sources */,
+				D0D5BD8C29A1107C00CCDC5D /* GithubServiceTests.swift in Sources */,
 				D040943D296BD0C5007F5625 /* SettingsManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

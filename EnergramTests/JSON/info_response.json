@@ -1,0 +1,13 @@
+{
+	"resource": "energram",
+	"git_revision_hash": "08e2274",
+	"hostname": "energram_prod",
+	"datetime": "18 February 2023 13:17:21",
+	"os": "posix",
+	"platform": "Linux",
+	"platform_release": "5.19.0-29-generic",
+	"python version": "3.11.2",
+	"testing": false,
+	"production": true,
+	"load averages": "0.00 0.00 0.00"
+}

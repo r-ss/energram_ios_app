@@ -1,0 +1,15 @@
+{
+	"auth": true,
+	"user": {
+		"_id": "637c844957d3efaf9317ec39",
+		"email": "bob@energram.com",
+		"is_superadmin": false,
+		"userhash": "censored in dao",
+		"created": "2022-11-22T08:11:53.220000",
+		"last_login": "2023-02-18T13:21:11.709000",
+		"userpic": false
+	},
+	"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzY3Njk2NzEsImlhdCI6MTY3NjcyNjQ3MSwic2NvcGUiOiJhY2Nlc3NfdG9rZW4iLCJlbWFpbCI6ImJvYkBlbmVyZ3JhbS5jb20iLCJpZCI6IjYzN2M4NDQ5NTdkM2VmYWY5MzE3ZWMzOSIsImlzX3N1cGVyYWRtaW4iOmZhbHNlfQ.X2lwySILVFnD_u1sxaDUVD0R7b2KYX9amAE5pDmM4lk",
+	"refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzkzMTg0NzEsImlhdCI6MTY3NjcyNjQ3MSwic2NvcGUiOiJyZWZyZXNoX3Rva2VuIiwiZW1haWwiOiJib2JAZW5lcmdyYW0uY29tIiwiaWQiOiI2MzdjODQ0OTU3ZDNlZmFmOTMxN2VjMzkiLCJpc19zdXBlcmFkbWluIjpmYWxzZX0.f0vHs3QxaboISzabMSbXXbgYNCvEmVCvfyWDaePDBww",
+	"token_type": "bearer"
+}

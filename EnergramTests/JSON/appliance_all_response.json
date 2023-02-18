@@ -1,0 +1,58 @@
+[
+	{
+		"id": "63b275c565aa6c527ac89af7",
+		"created": "2023-01-02T06:12:21.945000",
+		"name": "Washing machine",
+		"typical_duration": 180,
+		"power": 425,
+		"created_by": "637c82c257d3efaf9317ec32"
+	},
+	{
+		"id": "63b275f765aa6c527ac89af9",
+		"created": "2023-01-02T06:13:11.670000",
+		"name": "Dish wascher",
+		"typical_duration": 180,
+		"power": 1800,
+		"created_by": "637c82c257d3efaf9317ec32"
+	},
+	{
+		"id": "63b2760465aa6c527ac89afb",
+		"created": "2023-01-02T06:13:24.302000",
+		"name": "Dryer",
+		"typical_duration": 60,
+		"power": 3500,
+		"created_by": "637c82c257d3efaf9317ec32"
+	},
+	{
+		"id": "63b2766a65aa6c527ac89afd",
+		"created": "2023-01-02T06:15:06.855000",
+		"name": "EV charger",
+		"typical_duration": 120,
+		"power": 10800,
+		"created_by": "637c82c257d3efaf9317ec32"
+	},
+	{
+		"id": "63b2767965aa6c527ac89aff",
+		"created": "2023-01-02T06:15:21.363000",
+		"name": "Iron",
+		"typical_duration": 60,
+		"power": 1100,
+		"created_by": "637c82c257d3efaf9317ec32"
+	},
+	{
+		"id": "63b2768d65aa6c527ac89b01",
+		"created": "2023-01-02T06:15:41.330000",
+		"name": "Boiler",
+		"typical_duration": 180,
+		"power": 1500,
+		"created_by": "637c82c257d3efaf9317ec32"
+	},
+	{
+		"id": "63b2769865aa6c527ac89b03",
+		"created": "2023-01-02T06:15:52.648000",
+		"name": "Electric Sauna",
+		"typical_duration": 120,
+		"power": 5000,
+		"created_by": "637c82c257d3efaf9317ec32"
+	}
+]
