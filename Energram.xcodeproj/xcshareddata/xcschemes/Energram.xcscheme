@@ -39,17 +39,6 @@
                ReferencedContainer = "container:Energram.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D0496DED291F7856008BEDA5"
-               BuildableName = "EnergramUITests.xctest"
-               BlueprintName = "EnergramUITests"
-               ReferencedContainer = "container:Energram.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

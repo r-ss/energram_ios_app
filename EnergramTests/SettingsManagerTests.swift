@@ -27,18 +27,17 @@ final class SettingsManagerTests: XCTestCase {
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
         
-        let settingsManager = SettingsManager()
+
+        
+        SettingsManager.shared.setValue(name: "TestParameter", value: true)
         
         
-        settingsManager.setValue(name: "TestParameter", value: true)
-        
-        
-        var param = settingsManager.getBoolValue(name: "TestParameter")
+        var param = SettingsManager.shared.getBoolValue(name: "TestParameter")
         XCTAssertEqual(param, true, "Param must be true")
         
-        settingsManager.setValue(name: "TestParameter", value: false)
+        SettingsManager.shared.setValue(name: "TestParameter", value: false)
         
-        param = settingsManager.getBoolValue(name: "TestParameter")
+        param = SettingsManager.shared.getBoolValue(name: "TestParameter")
         
         XCTAssertEqual(param, false, "Param must be false")
         

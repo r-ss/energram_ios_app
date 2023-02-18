@@ -27,7 +27,7 @@ final class ConfigTests: XCTestCase {
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
         
-        XCTAssertEqual(Config.urlApi, "https://energram-newapi.ress.ws", "Unexpected API URL")
+        XCTAssertEqual(Config.urlApi, "https://api.energram.co", "Unexpected API URL")
     }
 
     /*

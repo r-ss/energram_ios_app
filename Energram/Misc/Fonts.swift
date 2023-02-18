@@ -11,7 +11,7 @@ import SwiftUI
 
 extension Font {
 //    static let headlineCustom = Font.custom("ArgentumSans-Bold", size: 32)
-    static let headlineCustom = Font.custom("ArgentumSans-Medium", size: 32)
+    static let headlineCustom = Font.custom("ArgentumSans-Medium", size: 28)
     static let regularCustom = Font.custom("ArgentumSans-Regular", size: 16)
 }
 
