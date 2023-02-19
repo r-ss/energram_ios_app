@@ -4,7 +4,7 @@
 //
 //  Created by Alex Antipov on 01.12.2022.
 //
-
+/*
 import Foundation
 
 import SwiftUI
@@ -145,3 +145,4 @@ class ApplianceService: ObservableObject {
     }
     
 }
+*/

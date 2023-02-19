@@ -31,7 +31,7 @@ extension HTTPClient {
             request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
         }
         
-//        print(url)
+//        print("HTTPClient fetch from: \(url)")
         
         do {
             let (data, response) = try await URLSession.shared.data(for: request, delegate: nil)
@@ -40,10 +40,22 @@ extension HTTPClient {
             }
             
 //            print(response)
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .custom({ decoder in
+                /// This allows to decode date in 2023-02-17 format, ton only in ISO
+                let container = try decoder.singleValueContainer()
+                let dateString = try container.decode(String.self)
+                let formatter = ISO8601DateFormatter()
+                formatter.formatOptions = [.withFullDate]
+                if let date = formatter.date(from: dateString) {
+                    return date
+                }
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateString)")
+            })
             
             switch response.statusCode {
             case 200...299:
-                guard let decodedResponse = try? JSONDecoder().decode(responseModel, from: data) else {
+                guard let decodedResponse = try? decoder.decode(responseModel, from: data) else {
                     return .failure(.decode)
                 }
                 return .success(decodedResponse)

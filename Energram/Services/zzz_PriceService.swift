@@ -4,7 +4,7 @@
 //
 //  Created by Alex Antipov on 12.11.2022.
 //
-
+/*
 import Foundation
 import SwiftUI
 
@@ -103,3 +103,4 @@ class PriceService: ObservableObject {
     }
     
 }
+*/

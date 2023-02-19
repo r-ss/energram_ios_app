@@ -11,7 +11,11 @@ import SwiftUI
 struct ApiInfoView: View {
     var body: some View {
         Group {
-            Text(info).font(jsonFont)
+            if let ready = info {
+                Text(ready).font(jsonFont)
+            } else {
+                LoaderSpinner()
+            }
         }
         .onAppear {
             Task { await self.fetchApiInfo() }
@@ -20,14 +24,14 @@ struct ApiInfoView: View {
     }
     
     // MARK: Private
-    @State private var info: String = "not yet"
+    @State private var info: String?
     @State private var loadInProgress: Bool = false
     
     private let jsonFont = Font.system(size: 12).monospaced()
     
     private func fetchApiInfo() async {
-        loadInProgress = true
         Task(priority: .background) {
+            loadInProgress = true
             let response = await EnergramService().fetchApiInfo()
             switch response {
             case .success(let result):

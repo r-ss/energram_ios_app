@@ -42,7 +42,7 @@ struct DayPrice: Codable, Identifiable {
     }
     
     enum CodingKeys: CodingKey {
-        case date
+        case date // note that id is not listed here
         case received
         case country
         case measure
@@ -51,14 +51,14 @@ struct DayPrice: Codable, Identifiable {
     
 }
 
-extension DayPrice {
-    var as_json_string: String {
-        do {
-            let encodePerson = try jsonEncoder.encode(self)
-            let endcodeStringPerson = String(data: encodePerson, encoding: .utf8)!
-            return(endcodeStringPerson)
-        } catch {
-            return(error.localizedDescription)
-        }
-    }
-}
+//extension DayPrice {
+//    var as_json_string: String {
+//        do {
+//            let encodePerson = try jsonEncoder.encode(self)
+//            let endcodeStringPerson = String(data: encodePerson, encoding: .utf8)!
+//            return(endcodeStringPerson)
+//        } catch {
+//            return(error.localizedDescription)
+//        }
+//    }
+//}

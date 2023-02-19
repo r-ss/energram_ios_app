@@ -15,24 +15,11 @@ struct BarTick2: Identifiable {
 }
 
 struct MultipleDaysChartView: View {
-    
-    
-    @State private var countryCode: String = "es" // es, cz
-    
-    @StateObject var priceService = PriceService()
-    
-    let jsonFont = Font.system(size: 12).monospaced()
-    
-//    init(country: String) {
-//        _countryCode = State(initialValue: country)
-//    }
-    
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.vertical) {
                 VStack(alignment: .leading, spacing: 15) {
-                    
-                    if let days = priceService.multipleDaysPrices {
+                    if let days = self.prices {
                         
                         if countryCode == "es" {
                             Text("Electricity price 🇪🇸").font(.headlineCustom)
@@ -41,11 +28,12 @@ struct MultipleDaysChartView: View {
                             Text("Electricity price 🇨🇿").font(.headlineCustom)
                         }
                         
-                        
                         ForEach(days) { day in
                             Text(day.dateFormatted).fontWeight(.bold)
                             MiniChart(forDay: day)
                         }
+                    } else {
+                        LoaderSpinner()
                     }
                     
                 }
@@ -53,12 +41,32 @@ struct MultipleDaysChartView: View {
                 .frame(width: geometry.size.width, alignment: .leading)
             }
             .onAppear {
-                
                 countryCode = SettingsManager.shared.getStringValue(name: "CountryCode")
-                
-                self.priceService.fetchMultipleDaysData(for_country: countryCode)
+                Task { await self.fetchPrices(forCountry: countryCode) }
             }
-        }}
+        }
+    }
+    
+    // MARK: Private
+    @State private var countryCode: String = "es" // es, cz
+    
+    @State private var prices: [DayPrice]?
+    @State private var loadInProgress: Bool = false
+    
+    func fetchPrices(forCountry code: String) async {
+        loadInProgress = true
+        Task(priority: .background) {
+            let response = await EnergramService().fetchPrices(forCountry: code)
+            switch response {
+            case .success(let result):
+                prices = result
+                loadInProgress = false
+            case .failure(let error):
+                print("Request failed with error: \(error.customMessage)")
+                loadInProgress = false
+            }
+        }
+    }
 }
 
 struct MultipleDaysChartView_Previews: PreviewProvider {

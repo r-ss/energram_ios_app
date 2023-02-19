@@ -18,8 +18,8 @@ struct ContentView: View {
     
     @State private var country_code: String = "es"
     
-    @StateObject var priceService = PriceService()
-    @StateObject var applianceService = ApplianceService()
+    //@StateObject var priceService = PriceService()
+//    @StateObject var applianceService = ApplianceService()
     
 
     var body: some View {
@@ -56,30 +56,30 @@ struct ContentView: View {
             }
         }
         .background(Palette.background)
-        .onAppear {
+        //.onAppear {
             
-            self.country_code = SettingsManager.shared.getStringValue(name: "CountryCode")
+            //self.country_code = SettingsManager.shared.getStringValue(name: "CountryCode")
             
             // At launch, we send 2 requests to get initial data from API server to make our calculations possible
-            self.applianceService.fetchAppliancesData()
-            self.priceService.fetchData(for_country: country_code)
-        }
-        .environmentObject(applianceService)
-        .environmentObject(priceService)
+            //self.applianceService.fetchAppliancesData()
+            //self.priceService.fetchData(for_country: country_code)
+        //}
+        //.environmentObject(applianceService)
+        //.environmentObject(priceService)
         
         
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var priceService = PriceService()
-    static var applianceService = ApplianceService()
+    //static var priceService = PriceService()
+    //static var applianceService = ApplianceService()
     
     static var previews: some View {
-        ContentView().environmentObject(applianceService).onAppear {
-            self.applianceService.fetchAppliancesData()
-        }.environmentObject(priceService).onAppear {
-            self.priceService.fetchMultipleDaysData(for_country: "es")
-        }
+        ContentView()//.environmentObject(priceService).onAppear {
+            //self.priceService.fetchMultipleDaysData(for_country: "es")
+        //}.environmentObject(applianceService).onAppear {
+            //self.applianceService.fetchAppliancesData()
+        //}
     }
 }

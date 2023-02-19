@@ -10,8 +10,8 @@ import SwiftUI
 struct DayPlanView: View {
     
     
-    @EnvironmentObject var applianceService: ApplianceService
-    @EnvironmentObject var priceService: PriceService
+//    @EnvironmentObject var applianceService: ApplianceService
+//    @EnvironmentObject var priceService: PriceService
     
     
     @State private var userReservedPower: Int = 0
@@ -22,24 +22,7 @@ struct DayPlanView: View {
     
 //    let appliances: [Appliance] = []
     
-    let tileHeight: CGFloat = 400
-    
-    var quarterWidth: CGFloat {
-        let screenSize: CGRect = UIScreen.main.bounds
-        let screenWidth = screenSize.width
-        return (screenWidth - 40 - 3) / 4
-    }
-    
-    var totalCost: Float {
-        var total: Float = 0.0
-        if let dp: DayPrice = priceService.dayPrice {
-            for selAppliance in applianceService.selectedAppliances {
-                let price = ( dp.data[selAppliance.time_start] * Float(selAppliance.appliance.power) ) / 1000
-                total += price
-            }
-        }
-        return total
-    }
+
      
     
     var body: some View {
@@ -52,15 +35,23 @@ struct DayPlanView: View {
 
                     
                     
-                    if let dateFmt = priceService.dayPrice?.dateFormatted {
+                    if let dateFmt = price?.dateFormatted {
                         Text("Choose Consumers for \(dateFmt)").font(.headlineCustom)
                     } else {
                         Text("Consumers").font(.headlineCustom)
                     }
                     
-                    if let receivedAppliances = applianceService.appliances {
+                    
+                    
+                    if let receivedAppliances = appliances {
                         ForEach(receivedAppliances) { appliance in
-                            ApplianceLabel(appliance: appliance, isSelected: false, service: applianceService, dailyPlan: dailyPlan)
+                            ApplianceLabel(appliance: appliance, isSelected: false, dailyPlan: dailyPlan)
+                        }
+                    } else {
+                        if appliancesLoading {
+                            LoaderSpinner()
+                        } else {
+                            Text("Error in receivedAppliances, DayPlanView")
                         }
                     }
                     
@@ -150,7 +141,7 @@ struct DayPlanView: View {
                     
                     Text("Cost: €\(totalCost)").font(.headlineCustom).padding(.top, 10)
                     
-                    if let dp = priceService.dayPrice {
+                    if let dp = price {
                         MiniChart(forDay: dp)
                     }
                     
@@ -161,7 +152,14 @@ struct DayPlanView: View {
                     //self.applianceService.myLocalPriceService.fetchData(for_country: "es")
                     self.userReservedPower = SettingsManager.shared.getIntegerValue(name: "ReservedPower")
                     
-                    self.dailyPlan.priceService = priceService
+                    let countryCode = SettingsManager.shared.getStringValue(name: "CountryCode")
+                    
+                    Task { await self.fetchAppliances()}
+                    
+                    Task { await self.fetchLatestPrice(forCountry: countryCode) }
+                    
+                    
+//                    self.dailyPlan.priceService = priceService
                     
 //                    if let data = priceService.dayPrice {
 //                        self.dailyPlan.fillPrices(dayPrice: data)
@@ -170,19 +168,79 @@ struct DayPlanView: View {
 //                    }
                 }
             }
-        }}
+        }
+        
+    }
+    
+    // MARK: Private
+    @State private var info: String = "not yet"
+    @State private var appliancesLoading: Bool = false
+    @State private var pricesLoading: Bool = false
+    
+    @State private var appliances: [Appliance]?
+    @State private var price: DayPrice?
+    
+    private let tileHeight: CGFloat = 400
+    
+    private var quarterWidth: CGFloat {
+        let screenSize: CGRect = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        return (screenWidth - 40 - 3) / 4
+    }
+    
+    private var totalCost: Float {
+        var total: Float = 500.0
+//        if let dp: DayPrice = self.price {
+//            for selAppliance in applianceService.selectedAppliances {
+//                let price = ( dp.data[selAppliance.time_start] * Float(selAppliance.appliance.power) ) / 1000
+//                total += price
+//            }
+//        }
+        return total
+    }
+    
+    private func fetchAppliances() async {
+        appliancesLoading = true
+        Task(priority: .background) {
+            let response = await EnergramService().fetchAppliances()
+            switch response {
+            case .success(let result):
+                appliances = result
+                appliancesLoading = false
+            case .failure(let error):
+                print("Request failed with error: \(error.customMessage)")
+                appliancesLoading = false
+            }
+        }
+    }
+    
+    private func fetchLatestPrice(forCountry code: String) async {
+        pricesLoading = true
+        Task(priority: .background) {
+            let response = await EnergramService().fetchLatestPrice(forCountry: code)
+            switch response {
+            case .success(let result):
+                price = result
+                pricesLoading = false
+            case .failure(let error):
+                print("Request failed with error: \(error.customMessage)")
+                pricesLoading = false
+            }
+        }
+    }
+    
 }
 
 struct DayPlanView_Previews: PreviewProvider {
     
-    @State static var applianceService = ApplianceService()
+    //@State static var applianceService = ApplianceService()
     
     
     static var previews: some View {
-        DayPlanView().environmentObject(applianceService)
-            .onAppear {
-                self.applianceService.fetchAppliancesData()
-            }
+        DayPlanView()//.environmentObject(applianceService)
+//            .onAppear {
+//                self.applianceService.fetchAppliancesData()
+//            }
     }
 }
 

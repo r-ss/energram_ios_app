@@ -20,7 +20,7 @@ class DailyPlan: ObservableObject {
     @Published var hours: [Hour] = []
     
     
-    var priceService: PriceService?
+    //var priceService: PriceService?
     
     @Published var publishedvar: String = "p"
     
@@ -49,17 +49,17 @@ class DailyPlan: ObservableObject {
     func toggleApplianceLabel(applianceLabel: ApplianceLabel) {
         applianceLabel.isSelected.toggle()
         
-        if let service = priceService {
-            print("yes service")
-                    if let data = service.dayPrice {
-                        self.fillPrices(dayPrice: data)
-                        self.hours[0].appliancesAssigned.append(applianceLabel.appliance)
-                    } else {
-                        print("no prices data")
-                    }
-        } else {
-            print("no service")
-        }
+//        if let service = priceService {
+//            print("yes service")
+//                    if let data = service.dayPrice {
+//                        self.fillPrices(dayPrice: data)
+//                        self.hours[0].appliancesAssigned.append(applianceLabel.appliance)
+//                    } else {
+//                        print("no prices data")
+//                    }
+//        } else {
+//            print("no service")
+//        }
         
 //        if let data = priceService!.dayPrice {
 //            self.fillPrices(dayPrice: data)

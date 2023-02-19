@@ -16,11 +16,13 @@ struct Appliance: Codable, Identifiable {
     var name: String
     var typical_duration: Int
     var power: Int
+    var created_by: String
 
     enum CodingKeys: CodingKey {
         case name // note that id is not listed here
         case typical_duration
         case power
+        case created_by
     }
     
 }

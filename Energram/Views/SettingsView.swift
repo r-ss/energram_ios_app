@@ -43,12 +43,7 @@ struct SettingsView: View {
             VStack(alignment: .leading, spacing: 15) {
                 Text("Settings").font(.headlineCustom).padding(.bottom)
                 
-              
-                
-                //                Button("Delete all cards", action: { self.deleteAllCardsConfirmationShown = true }).foregroundColor(.red)
-                //                Button("Add baked cards", action: { self.addBakedCards() })
-                //                Button("Remove baked cards", action: { self.removeBakedCards() })
-                
+
                 Text("Select a country:").font(.regularCustom)
                 Picker("Select a country", selection: $selection) {
                     ForEach(countries, id: \.self) {
@@ -81,13 +76,6 @@ struct SettingsView: View {
                     }
                 
                 
-                
-                //Text("Selected country: \(selection)")
-                //Text("country_code_from_settings: \(country_code_from_settings)")
-                
-                
-                
-                
                 Toggle("Show Debug Info", isOn: $showDebugInfo)
                     .onChange(of: showDebugInfo) { value in
                         SettingsManager.shared.setValue(name: "ShowDebugInfo", value: value)
@@ -101,8 +89,6 @@ struct SettingsView: View {
             }
             .onAppear {
                 self.readSettings()
-                
-                
                 
                 
                 let country_code = SettingsManager.shared.getStringValue(name: "CountryCode")

@@ -20,7 +20,7 @@ struct ApplianceLabel: View {
     
     @State var isSelected: Bool
     
-    var service: ApplianceService
+//    var service: ApplianceService
     
     var dailyPlan: DailyPlan
     

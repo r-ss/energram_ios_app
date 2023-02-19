@@ -19,7 +19,7 @@ struct DebugView: View {
     var screenWidth: String { String(format: "%.01f", UIScreen.main.bounds.width) }
     var screenHeight: String { String(format: "%.01f", UIScreen.main.bounds.height) }
     
-    @ObservedObject var apiInfoService = ApiInfoService()
+//    @ObservedObject var apiInfoService = ApiInfoService()
     
     
     var body: some View {

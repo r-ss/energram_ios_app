@@ -61,7 +61,7 @@ struct HourLabel: View {
     
     
     
-    @EnvironmentObject var applianceService: ApplianceService
+    //@EnvironmentObject var applianceService: ApplianceService
     
     
     //    var selectedAppliances: [SelectedAppliance] = []
@@ -127,7 +127,9 @@ struct HourLabel: View {
             
             //                draggedApplianceItem!.name = "zzz"
             if let safeAppliance = draggedApplianceItem {
-                applianceService.changeApplianceRunTime(appliance: safeAppliance, newStartTime: hour)
+                
+                print("azazaza zazazaz")
+                //applianceService.changeApplianceRunTime(appliance: safeAppliance, newStartTime: hour)
                 
             }
             

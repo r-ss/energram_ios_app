@@ -12,7 +12,7 @@ import SwiftUI
 
 struct LastDayChartView: View {
     
-    @ObservedObject var priceService = PriceService()
+    //@ObservedObject var priceService = PriceService()
     
     
     
@@ -43,20 +43,22 @@ struct LastDayChartView: View {
             ScrollView(.vertical) {
                 VStack(alignment: .leading, spacing: 15) {
                     
-                    if let dp = priceService.dayPrice {
-                        Text("Electricity price in Spain for \(dp.dateFormatted) by hour:")
-                        
-                        MiniChart(forDay: dp)
-                    }
+                    Text("> LastDayChartView <")
+                    
+//                    if let dp = priceService.dayPrice {
+//                        Text("Electricity price in Spain for \(dp.dateFormatted) by hour:")
+//
+//                        MiniChart(forDay: dp)
+//                    }
                     
 
                 }
                 .padding()
                 .frame(width: geometry.size.width, alignment: .leading)
             }
-            .onAppear {
-                self.priceService.fetchData(for_country: "es")
-            }
+//            .onAppear {
+//                self.priceService.fetchData(for_country: "es")
+//            }
         }}
 }
 
