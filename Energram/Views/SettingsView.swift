@@ -55,6 +55,9 @@ struct SettingsView: View {
                         SettingsManager.shared.setValue(name: "CountryCode", value: "cz")
                     }
                     
+//                    NotificationCenter.default.post(name: .countryChanged, object: nil, userInfo: ["to":item])
+                    
+                    Notification.fire(name: .countryChanged)
                 }
                                 
                 Group{

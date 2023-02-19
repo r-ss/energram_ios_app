@@ -106,11 +106,15 @@ struct DayPlanView: View {
                     
                     let countryCode = SettingsManager.shared.getStringValue(name: "CountryCode")
                     
+                    
+                    if dailyPlan.price == nil || dailyPlan.price?.country != countryCode {
+                        
+                        Task { await self.fetchLatestPrice(forCountry: countryCode) }
+//                        dailyPlan.appliances = nil // loading them again to reset switched-on state for all
+                    }
+                    
                     if dailyPlan.appliances == nil {
                         Task { await self.fetchAppliances()}
-                    }
-                    if dailyPlan.price == nil || dailyPlan.price?.country != countryCode {
-                        Task { await self.fetchLatestPrice(forCountry: countryCode) }
                     }
                     
                 }

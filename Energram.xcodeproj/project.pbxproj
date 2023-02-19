@@ -14,6 +14,7 @@
 		D035A966291F7B3400426722 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A965291F7B3400426722 /* Log.swift */; };
 		D035A968291F7B7B00426722 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A967291F7B7B00426722 /* DebugView.swift */; };
 		D035A96A291F7DF900426722 /* DayPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A969291F7DF900426722 /* DayPrice.swift */; };
+		D03D258329A2552900A96531 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03D258229A2552900A96531 /* Notification.swift */; };
 		D0409439296AB3BA007F5625 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0409438296AB3BA007F5625 /* SettingsManager.swift */; };
 		D040943B296AB47A007F5625 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040943A296AB47A007F5625 /* SettingsView.swift */; };
 		D040943D296BD0C5007F5625 /* SettingsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040943C296BD0C5007F5625 /* SettingsManagerTests.swift */; };
@@ -78,6 +79,7 @@
 		D035A965291F7B3400426722 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D035A967291F7B7B00426722 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		D035A969291F7DF900426722 /* DayPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPrice.swift; sourceTree = "<group>"; };
+		D03D258229A2552900A96531 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D0409438296AB3BA007F5625 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		D040943A296AB47A007F5625 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D040943C296BD0C5007F5625 /* SettingsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerTests.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				D035A965291F7B3400426722 /* Log.swift */,
 				D0E2C7A3292122DD003F4DD9 /* DataPrettyPrint.swift */,
 				D0922CBD297EDBAC00743426 /* Fonts.swift */,
+				D03D258229A2552900A96531 /* Notification.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				D035A964291F7AA400426722 /* Palette.swift in Sources */,
 				D0D5BD8F29A11F6600CCDC5D /* ApiInfoView.swift in Sources */,
 				D035A95D291F794500426722 /* Config.swift in Sources */,
+				D03D258329A2552900A96531 /* Notification.swift in Sources */,
 				D0D5BD9229A1328100CCDC5D /* LoaderSpinner.swift in Sources */,
 				D0B56B8329447A29004AE2E5 /* HourLabel.swift in Sources */,
 				D0409439296AB3BA007F5625 /* SettingsManager.swift in Sources */,

@@ -41,6 +41,13 @@ struct ApplianceLabel: View {
                     Text(appliance.name).font(.headline).foregroundColor(.white).padding(8)
                 }
             }.fixedSize()
+        }.onAppear(){
+            
+            // Unselecting label on countryChange in settings
+            NotificationCenter.simple(name: .countryChanged){
+                isSelected = false
+            }
+            
         }
     }
 }
