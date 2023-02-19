@@ -87,7 +87,7 @@ struct HourLabel: View {
             Text("\(hour):00").frame(maxWidth: 100, alignment: .leading).padding(7).foregroundColor(.white)//.border(.green, width: 1.0)
             
             
-            Text(dailyPlan.publishedvar)
+//            Text(dailyPlan.publishedvar)
             
             //            if let dp = dayPrices {
             //                Text("\(dp.data[hour])")
@@ -128,8 +128,10 @@ struct HourLabel: View {
             //                draggedApplianceItem!.name = "zzz"
             if let safeAppliance = draggedApplianceItem {
                 
-                print("azazaza zazazaz")
+//                print("azazaza zazazaz")
                 //applianceService.changeApplianceRunTime(appliance: safeAppliance, newStartTime: hour)
+                
+                dailyPlan.changeApplianceRunTime(appliance: safeAppliance, newStartTime: hour)
                 
             }
             

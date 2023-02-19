@@ -10,6 +10,7 @@ import Foundation
 import os // for Logger
 
 func log(_ s:String) {
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "extension")
-    logger.log("\(s)")
+//    let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "extension")
+//    logger.log("\(s)")
+    print(s)
 }

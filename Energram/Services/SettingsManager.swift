@@ -33,7 +33,7 @@ struct SettingsManager {
     
     
     private init(){
-        print("> SettingsManager's privete Init")
+        //print("> SettingsManager's privete Init")
         if UserDefaults.standard.object(forKey: "Existence") == nil {
             self.createAndSaveDefault()
         }

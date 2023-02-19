@@ -31,7 +31,7 @@ extension HTTPClient {
             request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
         }
         
-//        print("HTTPClient fetch from: \(url)")
+        print("HTTPClient fetch from: \(url)")
         
         do {
             let (data, response) = try await URLSession.shared.data(for: request, delegate: nil)
