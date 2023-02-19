@@ -11,32 +11,23 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    
-//    let settingsManager = SettingsManager()
-    
     @State private var showDebugInfo: Bool = true
     @State private var userReservedPower: Int = 0
     
-    
-    
-    
     @State private var country_code_from_settings = "none"
     @State private var selection = "Spain"
-    let countries = ["Spain", "Czech Republic"]
+    private let countries = ["Spain", "Czech Republic"]
     
     
-    func readSettings() {
+    private func readSettings() {
         self.showDebugInfo = SettingsManager.shared.getBoolValue(name: "ShowDebugInfo")
         self.userReservedPower = SettingsManager.shared.getIntegerValue(name: "ReservedPower")
     }
     
     
-    func submitReservedPower() {
+    private func submitReservedPower() {
         SettingsManager.shared.setValue(name: "ReservedPower", value: userReservedPower)
     }
-    
-
-    
     
     var body: some View {
         GeometryReader { geometry in
@@ -65,14 +56,13 @@ struct SettingsView: View {
                     }
                     
                 }
-                
                                 
                 Group{
                        Text("Your Reserved Power (Watts):")
                        TextField("Reserved Power:", value: $userReservedPower, formatter: NumberFormatter())
                         .onSubmit {
                             submitReservedPower()
-                        }
+                        }.font(.headlineCustom)
                     }
                 
                 
@@ -89,16 +79,12 @@ struct SettingsView: View {
             }
             .onAppear {
                 self.readSettings()
-                
-                
                 let country_code = SettingsManager.shared.getStringValue(name: "CountryCode")
-                
                 self.country_code_from_settings = country_code
                 
                 if country_code == "es" {
                     self.selection = "Spain"
                 }
-                
                 if country_code == "cz" {
                     self.selection = "Czech Republic"
                 }

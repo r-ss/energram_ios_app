@@ -17,7 +17,7 @@ struct Appliance: Codable, Identifiable {
     var typical_duration: Int
     var power: Int
     var created_by: String
-
+    
     enum CodingKeys: CodingKey {
         case name // note that id is not listed here
         case typical_duration
@@ -39,7 +39,7 @@ struct SelectedAppliance: Identifiable {
 
 extension Appliance {
     
-//    jsonEncoder.outputFormatting = .prettyPrinted
+    //    jsonEncoder.outputFormatting = .prettyPrinted
     
     var as_json_string: String {
         do {

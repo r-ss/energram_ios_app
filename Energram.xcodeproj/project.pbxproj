@@ -14,7 +14,6 @@
 		D035A966291F7B3400426722 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A965291F7B3400426722 /* Log.swift */; };
 		D035A968291F7B7B00426722 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A967291F7B7B00426722 /* DebugView.swift */; };
 		D035A96A291F7DF900426722 /* DayPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A969291F7DF900426722 /* DayPrice.swift */; };
-		D035A96D291F80E800426722 /* zzz_PriceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A96C291F80E800426722 /* zzz_PriceService.swift */; };
 		D0409439296AB3BA007F5625 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0409438296AB3BA007F5625 /* SettingsManager.swift */; };
 		D040943B296AB47A007F5625 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040943A296AB47A007F5625 /* SettingsView.swift */; };
 		D040943D296BD0C5007F5625 /* SettingsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040943C296BD0C5007F5625 /* SettingsManagerTests.swift */; };
@@ -26,8 +25,6 @@
 		D0496DF3291F7856008BEDA5 /* EnergramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DF2291F7856008BEDA5 /* EnergramUITests.swift */; };
 		D0496DF5291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */; };
 		D05C5B5E298F906E00854C05 /* DailyPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C5B5D298F906E00854C05 /* DailyPlan.swift */; };
-		D0819195291F9E8E008AB5EA /* LastDayChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0819194291F9E8E008AB5EA /* LastDayChartView.swift */; };
-		D08C1EDF2962B307004BF768 /* ApplianceSlotInDailyPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08C1EDE2962B307004BF768 /* ApplianceSlotInDailyPlan.swift */; };
 		D0922CB8297ED82600743426 /* ArgentumSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB4297ED82600743426 /* ArgentumSans-Medium.ttf */; };
 		D0922CB9297ED82600743426 /* ArgentumSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB5297ED82600743426 /* ArgentumSans-Regular.ttf */; };
 		D0922CBA297ED82600743426 /* ArgentumSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB6297ED82600743426 /* ArgentumSans-Bold.ttf */; };
@@ -35,7 +32,6 @@
 		D0922CBE297EDBAC00743426 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0922CBD297EDBAC00743426 /* Fonts.swift */; };
 		D0B56B8329447A29004AE2E5 /* HourLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B56B8229447A29004AE2E5 /* HourLabel.swift */; };
 		D0B6198E2938A47400887F00 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6198D2938A47400887F00 /* Appliance.swift */; };
-		D0B619922938A5D800887F00 /* zzz_ApplianceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B619912938A5D800887F00 /* zzz_ApplianceService.swift */; };
 		D0D5BD7629A10EBC00CCDC5D /* price_all_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD6F29A10EBC00CCDC5D /* price_all_response.json */; };
 		D0D5BD7729A10EBC00CCDC5D /* auth_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD7029A10EBC00CCDC5D /* auth_success_response.json */; };
 		D0D5BD7829A10EBC00CCDC5D /* user_specific_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD7129A10EBC00CCDC5D /* user_specific_response.json */; };
@@ -82,7 +78,6 @@
 		D035A965291F7B3400426722 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D035A967291F7B7B00426722 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		D035A969291F7DF900426722 /* DayPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPrice.swift; sourceTree = "<group>"; };
-		D035A96C291F80E800426722 /* zzz_PriceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = zzz_PriceService.swift; sourceTree = "<group>"; };
 		D0409438296AB3BA007F5625 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		D040943A296AB47A007F5625 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D040943C296BD0C5007F5625 /* SettingsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerTests.swift; sourceTree = "<group>"; };
@@ -97,9 +92,7 @@
 		D0496DF2291F7856008BEDA5 /* EnergramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramUITests.swift; sourceTree = "<group>"; };
 		D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D05C5B5D298F906E00854C05 /* DailyPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlan.swift; sourceTree = "<group>"; };
-		D0819194291F9E8E008AB5EA /* LastDayChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastDayChartView.swift; sourceTree = "<group>"; };
 		D08C1EDD2962B030004BF768 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		D08C1EDE2962B307004BF768 /* ApplianceSlotInDailyPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceSlotInDailyPlan.swift; sourceTree = "<group>"; };
 		D0922CB4297ED82600743426 /* ArgentumSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Medium.ttf"; sourceTree = "<group>"; };
 		D0922CB5297ED82600743426 /* ArgentumSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Regular.ttf"; sourceTree = "<group>"; };
 		D0922CB6297ED82600743426 /* ArgentumSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -107,7 +100,6 @@
 		D0922CBD297EDBAC00743426 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		D0B56B8229447A29004AE2E5 /* HourLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourLabel.swift; sourceTree = "<group>"; };
 		D0B6198D2938A47400887F00 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
-		D0B619912938A5D800887F00 /* zzz_ApplianceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = zzz_ApplianceService.swift; sourceTree = "<group>"; };
 		D0D5BD6F29A10EBC00CCDC5D /* price_all_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = price_all_response.json; sourceTree = "<group>"; };
 		D0D5BD7029A10EBC00CCDC5D /* auth_success_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = auth_success_response.json; sourceTree = "<group>"; };
 		D0D5BD7129A10EBC00CCDC5D /* user_specific_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user_specific_response.json; sourceTree = "<group>"; };
@@ -161,12 +153,10 @@
 				D0D5BD9029A12DF900CCDC5D /* Misc */,
 				D01366AC293368CB0004CE50 /* DayPlanView.swift */,
 				D0E2C7A729212A56003F4DD9 /* MiniChart.swift */,
-				D0819194291F9E8E008AB5EA /* LastDayChartView.swift */,
 				D035A967291F7B7B00426722 /* DebugView.swift */,
 				D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */,
 				D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */,
 				D0B56B8229447A29004AE2E5 /* HourLabel.swift */,
-				D08C1EDE2962B307004BF768 /* ApplianceSlotInDailyPlan.swift */,
 				D040943A296AB47A007F5625 /* SettingsView.swift */,
 			);
 			path = Views;
@@ -197,8 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				D0D5BD7D29A10F3300CCDC5D /* Network */,
-				D035A96C291F80E800426722 /* zzz_PriceService.swift */,
-				D0B619912938A5D800887F00 /* zzz_ApplianceService.swift */,
 				D0409438296AB3BA007F5625 /* SettingsManager.swift */,
 				D0D5BD8629A1100300CCDC5D /* EnergramService.swift */,
 				D0D5BD8429A10F5F00CCDC5D /* EnergramEndpoint.swift */,
@@ -459,10 +447,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D035A96D291F80E800426722 /* zzz_PriceService.swift in Sources */,
 				D0496DDA291F7855008BEDA5 /* ContentView.swift in Sources */,
 				D0D5BD8129A10F3300CCDC5D /* HTTPClient.swift in Sources */,
-				D08C1EDF2962B307004BF768 /* ApplianceSlotInDailyPlan.swift in Sources */,
 				D01366AD293368CB0004CE50 /* DayPlanView.swift in Sources */,
 				D0496DD8291F7855008BEDA5 /* EnergramApp.swift in Sources */,
 				D035A96A291F7DF900426722 /* DayPrice.swift in Sources */,
@@ -476,7 +462,6 @@
 				D0E2C7A6292124DF003F4DD9 /* MultipleDaysChartView.swift in Sources */,
 				D05C5B5E298F906E00854C05 /* DailyPlan.swift in Sources */,
 				D0D5BD8329A10F3300CCDC5D /* Endpoint.swift in Sources */,
-				D0819195291F9E8E008AB5EA /* LastDayChartView.swift in Sources */,
 				D035A964291F7AA400426722 /* Palette.swift in Sources */,
 				D0D5BD8F29A11F6600CCDC5D /* ApiInfoView.swift in Sources */,
 				D035A95D291F794500426722 /* Config.swift in Sources */,
@@ -485,7 +470,6 @@
 				D0409439296AB3BA007F5625 /* SettingsManager.swift in Sources */,
 				D0D5BD8529A10F5F00CCDC5D /* EnergramEndpoint.swift in Sources */,
 				D0E2C7A4292122DE003F4DD9 /* DataPrettyPrint.swift in Sources */,
-				D0B619922938A5D800887F00 /* zzz_ApplianceService.swift in Sources */,
 				D02968D92939E1A6003C7DA1 /* ApplianceLabel.swift in Sources */,
 				D040943B296AB47A007F5625 /* SettingsView.swift in Sources */,
 			);

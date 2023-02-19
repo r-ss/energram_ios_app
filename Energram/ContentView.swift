@@ -19,14 +19,14 @@ struct ContentView: View {
     @State private var country_code: String = "es"
     
     //@StateObject var priceService = PriceService()
-//    @StateObject var applianceService = ApplianceService()
+    @StateObject var dailyPlan = DailyPlan()
     
 
     var body: some View {
         VStack {
             TabView {
                                                 
-                DayPlanView()
+                DayPlanView(dailyPlan: dailyPlan)
                     .tabItem {
                         Label("Daily plan", systemImage: "list.bullet.clipboard")
                     }
@@ -65,7 +65,7 @@ struct ContentView: View {
             //self.priceService.fetchData(for_country: country_code)
         //}
         //.environmentObject(applianceService)
-        //.environmentObject(priceService)
+        .environmentObject(dailyPlan)
         
         
     }

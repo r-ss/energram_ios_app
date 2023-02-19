@@ -39,7 +39,7 @@ extension HTTPClient {
                 return .failure(.noResponse)
             }
             
-//            print(response)
+            //            print(response)
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .custom({ decoder in
                 /// This allows to decode date in 2023-02-17 format, ton only in ISO
@@ -79,9 +79,9 @@ extension HTTPClient {
         
         var request = URLRequest(url: url)
         request.httpMethod = endpoint.method.rawValue
-
         
-//        print(url)
+        
+        //        print(url)
         
         do {
             let (data, response) = try await URLSession.shared.data(for: request, delegate: nil)
@@ -89,7 +89,7 @@ extension HTTPClient {
                 return .failure(.noResponse)
             }
             
-//            print(response)
+            //            print(response)
             
             switch response.statusCode {
             case 200...299:

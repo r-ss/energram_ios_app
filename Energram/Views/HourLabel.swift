@@ -5,164 +5,75 @@
 //  Created by Alex Antipov on 10.12.2022.
 //
 
-
 import SwiftUI
 
 struct HourLabel: View {
     
-    
     var hour: Int = 0
-//    var dailyPlan: DailyPlan?
-    
-    
-    
-    //    var selectedAppliances: [SelectedAppliance] = []
-    
-//    var appliancesForHour: [Appliance] = []
-    
-//    @EnvironmentObject var priceService: PriceService
-    
     @ObservedObject var dailyPlan: DailyPlan
-    
-
-    
-    var appliancesForHour: [Appliance] {
-//        return []
         
+    var body: some View {
+        
+        
+        VStack {
+//            if let safe = accordingHour?.cheapIndex {
+//                Text("\(hour):00, \(safe)").frame(maxWidth: 100, alignment: .leading).padding(7)
+//            }
+            Text("\(hour):00").frame(maxWidth: 100, alignment: .leading).padding(7)
+                        
+            ForEach(appliancesForHour) { appl in
+                Text(appl.name)
+                    .fontWeight(.bold)
+                    .frame(width: 80, height: 20, alignment: .leading)
+                    .padding(.bottom)
+                    .foregroundColor(.white)
+                    .draggable(appl) {
+                        Text(appl.name).foregroundColor(Palette.brandGreen)
+                    }
+            }
+        }
+        .frame(maxWidth: 100, minHeight: 34, alignment: .leading)
+        .contentShape(Rectangle())
+        .border(.white, width: borderWidth)
+        .dropDestination(for: Appliance.self) { items, location in
+            draggedApplianceItem = items.first
+            if let safeAppliance = draggedApplianceItem {
+                dailyPlan.changeApplianceRunTime(appliance: safeAppliance, newStartTime: hour)
+            }
+            return true
+        } isTargeted: { inDropArea in
+            borderWidth = inDropArea ? 2.0 : 0.0
+        }
+        .background(cellBackground)
+    }
+    
+    // MARK: Private
+    
+    private var accordingHour: Hour? {
+        if let idx: Int = self.dailyPlan.hours.firstIndex(where: {$0.id == hour}) {
+            return self.dailyPlan.hours[idx]
+        }
+        return nil
+    }
+    
+    private var appliancesForHour: [Appliance] {
         if dailyPlan.hours.isEmpty {
             return []
         } else {
             return dailyPlan.hours[hour].appliancesAssigned
         }
-        
-//        if dailyPlan.hours[hour].appliancesAssigned != nil {
-//
-//            return dailyPlan.hours[hour].appliancesAssigned
-//        } else {
-//            return []
-//        }
-//
-//            if let have = dailyPlan.hours[hour].appliancesAssigned {
-//
-//            } else {
-//                return []
-//            }
-    
-    
-    
     }
     
-    //        return String(self.dailyPlan?.hours.filter { $0.id == self.hour })
-    
-    
-    
-    
-    //        return self.selectedAppliances.filter { $0.time_start == self.hour }
-    
-    
-    
-    //@EnvironmentObject var applianceService: ApplianceService
-    
-    
-    //    var selectedAppliances: [SelectedAppliance] = []
+    private var cellBackground: Color {
+        if let safe = accordingHour?.cheapIndex {
+            let fl = CGFloat(safe)
+            return Color(UIColor.blend(color1: UIColor(Palette.chartGreenTickColor), intensity1: 1-fl/24, color2: UIColor(Palette.chartRedTickColor), intensity2: fl/24))
+        }
+        return Palette.brandPurple
+    }
     
     @State private var draggedApplianceItem: Appliance?
-    
-    //    @State private var borderColor: Color = .black
     @State private var borderWidth: CGFloat = 0.0
-    
-    
-    
-    
-    
-    var body: some View {
-        
-        
-        VStack {
-            
-//            if let aplan = priceService.dailyPlan {
-//                Text("\(aplan.statevar),\(aplan.publishedvar)")
-//            }
-            
-            Text("\(hour):00").frame(maxWidth: 100, alignment: .leading).padding(7).foregroundColor(.white)//.border(.green, width: 1.0)
-            
-            
-//            Text(dailyPlan.publishedvar)
-            
-            //            if let dp = dayPrices {
-            //                Text("\(dp.data[hour])")
-            //            }
-            
-            
-            
-            
-            ForEach(appliancesForHour) { appl in
-                Text(appl.name)
-                    .fontWeight(.bold)
-                //                    .foregroundColor(.black)
-                    .frame(width: 80, height: 20, alignment: .leading)
-                //                    .contentShape(Rectangle())
-                    .padding(0)
-                    .foregroundColor(Palette.brandGreen)
-                //                    .border(.red, width: 1.0)
-                    .draggable(appl) {
-                        Text(appl.name).foregroundColor(Palette.brandGreen)
-                    }
-            }
-            
-            
-            //            if draggedApplianceItem != nil {
-            //                Text(draggedApplianceItem!.name)
-            //            } //else {
-            //                //Text("Drag here!").foregroundColor(.secondary)
-            //            //}
-        }
-        .frame(maxWidth: 100, alignment: .leading)
-        //            .frame(width: 80, minHeight: 20)
-        .contentShape(Rectangle())
-        .border(Palette.brandGreen, width: borderWidth)
-        .dropDestination(for: Appliance.self) { items, location in
-            draggedApplianceItem = items.first
-            //                print(location)
-            
-            //                draggedApplianceItem!.name = "zzz"
-            if let safeAppliance = draggedApplianceItem {
-                
-//                print("azazaza zazazaz")
-                //applianceService.changeApplianceRunTime(appliance: safeAppliance, newStartTime: hour)
-                
-                dailyPlan.changeApplianceRunTime(appliance: safeAppliance, newStartTime: hour)
-                
-            }
-            
-            
-            
-            
-            return true
-        } isTargeted: { inDropArea in
-            //                print("In drop area", inDropArea)
-            //            borderColor = inDropArea ? .accentColor : .black
-            borderWidth = inDropArea ? 2.0 : 0.0
-        }
-        
-        
-        
-        
-        
-        //        ForEach(appliancesForHour) { appl in
-        //            Text(appl.appliance.name).fontWeight(.bold).padding(7).foregroundColor(.black)
-        //                .frame(width: 80, height: 20)
-        //                .contentShape(Rectangle())
-        //                .padding(0)
-        //                .foregroundColor(.black)
-        //                .draggable(appl.appliance) {
-        //                    Text(appl.appliance.name)
-        //                }
-        //        }
-        
-    }
-    
-    
     
 }
 

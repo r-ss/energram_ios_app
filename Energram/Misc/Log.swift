@@ -14,3 +14,4 @@ func log(_ s:String) {
 //    logger.log("\(s)")
     print(s)
 }
+

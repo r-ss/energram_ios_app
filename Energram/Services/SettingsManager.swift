@@ -16,17 +16,17 @@ struct SettingsItem {
 
 struct SettingsManager {
     
-
+    
     static let shared = SettingsManager()
-
-//    private init() { }
+    
+    //    private init() { }
     
     
     private let defaults = UserDefaults.standard
     private var settings: [SettingsItem] = [
         SettingsItem(name: "TestParameter", type: "Bool", defaultValue: true), // Used only in tests
         SettingsItem(name: "Existence", type: "Bool", defaultValue: true), // Used to determine existence of settings and writing default values routine if not
-        SettingsItem(name: "ShowDebugInfo", type: "Bool", defaultValue: true),
+        SettingsItem(name: "ShowDebugInfo", type: "Bool", defaultValue: false),
         SettingsItem(name: "CountryCode", type: "String", defaultValue: "es"),
         SettingsItem(name: "ReservedPower", type: "Integer", defaultValue: 4600), // Watts
     ]
@@ -38,8 +38,8 @@ struct SettingsManager {
             self.createAndSaveDefault()
         }
     }
-        
-
+    
+    
     func createAndSaveDefault() {
         defaults.set(25, forKey: "Age")
         
@@ -58,13 +58,13 @@ struct SettingsManager {
     public func getValue(name: String) -> Any {
         let item = getSettingItem(withName: name)
         switch item.type {
-            case "Bool":
-                return UserDefaults.standard.bool(forKey: item.name)
-            case "Integer":
-                return UserDefaults.standard.integer(forKey: item.name)
-            default:
-                // in other cases we assume String
-                return UserDefaults.standard.string(forKey: item.name)!
+        case "Bool":
+            return UserDefaults.standard.bool(forKey: item.name)
+        case "Integer":
+            return UserDefaults.standard.integer(forKey: item.name)
+        default:
+            // in other cases we assume String
+            return UserDefaults.standard.string(forKey: item.name)!
         }
     }
     
@@ -84,19 +84,19 @@ struct SettingsManager {
     }
     
     public func getBoolValue(name: String) -> Bool {
-//        print("> getBoolValue for \(name)")
+        //        print("> getBoolValue for \(name)")
         let item = getSettingItem(withName: name)
         return UserDefaults.standard.bool(forKey: item.name)
         
-//        if let param = UserDefaults.standard.bool(forKey: item.name) {
-//            return param
-//        } else {
-//            return item.defaultValue as! Bool
-//        }
+        //        if let param = UserDefaults.standard.bool(forKey: item.name) {
+        //            return param
+        //        } else {
+        //            return item.defaultValue as! Bool
+        //        }
     }
     
     public func getIntegerValue(name: String) -> Int {
-//        print("> getBoolValue for \(name)")
+        //        print("> getBoolValue for \(name)")
         let item = getSettingItem(withName: name)
         return UserDefaults.standard.integer(forKey: item.name)
     }

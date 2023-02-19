@@ -11,36 +11,27 @@ import SwiftUI
 struct ApplianceLabel: View {
     
     var appliance: Appliance
-    
-//    @Binding var appliancesBadgeCount: Int?
-    
-//    @EnvironmentObject var priceService: PriceService
-    
-    
-    
+        
     @State var isSelected: Bool
     
-//    var service: ApplianceService
+    //    var service: ApplianceService
     
     var dailyPlan: DailyPlan
     
     var disableInteraction: Bool = false
     
-//    func random_label_color() -> Color {
-//        return Color(
-//            red: .random(in: 0.15...0.85),
-//            green: .random(in: 0.15...0.85),
-//            blue: .random(in: 0.15...0.85)
-//        )
-//    }
+    //    func random_label_color() -> Color {
+    //        return Color(
+    //            red: .random(in: 0.15...0.85),
+    //            green: .random(in: 0.15...0.85),
+    //            blue: .random(in: 0.15...0.85)
+    //        )
+    //    }
     
     var body: some View {
-        
-        
         Button {
             if !disableInteraction {
                 dailyPlan.toggleApplianceLabel(applianceLabel: self)
-//                service.toggleApplianceLabel(applianceLabel: self, priceService: priceService)
             }
         } label: {
             ZStack{
@@ -52,9 +43,6 @@ struct ApplianceLabel: View {
             }.fixedSize()
         }
     }
-    
-    
-    
 }
 
 //struct ApplianceLabel_Previews: PreviewProvider {

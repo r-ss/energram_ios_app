@@ -16,7 +16,7 @@ enum EnergramEndpoint {
 
 extension EnergramEndpoint: Endpoint {
     
-   
+    
     var urlComponents: URLComponents? {
         switch self {
         case .apiInfo:
@@ -34,24 +34,24 @@ extension EnergramEndpoint: Endpoint {
         return "https://api.energram.co"
     }
     
-
+    
     var method: RequestMethod {
         switch self {
         default:
             return .get
         }
     }
-
+    
     var header: [String: String]? {
         // Access Token to use in Bearer header
-//        let accessToken = "insert your access token here -> https://www.themoviedb.org/settings/api"
+        //        let accessToken = "insert your access token here -> https://www.themoviedb.org/settings/api"
         switch self {
         default:
             return nil
-//            return [
-//                "Authorization": "Bearer \(accessToken)",
-//                "Content-Type": "application/json;charset=utf-8"
-//            ]
+            //            return [
+            //                "Authorization": "Bearer \(accessToken)",
+            //                "Content-Type": "application/json;charset=utf-8"
+            //            ]
         }
     }
     

@@ -9,7 +9,7 @@ import Foundation
 
 protocol Endpoint {
     var host: String { get }
-//    var path: String { get }
+    //    var path: String { get }
     var urlComponents: URLComponents? { get }
     var method: RequestMethod { get }
     var header: [String: String]? { get }

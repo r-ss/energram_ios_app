@@ -13,6 +13,7 @@ struct Hour: Identifiable {
     var id: Int
     var price: Float
     var appliancesAssigned: [Appliance]
+    var cheapIndex: Int? // sort hours by price and fill this value to calculate cell color in view
     
     var usedPower: Int {
         return self.appliancesAssigned.reduce(0, { $0 + $1.power })
@@ -39,8 +40,22 @@ class DailyPlan: ObservableObject {
     
     private func fillPrices(dayPrice: DayPrice){
         log("> DailyPlan fillPrices")
+
+        self.hours = []
+        
         for (index, price) in dayPrice.data.enumerated() {
             self.hours.append( Hour(id: index, price: price, appliancesAssigned: []) )
+        }
+        
+        // Filling cheapIndexes
+        let sortedByPrice:[Hour] = hours.sorted {
+            $0.price < $1.price
+        }
+        
+        for (index, hour) in sortedByPrice.enumerated() {
+            if let idx: Int = self.hours.firstIndex(where: {$0.uid == hour.uid}) {
+                self.hours[idx].cheapIndex = index
+            }
         }
         
     }
@@ -86,8 +101,9 @@ class DailyPlan: ObservableObject {
                     return idx
                 }
             }
+            //            return 0
         }
-                
+        
         log("Error, cannot find time slot for appliance")
         return 0
     }
@@ -98,7 +114,7 @@ class DailyPlan: ObservableObject {
         let timeslotIndex = chooseTimeslot(forAppliance: appliance)
         self.hours[timeslotIndex].appliancesAssigned.append(appliance)
         
-        self.printPlan()
+        //self.printPlan()
     }
     
     private func unassignAppliance(appliance: Appliance) {
@@ -108,19 +124,19 @@ class DailyPlan: ObservableObject {
             self.hours[index].appliancesAssigned = filtered
         }
         
-        self.printPlan()
+        //self.printPlan()
     }
     
     
     func printPlan() {
         log("> printPlan")
         
-        var sortedByPrice:[Hour] = hours.sorted {
-            $0.price < $1.price
-        }
+        //        var sortedByPrice:[Hour] = hours.sorted {
+        //            $0.price < $1.price
+        //        }
         
-        for hour in sortedByPrice {
-            log("\(hour.id): \(hour.price) - \(hour.appliancesAssigned.count) appliances, used power: \(hour.usedPower)")
+        for hour in hours {
+            log("\(hour.id): \(hour.price) - \(hour.appliancesAssigned.count) appliances, cheapIndex: \(hour.cheapIndex ?? -1) used power: \(hour.usedPower)")
         }
     }
     

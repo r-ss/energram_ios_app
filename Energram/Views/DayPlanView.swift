@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DayPlanView: View {
-    @ObservedObject var dailyPlan = DailyPlan()
+    @ObservedObject var dailyPlan: DailyPlan
     
     var body: some View {
         GeometryReader { geometry in
@@ -37,7 +37,7 @@ struct DayPlanView: View {
                     
                     HStack(spacing: 1) {
                         ZStack {
-                            Rectangle().fill(Palette.dayPlanNight).frame(width: quarterWidth, height: tileHeight)
+                            //                            Rectangle().fill(Palette.dayPlanNight).frame(width: quarterWidth, height: tileHeight)
                             VStack(alignment: .leading, spacing: 0) {
                                 Text("Night").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
                                 
@@ -45,10 +45,10 @@ struct DayPlanView: View {
                                     HourLabel(hour: hour, dailyPlan: dailyPlan)
                                 }
                                 
-                            }.frame(width: quarterWidth, height: tileHeight, alignment: .topTrailing)
+                            }.frame(maxHeight: .infinity, alignment: .top)
                         }
                         ZStack {
-                            Rectangle().fill(Palette.dayPlanMorning).frame(width: quarterWidth, height: tileHeight)
+                            //                            Rectangle().fill(Palette.dayPlanMorning).frame(width: quarterWidth, height: tileHeight)
                             VStack(alignment: .leading, spacing: 0) {
                                 Text("Morning").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
                                 
@@ -57,10 +57,10 @@ struct DayPlanView: View {
                                 }
                                 
                                 
-                            }.frame(width: quarterWidth, height: tileHeight, alignment: .topTrailing)
+                            }.frame(maxHeight: .infinity, alignment: .top)
                         }
                         ZStack {
-                            Rectangle().fill(Palette.dayPlanDay).frame(width: quarterWidth, height: tileHeight)
+                            //                            Rectangle().fill(Palette.dayPlanDay).frame(width: quarterWidth, height: tileHeight)
                             VStack(alignment: .leading, spacing: 0) {
                                 Text("Day").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
                                 
@@ -69,10 +69,10 @@ struct DayPlanView: View {
                                     HourLabel(hour: hour, dailyPlan: dailyPlan)
                                 }
                                 
-                            }.frame(width: quarterWidth, height: tileHeight, alignment: .topTrailing)
+                            }.frame(maxHeight: .infinity, alignment: .top)
                         }
                         ZStack {
-                            Rectangle().fill(Palette.dayPlanEvening).frame(width: quarterWidth, height: tileHeight)
+                            //                            Rectangle().fill(Palette.dayPlanEvening).frame(width: quarterWidth, height: tileHeight)
                             VStack(alignment: .leading, spacing: 0) {
                                 Text("Evening").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
                                 
@@ -80,7 +80,7 @@ struct DayPlanView: View {
                                     HourLabel(hour: hour, dailyPlan: dailyPlan)
                                 }
                                 
-                            }.frame(width: quarterWidth, height: tileHeight, alignment: .topTrailing)
+                            }.frame(maxHeight: .infinity, alignment: .top)
                         }
                     }
                     
@@ -106,21 +106,13 @@ struct DayPlanView: View {
                     
                     let countryCode = SettingsManager.shared.getStringValue(name: "CountryCode")
                     
-                    if appliances == nil {
+                    if dailyPlan.appliances == nil {
                         Task { await self.fetchAppliances()}
                     }
-                    if price == nil {
+                    if dailyPlan.price == nil || dailyPlan.price?.country != countryCode {
                         Task { await self.fetchLatestPrice(forCountry: countryCode) }
                     }
                     
-                    
-                    //                    self.dailyPlan.priceService = priceService
-                    
-                    //                    if let data = priceService.dayPrice {
-                    //                        self.dailyPlan.fillPrices(dayPrice: data)
-                    //                    } else {
-                    //                        print("no prices data")
-                    //                    }
                 }
             }
         }
@@ -132,12 +124,9 @@ struct DayPlanView: View {
     @State private var appliancesLoading: Bool = false
     @State private var pricesLoading: Bool = false
     
-    @State private var appliances: [Appliance]?
-    @State private var price: DayPrice?
-    
     @State private var userReservedPower: Int = 0
     
-    private let tileHeight: CGFloat = 400
+    private let tileHeight: CGFloat = 200
     private var quarterWidth: CGFloat {
         let screenSize: CGRect = UIScreen.main.bounds
         let screenWidth = screenSize.width
@@ -189,9 +178,9 @@ struct DayPlanView: View {
     
 }
 
-struct DayPlanView_Previews: PreviewProvider {
-    static var previews: some View {
-        DayPlanView()
-    }
-}
-
+//struct DayPlanView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DayPlanView()
+//    }
+//}
+//
