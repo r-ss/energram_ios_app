@@ -1,5 +1,5 @@
 //
-//  UserProfileView.swift
+//  UserLoginRegisterView.swift
 //  Energram
 //
 //  Created by Alex Antipov on 21.02.2023.
@@ -9,15 +9,15 @@ import Foundation
 import SwiftUI
 
 
-struct UserProfileView: View {
+struct UserLoginRegisterView: View {
     
     
-    //    private enum DisplayMode {
-    //        case register, login, forgot
-    //    }
-    //
-    //    @State private var displayMode: DisplayMode = .register
-    //
+    private enum DisplayMode {
+        case register, login, forgot
+    }
+    
+    @State private var displayMode: DisplayMode = .register
+    
     
     var body: some View {
         GeometryReader { geometry in
@@ -25,20 +25,96 @@ struct UserProfileView: View {
                 
                 VStack(alignment: .leading, spacing: 10) {
                     
-                    
-//                    if authData == nil {
-//                        Text("WTF")
-//                        UserLoginRegisterView()
-//                    }
-                    
-                    
-                    Group {
+                    if loading {
+                        
+                        LoaderSpinner()
+                        
+                    } else {
                         
                         
-                        
-                        Text("Profile").font(.headlineCustom)
-                        
-                        
+                        Group {
+                            
+                            
+                            if displayMode == .register {
+                                Text("Create account").font(.headlineCustom)
+                                Text("Having an account on Energram allows more personalized experience and services").font(.regularCustom)
+                            }
+                            
+                            if displayMode == .login {
+                                Text("Login").font(.headlineCustom)
+                            }
+                            
+                            if displayMode == .forgot {
+                                Text("Reset password").font(.headlineCustom)
+                                Text("Enter your email and get a code to change your password").font(.regularCustom)
+                            }
+                            
+                            
+                            Spacer()
+                            
+                            TextField("Email", text: $input_email)
+                                .focused($focusedField, equals: .input_email)
+                                .onSubmit {
+                                    focusNextField()
+                                }
+                                .submitLabel(.next)
+                                .disableAutocorrection(true)
+                                .autocapitalization(.none)
+                                .padding(3)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            
+                            if displayMode != .forgot {
+                                SecureField("Password", text: $input_password)
+                                    .focused($focusedField, equals: .input_password)
+                                    .onSubmit {
+                                        focusNextField()
+                                    }
+                                    .submitLabel(.next)
+                                    .padding(3)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                            } else {
+                                Button("Send code"){
+                                    print("dfhg")
+                                }
+                                Spacer()
+                                Button("Go back"){
+                                    displayMode = .login
+                                }
+                            }
+                            
+                            if displayMode == .register {
+                                Button("Create account"){
+                                    print("dfhg")
+                                }
+                                
+                                Spacer()
+                                
+                                Text("Already have one?").font(.regularCustom)
+                                Button("Login"){
+                                    displayMode = .login
+                                }
+                                
+                            }
+                            
+                            if displayMode == .login {
+                                Button("Login"){
+                                    Task { await requestLogin(username: input_email, password: input_password) }
+                                }
+                                
+                                Spacer()
+                                
+                                Button("Register"){
+                                    displayMode = .register
+                                }
+                                
+                                Button("Forgot password?"){
+                                    displayMode = .forgot
+                                }
+                            }
+                            
+                            
+                            
+                        }
                         
                         
                         
@@ -51,10 +127,6 @@ struct UserProfileView: View {
                                 Text(p.id).monospaced()
                             }
                             
-                        }
-                        
-                        Button("Toggglee") {
-                            self.isPresented.toggle()
                         }
                         
                     }
@@ -82,6 +154,7 @@ struct UserProfileView: View {
                         }
                     }
                     
+                    
                     if let s = secretPageContent {
                         Text("Secret message \(s.message)")
                     }
@@ -94,24 +167,15 @@ struct UserProfileView: View {
                 }
                 .frame(width: geometry.size.width, alignment: .leading)
                 .padding()
-                .onAppear {
-                    self.readFromSettings()
-                    
-//                    if authData == nil {self.isPresented = true}
-                }
-//                .sheet(isPresented: $isPresented, onDismiss: {
-//                    print("Modal dismissed. State now: \(self.isPresented)")
-//                  }) {
-//                      UserLoginRegisterView()
-//                  }
+//                .onAppear {
+//                    self.readFromSettings()
+//                }
             }
         }
         
     }
     
     @FocusState private var focusedField: Field?
-    
-    @State private var isPresented: Bool = false
     
     //    @State private var input_email: String = "bob@energram.com"
     //    @State private var input_password: String = "bb7DMsMXAZE8"
@@ -120,19 +184,14 @@ struct UserProfileView: View {
     
     @State private var loading: Bool = false
     
-    @State private var authData: AuthData?
-    
     @State private var userData: User?
     @State private var secretPageContent: SecretPageResponse?
     
     @State private var access_token: String?
     
-    private func readFromSettings() {
-        self.access_token = SettingsManager.shared.getStringValue(name: "AccessToken")
-        self.authData = UserService().readAuthData()
-        
-        print(authData)
-    }
+//    private func readFromSettings() {
+//        self.access_token = SettingsManager.shared.getStringValue(name: "AccessToken")
+//    }
     
     private func requestLogin(username: String, password: String) async {
         loading = true
@@ -192,13 +251,13 @@ struct UserProfileView: View {
     }
 }
 
-struct UserProfileView_Previews: PreviewProvider {
+struct UserLoginRegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfileView()
+        UserLoginRegisterView()
     }
 }
 
-extension UserProfileView {
+extension UserLoginRegisterView {
     private enum Field: Int, CaseIterable {
         case input_email, input_password
     }

@@ -39,6 +39,7 @@
 		D0C9240229A50CF500A34E33 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9240129A50CF500A34E33 /* User.swift */; };
 		D0C9240429A5176600A34E33 /* AuthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9240329A5176600A34E33 /* AuthData.swift */; };
 		D0C9240729A5377C00A34E33 /* CommonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9240629A5377C00A34E33 /* CommonTextField.swift */; };
+		D0C9240929A5426C00A34E33 /* UserLoginRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9240829A5426C00A34E33 /* UserLoginRegisterView.swift */; };
 		D0D5BD7629A10EBC00CCDC5D /* price_all_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD6F29A10EBC00CCDC5D /* price_all_response.json */; };
 		D0D5BD7729A10EBC00CCDC5D /* auth_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD7029A10EBC00CCDC5D /* auth_success_response.json */; };
 		D0D5BD7829A10EBC00CCDC5D /* user_specific_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD7129A10EBC00CCDC5D /* user_specific_response.json */; };
@@ -114,6 +115,7 @@
 		D0C9240129A50CF500A34E33 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D0C9240329A5176600A34E33 /* AuthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthData.swift; sourceTree = "<group>"; };
 		D0C9240629A5377C00A34E33 /* CommonTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextField.swift; sourceTree = "<group>"; };
+		D0C9240829A5426C00A34E33 /* UserLoginRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginRegisterView.swift; sourceTree = "<group>"; };
 		D0D5BD6F29A10EBC00CCDC5D /* price_all_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = price_all_response.json; sourceTree = "<group>"; };
 		D0D5BD7029A10EBC00CCDC5D /* auth_success_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = auth_success_response.json; sourceTree = "<group>"; };
 		D0D5BD7129A10EBC00CCDC5D /* user_specific_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user_specific_response.json; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				D0C923FA29A4BDC300A34E33 /* UserProfileView.swift */,
+				D0C9240829A5426C00A34E33 /* UserLoginRegisterView.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				D0D5BD8329A10F3300CCDC5D /* Endpoint.swift in Sources */,
 				D035A964291F7AA400426722 /* Palette.swift in Sources */,
 				D0D5BD8F29A11F6600CCDC5D /* ApiInfoView.swift in Sources */,
+				D0C9240929A5426C00A34E33 /* UserLoginRegisterView.swift in Sources */,
 				D035A95D291F794500426722 /* Config.swift in Sources */,
 				D03D258329A2552900A96531 /* Notification.swift in Sources */,
 				D0D5BD9229A1328100CCDC5D /* LoaderSpinner.swift in Sources */,
