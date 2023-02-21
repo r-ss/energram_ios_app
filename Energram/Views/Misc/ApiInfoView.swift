@@ -19,25 +19,10 @@ struct ApiInfoView: View {
         }
         .onAppear {
             
-//            NotificationCenter.default.addObserver(
-//                forName: .countryChanged,
-//                object: nil,
-//                queue: .main
-//            ) { (notification) in
-//                guard let userInfo = notification.userInfo
-//                else { return }
-//
-//                print(userInfo)
-//                info = nil
-//                Task { await fetchApiInfo() }
-//            }
-            
-            NotificationCenter.simple(name: .countryChanged){ //Trigger
-                    print("mazafaka2")
-                    info = nil
-                    Task { await self.fetchApiInfo() }
+            NotificationCenter.simple(name: .countryChanged){
+                info = nil
+                Task { await self.fetchApiInfo() }
             }
-            
             
             Task { await self.fetchApiInfo() }
         }

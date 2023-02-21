@@ -29,6 +29,11 @@ struct SettingsManager {
         SettingsItem(name: "ShowDebugInfo", type: "Bool", defaultValue: false),
         SettingsItem(name: "CountryCode", type: "String", defaultValue: "es"),
         SettingsItem(name: "ReservedPower", type: "Integer", defaultValue: 4600), // Watts
+        
+        SettingsItem(name: "UserEmail", type: "String", defaultValue: ""),
+        SettingsItem(name: "UserId", type: "String", defaultValue: ""),
+        SettingsItem(name: "AccessToken", type: "String", defaultValue: ""),
+        SettingsItem(name: "RefreshToken", type: "String", defaultValue: ""),
     ]
     
     

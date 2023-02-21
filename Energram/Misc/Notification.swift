@@ -8,7 +8,10 @@
 import Foundation
 
 extension Notification.Name {
+    static var appLaunching = Notification.Name("app.launching")
+    static var appClosing = Notification.Name("app.closing")
     static var countryChanged = Notification.Name("country.changed")
+    static var latestPriceRecieved = Notification.Name("data.latestprice.recieved")
 }
 
 // Method to fire notifications

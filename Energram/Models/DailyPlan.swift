@@ -27,11 +27,16 @@ class DailyPlan: ObservableObject {
     @Published var price: DayPrice?
     @Published var appliances: [Appliance]?
     
+    @Published var lastFetch: Date?
+    
     // MARK: Init
     
     func priceReceived(price data:DayPrice) {
         self.price = data
         self.fillPrices(dayPrice: data)
+        
+        self.lastFetch = Date()
+        Notification.fire(name: .latestPriceRecieved)
     }
     
     func appliancesReceived(appliances data:[Appliance]) {

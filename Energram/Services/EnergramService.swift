@@ -3,6 +3,7 @@
 import Foundation
 
 
+
 protocol EnergramServiceable {
     func fetchLatestPrice(forCountry code: String) async -> Result<DayPrice, RequestError>
     func fetchPrices(forCountry code: String) async -> Result<[DayPrice], RequestError>
@@ -15,7 +16,7 @@ protocol EnergramServiceable {
 struct EnergramService: HTTPClient, EnergramServiceable {
     
     func fetchApiInfo() async -> Result<String, RequestError> {
-        return await getJSONResponse(endpoint: EnergramEndpoint.apiInfo)
+        return await getPrettyPrintedJSONResponse(endpoint: EnergramEndpoint.apiInfo)
     }
     
     func fetchLatestPrice(forCountry code: String) async -> Result<DayPrice, RequestError> {

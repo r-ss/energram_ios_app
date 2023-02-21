@@ -5,6 +5,7 @@
 //  Created by Alex Antipov on 15.02.2023.
 //
 
+
 enum RequestError: Error {
     case before // stupid workaround to make possible return errors before actual HTTP request TODO: eliminate this
     case decode
@@ -22,11 +23,16 @@ enum RequestError: Error {
         case .decode:
             return "Decode error"
         case .unauthorized:
-            return "Session expired"
+            return "Unauthorized"
         case .unexpectedHeaders:
             return "Unexpected Headers"
         default:
             return "Unknown error"
         }
     }
+}
+
+
+struct RequestErrorMessage: Decodable {
+    var detail: String
 }

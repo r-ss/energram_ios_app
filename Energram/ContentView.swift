@@ -25,6 +25,11 @@ struct ContentView: View {
     var body: some View {
         VStack {
             TabView {
+                
+                UserProfileView()
+                    .tabItem {
+                        Label("Profile", systemImage: "person.crop.circle")
+                    }
                                                 
                 DayPlanView(dailyPlan: dailyPlan)
                     .tabItem {
@@ -48,6 +53,7 @@ struct ContentView: View {
                     }
                 
                 
+                
 //                DebugView()
 //                    .tabItem {
 //                        Label("Debug screen", systemImage: "gearshape.2.fill")
@@ -56,14 +62,14 @@ struct ContentView: View {
             }
         }
         .background(Palette.background)
-        //.onAppear {
+//        .onAppear {
             
             //self.country_code = SettingsManager.shared.getStringValue(name: "CountryCode")
             
             // At launch, we send 2 requests to get initial data from API server to make our calculations possible
             //self.applianceService.fetchAppliancesData()
             //self.priceService.fetchData(for_country: country_code)
-        //}
+//        }
         //.environmentObject(applianceService)
         .environmentObject(dailyPlan)
         

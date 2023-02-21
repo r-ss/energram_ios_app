@@ -43,8 +43,7 @@ struct ApplianceLabel: View {
             }.fixedSize()
         }.onAppear(){
             
-            // Unselecting label on countryChange in settings
-            NotificationCenter.simple(name: .countryChanged){
+            NotificationCenter.simple(name: .latestPriceRecieved){
                 isSelected = false
             }
             

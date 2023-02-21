@@ -108,13 +108,19 @@ struct DayPlanView: View {
                     
                     
                     if dailyPlan.price == nil || dailyPlan.price?.country != countryCode {
-                        
                         Task { await self.fetchLatestPrice(forCountry: countryCode) }
-//                        dailyPlan.appliances = nil // loading them again to reset switched-on state for all
                     }
                     
                     if dailyPlan.appliances == nil {
                         Task { await self.fetchAppliances()}
+                    }
+                    
+                    if let lastFetch = dailyPlan.lastFetch {
+                        let difference = Date().timeIntervalSince(lastFetch)
+                        if difference > 60*30 {
+                            log("Updating prices because 20 minutes has passed")
+                            Task { await self.fetchLatestPrice(forCountry: countryCode) }
+                        }
                     }
                     
                 }
