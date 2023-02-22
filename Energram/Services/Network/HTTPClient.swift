@@ -33,6 +33,12 @@ extension HTTPClient {
             request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
         }
         
+//        print(request.allHTTPHeaderFields)
+//        print(request.httpBody)
+        
+//        let str = String(decoding: request.httpBody!, as: UTF8.self)
+//        print(str)
+        
         do {
             let (data, response) = try await URLSession.shared.data(for: request, delegate: nil)
             guard let response = response as? HTTPURLResponse else {
@@ -96,7 +102,7 @@ extension HTTPClient {
 extension HTTPClient {
     func sendMultipartFormAuthRequest<T: Decodable>(
         endpoint: Endpoint,
-        username: String,
+        email: String,
         password: String,
         responseModel: T.Type
     ) async -> Result<T, RequestError> {
@@ -122,7 +128,7 @@ extension HTTPClient {
 
         var data = Data()
         data.append("--X-\(boundary)-BOUNDARY\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"username\"\r\n\r\n\(username)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"username\"\r\n\r\n\(email)\r\n".data(using: .utf8)!)
         data.append("--X-\(boundary)-BOUNDARY\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"password\"\r\n\r\n\(password)\r\n".data(using: .utf8)!)
         data.append("--X-\(boundary)-BOUNDARY--".data(using: .utf8)!)

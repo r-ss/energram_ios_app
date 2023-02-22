@@ -21,12 +21,13 @@ struct ContentView: View {
     //@StateObject var priceService = PriceService()
     @StateObject var dailyPlan = DailyPlan()
     
+    @StateObject var userAuthState = UserAuthStateViewModel()
 
     var body: some View {
         VStack {
             TabView {
                 
-                UserProfileView()
+                UserIndexView()
                     .tabItem {
                         Label("Profile", systemImage: "person.crop.circle")
                     }
@@ -62,7 +63,9 @@ struct ContentView: View {
             }
         }
         .background(Palette.background)
-//        .onAppear {
+        .onAppear {
+            userAuthState.checkAuth()
+        }
             
             //self.country_code = SettingsManager.shared.getStringValue(name: "CountryCode")
             
@@ -72,6 +75,7 @@ struct ContentView: View {
 //        }
         //.environmentObject(applianceService)
         .environmentObject(dailyPlan)
+        .environmentObject(userAuthState)
         
         
     }

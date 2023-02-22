@@ -11,6 +11,8 @@ import SwiftUI
 
 struct UserLoginRegisterView: View {
     
+    @EnvironmentObject private var userAuthState: UserAuthStateViewModel
+    
     
     private enum DisplayMode {
         case register, login, forgot
@@ -37,7 +39,7 @@ struct UserLoginRegisterView: View {
                             
                             if displayMode == .register {
                                 Text("Create account").font(.headlineCustom)
-                                Text("Having an account on Energram allows more personalized experience and services").font(.regularCustom)
+                                Text("Having an account on Energram allows more personalized experience and services")
                             }
                             
                             if displayMode == .login {
@@ -46,7 +48,7 @@ struct UserLoginRegisterView: View {
                             
                             if displayMode == .forgot {
                                 Text("Reset password").font(.headlineCustom)
-                                Text("Enter your email and get a code to change your password").font(.regularCustom)
+                                Text("Enter your email and get a code to change your password")
                             }
                             
                             
@@ -73,9 +75,16 @@ struct UserLoginRegisterView: View {
                                     .padding(3)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                             } else {
-                                Button("Send code"){
-                                    print("dfhg")
+                                CommonPrimaryButton(title: "Send code", onClick:{
+                                    Task { await requestPasswordReset(email: input_email) }
+                                })
+                                
+                                
+                                if passwordResetCodeWasSent {
+                                    Spacer()
+                                    Text("Code was sent. Please check email.")
                                 }
+                                
                                 Spacer()
                                 Button("Go back"){
                                     displayMode = .login
@@ -83,85 +92,93 @@ struct UserLoginRegisterView: View {
                             }
                             
                             if displayMode == .register {
-                                Button("Create account"){
-                                    print("dfhg")
-                                }
+                                CommonPrimaryButton(title: "Create account", onClick:{
+                                    Task { await requestRegister(email: input_email, password: input_password) }
+                                })
                                 
                                 Spacer()
                                 
-                                Text("Already have one?").font(.regularCustom)
-                                Button("Login"){
-                                    displayMode = .login
+                                HStack {
+                                    Text("Already have one?")
+                                    Button("Login"){
+                                        displayMode = .login
+                                    }
+                                    
+                                    
                                 }
+                                
+                                
                                 
                             }
                             
                             if displayMode == .login {
-                                Button("Login"){
-                                    Task { await requestLogin(username: input_email, password: input_password) }
-                                }
+                               
+                                CommonPrimaryButton(title: "Login", onClick:{
+                                    Task { await requestLogin(email: input_email, password: input_password) }
+                                })
                                 
                                 Spacer()
                                 
-                                Button("Register"){
-                                    displayMode = .register
-                                }
+                                
                                 
                                 Button("Forgot password?"){
                                     displayMode = .forgot
                                 }
+                                
+                                Spacer()
+                                
+                                HStack {
+                                    Text("Don't have an account?")
+                                    Button("Register"){
+                                        displayMode = .register
+                                    }
+                                }
                             }
                             
                             
                             
-                        }
-                        
-                        
-                        
-                        if let p = userData{
-                            VStack(spacing: 1) {
-                                
-                                
-                                
-                                Text(p.email).font(.headlineCustom)
-                                Text(p.id).monospaced()
-                            }
                             
                         }
                         
+                        
+                        
+//                        if let p = userData{
+//                            VStack(spacing: 1) {
+//
+//
+//
+//                                Text(p.email).font(.headlineCustom)
+//                                Text(p.id).monospaced()
+//                            }
+//
+//                        }
+                        
                     }
                     
                     
-                    Group {
-                        
-                        Spacer()
-                        
-                        Text("Some debug buttons...").font(.regularCustom)
-                        
-                        Button("Refresh Token"){
-                            Task { await refreshToken() }
-                        }
-                        
-                        Button("Get Secret Page"){
-                            secretPageContent = nil
-                            Task { await requestSecretPage() }
-                        }
-                        
-                        Button("Logout"){
-                            userData = nil
-                            access_token = nil
-                            UserService().eraseAuthData()
-                        }
-                    }
+//                    Group {
+//
+//                        Spacer()
+//
+//                        Text("Some debug buttons...").font(.regularCustom)
+//
+//
+//                        Button("Get Secret Page"){
+//                            secretPageContent = nil
+//                            Task { await requestSecretPage() }
+//                        }
+//
+//
+//                    }
                     
-                    
-                    if let s = secretPageContent {
-                        Text("Secret message \(s.message)")
-                    }
-                    
-                    if let t = access_token {
-                        Text(t).font(.system(size: 12)).monospaced()
-                    }
+//
+//                    if let s = secretPageContent {
+//                        Text("Secret message \(s.message)")
+//                    }
+//
+//                    if let t = access_token {
+//                        Text(t).font(.system(size: 12)).monospaced()
+//                    }
                     
                     
                 }
@@ -184,30 +201,16 @@ struct UserLoginRegisterView: View {
     
     @State private var loading: Bool = false
     
-    @State private var userData: User?
-    @State private var secretPageContent: SecretPageResponse?
+    @State private var passwordResetCodeWasSent: Bool = false
     
-    @State private var access_token: String?
-    
-//    private func readFromSettings() {
-//        self.access_token = SettingsManager.shared.getStringValue(name: "AccessToken")
-//    }
-    
-    private func requestLogin(username: String, password: String) async {
+    private func requestLogin(email: String, password: String) async {
         loading = true
         Task(priority: .background) {
-            let response = await UserService().requestLogin(username: username, password: password)
+            let response = await UserService().requestLogin(email: email, password: password)
             switch response {
             case .success(let result):
-                userData = result.user
-                
-                
-                access_token = result.access_token
-                
                 UserService().saveAuthData(data: result)
-                
-                
-                
+                userAuthState.checkAuth()
                 loading = false
             case .failure(let error):
                 print("Request failed with error: \(error.customMessage)")
@@ -216,39 +219,41 @@ struct UserLoginRegisterView: View {
         }
     }
     
-    private func refreshToken() async {
+    private func requestRegister(email: String, password: String) async {
         loading = true
         Task(priority: .background) {
-            let response = await UserService().useRefreshToken()
+            let response = await UserService().requestRegister(email: email, password: password)
+            switch response {
+            case .success(let _):
+//                UserService().saveAuthData(data: result)
+//                userStateViewModel.checkAuth()
+                print("User registered, trying to login...")
+                Task { await requestLogin(email: email, password: password) }
+//                loading = false
+            case .failure(let error):
+                print("Request failed with error: \(error.customMessage)")
+                loading = false
+            }
+        }
+    }
+    
+    private func requestPasswordReset(email: String) async {
+        loading = true
+        Task(priority: .background) {
+            let response = await UserService().requestPasswordReset(email: email)
             switch response {
             case .success(let result):
                 print(result)
+                passwordResetCodeWasSent = true
+                displayMode = .login
                 loading = false
             case .failure(let error):
                 print("Request failed with error: \(error.customMessage)")
-                
-                secretPageContent = SecretPageResponse(message: error.customMessage)
                 loading = false
             }
         }
     }
     
-    private func requestSecretPage() async {
-        loading = true
-        Task(priority: .background) {
-            let response = await UserService().getSecretPage()
-            switch response {
-            case .success(let result):
-                secretPageContent = result
-                loading = false
-            case .failure(let error):
-                print("Request failed with error: \(error.customMessage)")
-                
-                secretPageContent = SecretPageResponse(message: error.customMessage)
-                loading = false
-            }
-        }
-    }
 }
 
 struct UserLoginRegisterView_Previews: PreviewProvider {

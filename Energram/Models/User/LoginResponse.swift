@@ -14,16 +14,13 @@ struct LoginResponse: Decodable {
     var refresh_token: String
     var token_type: String
     
-//    enum CodingKeys: CodingKey {
-//        case auth
-//        case user
-//        case access_token
-//        case refresh_token
-//        case token_type
-//    }
 }
 
 struct RefreshTokenResponse: Decodable {
     var access_token: String
     var refresh_token: String
+}
+
+struct ForgottenPasswordResetRequestResponse: Decodable {
+    var result: Bool
 }

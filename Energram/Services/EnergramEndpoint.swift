@@ -13,7 +13,9 @@ enum EnergramEndpoint {
     case latestPriceForCountry(countryCode: String)
     case appliances
     
-    case userLogin//(username: String, password: String)
+    case userLogin
+    case userRegister(email: String, password: String)
+    case resetPassword(email: String)
     case secretPage
     case refreshToken
 }
@@ -34,20 +36,24 @@ extension EnergramEndpoint: Endpoint {
             
         case .userLogin, .refreshToken:
             return URLComponents(string: "\(self.host)/token")
+        case .userRegister:
+            return URLComponents(string: "\(self.host)/users")
+        case .resetPassword:
+            return URLComponents(string: "\(self.host)/user/password_forgot")
         case .secretPage:
             return URLComponents(string: "\(self.host)/secretpage")
         }
     }
     
     var host: String {
-        return "https://api.energram.co"
-        //return "http://127.0.0.1:8000"
+        //return "https://api.energram.co"
+        return "http://127.0.0.1:8000"
     }
     
     
     var method: RequestMethod {
         switch self {
-        case .userLogin:
+        case .userLogin, .userRegister, .resetPassword:
             return .post
         case .refreshToken:
             return .patch
@@ -65,8 +71,10 @@ extension EnergramEndpoint: Endpoint {
         }
         
         switch self {
-        case .userLogin, .refreshToken:
+        case .userLogin:
             return nil
+        case .userRegister, .refreshToken, .resetPassword:
+            return ["Content-Type": "application/json;charset=utf-8"]
         default:
             if accessToken == nil {
                 return nil
@@ -77,9 +85,10 @@ extension EnergramEndpoint: Endpoint {
     
     var body: [String: String]? {
         switch self {
-            //        case .userLogin(let username, let password):
-            //            return ["username": username, "password": password]
-            
+        case .userRegister(let email, let password):
+            return ["email": email, "password": password]
+        case .resetPassword(let email):
+            return ["email": email]
         case .refreshToken:
             guard let authData = UserService().readAuthData() else {
                 log("> Can't get authData in EnergramEndpoint.swift, this should not happens")

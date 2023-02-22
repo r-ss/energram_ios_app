@@ -13,15 +13,25 @@ struct SecretPageResponse: Codable {
 }
 
 protocol UserServiceable {
-    func requestLogin(username: String, password: String) async -> Result<LoginResponse, RequestError>
+    func requestLogin(email: String, password: String) async -> Result<LoginResponse, RequestError>
+    func requestRegister(email: String, password: String) async -> Result<User, RequestError>
+    func requestPasswordReset(email: String) async -> Result<ForgottenPasswordResetRequestResponse, RequestError>
     func useRefreshToken() async -> Result<RefreshTokenResponse, RequestError>
     func getSecretPage() async -> Result<SecretPageResponse, RequestError>
 }
 
 struct UserService: HTTPClient, UserServiceable {
     
-    func requestLogin(username: String, password: String) async -> Result<LoginResponse, RequestError> {
-        return await sendMultipartFormAuthRequest(endpoint: EnergramEndpoint.userLogin, username: username, password:password, responseModel: LoginResponse.self)
+    func requestLogin(email: String, password: String) async -> Result<LoginResponse, RequestError> {
+        return await sendMultipartFormAuthRequest(endpoint: EnergramEndpoint.userLogin, email: email, password:password, responseModel: LoginResponse.self)
+    }
+    
+    func requestRegister(email: String, password: String) async -> Result<User, RequestError> {
+        return await sendRequest(endpoint: EnergramEndpoint.userRegister(email: email, password:password), responseModel: User.self)
+    }
+    
+    func requestPasswordReset(email: String) async -> Result<ForgottenPasswordResetRequestResponse, RequestError> {
+        return await sendRequest(endpoint: EnergramEndpoint.resetPassword(email: email), responseModel: ForgottenPasswordResetRequestResponse.self)
     }
     
     func useRefreshToken() async -> Result<RefreshTokenResponse, RequestError> {
@@ -44,6 +54,7 @@ struct UserService: HTTPClient, UserServiceable {
     func saveFreshRefreshTokens(tokens: RefreshTokenResponse) {
         SettingsManager.shared.setValue(name: "AccessToken", value: tokens.access_token)
         SettingsManager.shared.setValue(name: "RefreshToken", value: tokens.refresh_token)
+        print("Saved new refresh tokens")
     }
     
     func readAuthData() -> AuthData? {

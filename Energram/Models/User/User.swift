@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Codable {
+struct User: Decodable {
     var id: String
     var email: String
     var is_superadmin: Bool
@@ -15,12 +15,12 @@ struct User: Codable {
     var last_login: Date
 //    var userpic: Bool
     
-    enum CodingKeys: String, CodingKey {
-        case id = "_id"
-        case email
-        case is_superadmin
-        case created
-        case last_login
-    }
+//    enum CodingKeys: String, CodingKey {
+//        case id = "_id"
+//        case email
+//        case is_superadmin
+//        case created
+//        case last_login
+//    }
     
 }
