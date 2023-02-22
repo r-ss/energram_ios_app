@@ -31,6 +31,10 @@ struct UserProfileView: View {
                             }
                         }
                         
+                        Spacer()
+                        
+                        UserpicView().frame(width:150, height: 150)
+                        
                     }
                     
                     
@@ -67,6 +71,10 @@ struct UserProfileView: View {
                 .padding()
                 .onAppear {
                     self.readFromSettings()
+                    
+//                    if let id = authData?.id {
+//                        Task { await self.requestUserProfileFromBackend(id: id)}
+//                    }
                 }
 //                .sheet(isPresented: $isPresented, onDismiss: {
 //                    print("Modal dismissed. State now: \(self.isPresented)")
@@ -129,6 +137,8 @@ struct UserProfileView: View {
             }
         }
     }
+    
+
 }
 
 struct UserProfileView_Previews: PreviewProvider {

@@ -18,6 +18,9 @@ enum EnergramEndpoint {
     case resetPassword(email: String)
     case secretPage
     case refreshToken
+    
+    case userProfile(id: String)
+    case userpic
 }
 
 extension EnergramEndpoint: Endpoint {
@@ -42,18 +45,24 @@ extension EnergramEndpoint: Endpoint {
             return URLComponents(string: "\(self.host)/user/password_forgot")
         case .secretPage:
             return URLComponents(string: "\(self.host)/secretpage")
+            
+        case .userProfile(let id):
+            return URLComponents(string: "\(self.host)/users/\(id)")
+        case .userpic:
+            return URLComponents(string: "\(self.host)/userpic")
         }
+        
     }
     
     var host: String {
-        //return "https://api.energram.co"
-        return "http://127.0.0.1:8000"
+        return "https://api.energram.co"
+        //return "http://127.0.0.1:8000"
     }
     
     
     var method: RequestMethod {
         switch self {
-        case .userLogin, .userRegister, .resetPassword:
+        case .userLogin, .userRegister, .resetPassword, .userpic:
             return .post
         case .refreshToken:
             return .patch
@@ -75,6 +84,11 @@ extension EnergramEndpoint: Endpoint {
             return nil
         case .userRegister, .refreshToken, .resetPassword:
             return ["Content-Type": "application/json;charset=utf-8"]
+        case .userpic:
+            if accessToken == nil {
+                return nil
+            }
+            return ["Authorization": "Bearer \(accessToken ?? "--not present--")", "Content-Type": "multipart/form-data; boundary=X-ENERGRAM-BOUNDARY"]
         default:
             if accessToken == nil {
                 return nil

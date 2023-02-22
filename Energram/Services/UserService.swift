@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 
 struct SecretPageResponse: Codable {
@@ -18,6 +19,7 @@ protocol UserServiceable {
     func requestPasswordReset(email: String) async -> Result<ForgottenPasswordResetRequestResponse, RequestError>
     func useRefreshToken() async -> Result<RefreshTokenResponse, RequestError>
     func getSecretPage() async -> Result<SecretPageResponse, RequestError>
+    func getUserProfile(id: String) async -> Result<User, RequestError>
 }
 
 struct UserService: HTTPClient, UserServiceable {
@@ -40,6 +42,14 @@ struct UserService: HTTPClient, UserServiceable {
     
     func getSecretPage() async -> Result<SecretPageResponse, RequestError> {
         return await sendRequest(endpoint: EnergramEndpoint.secretPage, responseModel: SecretPageResponse.self)
+    }
+    
+    func getUserProfile(id: String) async -> Result<User, RequestError> {
+        return await sendRequest(endpoint: EnergramEndpoint.userProfile(id: id), responseModel: User.self)
+    }
+    
+    func uploadUserpic(image: UIImage) async -> Result<UserpicUploadResponse, RequestError> {
+        return await uploadImageRequest(endpoint: EnergramEndpoint.userpic, image: image, responseModel: UserpicUploadResponse.self)
     }
     
     
