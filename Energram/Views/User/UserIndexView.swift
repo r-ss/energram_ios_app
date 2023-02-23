@@ -17,6 +17,5 @@ struct UserIndexView: View {
         } else {
             UserLoginRegisterView()
         }
-        
     }
 }

@@ -16,19 +16,18 @@ struct UserProfileView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            ScrollView(.vertical) {
+            //ScrollView(.vertical) {
                 
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .center, spacing: 10) {
                     
                                        
                     Group {
-                        Text("Profile").font(.headlineCustom)
+                        
                         
                         if let p = authData{
-                            VStack(spacing: 1) {
-                                Text(p.email).font(.headlineCustom)
-                                Text(p.id).monospaced()
-                            }
+                            Text(p.email).font(.headlineCustom)
+                        } else {
+                            Text("Profile").font(.headlineCustom)
                         }
                         
                         Spacer()
@@ -50,11 +49,16 @@ struct UserProfileView: View {
                             Task { await requestSecretPage() }
                         }
                         Button("Logout"){
+                            print("logging out")
                             secretPageContent = nil
                             authData = nil
                             UserService().eraseAuthData()
                             userAuthState.checkAuth()
                         }
+                    }
+                    
+                    if let p = authData{
+                        Text(p.id).monospaced()
                     }
                     
                     if let s = secretPageContent {
@@ -68,7 +72,7 @@ struct UserProfileView: View {
                     
                 }
                 .frame(width: geometry.size.width, alignment: .leading)
-                .padding()
+                .padding(0)
                 .onAppear {
                     self.readFromSettings()
                     
@@ -81,7 +85,7 @@ struct UserProfileView: View {
 //                  }) {
 //                      UserLoginRegisterView()
 //                  }
-            }
+            //}
         }
         
     }
@@ -91,8 +95,8 @@ struct UserProfileView: View {
     
     //    @State private var input_email: String = "bob@energram.com"
     //    @State private var input_password: String = "bb7DMsMXAZE8"
-    @State private var input_email: String = ""
-    @State private var input_password: String = ""
+//    @State private var input_email: String = ""
+//    @State private var input_password: String = ""
     
     @State private var loading: Bool = false
     

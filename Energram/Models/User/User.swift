@@ -27,11 +27,5 @@ struct User: Decodable {
 
 struct UserpicUploadResponse: Decodable {
     var result: String
-    var userpic_dir: String
-    var userpic_hash: String
-    
-    var userpicUrl: String {
-        return "https://media.energram.co/\(userpic_dir)/\(userpic_hash)_512.jpg"
-    }
-    
+    var userpic: [String: String]
 }

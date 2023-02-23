@@ -187,6 +187,9 @@ struct UserLoginRegisterView: View {
 //                .onAppear {
 //                    self.readFromSettings()
 //                }
+                .alert(alertMessage, isPresented: $showAlert) {
+                    Button("OK", role: .cancel) { }
+                }
             }
         }
         
@@ -194,14 +197,22 @@ struct UserLoginRegisterView: View {
     
     @FocusState private var focusedField: Field?
     
-    //    @State private var input_email: String = "bob@energram.com"
-    //    @State private var input_password: String = "bb7DMsMXAZE8"
+    @State private var showAlert = false
+    @State private var alertMessage: String = "Error..."
+    
+//        @State private var input_email: String = "bob@energram.com"
+//        @State private var input_password: String = "bb7DMsMXAZE8"
     @State private var input_email: String = ""
     @State private var input_password: String = ""
     
     @State private var loading: Bool = false
     
     @State private var passwordResetCodeWasSent: Bool = false
+    
+    private func makeAlert(message: String) {
+        alertMessage = message
+        showAlert = true
+    }
     
     private func requestLogin(email: String, password: String) async {
         loading = true
@@ -215,6 +226,7 @@ struct UserLoginRegisterView: View {
             case .failure(let error):
                 print("Request failed with error: \(error.customMessage)")
                 loading = false
+                makeAlert(message: error.customMessage)
             }
         }
     }
@@ -233,6 +245,7 @@ struct UserLoginRegisterView: View {
             case .failure(let error):
                 print("Request failed with error: \(error.customMessage)")
                 loading = false
+                makeAlert(message: error.customMessage)
             }
         }
     }
@@ -250,6 +263,7 @@ struct UserLoginRegisterView: View {
             case .failure(let error):
                 print("Request failed with error: \(error.customMessage)")
                 loading = false
+                makeAlert(message: error.customMessage)
             }
         }
     }

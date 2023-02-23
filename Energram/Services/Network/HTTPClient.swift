@@ -34,11 +34,11 @@ extension HTTPClient {
             request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
         }
         
-//        print(request.allHTTPHeaderFields)
-//        print(request.httpBody)
+        //        print(request.allHTTPHeaderFields)
+        //        print(request.httpBody)
         
-//        let str = String(decoding: request.httpBody!, as: UTF8.self)
-//        print(str)
+        //        let str = String(decoding: request.httpBody!, as: UTF8.self)
+        //        print(str)
         
         do {
             let (data, response) = try await URLSession.shared.data(for: request, delegate: nil)
@@ -68,6 +68,11 @@ extension HTTPClient {
                 return .success(decodedResponse)
             case 401:
                 
+                
+                
+//                let str = String(decoding: data, as: UTF8.self)
+//                print(str)
+                
                 /// Here we try to obtain new access token by using refresh_token
                 guard let errorDetailDecodedResponse: RequestErrorMessage = try? decoder.decode(RequestErrorMessage.self, from: data) else {
                     return .failure(.unauthorized)
@@ -78,20 +83,28 @@ extension HTTPClient {
                     let tokens = await UserService().useRefreshToken()
                     switch tokens {
                     case .success(let tokensResult):
-//                        print(tokensResult)
+                        //                        print(tokensResult)
                         UserService().saveFreshRefreshTokens(tokens: tokensResult)
                         return await sendRequest(endpoint: endpoint, responseModel: responseModel)
                     case .failure(let tokensError):
-                        print("useRefreshToken request failed with error: \(tokensError.customMessage)")
+                        log("useRefreshToken request failed with error: \(tokensError.customMessage)")
+                        
+                        // TODO: case of expires refresh_token
                     }
-                /// End of refresh token obtain block
-                    
-                    
-                }
+                    /// End of refresh token obtain block
 
-                return .failure(.unauthorized)
+                }
+                return .failure(.custom(message: errorDetailDecodedResponse.detail))
+                
             default:
-                return .failure(.unexpectedStatusCode)
+                // Unexpected Status Code Case
+                
+                guard let errorDetailDecodedResponse: RequestErrorMessage = try? decoder.decode(RequestErrorMessage.self, from: data) else {
+                    return .failure(.unexpectedStatusCode)
+                }
+                
+                return .failure(.custom(message: errorDetailDecodedResponse.detail))
+                
             }
         } catch {
             return .failure(.unknown)
@@ -112,21 +125,17 @@ extension HTTPClient {
             return .failure(.invalidURL)
         }
         
-//        let url = URL(string: "http://127.0.0.1:8000/token")!
-
         // generate boundary string using a unique per-app string
         let boundary = UUID().uuidString
-
-//        let session = URLSession.shared
         
         var request = URLRequest(url: url)
         //request.httpMethod = endpoint.method.rawValue
         request.httpMethod = "POST"
-
+        
         // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
         // And the boundary is also set here
         request.setValue("multipart/form-data; boundary=X-\(boundary)-BOUNDARY", forHTTPHeaderField: "Content-Type")
-
+        
         var data = Data()
         data.append("--X-\(boundary)-BOUNDARY\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"username\"\r\n\r\n\(email)\r\n".data(using: .utf8)!)
@@ -134,8 +143,8 @@ extension HTTPClient {
         data.append("Content-Disposition: form-data; name=\"password\"\r\n\r\n\(password)\r\n".data(using: .utf8)!)
         data.append("--X-\(boundary)-BOUNDARY--".data(using: .utf8)!)
         
-//        let str = String(decoding: data, as: UTF8.self)
-//        print(str)
+        //        let str = String(decoding: data, as: UTF8.self)
+        //        print(str)
         
         request.httpBody = data as Data
         
@@ -144,8 +153,6 @@ extension HTTPClient {
             guard let response = response as? HTTPURLResponse else {
                 return .failure(.noResponse)
             }
-            
-//            print(response)
             
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .custom({ decoder in
@@ -159,7 +166,8 @@ extension HTTPClient {
                 }
                 throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateString)")
             })
-
+            
+//            print(response.statusCode)
             
             switch response.statusCode {
             case 200...299:
@@ -168,9 +176,23 @@ extension HTTPClient {
                 }
                 return .success(decodedResponse)
             case 401:
-                return .failure(.unauthorized)
+                guard let errorDetailDecodedResponse: RequestErrorMessage = try? decoder.decode(RequestErrorMessage.self, from: data) else {
+                    return .failure(.unauthorized)
+                }
+                return .failure(.custom(message: errorDetailDecodedResponse.detail))
+            case 404:
+                guard let errorDetailDecodedResponse: RequestErrorMessage = try? decoder.decode(RequestErrorMessage.self, from: data) else {
+                    return .failure(.notFound)
+                }
+                return .failure(.custom(message: errorDetailDecodedResponse.detail))
             default:
-                return .failure(.unexpectedStatusCode)
+                
+                guard let errorDetailDecodedResponse: RequestErrorMessage = try? decoder.decode(RequestErrorMessage.self, from: data) else {
+                    return .failure(.unexpectedStatusCode)
+                }
+                
+                return .failure(.custom(message: errorDetailDecodedResponse.detail))
+                
             }
         } catch {
             return .failure(.unknown)
@@ -190,64 +212,42 @@ extension HTTPClient {
             return .failure(.invalidURL)
         }
         
-//        let url = URL(string: "http://127.0.0.1:8000/token")!
-
-        // generate boundary string using a unique per-app string
-        let boundary = UUID().uuidString
-
-//        let session = URLSession.shared
-        
         var request = URLRequest(url: url)
-        //request.httpMethod = endpoint.method.rawValue
         request.httpMethod = "POST"
         
         if let header = endpoint.header {
             request.allHTTPHeaderFields = header
         }
-
+        
         // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
-//         And the boundary is also set here
-//        request.setValue("multipart/form-data; boundary=X-ENERGRAM-BOUNDARY", forHTTPHeaderField: "Content-Type")
-
+        //         And the boundary is also set here
+        //        request.setValue("multipart/form-data; boundary=X-ENERGRAM-BOUNDARY", forHTTPHeaderField: "Content-Type")
+        
         var data = Data()
         data.append("--X-ENERGRAM-BOUNDARY\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"uploads\"; filename=\"userpic\"\r\n".data(using: .utf8)!)
         data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
         data.append(image.jpegData(compressionQuality: 0.75)!)
         data.append("\r\n--X-ENERGRAM-BOUNDARY--".data(using: .utf8)!)
-        
-        
-        
-        
-//        print(request.allHTTPHeaderFields)
-//        let str = String(decoding: data, as: UTF8.self)
-//        print(str)
-        
-        
-        
-        
+
         do {
-            
             let (data, response) = try await URLSession.shared.upload(for: request, from: data)
             guard let response = response as? HTTPURLResponse else {
                 return .failure(.noResponse)
             }
             
-//            print(response)
-            
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .custom({ decoder in
-                /// This allows to decode date in 2023-02-17 format, ton only in ISO
-                let container = try decoder.singleValueContainer()
-                let dateString = try container.decode(String.self)
-                let formatter = ISO8601DateFormatter()
-                formatter.formatOptions = [.withFullDate]
-                if let date = formatter.date(from: dateString) {
-                    return date
-                }
-                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateString)")
-            })
-
+            //            decoder.dateDecodingStrategy = .custom({ decoder in
+            //                /// This allows to decode date in 2023-02-17 format, ton only in ISO
+            //                let container = try decoder.singleValueContainer()
+            //                let dateString = try container.decode(String.self)
+            //                let formatter = ISO8601DateFormatter()
+            //                formatter.formatOptions = [.withFullDate]
+            //                if let date = formatter.date(from: dateString) {
+            //                    return date
+            //                }
+            //                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateString)")
+            //            })
             
             switch response.statusCode {
             case 200...299:
@@ -277,15 +277,11 @@ extension HTTPClient {
         var request = URLRequest(url: url)
         request.httpMethod = endpoint.method.rawValue
         
-        //        print(url)
-        
         do {
             let (data, response) = try await URLSession.shared.data(for: request, delegate: nil)
             guard let response = response as? HTTPURLResponse else {
                 return .failure(.noResponse)
             }
-            
-            //            print(response)
             
             switch response.statusCode {
             case 200...299:
