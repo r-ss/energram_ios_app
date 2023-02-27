@@ -54,7 +54,7 @@ struct UserProfileView: View {
                     
                     Toggle("Show Debug Info", isOn: $showDebugInfo)
                         .onChange(of: showDebugInfo) { value in
-                            SettingsManager.shared.setValue(name: "ShowDebugInfo", value: value)
+                            SettingsManager.shared.setValue(name: SettingsNames.showDebugInfo, value: value)
                         }.font(.regularCustom)
                     
                     if showDebugInfo {
@@ -90,16 +90,7 @@ struct UserProfileView: View {
                 
                 .onAppear {
                     self.readFromSettings()
-                    
-//                    if let id = authData?.id {
-//                        Task { await self.requestUserProfileFromBackend(id: id)}
-//                    }
                 }
-//                .sheet(isPresented: $isPresented, onDismiss: {
-//                    print("Modal dismissed. State now: \(self.isPresented)")
-//                  }) {
-//                      UserLoginRegisterView()
-//                  }
             }
         }
         
@@ -122,7 +113,7 @@ struct UserProfileView: View {
     private func readFromSettings() {
         self.authData = UserService().readAuthData()
         
-        self.showDebugInfo = SettingsManager.shared.getBoolValue(name: "ShowDebugInfo")
+        self.showDebugInfo = SettingsManager.shared.getBoolValue(name: SettingsNames.showDebugInfo)
 
     }
         

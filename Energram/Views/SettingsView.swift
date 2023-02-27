@@ -37,20 +37,22 @@ struct SettingsView: View {
     //    @AppStorage("ReservedPower") var userReservedPower: Int = 4600
     
     private func changeCountry(readable: String) {
-        print("Set country in settings to:", readable)
+        
         
         if readable == "Spain" {
-            SettingsManager.shared.setValue(name: "CountryCode", value: "es")
+            print("Set country in settings to: es")
+            SettingsManager.shared.setValue(name: SettingsNames.countryCode, value: "es")
             //            self.countryCode = "es"
             self.changeCurrency(to: "EUR") // Force chagne to EUR if not Czech Rep.
-            currencyPickerSelection = "EUR"
+//            currencyPickerSelection = "EUR"
         }
         
         if readable == "Czech Republic" {
-            SettingsManager.shared.setValue(name: "CountryCode", value: "cz")
+            print("Set country in settings to: cz")
+            SettingsManager.shared.setValue(name: SettingsNames.countryCode, value: "cz")
             //            self.countryCode = "cz"
             self.changeCurrency(to: "CZK")
-            currencyPickerSelection = "CZK"
+//            currencyPickerSelection = "CZK"
         }
         
         Notification.fire(name: .countrySettingChanged)
@@ -61,24 +63,32 @@ struct SettingsView: View {
         print("Set currency in settings to:", to)
         //        self.currencyPickerSelection = to
         //        self.currency = to
-        SettingsManager.shared.setValue(name: "SelectedCurrency", value: to)
-//        currencyPickerSelection = to
-        Notification.fire(name: .currencySettingChanged)
+        
+        if selectedCurrency != to {
+            SettingsManager.shared.setValue(name: SettingsNames.selectedCurrency, value: to)
+            Notification.fire(name: .currencySettingChanged)
+        }
+        
+        
+        
+        if currencyPickerSelection != to {
+            currencyPickerSelection = to
+        }
         
     }
     
     
     private func readSettings() {
-        self.showDebugInfo = SettingsManager.shared.getBoolValue(name: "ShowDebugInfo")
-        self.countryCode = SettingsManager.shared.getStringValue(name: "CountryCode")
-        self.selectedCurrency = SettingsManager.shared.getStringValue(name: "SelectedCurrency")
-        self.currencyLatestCZK = SettingsManager.shared.getDoubleValue(name: "CurrencyLatestCZK")
-        self.userReservedPower = SettingsManager.shared.getIntegerValue(name: "ReservedPower")
+        self.showDebugInfo = SettingsManager.shared.getBoolValue(name: SettingsNames.showDebugInfo)
+        self.countryCode = SettingsManager.shared.getStringValue(name: SettingsNames.countryCode)
+        self.selectedCurrency = SettingsManager.shared.getStringValue(name: SettingsNames.selectedCurrency)
+        self.currencyLatestCZK = SettingsManager.shared.getDoubleValue(name: SettingsNames.currencyLatestCZK)
+        self.userReservedPower = SettingsManager.shared.getIntegerValue(name: SettingsNames.reservedPower)
     }
     
     
     private func submitReservedPower() {
-        SettingsManager.shared.setValue(name: "ReservedPower", value: userReservedPower)
+        SettingsManager.shared.setValue(name: SettingsNames.reservedPower, value: userReservedPower)
     }
     
     var body: some View {
@@ -134,21 +144,13 @@ struct SettingsView: View {
                 Group {
                     Toggle("Show Debug Info", isOn: $showDebugInfo)
                         .onChange(of: showDebugInfo) { value in
-                            //print(value)
                             showDebugInfo.toggle()
+                            SettingsManager.shared.setValue(name: SettingsNames.showDebugInfo, value: showDebugInfo)
                         }.font(.regularCustom)
                     if showDebugInfo {
                         DebugView()
                     }
                     
-                    Button("ES"){
-                        self.countryCode = "es"
-                        self.countryPickerSelection = "Spain"
-                    }
-                    Button("CZ"){
-                        self.countryCode = "cz"
-                        self.countryPickerSelection = "Czech Republic"
-                    }
                 }
             }
             .onAppear {

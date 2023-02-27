@@ -9,10 +9,29 @@ import Foundation
 
 
 struct SettingsItem {
-    var name: String
+    var name: SettingsNames
     var type: String
     var defaultValue: Any
 }
+
+
+enum SettingsNames: String, CaseIterable {
+    case testParameter = "SettingsTestParameter"
+    case existence = "SettingsExistence"
+    
+    case showDebugInfo = "SettingsShowDebugInfo"
+    case countryCode = "SettingsCountryCode"
+    case reservedPower = "SettingsReservedPower"
+    
+    case userEmail = "SettingsUserEmail"
+    case userId = "SettingsUserId"
+    case accessToken = "SettingsAccessToken"
+    case refreshToken = "SettingsRefreshToken"
+    case selectedCurrency = "SettingsSelectedCurrency"
+    case currencyLatestCZK = "SettingsCurrencyLatestCZK"
+}
+
+
 
 struct SettingsManager {
     
@@ -24,26 +43,27 @@ struct SettingsManager {
     
     private let defaults = UserDefaults.standard
     private var settings: [SettingsItem] = [
-        SettingsItem(name: "TestParameter", type: "Bool", defaultValue: true), // Used only in tests
-        SettingsItem(name: "Existence", type: "Bool", defaultValue: true), // Used to determine existence of settings and writing default values routine if not
-        SettingsItem(name: "ShowDebugInfo", type: "Bool", defaultValue: false),
-        SettingsItem(name: "CountryCode", type: "String", defaultValue: "es"),
-        SettingsItem(name: "ReservedPower", type: "Integer", defaultValue: 4600), // Watts
+        SettingsItem(name: SettingsNames.testParameter, type: "Bool", defaultValue: true), // Used only in tests
+        SettingsItem(name: SettingsNames.existence, type: "Bool", defaultValue: true), // Used to determine existence of settings and writing default values routine if not
+        SettingsItem(name: SettingsNames.showDebugInfo, type: "Bool", defaultValue: false),
+        SettingsItem(name: SettingsNames.countryCode, type: "String", defaultValue: "es"),
+        SettingsItem(name: SettingsNames.reservedPower, type: "Integer", defaultValue: 4600), // Watts
         
-        SettingsItem(name: "UserEmail", type: "String", defaultValue: ""),
-        SettingsItem(name: "UserId", type: "String", defaultValue: ""),
-        SettingsItem(name: "AccessToken", type: "String", defaultValue: ""),
-        SettingsItem(name: "RefreshToken", type: "String", defaultValue: ""),
+        SettingsItem(name: SettingsNames.userEmail, type: "String", defaultValue: ""),
+        SettingsItem(name: SettingsNames.userId, type: "String", defaultValue: ""),
+        SettingsItem(name: SettingsNames.accessToken, type: "String", defaultValue: ""),
+        SettingsItem(name: SettingsNames.refreshToken, type: "String", defaultValue: ""),
         
-        SettingsItem(name: "SelectedCurrency", type: "String", defaultValue: "EUR"),
-        SettingsItem(name: "CurrencyLatestCZK", type: "Double", defaultValue: 23.0),
+        SettingsItem(name: SettingsNames.selectedCurrency, type: "String", defaultValue: "EUR"),
+        SettingsItem(name: SettingsNames.currencyLatestCZK, type: "Double", defaultValue: 23.0),
     ]
     
     
     private init(){
         //print("> SettingsManager's privete Init")
-        if UserDefaults.standard.object(forKey: "Existence") == nil {
+        if UserDefaults.standard.object(forKey: "SettingsExistence") == nil {
             self.createAndSaveDefault()
+            
         }
     }
     
@@ -53,37 +73,39 @@ struct SettingsManager {
         
         for item in self.settings {
             print("Writing default setting for \(item.name)")
-            defaults.set(item.defaultValue, forKey: item.name)
+            defaults.set(item.defaultValue, forKey: item.name.rawValue)
         }
     }
     
-    private func getSettingItem(withName: String) -> SettingsItem {
+    private func getSettingItem(withName: SettingsNames) -> SettingsItem {
         let idx = self.settings.firstIndex(where: { $0.name == withName })!
         return self.settings[idx]
     }
     
     
-    public func getValue(name: String) -> Any {
+    public func getValue(name: SettingsNames) -> Any {
         let item = getSettingItem(withName: name)
         switch item.type {
         case "Bool":
-            return UserDefaults.standard.bool(forKey: item.name)
+            return UserDefaults.standard.bool(forKey: item.name.rawValue)
         case "Integer":
-            return UserDefaults.standard.integer(forKey: item.name)
+            return UserDefaults.standard.integer(forKey: item.name.rawValue)
+        case "Double":
+            return UserDefaults.standard.double(forKey: item.name.rawValue)
         default:
             // in other cases we assume String
-            return UserDefaults.standard.string(forKey: item.name)!
+            return UserDefaults.standard.string(forKey: item.name.rawValue)!
         }
     }
     
-    public func setValue(name: String, value: Any) {
+    public func setValue(name: SettingsNames, value: Any) {
         let item = getSettingItem(withName: name)
-        defaults.set(value, forKey: item.name)
+        defaults.set(value, forKey: item.name.rawValue)
     }
     
-    public func getStringValue(name: String) -> String {
+    public func getStringValue(name: SettingsNames) -> String {
         let item = getSettingItem(withName: name)
-        if let param = UserDefaults.standard.string(forKey: item.name) {
+        if let param = UserDefaults.standard.string(forKey: item.name.rawValue) {
             return param
         } else {
             return item.defaultValue as! String
@@ -91,10 +113,10 @@ struct SettingsManager {
         
     }
     
-    public func getBoolValue(name: String) -> Bool {
+    public func getBoolValue(name: SettingsNames) -> Bool {
         //        print("> getBoolValue for \(name)")
         let item = getSettingItem(withName: name)
-        return UserDefaults.standard.bool(forKey: item.name)
+        return UserDefaults.standard.bool(forKey: item.name.rawValue)
         
         //        if let param = UserDefaults.standard.bool(forKey: item.name) {
         //            return param
@@ -103,14 +125,14 @@ struct SettingsManager {
         //        }
     }
     
-    public func getIntegerValue(name: String) -> Int {
+    public func getIntegerValue(name: SettingsNames) -> Int {
         let item = getSettingItem(withName: name)
-        return UserDefaults.standard.integer(forKey: item.name)
+        return UserDefaults.standard.integer(forKey: item.name.rawValue)
     }
     
-    public func getDoubleValue(name: String) -> Double {
+    public func getDoubleValue(name: SettingsNames) -> Double {
         let item = getSettingItem(withName: name)
-        return UserDefaults.standard.double(forKey: item.name)
+        return UserDefaults.standard.double(forKey: item.name.rawValue)
     }
     
     

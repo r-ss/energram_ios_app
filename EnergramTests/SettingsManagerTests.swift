@@ -29,15 +29,15 @@ final class SettingsManagerTests: XCTestCase {
         
 
         
-        SettingsManager.shared.setValue(name: "TestParameter", value: true)
+        SettingsManager.shared.setValue(name: SettingsNames.testParameter, value: true)
         
         
-        var param = SettingsManager.shared.getBoolValue(name: "TestParameter")
+        var param = SettingsManager.shared.getBoolValue(name: SettingsNames.testParameter)
         XCTAssertEqual(param, true, "Param must be true")
         
-        SettingsManager.shared.setValue(name: "TestParameter", value: false)
+        SettingsManager.shared.setValue(name: SettingsNames.testParameter, value: false)
         
-        param = SettingsManager.shared.getBoolValue(name: "TestParameter")
+        param = SettingsManager.shared.getBoolValue(name: SettingsNames.testParameter)
         
         XCTAssertEqual(param, false, "Param must be false")
         

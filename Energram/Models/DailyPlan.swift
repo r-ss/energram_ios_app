@@ -95,7 +95,7 @@ class DailyPlan: ObservableObject {
     private func chooseTimeslot(forAppliance appliance: Appliance) -> Int {
         log("> chooseTimeslot")
         
-        let userReservedPower: Int = SettingsManager.shared.getIntegerValue(name: "ReservedPower")
+        let userReservedPower: Int = SettingsManager.shared.getIntegerValue(name: SettingsNames.reservedPower)
         
         let sortedByPrice:[Hour] = hours.sorted { $0.price < $1.price}
         let sortedByPriceAndFiltered:[Hour] = sortedByPrice.filter(){$0.usedPower <= userReservedPower}

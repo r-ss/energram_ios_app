@@ -41,7 +41,7 @@ struct MultipleDaysChartView: View {
                 .frame(width: geometry.size.width, alignment: .leading)
             }
             .onAppear {
-                countryCode = SettingsManager.shared.getStringValue(name: "CountryCode")
+                countryCode = SettingsManager.shared.getStringValue(name: SettingsNames.countryCode)
                 Task { await self.fetchPrices(forCountry: countryCode) }
             }
         }

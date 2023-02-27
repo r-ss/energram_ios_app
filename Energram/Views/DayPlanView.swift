@@ -180,10 +180,10 @@ struct DayPlanView: View {
     }
     
     private func readSettings() {
-        self.countryCode = SettingsManager.shared.getStringValue(name: "CountryCode")
-        self.selectedCurrency = SettingsManager.shared.getStringValue(name: "SelectedCurrency")
-        self.currencyLatestCZK = SettingsManager.shared.getDoubleValue(name: "CurrencyLatestCZK")
-        self.userReservedPower = SettingsManager.shared.getIntegerValue(name: "ReservedPower")
+        self.countryCode = SettingsManager.shared.getStringValue(name: SettingsNames.countryCode)
+        self.selectedCurrency = SettingsManager.shared.getStringValue(name: SettingsNames.selectedCurrency)
+        self.currencyLatestCZK = SettingsManager.shared.getDoubleValue(name: SettingsNames.currencyLatestCZK)
+        self.userReservedPower = SettingsManager.shared.getIntegerValue(name: SettingsNames.reservedPower)
     }
     
     private func fetchAppliances() async {

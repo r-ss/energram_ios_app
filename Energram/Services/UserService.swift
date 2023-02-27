@@ -55,23 +55,23 @@ struct UserService: HTTPClient, UserServiceable {
     
     func saveAuthData(data: LoginResponse) {
         let authData = AuthData(id: data.user.id, email: data.user.email, access_token: data.access_token, refresh_token: data.refresh_token)
-        SettingsManager.shared.setValue(name: "UserEmail", value: authData.email)
-        SettingsManager.shared.setValue(name: "UserId", value: authData.id)
-        SettingsManager.shared.setValue(name: "AccessToken", value: authData.access_token)
-        SettingsManager.shared.setValue(name: "RefreshToken", value: authData.refresh_token)
+        SettingsManager.shared.setValue(name: SettingsNames.userEmail, value: authData.email)
+        SettingsManager.shared.setValue(name: SettingsNames.userId, value: authData.id)
+        SettingsManager.shared.setValue(name: SettingsNames.accessToken, value: authData.access_token)
+        SettingsManager.shared.setValue(name: SettingsNames.refreshToken, value: authData.refresh_token)
     }
     
     func saveFreshRefreshTokens(tokens: RefreshTokenResponse) {
-        SettingsManager.shared.setValue(name: "AccessToken", value: tokens.access_token)
-        SettingsManager.shared.setValue(name: "RefreshToken", value: tokens.refresh_token)
+        SettingsManager.shared.setValue(name: SettingsNames.accessToken, value: tokens.access_token)
+        SettingsManager.shared.setValue(name: SettingsNames.refreshToken, value: tokens.refresh_token)
         print("Saved new refresh tokens")
     }
     
     func readAuthData() -> AuthData? {
-        let email: String = SettingsManager.shared.getStringValue(name: "UserEmail")
-        let id: String = SettingsManager.shared.getStringValue(name: "UserId")
-        let access_token: String = SettingsManager.shared.getStringValue(name: "AccessToken")
-        let refresh_token: String = SettingsManager.shared.getStringValue(name: "RefreshToken")
+        let email: String = SettingsManager.shared.getStringValue(name: SettingsNames.userEmail)
+        let id: String = SettingsManager.shared.getStringValue(name: SettingsNames.userId)
+        let access_token: String = SettingsManager.shared.getStringValue(name: SettingsNames.accessToken)
+        let refresh_token: String = SettingsManager.shared.getStringValue(name: SettingsNames.refreshToken)
         
         if [id, email, access_token, refresh_token].allSatisfy({ $0.isEmpty == false }){
             //print("all not empty, good")
@@ -83,10 +83,10 @@ struct UserService: HTTPClient, UserServiceable {
     }
     
     func eraseAuthData() {
-        SettingsManager.shared.setValue(name: "UserEmail", value: "")
-        SettingsManager.shared.setValue(name: "UserId", value: "")
-        SettingsManager.shared.setValue(name: "AccessToken", value: "")
-        SettingsManager.shared.setValue(name: "RefreshToken", value: "")
+        SettingsManager.shared.setValue(name: SettingsNames.userEmail, value: "")
+        SettingsManager.shared.setValue(name: SettingsNames.userId, value: "")
+        SettingsManager.shared.setValue(name: SettingsNames.accessToken, value: "")
+        SettingsManager.shared.setValue(name: SettingsNames.refreshToken, value: "")
     }
     
     
