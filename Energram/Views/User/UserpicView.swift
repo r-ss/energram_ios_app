@@ -69,9 +69,12 @@ struct UserpicView: View {
                     ) { phase in
                         switch phase {
                         case .empty:
-                            Circle()
-                                .fill(Palette.a)
-                                .frame(width: 150, height: 150)
+                            ZStack {
+                                Circle()
+                                    .fill(Palette.a)
+                                    .frame(width: 150, height: 150)
+                                Image(systemName: "photo")
+                            }
                         case .success(let image):
                             image
                                 .resizable()

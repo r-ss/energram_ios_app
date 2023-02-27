@@ -33,6 +33,7 @@
 		D0922CBE297EDBAC00743426 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0922CBD297EDBAC00743426 /* Fonts.swift */; };
 		D0B56B8329447A29004AE2E5 /* HourLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B56B8229447A29004AE2E5 /* HourLabel.swift */; };
 		D0B6198E2938A47400887F00 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6198D2938A47400887F00 /* Appliance.swift */; };
+		D0BA301529ACE8D5006411CB /* CurrencyRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA301429ACE8D5006411CB /* CurrencyRateService.swift */; };
 		D0C923FB29A4BDC300A34E33 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C923FA29A4BDC300A34E33 /* UserProfileView.swift */; };
 		D0C923FD29A4BF0700A34E33 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C923FC29A4BF0700A34E33 /* UserService.swift */; };
 		D0C9240029A4BF4600A34E33 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C923FF29A4BF4600A34E33 /* LoginResponse.swift */; };
@@ -113,6 +114,7 @@
 		D0922CBD297EDBAC00743426 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		D0B56B8229447A29004AE2E5 /* HourLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourLabel.swift; sourceTree = "<group>"; };
 		D0B6198D2938A47400887F00 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
+		D0BA301429ACE8D5006411CB /* CurrencyRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRateService.swift; sourceTree = "<group>"; };
 		D0C923FA29A4BDC300A34E33 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		D0C923FC29A4BF0700A34E33 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		D0C923FF29A4BF4600A34E33 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 		D035A96B291F80D400426722 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D0BA301329ACE8B1006411CB /* CurrencyRate */,
 				D0D5BD7D29A10F3300CCDC5D /* Network */,
 				D0409438296AB3BA007F5625 /* SettingsManager.swift */,
 				D0D5BD8629A1100300CCDC5D /* EnergramService.swift */,
@@ -300,6 +303,14 @@
 				D0922CB5297ED82600743426 /* ArgentumSans-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D0BA301329ACE8B1006411CB /* CurrencyRate */ = {
+			isa = PBXGroup;
+			children = (
+				D0BA301429ACE8D5006411CB /* CurrencyRateService.swift */,
+			);
+			path = CurrencyRate;
 			sourceTree = "<group>";
 		};
 		D0C923F929A4BDB400A34E33 /* User */ = {
@@ -521,6 +532,7 @@
 				D0E2C7A829212A56003F4DD9 /* MiniChart.swift in Sources */,
 				D0C9240D29A5F07200A34E33 /* UserIndexView.swift in Sources */,
 				D0922CBE297EDBAC00743426 /* Fonts.swift in Sources */,
+				D0BA301529ACE8D5006411CB /* CurrencyRateService.swift in Sources */,
 				D0D5BD8729A1100300CCDC5D /* EnergramService.swift in Sources */,
 				D0B6198E2938A47400887F00 /* Appliance.swift in Sources */,
 				D0D5BD8229A10F3300CCDC5D /* RequestError.swift in Sources */,

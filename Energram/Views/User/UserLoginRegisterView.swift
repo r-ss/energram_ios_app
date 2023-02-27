@@ -64,6 +64,8 @@ struct UserLoginRegisterView: View {
                                 .autocapitalization(.none)
                                 .padding(3)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                                //.border(Palette.brandPurple, width: 1)
+                                //.frame(width: geometry.size.width - 60)
                             
                             if displayMode != .forgot {
                                 SecureField("Password", text: $input_password)
@@ -73,7 +75,11 @@ struct UserLoginRegisterView: View {
                                     }
                                     .submitLabel(.next)
                                     .padding(3)
+                                    //.border(Palette.brandPurple, width: 1)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    
+                                    //.frame(width: geometry.size.width - 60)
+                                
                             } else {
                                 CommonPrimaryButton(title: "Send code", onClick:{
                                     Task { await requestPasswordReset(email: input_email) }
@@ -142,48 +148,14 @@ struct UserLoginRegisterView: View {
                         
                         
                         
-//                        if let p = userData{
-//                            VStack(spacing: 1) {
-//
-//
-//
-//                                Text(p.email).font(.headlineCustom)
-//                                Text(p.id).monospaced()
-//                            }
-//
-//                        }
-                        
                     }
                     
                     
-//                    Group {
-//
-//                        Spacer()
-//
-//                        Text("Some debug buttons...").font(.regularCustom)
-//
-//
-//                        Button("Get Secret Page"){
-//                            secretPageContent = nil
-//                            Task { await requestSecretPage() }
-//                        }
-//
-//
-//                    }
-                    
-//
-//                    if let s = secretPageContent {
-//                        Text("Secret message \(s.message)")
-//                    }
-//
-//                    if let t = access_token {
-//                        Text(t).font(.system(size: 12)).monospaced()
-//                    }
-                    
+
                     
                 }
-                .frame(width: geometry.size.width, alignment: .leading)
                 .padding()
+                .frame(width: geometry.size.width, alignment: .leading)
 //                .onAppear {
 //                    self.readFromSettings()
 //                }

@@ -10,6 +10,8 @@ import SwiftUI
 struct DayPlanView: View {
     @ObservedObject var dailyPlan: DailyPlan
     
+
+    
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.vertical) {
@@ -85,7 +87,13 @@ struct DayPlanView: View {
                     }
                     
                     Text("Reserved Power: \(self.userReservedPower) Watts")
-                    Text("Cost: €\(totalCost)").font(.headlineCustom).padding(.top, 10)
+                    
+                    if selectedCurrency == "EUR" {
+                        Text("Cost: €\( String(format: "%.2f", totalCost) )").font(.headlineCustom).padding(.top, 10)
+                    }
+                    if selectedCurrency == "CZK" {
+                        Text("Cost: \( String(format: "%.1f", totalCost * Float(currencyLatestCZK)) ) CZK").font(.headlineCustom).padding(.top, 10)
+                    }
                     
                     if let dp = dailyPlan.price {
                         MiniChart(forDay: dp)
@@ -101,10 +109,9 @@ struct DayPlanView: View {
                 .padding()
                 .frame(width: geometry.size.width, alignment: .leading)
                 .onAppear {
-                    //self.applianceService.myLocalPriceService.fetchData(for_country: "es")
-                    self.userReservedPower = SettingsManager.shared.getIntegerValue(name: "ReservedPower")
                     
-                    let countryCode = SettingsManager.shared.getStringValue(name: "CountryCode")
+                    self.readSettings()
+                    //self.applianceService.myLocalPriceService.fetchData(for_country: "es")
                     
                     
                     if dailyPlan.price == nil || dailyPlan.price?.country != countryCode {
@@ -123,6 +130,11 @@ struct DayPlanView: View {
                         }
                     }
                     
+                    if currencyRates == nil {
+                        Task { await self.fetchCurrencyRates()}
+                    }
+                    
+                    
                 }
             }
         }
@@ -134,7 +146,18 @@ struct DayPlanView: View {
     @State private var appliancesLoading: Bool = false
     @State private var pricesLoading: Bool = false
     
-    @State private var userReservedPower: Int = 0
+    @State private var currencyRatesLoading: Bool = false
+    
+    
+    
+    @State private var currencyRates: CurrencyRateResponse?
+    
+    /// SETTINGS
+    @State private var countryCode: String = "es"
+    @State private var selectedCurrency: String = "EUR"
+    @State private var currencyLatestCZK: Double = 23.0
+    @State private var userReservedPower: Int = 4600
+    
     
     private let tileHeight: CGFloat = 200
     private var quarterWidth: CGFloat {
@@ -154,6 +177,13 @@ struct DayPlanView: View {
             }
         }
         return total
+    }
+    
+    private func readSettings() {
+        self.countryCode = SettingsManager.shared.getStringValue(name: "CountryCode")
+        self.selectedCurrency = SettingsManager.shared.getStringValue(name: "SelectedCurrency")
+        self.currencyLatestCZK = SettingsManager.shared.getDoubleValue(name: "CurrencyLatestCZK")
+        self.userReservedPower = SettingsManager.shared.getIntegerValue(name: "ReservedPower")
     }
     
     private func fetchAppliances() async {
@@ -183,6 +213,19 @@ struct DayPlanView: View {
                 print("Request failed with error: \(error.customMessage)")
                 pricesLoading = false
             }
+        }
+    }
+    
+    
+    private func fetchCurrencyRates() async {
+        currencyRatesLoading = true
+        Task(priority: .background) {
+            if let rateCZK = await CurrencyRateService().fetchLatestRateCZK() {
+                currencyLatestCZK = rateCZK
+                Notification.fire(name: .latestCurrencyRatesRecieved)
+            }
+            
+
         }
     }
     

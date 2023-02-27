@@ -13,10 +13,12 @@ struct UserProfileView: View {
     
     @EnvironmentObject private var userAuthState: UserAuthStateViewModel
     
+    @State private var showDebugInfo: Bool = false
+
     
     var body: some View {
         GeometryReader { geometry in
-            //ScrollView(.vertical) {
+            ScrollView(.vertical) {
                 
                 VStack(alignment: .center, spacing: 10) {
                     
@@ -40,14 +42,7 @@ struct UserProfileView: View {
                     Group {
                         
                         Spacer()
-                        Text("Some debug buttons...").font(.regularCustom)
-                        Button("Refresh Token"){
-                            Task { await refreshToken() }
-                        }
-                        Button("Get Secret Page"){
-                            secretPageContent = nil
-                            Task { await requestSecretPage() }
-                        }
+                        
                         Button("Logout"){
                             print("logging out")
                             secretPageContent = nil
@@ -57,22 +52,42 @@ struct UserProfileView: View {
                         }
                     }
                     
-                    if let p = authData{
-                        Text(p.id).monospaced()
+                    Toggle("Show Debug Info", isOn: $showDebugInfo)
+                        .onChange(of: showDebugInfo) { value in
+                            SettingsManager.shared.setValue(name: "ShowDebugInfo", value: value)
+                        }.font(.regularCustom)
+                    
+                    if showDebugInfo {
+                        
+                        Spacer()
+                        
+                        Text("Some debug buttons...").font(.regularCustom)
+                        Button("Refresh Token"){
+                            Task { await refreshToken() }
+                        }
+                        Button("Get Secret Page"){
+                            secretPageContent = nil
+                            Task { await requestSecretPage() }
+                        }
+                        
+                        
+                        if let p = authData{
+                            Text(p.id).monospaced()
+                        }
+                        
+                        if let s = secretPageContent {
+                            Text("Secret message \(s.message)")
+                        }
+                        
+                        if let t = authData?.access_token {
+                            Text(t).font(.system(size: 12)).monospaced()
+                        }
+                        
                     }
-                    
-                    if let s = secretPageContent {
-                        Text("Secret message \(s.message)")
-                    }
-                    
-                    if let t = authData?.access_token {
-                        Text(t).font(.system(size: 12)).monospaced()
-                    }
-                    
-                    
                 }
+                .padding()
                 .frame(width: geometry.size.width, alignment: .leading)
-                .padding(0)
+                
                 .onAppear {
                     self.readFromSettings()
                     
@@ -85,7 +100,7 @@ struct UserProfileView: View {
 //                  }) {
 //                      UserLoginRegisterView()
 //                  }
-            //}
+            }
         }
         
     }
@@ -106,6 +121,8 @@ struct UserProfileView: View {
     
     private func readFromSettings() {
         self.authData = UserService().readAuthData()
+        
+        self.showDebugInfo = SettingsManager.shared.getBoolValue(name: "ShowDebugInfo")
 
     }
         

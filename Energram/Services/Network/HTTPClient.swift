@@ -46,7 +46,10 @@ extension HTTPClient {
                 return .failure(.noResponse)
             }
             
-            //            print(response)
+            //print(String(decoding: data, as: UTF8.self))
+            
+//            print(response)
+            
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .custom({ decoder in
                 /// This allows to decode date in 2023-02-17 format, ton only in ISO

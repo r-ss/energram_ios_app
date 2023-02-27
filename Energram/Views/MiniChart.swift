@@ -139,13 +139,13 @@ struct MiniChart: View {
             HStack(alignment: .firstTextBaseline, spacing: 15) {
                 //                        Circle().fill(min_hour.color).frame(width: circleRadius, height: circleRadius)
                 Text("\(String(format: "%02d", min_hour.hour)):00 — \(String(format: "%02d", min_hour.hour + 1)):00").font(smallerFont).foregroundColor(min_hour.color)
-                Text("\(String(format: "%.4f", min_hour.value)) \(min_hour.measure)").font(smallerFont).foregroundColor(min_hour.color)
+                Text("\(String(format: "%.2f", min_hour.value)) \(min_hour.measure)").font(smallerFont).foregroundColor(min_hour.color)
             }.frame(maxWidth: .infinity, alignment: .trailing)
             
             HStack(alignment: .firstTextBaseline, spacing: 15) {
                 //                        Circle().fill(max_hour.color).frame(width: circleRadius, height: circleRadius)
                 Text("\(String(format: "%02d", max_hour.hour)):00 — \(String(format: "%02d", max_hour.hour + 1)):00").font(smallerFont).foregroundColor(max_hour.color)
-                Text("\(String(format: "%.4f", max_hour.value)) \(max_hour.measure)").font(smallerFont).foregroundColor(max_hour.color)
+                Text("\(String(format: "%.2f", max_hour.value)) \(max_hour.measure)").font(smallerFont).foregroundColor(max_hour.color)
             }.frame(maxWidth: .infinity, alignment: .trailing)//.border(.red)
             
         }

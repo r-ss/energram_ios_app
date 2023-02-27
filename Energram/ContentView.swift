@@ -27,10 +27,6 @@ struct ContentView: View {
         VStack {
             TabView {
                 
-                UserIndexView()
-                    .tabItem {
-                        Label("Profile", systemImage: "person.crop.circle")
-                    }
                                                 
                 DayPlanView(dailyPlan: dailyPlan)
                     .tabItem {
@@ -47,6 +43,11 @@ struct ContentView: View {
 //                    .tabItem {
 //                        Label("Price CZ", systemImage: "chart.xyaxis.line")
 //                    }
+                
+                UserIndexView()
+                    .tabItem {
+                        Label("Profile", systemImage: "person.crop.circle")
+                    }
                 
                 SettingsView()
                     .tabItem {

@@ -34,6 +34,9 @@ struct SettingsManager {
         SettingsItem(name: "UserId", type: "String", defaultValue: ""),
         SettingsItem(name: "AccessToken", type: "String", defaultValue: ""),
         SettingsItem(name: "RefreshToken", type: "String", defaultValue: ""),
+        
+        SettingsItem(name: "SelectedCurrency", type: "String", defaultValue: "EUR"),
+        SettingsItem(name: "CurrencyLatestCZK", type: "Double", defaultValue: 23.0),
     ]
     
     
@@ -101,9 +104,13 @@ struct SettingsManager {
     }
     
     public func getIntegerValue(name: String) -> Int {
-        //        print("> getBoolValue for \(name)")
         let item = getSettingItem(withName: name)
         return UserDefaults.standard.integer(forKey: item.name)
+    }
+    
+    public func getDoubleValue(name: String) -> Double {
+        let item = getSettingItem(withName: name)
+        return UserDefaults.standard.double(forKey: item.name)
     }
     
     

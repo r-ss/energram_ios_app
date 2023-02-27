@@ -18,12 +18,6 @@ struct ApiInfoView: View {
             }
         }
         .onAppear {
-            
-            NotificationCenter.simple(name: .countryChanged){
-                info = nil
-                Task { await self.fetchApiInfo() }
-            }
-            
             Task { await self.fetchApiInfo() }
         }
         .padding()
