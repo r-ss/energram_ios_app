@@ -24,9 +24,13 @@ struct DayPlanView: View {
                     }
                     
                     if let receivedAppliances = dailyPlan.appliances {
-                        ForEach(receivedAppliances) { appliance in
-                            ApplianceLabel(appliance: appliance, isSelected: false, dailyPlan: dailyPlan)
+                        
+                        HStack {
+                            ForEach(receivedAppliances) { appliance in
+                                ApplianceLabel(appliance: appliance, isSelected: false, dailyPlan: dailyPlan)
+                            }
                         }
+                        
                     } else {
                         if appliancesLoading {
                             LoaderSpinner()
@@ -231,9 +235,9 @@ struct DayPlanView: View {
     
 }
 
-//struct DayPlanView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DayPlanView()
-//    }
-//}
-//
+struct DayPlanView_Previews: PreviewProvider {
+    static var previews: some View {
+        DayPlanView(dailyPlan: DailyPlan())
+    }
+}
+
