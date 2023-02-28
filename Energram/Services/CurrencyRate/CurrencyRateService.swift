@@ -68,8 +68,17 @@ struct CurrencyRateService: HTTPClient, CurrencyRateServiceable {
             case .success(let result):
 //                currencyRates = result
 //                print(result)
+                print("Recieved CZK rate")
                 
-                return result.rates["CZK"]
+                if let czkRate: Double = result.rates["CZK"] {
+                    SettingsManager.shared.setValue(name: SettingsNames.currencyLatestCZK, value: czkRate)
+                    return czkRate
+                } else {
+                    print("Failed to get double for CZK rate")
+                    return nil
+                }
+                
+                
                 //return 6.666
 //                currencyRatesLoading = false
             case .failure(let error):

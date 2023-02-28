@@ -141,16 +141,17 @@ struct SettingsView: View {
                 }
                 
                 /// DEBUG
-                Group {
-                    Toggle("Show Debug Info", isOn: $showDebugInfo)
-                        .onChange(of: showDebugInfo) { value in
-                            showDebugInfo.toggle()
-                            SettingsManager.shared.setValue(name: SettingsNames.showDebugInfo, value: showDebugInfo)
-                        }.font(.regularCustom)
-                    if showDebugInfo {
-                        DebugView()
+                if Config.enableDebugUI {
+                    Group {
+                        Toggle("Show Debug Info", isOn: $showDebugInfo)
+                            .onChange(of: showDebugInfo) { value in
+                                showDebugInfo.toggle()
+                                SettingsManager.shared.setValue(name: SettingsNames.showDebugInfo, value: showDebugInfo)
+                            }.font(.regularCustom)
+                        if showDebugInfo {
+                            DebugView()
+                        }
                     }
-                    
                 }
             }
             .onAppear {

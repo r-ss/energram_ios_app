@@ -52,42 +52,45 @@ struct UserProfileView: View {
                         }
                     }
                     
-                    Toggle("Show Debug Info", isOn: $showDebugInfo)
-                        .onChange(of: showDebugInfo) { value in
-                            SettingsManager.shared.setValue(name: SettingsNames.showDebugInfo, value: value)
-                        }.font(.regularCustom)
-                    
-                    if showDebugInfo {
+                    if Config.enableDebugUI {
                         
-                        Spacer()
+                        Toggle("Show Debug Info", isOn: $showDebugInfo)
+                            .onChange(of: showDebugInfo) { value in
+                                SettingsManager.shared.setValue(name: SettingsNames.showDebugInfo, value: value)
+                            }.font(.regularCustom)
                         
-                        Text("Some debug buttons...").font(.regularCustom)
-                        Button("Refresh Token"){
-                            Task { await refreshToken() }
-                        }
-                        Button("Get Secret Page"){
-                            secretPageContent = nil
-                            Task { await requestSecretPage() }
-                        }
-                        
-                        
-                        if let p = authData{
-                            Text(p.id).monospaced()
-                        }
-                        
-                        if let s = secretPageContent {
-                            Text("Secret message \(s.message)")
-                        }
-                        
-                        if let t = authData?.access_token {
-                            Text(t).font(.system(size: 12)).monospaced()
+                        if showDebugInfo {
+                            
+                            Spacer()
+                            
+                            Text("Some debug buttons...").font(.regularCustom)
+                            Button("Refresh Token"){
+                                Task { await refreshToken() }
+                            }
+                            Button("Get Secret Page"){
+                                secretPageContent = nil
+                                Task { await requestSecretPage() }
+                            }
+                            
+                            
+                            if let p = authData{
+                                Text(p.id).monospaced()
+                            }
+                            
+                            if let s = secretPageContent {
+                                Text("Secret message \(s.message)")
+                            }
+                            
+                            if let t = authData?.access_token {
+                                Text(t).font(.system(size: 12)).monospaced()
+                            }
+                            
                         }
                         
                     }
                 }
                 .padding()
-                .frame(width: geometry.size.width, alignment: .leading)
-                
+                .frame(width: geometry.size.width, alignment: .center)
                 .onAppear {
                     self.readFromSettings()
                 }

@@ -37,8 +37,8 @@ struct ApplianceLabel: View {
             ZStack{
                 RoundedRectangle(cornerRadius: 8).foregroundColor( isSelected ? Palette.brandGreen : Palette.brandPurple )
                 HStack(spacing: 0){
-                    Image(systemName: isSelected ? "checkmark.circle.fill" : "checkmark.circle").resizable().padding(10).foregroundColor(.white).scaledToFit()
-                    Text(appliance.name).font(.headline).foregroundColor(.white).padding(8)
+                    Image(systemName: isSelected ? "checkmark.circle.fill" : "checkmark.circle").resizable().padding(8).foregroundColor(.white).frame(width: 32, height: 32)
+                    Text(appliance.name).font(.headline).foregroundColor(.white).padding([.top, .trailing,. bottom], 10)
                 }
             }.fixedSize()
         }.onAppear(){
@@ -51,8 +51,21 @@ struct ApplianceLabel: View {
     }
 }
 
-//struct ApplianceLabel_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ApplianceLabel(appliance: Appliance(name: "Device", typical_duration: 20, power: 200), isSelected: false, service: ApplianceService())
-//    }
-//}
+struct ApplianceLabel_Previews: PreviewProvider {
+    static var previews: some View {
+        
+        
+        
+        
+        VStack(alignment: .leading, spacing: 2) {
+            ApplianceLabel(appliance: Appliance(name: "Device", typical_duration: 20, power: 200, created_by: "NO"), isSelected: false, dailyPlan: DailyPlan())
+            
+            ApplianceLabel(appliance: Appliance(name: "Washing machine", typical_duration: 20, power: 200, created_by: "NO"), isSelected: false, dailyPlan: DailyPlan())
+            
+            ApplianceLabel(appliance: Appliance(name: "Kettel", typical_duration: 20, power: 200, created_by: "NO"), isSelected: false, dailyPlan: DailyPlan())
+        }
+        .padding(20)
+        
+        
+    }
+}

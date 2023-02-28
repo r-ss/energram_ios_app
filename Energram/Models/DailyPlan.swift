@@ -44,7 +44,7 @@ class DailyPlan: ObservableObject {
     }
     
     private func fillPrices(dayPrice: DayPrice){
-        log("> DailyPlan fillPrices")
+//        log("> DailyPlan fillPrices")
 
         self.hours = []
         

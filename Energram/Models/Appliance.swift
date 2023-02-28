@@ -11,7 +11,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 
-struct Appliance: Codable, Identifiable {
+struct Appliance: Codable, Hashable, Identifiable {
     var id: UUID = UUID()
     var name: String
     var typical_duration: Int
