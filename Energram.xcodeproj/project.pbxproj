@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		D01366AD293368CB0004CE50 /* DayPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01366AC293368CB0004CE50 /* DayPlanView.swift */; };
 		D02968D92939E1A6003C7DA1 /* ApplianceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */; };
+		D02FCF2129B3787C0088BE23 /* AppliancesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D02FCF1F29B3787C0088BE23 /* AppliancesModel.xcdatamodeld */; };
+		D02FCF2429B378B70088BE23 /* PersistentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FCF2329B378B70088BE23 /* PersistentStore.swift */; };
+		D02FCF2629B37AB00088BE23 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FCF2529B37AB00088BE23 /* DataManager.swift */; };
+		D02FCF2929B37C8F0088BE23 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = D02FCF2829B37C8F0088BE23 /* Collections */; };
+		D02FCF2B29B381740088BE23 /* CoreAppliancesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FCF2A29B381740088BE23 /* CoreAppliancesView.swift */; };
+		D02FCF2D29B385850088BE23 /* CoreApplianceEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FCF2C29B385840088BE23 /* CoreApplianceEditorView.swift */; };
 		D035A95D291F794500426722 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A95C291F794500426722 /* Config.swift */; };
 		D035A964291F7AA400426722 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A963291F7AA400426722 /* Palette.swift */; };
 		D035A966291F7B3400426722 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A965291F7B3400426722 /* Log.swift */; };
@@ -88,6 +94,11 @@
 /* Begin PBXFileReference section */
 		D01366AC293368CB0004CE50 /* DayPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPlanView.swift; sourceTree = "<group>"; };
 		D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceLabel.swift; sourceTree = "<group>"; };
+		D02FCF2029B3787C0088BE23 /* AppliancesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppliancesModel.xcdatamodel; sourceTree = "<group>"; };
+		D02FCF2329B378B70088BE23 /* PersistentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStore.swift; sourceTree = "<group>"; };
+		D02FCF2529B37AB00088BE23 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		D02FCF2A29B381740088BE23 /* CoreAppliancesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAppliancesView.swift; sourceTree = "<group>"; };
+		D02FCF2C29B385840088BE23 /* CoreApplianceEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreApplianceEditorView.swift; sourceTree = "<group>"; };
 		D035A95C291F794500426722 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D035A963291F7AA400426722 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		D035A965291F7B3400426722 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -157,6 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D02FCF2929B37C8F0088BE23 /* Collections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +189,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D02FCF2229B378A70088BE23 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				D02FCF1F29B3787C0088BE23 /* AppliancesModel.xcdatamodeld */,
+				D02FCF2329B378B70088BE23 /* PersistentStore.swift */,
+				D02FCF2529B37AB00088BE23 /* DataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		D035A95E291F7A0900426722 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,11 +284,14 @@
 				D035A962291F7A9A00426722 /* Misc */,
 				D035A95E291F7A0900426722 /* Views */,
 				D0496DD7291F7855008BEDA5 /* EnergramApp.swift */,
+				D02FCF2A29B381740088BE23 /* CoreAppliancesView.swift */,
+				D02FCF2C29B385840088BE23 /* CoreApplianceEditorView.swift */,
 				D035A95C291F794500426722 /* Config.swift */,
 				D0496DD9291F7855008BEDA5 /* ContentView.swift */,
 				D0496DDB291F7856008BEDA5 /* Assets.xcassets */,
 				D0922CBC297ED82D00743426 /* Fonts */,
 				D0496DDD291F7856008BEDA5 /* Preview Content */,
+				D02FCF2229B378A70088BE23 /* CoreData */,
 			);
 			path = Energram;
 			sourceTree = "<group>";
@@ -399,6 +424,9 @@
 			dependencies = (
 			);
 			name = Energram;
+			packageProductDependencies = (
+				D02FCF2829B37C8F0088BE23 /* Collections */,
+			);
 			productName = Energram;
 			productReference = D0496DD4291F7855008BEDA5 /* Energram.app */;
 			productType = "com.apple.product-type.application";
@@ -471,6 +499,9 @@
 				Base,
 			);
 			mainGroup = D0496DCB291F7855008BEDA5;
+			packageReferences = (
+				D02FCF2729B37C8F0088BE23 /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = D0496DD5291F7855008BEDA5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -545,6 +576,7 @@
 				D0D5BD8229A10F3300CCDC5D /* RequestError.swift in Sources */,
 				D035A966291F7B3400426722 /* Log.swift in Sources */,
 				D035A968291F7B7B00426722 /* DebugView.swift in Sources */,
+				D02FCF2429B378B70088BE23 /* PersistentStore.swift in Sources */,
 				D0C9240B29A5EFEB00A34E33 /* UserAuthState.swift in Sources */,
 				D0E2C7A6292124DF003F4DD9 /* MultipleDaysChartView.swift in Sources */,
 				D05C5B5E298F906E00854C05 /* DailyPlan.swift in Sources */,
@@ -553,7 +585,11 @@
 				D0D59CC029A6B956008DE52B /* UserpicView.swift in Sources */,
 				D0D5BD8F29A11F6600CCDC5D /* ApiInfoView.swift in Sources */,
 				D0C9240F29A608CB00A34E33 /* CommonPrimaryButton.swift in Sources */,
+				D02FCF2129B3787C0088BE23 /* AppliancesModel.xcdatamodeld in Sources */,
+				D02FCF2B29B381740088BE23 /* CoreAppliancesView.swift in Sources */,
+				D02FCF2D29B385850088BE23 /* CoreApplianceEditorView.swift in Sources */,
 				D0C9240929A5426C00A34E33 /* UserLoginRegisterView.swift in Sources */,
+				D02FCF2629B37AB00088BE23 /* DataManager.swift in Sources */,
 				D035A95D291F794500426722 /* Config.swift in Sources */,
 				D03D258329A2552900A96531 /* Notification.swift in Sources */,
 				D0D5BD9229A1328100CCDC5D /* LoaderSpinner.swift in Sources */,
@@ -895,6 +931,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D02FCF2729B37C8F0088BE23 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D02FCF2829B37C8F0088BE23 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D02FCF2729B37C8F0088BE23 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		D02FCF1F29B3787C0088BE23 /* AppliancesModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D02FCF2029B3787C0088BE23 /* AppliancesModel.xcdatamodel */,
+			);
+			currentVersion = D02FCF2029B3787C0088BE23 /* AppliancesModel.xcdatamodel */;
+			path = AppliancesModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D0496DCC291F7855008BEDA5 /* Project object */;
 }

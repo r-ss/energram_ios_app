@@ -66,21 +66,21 @@ struct ApplianceLabel: View {
     }
 }
 
-struct ApplianceLabel_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        
-        
-        
-        VStack(alignment: .leading, spacing: 2) {
-            ApplianceLabel(appliance: Appliance(name: "Device", typical_duration: 20, power: 200, created_by: "NO"), isSelected: false, dailyPlan: DailyPlan())
-            
-            ApplianceLabel(appliance: Appliance(name: "Washing machine", typical_duration: 20, power: 200, created_by: "NO"), isSelected: false, dailyPlan: DailyPlan())
-            
-            ApplianceLabel(appliance: Appliance(name: "Kettel", typical_duration: 20, power: 200, created_by: "NO"), isSelected: false, dailyPlan: DailyPlan())
-        }
-        .padding(20)
-        
-        
-    }
-}
+//struct ApplianceLabel_Previews: PreviewProvider {
+//    static var previews: some View {
+//        
+//
+//
+//
+//        VStack(alignment: .leading, spacing: 2) {
+//            ApplianceLabel(appliance: Appliance(name: "Device", typical_duration: 20, power: 200, created_by: "NO"), isSelected: false, dailyPlan: DailyPlan())
+//
+//            ApplianceLabel(appliance: Appliance(name: "Washing machine", typical_duration: 20, power: 200, created_by: "NO"), isSelected: false, dailyPlan: DailyPlan())
+//
+//            ApplianceLabel(appliance: Appliance(name: "Kettel", typical_duration: 20, power: 200, created_by: "NO"), isSelected: false, dailyPlan: DailyPlan())
+//        }
+//        .padding(20)
+//
+//
+//    }
+//}

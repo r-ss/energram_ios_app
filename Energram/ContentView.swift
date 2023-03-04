@@ -27,6 +27,10 @@ struct ContentView: View {
         VStack {
             TabView {
                 
+                CoreAppliancesView()
+                    .tabItem {
+                        Label("Daily plan", systemImage: "list.bullet.clipboard")
+                    }
                                                 
                 DayPlanView(dailyPlan: dailyPlan)
                     .tabItem {

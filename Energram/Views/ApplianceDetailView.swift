@@ -25,8 +25,8 @@ struct ApplianceDetailView: View {
     }
 }
 
-struct ApplianceDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ApplianceDetailView(appliance: Appliance.mocked.appliance1)
-    }
-}
+//struct ApplianceDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ApplianceDetailView(appliance: Appliance.mocked.appliance1)
+//    }
+//}
