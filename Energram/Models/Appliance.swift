@@ -27,6 +27,21 @@ struct Appliance: Codable, Hashable, Identifiable {
     
 }
 
+// MARK: Mocked Data
+
+extension Appliance {
+    struct Mocked {
+        
+        let appliance1 = Appliance(name: "Kettel", typical_duration: 120, power: 2000, created_by: "alex")
+        let appliance2 = Appliance(name: "Xbox", typical_duration: 60, power: 450, created_by: "Vanya")
+    }
+    
+    static var mocked: Mocked {
+        Mocked()
+    }
+}
+
+
 struct SelectedAppliance: Identifiable {
     
     /* Struct used in labels that selects which appliances will be used during the day */

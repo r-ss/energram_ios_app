@@ -10,7 +10,7 @@ import SwiftUI
 struct DayPlanView: View {
     @ObservedObject var dailyPlan: DailyPlan
     
-
+    
     
     var body: some View {
         GeometryReader { geometry in
@@ -27,11 +27,11 @@ struct DayPlanView: View {
                         
                         TagCloudView(appliances: receivedAppliances, passedDailyPlan: dailyPlan)
                         
-//                        HStack {
-//                            ForEach(receivedAppliances) { appliance in
-//                                ApplianceLabel(appliance: appliance, isSelected: false, dailyPlan: dailyPlan)
-//                            }
-//                        }
+                        //                        HStack {
+                        //                            ForEach(receivedAppliances) { appliance in
+                        //                                ApplianceLabel(appliance: appliance, isSelected: false, dailyPlan: dailyPlan)
+                        //                            }
+                        //                        }
                         
                     } else {
                         if appliancesLoading {
@@ -140,6 +140,30 @@ struct DayPlanView: View {
                         Task { await self.fetchCurrencyRates()}
                     }
                     
+                    NotificationCenter.listen(name: .applianceLabelLongTapEvent, completion: { name in
+                        print("Requested appliance customization for: \(name)")
+                        
+                        if let a = dailyPlan.appliances?.first {
+                            self.selectedAppliance = a
+                            //                            print(a)
+                            //                            showingApplianceDetailsView = true
+                        }
+                        
+                        
+                        
+                    })
+                    
+                    
+                }
+                .sheet(item: $selectedAppliance) { a in
+                    VStack(alignment: .leading) {
+                        Text("Appliance Detail View").font(Font.system(size: 22)).padding(.bottom, 15)
+                        
+                        Text("Name: \(a.name)")
+                        Text("Id: \(a.id)").font(Font.system(size: 14).monospaced())
+                        Text("Power: \(a.power)")
+                    }
+                    .presentationDetents([.medium, .fraction(0.75)])
                     
                 }
             }
@@ -148,6 +172,9 @@ struct DayPlanView: View {
     }
     
     // MARK: Private
+    //    @State private var showingApplianceDetailsView = false
+    @State private var selectedAppliance: Appliance?
+    
     @State private var info: String = "not yet"
     @State private var appliancesLoading: Bool = false
     @State private var pricesLoading: Bool = false
@@ -233,7 +260,7 @@ struct DayPlanView: View {
                 Notification.fire(name: .latestCurrencyRatesRecieved)
             }
             
-
+            
         }
     }
     
@@ -249,11 +276,11 @@ struct DayPlanView_Previews: PreviewProvider {
 struct TagCloudView: View {
     var appliances: [Appliance]
     var passedDailyPlan: DailyPlan
-
+    
     @State private var totalHeight
-          = CGFloat.zero       // << variant for ScrollView/List
+    = CGFloat.zero       // << variant for ScrollView/List
     //    = CGFloat.infinity   // << variant for VStack
-
+    
     var body: some View {
         VStack {
             GeometryReader { geometry in
@@ -263,11 +290,11 @@ struct TagCloudView: View {
         .frame(height: totalHeight)// << variant for ScrollView/List
         //.frame(maxHeight: totalHeight) // << variant for VStack
     }
-
+    
     private func generateContent(in g: GeometryProxy) -> some View {
         var width = CGFloat.zero
         var height = CGFloat.zero
-
+        
         return ZStack(alignment: .topLeading) {
             ForEach(self.appliances, id: \.self) { appliance in
                 self.item(for: appliance)
@@ -296,19 +323,11 @@ struct TagCloudView: View {
             }
         }.background(viewHeightReader($totalHeight))
     }
-
+    
     private func item(for appliance: Appliance) -> some View {
-        
         ApplianceLabel(appliance: appliance, isSelected: false, dailyPlan: passedDailyPlan)
-        
-//        Text(text)
-//            .padding(.all, 5)
-//            .font(.body)
-//            .background(Color.blue)
-//            .foregroundColor(Color.white)
-//            .cornerRadius(5)
     }
-
+    
     private func viewHeightReader(_ binding: Binding<CGFloat>) -> some View {
         return GeometryReader { geometry -> Color in
             let rect = geometry.frame(in: .local)

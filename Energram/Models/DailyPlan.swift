@@ -77,7 +77,7 @@ class DailyPlan: ObservableObject {
     }
     
     func changeApplianceRunTime(appliance: Appliance, newStartTime: Int) {
-        log("> changeApplianceRunTime")
+        //log("> changeApplianceRunTime")
         self.unassignAppliance(appliance: appliance)
         self.hours[newStartTime].appliancesAssigned.append(appliance)
     }
@@ -93,7 +93,7 @@ class DailyPlan: ObservableObject {
     }
     
     private func chooseTimeslot(forAppliance appliance: Appliance) -> Int {
-        log("> chooseTimeslot")
+        //log("> chooseTimeslot")
         
         let userReservedPower: Int = SettingsManager.shared.getIntegerValue(name: SettingsNames.reservedPower)
         
@@ -115,7 +115,7 @@ class DailyPlan: ObservableObject {
     
     
     private func assignAppliance(appliance: Appliance) {
-        log("> assignAppliance")
+        //log("> assignAppliance")
         let timeslotIndex = chooseTimeslot(forAppliance: appliance)
         self.hours[timeslotIndex].appliancesAssigned.append(appliance)
         
@@ -123,7 +123,7 @@ class DailyPlan: ObservableObject {
     }
     
     private func unassignAppliance(appliance: Appliance) {
-        log("> unassignAppliance")
+        //log("> unassignAppliance")
         for (index, hour) in self.hours.enumerated() {
             let filtered = hour.appliancesAssigned.filter(){$0.name != appliance.name}
             self.hours[index].appliancesAssigned = filtered

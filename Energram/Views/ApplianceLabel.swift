@@ -11,7 +11,7 @@ import SwiftUI
 struct ApplianceLabel: View {
     
     var appliance: Appliance
-        
+    
     @State var isSelected: Bool
     
     //    var service: ApplianceService
@@ -30,9 +30,10 @@ struct ApplianceLabel: View {
     
     var body: some View {
         Button {
-            if !disableInteraction {
-                dailyPlan.toggleApplianceLabel(applianceLabel: self)
-            }
+            // skipping action here https://stackoverflow.com/a/66539032
+            //            if !disableInteraction {
+            //                dailyPlan.toggleApplianceLabel(applianceLabel: self)
+            //            }
         } label: {
             ZStack{
                 RoundedRectangle(cornerRadius: 8).foregroundColor( isSelected ? Palette.brandGreen : Palette.brandPurple )
@@ -47,7 +48,21 @@ struct ApplianceLabel: View {
                 isSelected = false
             }
             
-        }
+        }.simultaneousGesture(
+            LongPressGesture()
+                .onEnded { _ in
+                    
+                    Notification.fire(name: .applianceLabelLongTapEvent, payload: appliance.name)
+                    
+                }
+        )
+        .highPriorityGesture(TapGesture()
+            .onEnded { _ in
+                //                print("Tap")
+                if !disableInteraction {
+                    dailyPlan.toggleApplianceLabel(applianceLabel: self)
+                }
+            })
     }
 }
 

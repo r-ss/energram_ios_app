@@ -15,6 +15,8 @@ extension Notification.Name {
     static var countrySettingChanged = Notification.Name("country.setting.changed")
     static var currencySettingChanged = Notification.Name("currency.setting.changed")
     static var latestCurrencyRatesRecieved = Notification.Name("data.currencyrates.latest.recieved")
+    
+    static var applianceLabelLongTapEvent = Notification.Name("event.longtap.on.appliance.label")
 }
 
 // Method to fire notifications
@@ -31,9 +33,9 @@ extension NotificationCenter {
             object: nil,
             queue: .main
         ) { (notification) in
-            guard let userInfo = notification.userInfo
+            guard let payload: String = notification.userInfo!["payload"] as? String
             else { return }
-            completion(userInfo)
+            completion(payload)
         }
     }
     
