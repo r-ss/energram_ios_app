@@ -104,7 +104,7 @@ struct CoreAppliancesView: View {
             Button {
                 viewModel.showEditor = true
             } label: {
-                Label("New Todo", systemImage: "plus")
+                Label("New Appliance", systemImage: "plus")
             }
             .buttonStyle(.borderedProminent)
         }

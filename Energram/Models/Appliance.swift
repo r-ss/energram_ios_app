@@ -26,30 +26,45 @@ struct Appliance: Codable, Hashable, Identifiable {
     }
     
         
-    init(name: String = "") {
-            self.id = UUID()
-            self.name = name
-            self.typical_duration = 1
-            self.power = 1
-            self.created_by = "Model"
-        }
+//    init(name: String = "") {
+//            self.id = UUID()
+//            self.name = name
+//            self.typical_duration = 1
+//            self.power = 1
+//            self.created_by = "Model"
+//        }
 
     
 }
 
 // MARK: Mocked Data
 
-//extension Appliance {
-//    struct Mocked {
-//
-//        let appliance1 = Appliance(name: "Kettel", typical_duration: 120, power: 2000, created_by: "alex")
-//        let appliance2 = Appliance(name: "Xbox", typical_duration: 60, power: 450, created_by: "Vanya")
-//    }
-//
-//    static var mocked: Mocked {
-//        Mocked()
-//    }
-//}
+extension Appliance {
+    struct Mocked {
+
+        let appliance1 = Appliance(name: "Kettel", typical_duration: 120, power: 2000, created_by: "alex")
+        let appliance2 = Appliance(name: "Xbox", typical_duration: 60, power: 450, created_by: "Vanya")
+    }
+
+    static var mocked: Mocked {
+        Mocked()
+    }
+}
+
+// MARK: Initial Data
+
+extension Appliance {
+    struct Initial {
+        let appliances = [
+            Appliance(name: "EV Charger", typical_duration: 180, power: 1200, created_by: "alex"),
+            Appliance(name: "Kettel", typical_duration: 30, power: 170, created_by: "Vanya")
+        ]
+    }
+
+    static var initial: Initial {
+        Initial()
+    }
+}
 
 
 struct SelectedAppliance: Identifiable {

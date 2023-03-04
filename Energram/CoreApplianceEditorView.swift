@@ -23,7 +23,7 @@ final class ApplianceEditorViewModel: ObservableObject {
         if let appliance = appliance {
             self.editingAppliance = appliance
         } else {
-            self.editingAppliance = Appliance()
+            self.editingAppliance = Appliance(name: "", typical_duration: 60, power: 1000, created_by: "NA")
         }
         self.dataManager = dataManager
         anyCancellable = dataManager.objectWillChange.sink { [weak self] (_) in
@@ -152,6 +152,6 @@ struct CoreApplianceEditorView: View {
 
 struct CoreApplianceEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        CoreApplianceEditorView(appliance: Appliance(), dataManager: DataManager.preview)
+        CoreApplianceEditorView(appliance: Appliance.mocked.appliance1, dataManager: DataManager.preview)
     }
 }

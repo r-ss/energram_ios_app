@@ -134,7 +134,25 @@ extension DataManager: NSFetchedResultsControllerDelegate {
         }
         try? appliancesFRC.performFetch()
         if let newAppliances = appliancesFRC.fetchedObjects {
+            
+            
+            if newAppliances.count == 0 {
+                print("Setup baked appliances...")
+                let initial: [Appliance] = Appliance.initial.appliances
+                for appliance in initial {
+                    updateAndSave(appliance: appliance)
+                }
+                print("Saved \(initial.count) initial applinces, fetching them...")
+                self.fetchAppliances(predicate: predicate, sortDescriptors: sortDescriptors)
+                return
+            } else {
+                print("Got \(newAppliances.count) appliances from CoreData")
+            }
+            
+            
             self.appliances = OrderedDictionary(uniqueKeysWithValues: newAppliances.map({ ($0.id!, Appliance(applianceMO: $0)) }))
+        } else {
+            print("Cannot fetch appliances")
         }
     }
     
