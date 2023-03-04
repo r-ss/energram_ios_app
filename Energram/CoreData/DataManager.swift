@@ -75,7 +75,10 @@ class DataManager: NSObject, ObservableObject {
         appliancesFRC.delegate = self
         try? appliancesFRC.performFetch()
         if let newAppliances = appliancesFRC.fetchedObjects {
+            
+            print(newAppliances)
             self.appliances = OrderedDictionary(uniqueKeysWithValues: newAppliances.map({ ($0.id!, Appliance(applianceMO: $0)) }))
+            
         }
         
 //        projectsFRC.delegate = self
@@ -134,7 +137,7 @@ extension DataManager: NSFetchedResultsControllerDelegate {
     }
     
     func resetFetch() {
-        appliancesFRC.fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+        appliancesFRC.fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         appliancesFRC.fetchRequest.predicate = nil
         try? appliancesFRC.performFetch()
         if let newAppliances = appliancesFRC.fetchedObjects {
@@ -152,8 +155,8 @@ extension Appliance {
         self.name = applianceMO.name ?? ""
         
         self.created_by = "alex"
-        self.power = 1
-        self.typical_duration = 3
+        self.power = 666
+        self.typical_duration = 300
 //        if let projectMO = ApplianceMO.projectMO {
 //            self.projectID = projectMO.id
 //        }

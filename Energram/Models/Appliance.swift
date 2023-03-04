@@ -31,7 +31,7 @@ struct Appliance: Codable, Hashable, Identifiable {
             self.name = name
             self.typical_duration = 1
             self.power = 1
-            self.created_by = "Alex"
+            self.created_by = "Model"
         }
 
     
