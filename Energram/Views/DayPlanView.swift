@@ -27,6 +27,12 @@ struct DayPlanView: View {
                         
                         TagCloudView(appliances: receivedAppliances, passedDailyPlan: dailyPlan)
                         
+                        Button(){
+                            print("add")
+                        } label: {
+                            Image(systemName: "plus.app").font(.system(size: 22, weight: .regular)).padding(.trailing, 5)
+                        }
+                        
                         //                        HStack {
                         //                            ForEach(receivedAppliances) { appliance in
                         //                                ApplianceLabel(appliance: appliance, isSelected: false, dailyPlan: dailyPlan)
@@ -157,11 +163,12 @@ struct DayPlanView: View {
                 }
                 .sheet(item: $selectedAppliance) { a in
                     VStack(alignment: .leading) {
-                        Text("Appliance Detail View").font(Font.system(size: 22)).padding(.bottom, 15)
-                        
-                        Text("Name: \(a.name)")
-                        Text("Id: \(a.id)").font(Font.system(size: 14).monospaced())
-                        Text("Power: \(a.power)")
+                        CoreApplianceEditorView(appliance: selectedAppliance)
+//                        Text("Appliance Detail View").font(Font.system(size: 22)).padding(.bottom, 15)
+//
+//                        Text("Name: \(a.name)")
+//                        Text("Id: \(a.id)").font(Font.system(size: 14).monospaced())
+//                        Text("Power: \(a.power)")
                     }
                     .presentationDetents([.medium, .fraction(0.75)])
                     

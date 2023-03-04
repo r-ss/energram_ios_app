@@ -194,9 +194,9 @@
 		D02FCF2229B378A70088BE23 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				D0590EF229B3920500C61176 /* CoreDataModel.xcdatamodeld */,
 				D02FCF2329B378B70088BE23 /* PersistentStore.swift */,
 				D02FCF2529B37AB00088BE23 /* DataManager.swift */,
-				D0590EF229B3920500C61176 /* CoreDataModel.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -281,6 +281,7 @@
 			children = (
 				D08C1EDD2962B030004BF768 /* Info.plist */,
 				D0EFCB0F2920E51000EC32C3 /* Energram.entitlements */,
+				D02FCF2229B378A70088BE23 /* CoreData */,
 				D035A95F291F7A1400426722 /* Models */,
 				D035A96B291F80D400426722 /* Services */,
 				D035A962291F7A9A00426722 /* Misc */,
@@ -293,7 +294,6 @@
 				D0496DDB291F7856008BEDA5 /* Assets.xcassets */,
 				D0922CBC297ED82D00743426 /* Fonts */,
 				D0496DDD291F7856008BEDA5 /* Preview Content */,
-				D02FCF2229B378A70088BE23 /* CoreData */,
 			);
 			path = Energram;
 			sourceTree = "<group>";
