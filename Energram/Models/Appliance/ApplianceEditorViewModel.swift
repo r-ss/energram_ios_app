@@ -55,6 +55,10 @@ final class ApplianceEditorViewModel: ObservableObject {
         dataManager.updateAndSave(appliance: editingAppliance)
     }
     
+    func delete(appliance: Appliance) {
+        dataManager.delete(appliance: appliance)
+    }
+    
 //    func addNewProject() {
 //        projectSearchText = String(projectSearchText.trailingSpacesTrimmed)
 //        if !projects.contains(where: {$0.title.localizedLowercase == projectSearchText.localizedLowercase}) {

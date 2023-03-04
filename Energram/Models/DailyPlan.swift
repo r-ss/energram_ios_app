@@ -29,6 +29,8 @@ class DailyPlan: ObservableObject {
     
     @Published var lastFetch: Date?
     
+    @Published var selectedApplianceToEdit: Appliance?
+    
     // MARK: Init
     
     func priceReceived(price data:DayPrice) {

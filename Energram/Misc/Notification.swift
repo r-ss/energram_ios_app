@@ -16,7 +16,7 @@ extension Notification.Name {
     static var currencySettingChanged = Notification.Name("currency.setting.changed")
     static var latestCurrencyRatesRecieved = Notification.Name("data.currencyrates.latest.recieved")
     
-    static var applianceLabelLongTapEvent = Notification.Name("event.longtap.on.appliance.label")
+//    static var applianceLabelLongTapEvent = Notification.Name("event.longtap.on.appliance.label")
 }
 
 // Method to fire notifications

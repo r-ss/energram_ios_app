@@ -52,7 +52,8 @@ struct ApplianceLabel: View {
             LongPressGesture()
                 .onEnded { _ in
                     
-                    Notification.fire(name: .applianceLabelLongTapEvent, payload: appliance.name)
+//                    Notification.fire(name: .applianceLabelLongTapEvent, payload: appliance.name)
+                    dailyPlan.selectedApplianceToEdit = appliance
                     
                 }
         )

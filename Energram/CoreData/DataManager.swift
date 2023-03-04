@@ -78,7 +78,7 @@ class DataManager: NSObject, ObservableObject {
         try? appliancesFRC.performFetch()
         if let newAppliances = appliancesFRC.fetchedObjects {
             
-            print(newAppliances)
+            //print(newAppliances)
             self.appliances = OrderedDictionary(uniqueKeysWithValues: newAppliances.map({ ($0.id!, Appliance(applianceMO: $0)) }))
             
         }
@@ -174,9 +174,12 @@ extension Appliance {
         self.id = applianceMO.id ?? UUID()
         self.name = applianceMO.name ?? ""
         
-        self.created_by = "zzz"
+        self.created_by = applianceMO.created_by ?? "n/a"
         self.power = Int(applianceMO.power)
         self.typical_duration = Int(applianceMO.typical_duration)
+        
+        print(Int(applianceMO.power),Int(applianceMO.typical_duration))
+        
 //        if let projectMO = ApplianceMO.projectMO {
 //            self.projectID = projectMO.id
 //        }
@@ -228,6 +231,10 @@ extension DataManager {
     
     private func update(applianceMO: ApplianceMO, from appliance: Appliance) {
         applianceMO.name = appliance.name
+        applianceMO.created_by = appliance.created_by
+        applianceMO.power = Int16(appliance.power)
+        applianceMO.typical_duration = Int16(appliance.typical_duration)
+//        applianceMO.name = appliance.name
 //        if let id = appliance.projectID, let project = getProject(with: id) {
 //            ApplianceMO.projectMO = getProjectMO(from: project)
 //        } else {

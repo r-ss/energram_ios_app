@@ -10,7 +10,8 @@ import SwiftUI
 struct DayPlanView: View {
     @ObservedObject var dailyPlan: DailyPlan
     
-    
+    @StateObject var appliancesListViewModel = AppliancesListViewModel()
+     
     
     var body: some View {
         GeometryReader { geometry in
@@ -23,116 +24,123 @@ struct DayPlanView: View {
                         Text("Consumers").font(.headlineCustom)
                     }
                     
-                    if let receivedAppliances = dailyPlan.appliances {
+                    if let receivedAppliances = appliancesListViewModel.appliances {
                         
-                        TagCloudView(appliances: receivedAppliances, passedDailyPlan: dailyPlan)
-                        
-                        Button(){
-                            print("add")
-                        } label: {
-                            Image(systemName: "plus.app").font(.system(size: 22, weight: .regular)).padding(.trailing, 5)
+                        Group {
+                            TagCloudView(appliances: receivedAppliances, passedDailyPlan: dailyPlan)
+                            
+                            HStack {
+                                
+                                if receivedAppliances.count > 0 {
+                                    Image(systemName: "arrow.up.forward").font(.system(size: 20)).padding(.trailing, 2)
+                                    Text("Tap and hold to customize").font(.system(size: 16)).padding(.trailing, 10)
+                                }
+                                
+                                Button(){
+                                    showingApplianceCreateView = true
+                                } label: {
+                                    HStack {
+                                        Image(systemName: "plus.app").font(.system(size: 20)).padding(0)
+                                        Text("Add").font(.system(size: 16))
+                                    }
+                                }
+                                
+                            }
                         }
                         
-                        //                        HStack {
-                        //                            ForEach(receivedAppliances) { appliance in
-                        //                                ApplianceLabel(appliance: appliance, isSelected: false, dailyPlan: dailyPlan)
-                        //                            }
-                        //                        }
                         
                     } else {
-                        if appliancesLoading {
-                            LoaderSpinner()
-                        } else {
-                            Text("Error in receiving appliances list")
-                        }
+                        Text("Error in receiving appliances list")
                     }
                     
                     Text("Daily plan").font(.headlineCustom).padding(.top, 20)
                     
-                    HStack(spacing: 1) {
-                        ZStack {
-                            //                            Rectangle().fill(Palette.dayPlanNight).frame(width: quarterWidth, height: tileHeight)
-                            VStack(alignment: .leading, spacing: 0) {
-                                Text("Night").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
-                                
-                                ForEach(0 ..< 6, id:\.self) { hour in
-                                    HourLabel(hour: hour, dailyPlan: dailyPlan)
-                                }
-                                
-                            }.frame(maxHeight: .infinity, alignment: .top)
-                        }
-                        ZStack {
-                            //                            Rectangle().fill(Palette.dayPlanMorning).frame(width: quarterWidth, height: tileHeight)
-                            VStack(alignment: .leading, spacing: 0) {
-                                Text("Morning").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
-                                
-                                ForEach(6 ..< 12, id:\.self) { hour in
-                                    HourLabel(hour: hour, dailyPlan: dailyPlan)
-                                }
-                                
-                                
-                            }.frame(maxHeight: .infinity, alignment: .top)
-                        }
-                        ZStack {
-                            //                            Rectangle().fill(Palette.dayPlanDay).frame(width: quarterWidth, height: tileHeight)
-                            VStack(alignment: .leading, spacing: 0) {
-                                Text("Day").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
-                                
-                                
-                                ForEach(12 ..< 18, id:\.self) { hour in
-                                    HourLabel(hour: hour, dailyPlan: dailyPlan)
-                                }
-                                
-                            }.frame(maxHeight: .infinity, alignment: .top)
-                        }
-                        ZStack {
-                            //                            Rectangle().fill(Palette.dayPlanEvening).frame(width: quarterWidth, height: tileHeight)
-                            VStack(alignment: .leading, spacing: 0) {
-                                Text("Evening").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
-                                
-                                ForEach(18 ..< 24, id:\.self) { hour in
-                                    HourLabel(hour: hour, dailyPlan: dailyPlan)
-                                }
-                                
-                            }.frame(maxHeight: .infinity, alignment: .top)
+                    Group {
+                        HStack(spacing: 1) {
+                            ZStack {
+                                //                            Rectangle().fill(Palette.dayPlanNight).frame(width: quarterWidth, height: tileHeight)
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text("Night").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
+                                    
+                                    ForEach(0 ..< 6, id:\.self) { hour in
+                                        HourLabel(hour: hour, dailyPlan: dailyPlan)
+                                    }
+                                    
+                                }.frame(maxHeight: .infinity, alignment: .top)
+                            }
+                            ZStack {
+                                //                            Rectangle().fill(Palette.dayPlanMorning).frame(width: quarterWidth, height: tileHeight)
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text("Morning").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
+                                    
+                                    ForEach(6 ..< 12, id:\.self) { hour in
+                                        HourLabel(hour: hour, dailyPlan: dailyPlan)
+                                    }
+                                    
+                                    
+                                }.frame(maxHeight: .infinity, alignment: .top)
+                            }
+                            ZStack {
+                                //                            Rectangle().fill(Palette.dayPlanDay).frame(width: quarterWidth, height: tileHeight)
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text("Day").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
+                                    
+                                    
+                                    ForEach(12 ..< 18, id:\.self) { hour in
+                                        HourLabel(hour: hour, dailyPlan: dailyPlan)
+                                    }
+                                    
+                                }.frame(maxHeight: .infinity, alignment: .top)
+                            }
+                            ZStack {
+                                //                            Rectangle().fill(Palette.dayPlanEvening).frame(width: quarterWidth, height: tileHeight)
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text("Evening").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
+                                    
+                                    ForEach(18 ..< 24, id:\.self) { hour in
+                                        HourLabel(hour: hour, dailyPlan: dailyPlan)
+                                    }
+                                    
+                                }.frame(maxHeight: .infinity, alignment: .top)
+                            }
                         }
                     }
                     
-                    Text("Reserved Power: \(self.userReservedPower) Watts")
-                    
-                    if selectedCurrency == "EUR" {
-                        Text("Cost: €\( String(format: "%.2f", totalCost) )").font(.headlineCustom).padding(.top, 10)
-                    }
-                    if selectedCurrency == "CZK" {
-                        Text("Cost: \( String(format: "%.1f", totalCost * Float(currencyLatestCZK)) ) CZK").font(.headlineCustom).padding(.top, 10)
-                    }
-                    
-                    if let dp = dailyPlan.price {
-                        MiniChart(forDay: dp)
-                    } else {
-                        if pricesLoading {
-                            LoaderSpinner()
+                    Group {
+                        Text("Reserved Power: \(self.userReservedPower) Watts")
+                        
+                        if selectedCurrency == "EUR" {
+                            Text("Cost: €\( String(format: "%.2f", totalCost) )").font(.headlineCustom).padding(.top, 10)
+                        }
+                        if selectedCurrency == "CZK" {
+                            Text("Cost: \( String(format: "%.1f", totalCost * Float(currencyLatestCZK)) ) CZK").font(.headlineCustom).padding(.top, 10)
+                        }
+                        
+                        if let dp = dailyPlan.price {
+                            MiniChart(forDay: dp)
                         } else {
-                            Text("Error in receiving chart data")
+                            if pricesLoading {
+                                LoaderSpinner()
+                            } else {
+                                Text("Error in receiving chart data")
+                            }
                         }
+                        
                     }
                     
                 }
                 .padding()
                 .frame(width: geometry.size.width, alignment: .leading)
                 .onAppear {
-                    
                     self.readSettings()
-                    //self.applianceService.myLocalPriceService.fetchData(for_country: "es")
-                    
-                    
+
                     if dailyPlan.price == nil || dailyPlan.price?.country != countryCode {
                         Task { await self.fetchLatestPrice(forCountry: countryCode) }
                     }
                     
-                    if dailyPlan.appliances == nil {
-                        Task { await self.fetchAppliances()}
-                    }
+                    //withAnimation{
+                        appliancesListViewModel.fetchAppliances()
+                    //}
                     
                     if let lastFetch = dailyPlan.lastFetch {
                         let difference = Date().timeIntervalSince(lastFetch)
@@ -145,33 +153,16 @@ struct DayPlanView: View {
                     if currencyRates == nil {
                         Task { await self.fetchCurrencyRates()}
                     }
-                    
-                    NotificationCenter.listen(name: .applianceLabelLongTapEvent, completion: { name in
-                        print("Requested appliance customization for: \(name)")
-                        
-                        if let a = dailyPlan.appliances?.first {
-                            self.selectedAppliance = a
-                            //                            print(a)
-                            //                            showingApplianceDetailsView = true
-                        }
-                        
-                        
-                        
-                    })
-                    
+                                        
                     
                 }
-                .sheet(item: $selectedAppliance) { a in
-                    VStack(alignment: .leading) {
-                        CoreApplianceEditorView(appliance: selectedAppliance)
-//                        Text("Appliance Detail View").font(Font.system(size: 22)).padding(.bottom, 15)
-//
-//                        Text("Name: \(a.name)")
-//                        Text("Id: \(a.id)").font(Font.system(size: 14).monospaced())
-//                        Text("Power: \(a.power)")
-                    }
+                .sheet(isPresented: $showingApplianceCreateView) {
+                    CoreApplianceEditorView(appliance: nil, createMode: true)
+                    .presentationDetents([.fraction(0.50)])
+                }
+                .sheet(item: $dailyPlan.selectedApplianceToEdit) { selected in
+                    CoreApplianceEditorView(appliance: selected)
                     .presentationDetents([.medium, .fraction(0.75)])
-                    
                 }
             }
         }
@@ -179,11 +170,11 @@ struct DayPlanView: View {
     }
     
     // MARK: Private
-    //    @State private var showingApplianceDetailsView = false
-    @State private var selectedAppliance: Appliance?
+    @State private var showingApplianceCreateView = false
+//    @State private var selectedApplianceToEdit: Appliance?
     
     @State private var info: String = "not yet"
-    @State private var appliancesLoading: Bool = false
+//    @State private var appliancesLoading: Bool = false
     @State private var pricesLoading: Bool = false
     
     @State private var currencyRatesLoading: Bool = false
@@ -226,20 +217,20 @@ struct DayPlanView: View {
         self.userReservedPower = SettingsManager.shared.getIntegerValue(name: SettingsNames.reservedPower)
     }
     
-    private func fetchAppliances() async {
-        appliancesLoading = true
-        Task(priority: .background) {
-            let response = await EnergramService().fetchAppliances()
-            switch response {
-            case .success(let result):
-                dailyPlan.appliancesReceived(appliances: result)
-                appliancesLoading = false
-            case .failure(let error):
-                print("Request failed with error: \(error.customMessage)")
-                appliancesLoading = false
-            }
-        }
-    }
+//    private func fetchAppliances() async {
+//        appliancesLoading = true
+//        Task(priority: .background) {
+//            let response = await EnergramService().fetchAppliances()
+//            switch response {
+//            case .success(let result):
+//                dailyPlan.appliancesReceived(appliances: result)
+//                appliancesLoading = false
+//            case .failure(let error):
+//                print("Request failed with error: \(error.customMessage)")
+//                appliancesLoading = false
+//            }
+//        }
+//    }
     
     private func fetchLatestPrice(forCountry code: String) async {
         pricesLoading = true

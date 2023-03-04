@@ -31,7 +31,6 @@
 		D0496DE9291F7856008BEDA5 /* EnergramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DE8291F7856008BEDA5 /* EnergramTests.swift */; };
 		D0496DF3291F7856008BEDA5 /* EnergramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DF2291F7856008BEDA5 /* EnergramUITests.swift */; };
 		D0496DF5291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */; };
-		D04FB8E229ADD4BB0086ED1F /* TagCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04FB8E129ADD4BB0086ED1F /* TagCloudView.swift */; };
 		D0590EF429B3920500C61176 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0590EF229B3920500C61176 /* CoreDataModel.xcdatamodeld */; };
 		D05C5B5E298F906E00854C05 /* DailyPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C5B5D298F906E00854C05 /* DailyPlan.swift */; };
 		D0922CB8297ED82600743426 /* ArgentumSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB4297ED82600743426 /* ArgentumSans-Medium.ttf */; };
@@ -121,7 +120,6 @@
 		D0496DEE291F7856008BEDA5 /* EnergramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnergramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0496DF2291F7856008BEDA5 /* EnergramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramUITests.swift; sourceTree = "<group>"; };
 		D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		D04FB8E129ADD4BB0086ED1F /* TagCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCloudView.swift; sourceTree = "<group>"; };
 		D0590EF329B3920500C61176 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		D05C5B5D298F906E00854C05 /* DailyPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlan.swift; sourceTree = "<group>"; };
 		D08C1EDD2962B030004BF768 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -215,7 +213,6 @@
 				D0E2C7A729212A56003F4DD9 /* MiniChart.swift */,
 				D035A967291F7B7B00426722 /* DebugView.swift */,
 				D0CC54C829B2611000263543 /* ApplianceDetailView.swift */,
-				D04FB8E129ADD4BB0086ED1F /* TagCloudView.swift */,
 				D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */,
 				D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */,
 				D0B56B8229447A29004AE2E5 /* HourLabel.swift */,
@@ -614,7 +611,6 @@
 				D0B56B8329447A29004AE2E5 /* HourLabel.swift in Sources */,
 				D0409439296AB3BA007F5625 /* SettingsManager.swift in Sources */,
 				D0D5BD8529A10F5F00CCDC5D /* EnergramEndpoint.swift in Sources */,
-				D04FB8E229ADD4BB0086ED1F /* TagCloudView.swift in Sources */,
 				D0B5EE2029B3B8120084B710 /* AppliancesListViewModel.swift in Sources */,
 				D0E2C7A4292122DE003F4DD9 /* DataPrettyPrint.swift in Sources */,
 				D02968D92939E1A6003C7DA1 /* ApplianceLabel.swift in Sources */,

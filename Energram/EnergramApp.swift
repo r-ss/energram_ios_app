@@ -22,15 +22,15 @@ struct EnergramApp: App {
         .onChange(of: scenePhase) { phase in
             switch phase {
             case .active:
-                print("Active")
+                print("scenePhase Active")
             case .inactive:
-                print("Inactive")
+                print("scenePhase Inactive")
                 dataManager.saveData()
             case .background:
-                print("background")
+                print("scenePhase background")
                 dataManager.saveData()
             default:
-                print("unknown")
+                print("scenePhase unknown")
             }
         }
     }
