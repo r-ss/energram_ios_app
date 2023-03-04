@@ -40,6 +40,8 @@
 		D0922CBB297ED82600743426 /* ArgentumSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB7297ED82600743426 /* ArgentumSans-Light.ttf */; };
 		D0922CBE297EDBAC00743426 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0922CBD297EDBAC00743426 /* Fonts.swift */; };
 		D0B56B8329447A29004AE2E5 /* HourLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B56B8229447A29004AE2E5 /* HourLabel.swift */; };
+		D0B5EE2029B3B8120084B710 /* AppliancesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5EE1F29B3B8120084B710 /* AppliancesListViewModel.swift */; };
+		D0B5EE2229B3B84E0084B710 /* ApplianceEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5EE2129B3B84E0084B710 /* ApplianceEditorViewModel.swift */; };
 		D0B6198E2938A47400887F00 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6198D2938A47400887F00 /* Appliance.swift */; };
 		D0BA301529ACE8D5006411CB /* CurrencyRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA301429ACE8D5006411CB /* CurrencyRateService.swift */; };
 		D0C923FB29A4BDC300A34E33 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C923FA29A4BDC300A34E33 /* UserProfileView.swift */; };
@@ -129,6 +131,8 @@
 		D0922CB7297ED82600743426 /* ArgentumSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Light.ttf"; sourceTree = "<group>"; };
 		D0922CBD297EDBAC00743426 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		D0B56B8229447A29004AE2E5 /* HourLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourLabel.swift; sourceTree = "<group>"; };
+		D0B5EE1F29B3B8120084B710 /* AppliancesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliancesListViewModel.swift; sourceTree = "<group>"; };
+		D0B5EE2129B3B84E0084B710 /* ApplianceEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceEditorViewModel.swift; sourceTree = "<group>"; };
 		D0B6198D2938A47400887F00 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
 		D0BA301429ACE8D5006411CB /* CurrencyRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRateService.swift; sourceTree = "<group>"; };
 		D0C923FA29A4BDC300A34E33 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
@@ -225,7 +229,7 @@
 			children = (
 				D0C923FE29A4BF2C00A34E33 /* User */,
 				D035A969291F7DF900426722 /* DayPrice.swift */,
-				D0B6198D2938A47400887F00 /* Appliance.swift */,
+				D0B5EE1E29B3B7DF0084B710 /* Appliance */,
 				D05C5B5D298F906E00854C05 /* DailyPlan.swift */,
 			);
 			path = Models;
@@ -337,6 +341,16 @@
 				D0922CB5297ED82600743426 /* ArgentumSans-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D0B5EE1E29B3B7DF0084B710 /* Appliance */ = {
+			isa = PBXGroup;
+			children = (
+				D0B6198D2938A47400887F00 /* Appliance.swift */,
+				D0B5EE1F29B3B8120084B710 /* AppliancesListViewModel.swift */,
+				D0B5EE2129B3B84E0084B710 /* ApplianceEditorViewModel.swift */,
+			);
+			path = Appliance;
 			sourceTree = "<group>";
 		};
 		D0BA301329ACE8B1006411CB /* CurrencyRate */ = {
@@ -572,6 +586,7 @@
 				D0E2C7A829212A56003F4DD9 /* MiniChart.swift in Sources */,
 				D0C9240D29A5F07200A34E33 /* UserIndexView.swift in Sources */,
 				D0922CBE297EDBAC00743426 /* Fonts.swift in Sources */,
+				D0B5EE2229B3B84E0084B710 /* ApplianceEditorViewModel.swift in Sources */,
 				D0590EF429B3920500C61176 /* CoreDataModel.xcdatamodeld in Sources */,
 				D0BA301529ACE8D5006411CB /* CurrencyRateService.swift in Sources */,
 				D0CC54C929B2611000263543 /* ApplianceDetailView.swift in Sources */,
@@ -600,6 +615,7 @@
 				D0409439296AB3BA007F5625 /* SettingsManager.swift in Sources */,
 				D0D5BD8529A10F5F00CCDC5D /* EnergramEndpoint.swift in Sources */,
 				D04FB8E229ADD4BB0086ED1F /* TagCloudView.swift in Sources */,
+				D0B5EE2029B3B8120084B710 /* AppliancesListViewModel.swift in Sources */,
 				D0E2C7A4292122DE003F4DD9 /* DataPrettyPrint.swift in Sources */,
 				D02968D92939E1A6003C7DA1 /* ApplianceLabel.swift in Sources */,
 				D040943B296AB47A007F5625 /* SettingsView.swift in Sources */,
