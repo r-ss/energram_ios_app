@@ -43,6 +43,8 @@ class DataManager: NSObject, ObservableObject {
                 let newAppliance = ApplianceMO(context: managedObjectContext)
                 newAppliance.name = "Appliance \(i)"
                 newAppliance.id = UUID()
+                newAppliance.power = 60
+                newAppliance.typical_duration = 90
             }
 //            for i in 0..<4 {
 //                let newProject = ProjectMO(context: managedObjectContext)
@@ -154,9 +156,9 @@ extension Appliance {
         self.id = applianceMO.id ?? UUID()
         self.name = applianceMO.name ?? ""
         
-        self.created_by = "alex"
-        self.power = 666
-        self.typical_duration = 300
+        self.created_by = "zzz"
+        self.power = Int(applianceMO.power)
+        self.typical_duration = Int(applianceMO.typical_duration)
 //        if let projectMO = ApplianceMO.projectMO {
 //            self.projectID = projectMO.id
 //        }

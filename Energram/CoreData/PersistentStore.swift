@@ -12,7 +12,7 @@ struct PersistentStore {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "AppliancesModel")
+        container = NSPersistentContainer(name: "CoreDataModel")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -42,7 +42,7 @@ struct PersistentStore {
             do {
                 try context.save()
             } catch let error as NSError {
-                NSLog("Unresolved error saving context: \(error), \(error.userInfo)")
+                log("Unresolved error saving context: \(error), \(error.userInfo)")
             }
         }
     }
