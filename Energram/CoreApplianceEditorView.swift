@@ -87,7 +87,7 @@ struct CoreApplianceEditorView: View {
                     VStack {
                                          
                         Text("Power: \(String($viewModel.editingAppliance.wrappedValue.power)) kWh")
-                        Slider(value: powerIntProxy, in: 100...2500, step: 100, minimumValueLabel: Image(systemName: "light.min"), maximumValueLabel: Image(systemName: "light.beacon.max"), label: {})
+                        Slider(value: powerIntProxy, in: 100...5000, step: 100, minimumValueLabel: Image(systemName: "light.min"), maximumValueLabel: Image(systemName: "light.beacon.max"), label: {})
                             .accentColor(Palette.brandGreen)
                         
                         Text("Is on for: \(humanReadableDuration)")

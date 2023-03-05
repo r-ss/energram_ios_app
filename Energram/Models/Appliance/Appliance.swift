@@ -58,8 +58,13 @@ extension Appliance {
 extension Appliance {
     struct Initial {
         let appliances = [
+            Appliance(name: "Washing machine", typical_duration: 120, power: 425, createdAt: Date()),
+            Appliance(name: "Dish wascher", typical_duration: 180, power: 1800, createdAt: Date()),
+            Appliance(name: "Dryer", typical_duration: 60, power: 3500, createdAt: Date()),
             Appliance(name: "EV Charger", typical_duration: 180, power: 1200, createdAt: Date()),
-            Appliance(name: "Kettel", typical_duration: 30, power: 170, createdAt: Date())
+            Appliance(name: "Iron", typical_duration: 360, power: 2500, createdAt: Date()),
+            Appliance(name: "Boiler", typical_duration: 180, power: 1500, createdAt: Date()),
+            Appliance(name: "Electric Sauna", typical_duration: 120, power: 5000, createdAt: Date())
         ]
     }
 
