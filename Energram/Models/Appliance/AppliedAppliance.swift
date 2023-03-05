@@ -21,6 +21,8 @@ extension AppliedAppliance {
         var aa1: AppliedAppliance
         var aa2: AppliedAppliance
         var aa3: AppliedAppliance
+        var aa4: AppliedAppliance
+        var aa5: AppliedAppliance
         init() {
             func dateFromISOString(_ isoString: String) -> Date? {
                 let formatter = DateFormatter()
@@ -39,6 +41,8 @@ extension AppliedAppliance {
             self.aa1 = AppliedAppliance(start: dateFromISOString("2023-03-05T10:00:00+03:00")!, duration: 120, appliance: Appliance.mocked.appliance1)
             self.aa2 = AppliedAppliance(start: dateFromISOString("2023-03-05T12:00:00+03:00")!, duration: 60, appliance: Appliance.mocked.appliance2)
             self.aa3 = AppliedAppliance(start: dateFromISOString("2023-03-05T14:00:00+03:00")!, duration: 30, appliance: Appliance.mocked.appliance1)
+            self.aa4 = AppliedAppliance(start: dateFromISOString("2023-03-01T01:00:00+03:00")!, duration: 60*6, appliance: Appliance.mocked.appliance1)
+            self.aa5 = AppliedAppliance(start: dateFromISOString("2023-03-01T15:00:00+03:00")!, duration: 60*6, appliance: Appliance.mocked.appliance1)
         }
     }
     
@@ -52,7 +56,14 @@ class AppliedAppliances: ObservableObject {
     @Published var items: [AppliedAppliance] = []
     
     func add(appliance: Appliance, hour: Int) {
-        let aa = AppliedAppliance(start: Date(), duration: appliance.typical_duration, appliance: appliance)
+        
+        let date = Date()
+        let midnight = Calendar.current.date(bySettingHour: 00, minute: 0, second: 0, of: date)!
+        let adjusted = Calendar.current.date(byAdding: .hour, value: hour, to: midnight)!
+        
+        
+        
+        let aa = AppliedAppliance(start: adjusted, duration: appliance.typical_duration, appliance: appliance)
         self.items.append(aa)
     }
     

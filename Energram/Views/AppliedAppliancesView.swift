@@ -32,7 +32,7 @@ struct AppliedAppliancesView: View {
         formatter.locale = Locale(identifier: "en_GB")
         //formatter.dateFormat = "dd HH:mm"
         formatter.dateFormat = "HH:mm"
-        formatter.timeZone = TimeZone(identifier: "Europe/London")
+//        formatter.timeZone = TimeZone(identifier: "Europe/London")
         return formatter
     }()
     
@@ -43,33 +43,49 @@ struct AppliedAppliancesView: View {
     func startTimeToVerticalPosition(time: Date, duration: Int) -> CGFloat {
         
         let components = Calendar.current.dateComponents([.day, .hour, .minute], from: time)
-        let day = components.day ?? 0
+//        let day = components.day ?? 0
         let hour = components.hour ?? 0
-        let minute = components.minute ?? 0
+//        let minute = components.minute ?? 0
         
-        return rowPaddingHeight * CGFloat(hour) - CGFloat(duration) / 2
+//        return rowPaddingHeight * CGFloat(hour) + (CGFloat(duration) / 4)
+        
+        var height: CGFloat = rowPaddingHeight * CGFloat(hour) + (CGFloat(duration) / 4)
+        
+        height = height + CGFloat(duration) / 60 * 0.5
+        
+        return height
         
 //        CGFloat(aa.duration) / 2
     }
     
+    func slotHeight(duration: Int) -> CGFloat {
+        
+//        let components = Calendar.current.dateComponents([.day, .hour, .minute], from: time)
+////        let day = components.day ?? 0
+//        let hour = components.hour ?? 0
+////        let minute = components.minute ?? 0
+//
+//        return rowPaddingHeight * CGFloat(hour) + (CGFloat(duration) / 4)
+//
+        return CGFloat( CGFloat(duration) / 2 + CGFloat(duration) / 60 - 2)
+    }
     
     var body: some View {
         ScrollView {
             GeometryReader { geometry in
                 VStack {
-                    Text("Hello, World!")
-                    
                     ZStack {
                         VStack(spacing: 1) {
-                            ForEach(0 ..< 24, id:\.self) { hour in
+                            ForEach(self.dailyPlan.hours, id:\.self) { hour in
                                 //                            HourLabel(hour: hour, dailyPlan: dailyPlan)
                                 
                                 ZStack(alignment: .leading) {
                                     Rectangle()
                                         .fill(.tertiary)
-                                        .frame(width: .infinity, height: rowHeight)
+                                        .frame(width: geometry.size.width, height: rowHeight)
                                     HStack {
-                                        Text("\(hour):00").padding(.leading, 7)
+                                        HourRow(hour: hour.id, dailyPlan: dailyPlan, rowWidth: geometry.size.width, rowHeight: rowHeight)
+                                        //Text("\(hour.id):00").padding(.leading, 7)
                                     }
                                 }
                             }
@@ -86,7 +102,7 @@ struct AppliedAppliancesView: View {
                                     ZStack(alignment: .leading) {
                                         Rectangle()
                                             .fill(.pink)
-                                            .frame(width: geometry.size.width, height: CGFloat(aa.duration) / 2)
+                                            .frame(width: geometry.size.width, height: slotHeight(duration: aa.duration))
                                             .opacity(0.3)
                                             .border(.white, width: 1)
                                         HStack {

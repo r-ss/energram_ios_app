@@ -56,7 +56,7 @@ struct DayPlanView: View {
                     }
                     
                     
-                    AppliedAppliancesView(dailyPlan: dailyPlan)
+                    AppliedAppliancesView(dailyPlan: dailyPlan).frame(width: geometry.size.width, height: 31*24)
                     
                     
                     Text("Daily plan").font(.headlineCustom).padding(.top, 20)
