@@ -21,6 +21,48 @@ struct Hour: Identifiable {
 }
 
 
+
+
+struct AppliedAppliance: Identifiable, Hashable {
+
+    /* Struct used in labels that selects which appliances will be used during the day */
+
+    var id: UUID = UUID()
+    var start: Date
+    var duration: Int
+    
+//    var time_end: Int
+    var appliance: Appliance
+}
+
+// MARK: Mocked Data
+
+extension AppliedAppliance {
+    struct Mocked {
+        let aa1 = AppliedAppliance(start: Date(), duration: 120, appliance: Appliance.mocked.appliance1)
+    }
+
+    static var mocked: Mocked {
+        Mocked()
+    }
+}
+
+class AppliedAppliances: ObservableObject {
+    
+    @Published var items: [AppliedAppliance] = []
+    
+    func add(appliance: Appliance, hour: Int) {
+        let aa = AppliedAppliance(start: Date(), duration: appliance.typical_duration, appliance: appliance)
+        self.items.append(aa)
+    }
+    
+    func remove(appliance: Appliance) {
+        items = items.filter(){$0.appliance.id != appliance.id}
+    }
+}
+
+
+
 class DailyPlan: ObservableObject {
     
     @Published var hours: [Hour] = []
@@ -28,6 +70,9 @@ class DailyPlan: ObservableObject {
     @Published var appliances: [Appliance]?
     
     @Published var lastFetch: Date?
+    
+    @Published var appliedAppliances = AppliedAppliances()
+    
     
     @Published var selectedApplianceToEdit: Appliance?
     
@@ -121,6 +166,9 @@ class DailyPlan: ObservableObject {
         let timeslotIndex = chooseTimeslot(forAppliance: appliance)
         self.hours[timeslotIndex].appliancesAssigned.append(appliance)
         
+        let aa = AppliedAppliance(start: Date(), duration: appliance.typical_duration, appliance: appliance)
+        self.appliedAppliances.add(appliance: appliance, hour: timeslotIndex)
+        
         //self.printPlan()
     }
     
@@ -130,6 +178,8 @@ class DailyPlan: ObservableObject {
             let filtered = hour.appliancesAssigned.filter(){$0.name != appliance.name}
             self.hours[index].appliancesAssigned = filtered
         }
+        
+        self.appliedAppliances.remove(appliance: appliance)
         
         //self.printPlan()
     }

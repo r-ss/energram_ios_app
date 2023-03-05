@@ -74,15 +74,15 @@ extension Appliance {
 }
 
 
-struct SelectedAppliance: Identifiable {
-    
-    /* Struct used in labels that selects which appliances will be used during the day */
-    
-    var id: UUID = UUID()
-    var time_start: Int
-    var time_end: Int
-    var appliance: Appliance
-}
+//struct SelectedAppliance: Identifiable {
+//
+//    /* Struct used in labels that selects which appliances will be used during the day */
+//
+//    var id: UUID = UUID()
+//    var time_start: Int
+//    var time_end: Int
+//    var appliance: Appliance
+//}
 
 //extension Appliance {
 //

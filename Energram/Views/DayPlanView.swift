@@ -11,7 +11,9 @@ struct DayPlanView: View {
     @ObservedObject var dailyPlan: DailyPlan
     
     @StateObject var appliancesListViewModel = AppliancesListViewModel()
-     
+    
+    
+ 
     
     var body: some View {
         GeometryReader { geometry in
@@ -52,6 +54,10 @@ struct DayPlanView: View {
                     } else {
                         Text("Error in receiving appliances list")
                     }
+                    
+                    
+                    AppliedAppliancesView(dailyPlan: dailyPlan)
+                    
                     
                     Text("Daily plan").font(.headlineCustom).padding(.top, 20)
                     

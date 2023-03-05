@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D01366AD293368CB0004CE50 /* DayPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01366AC293368CB0004CE50 /* DayPlanView.swift */; };
 		D02968D92939E1A6003C7DA1 /* ApplianceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */; };
+		D02F4F7B29B4930300328639 /* AppliedAppliancesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02F4F7A29B4930300328639 /* AppliedAppliancesView.swift */; };
 		D02FCF2429B378B70088BE23 /* PersistentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FCF2329B378B70088BE23 /* PersistentStore.swift */; };
 		D02FCF2629B37AB00088BE23 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FCF2529B37AB00088BE23 /* DataManager.swift */; };
 		D02FCF2929B37C8F0088BE23 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = D02FCF2829B37C8F0088BE23 /* Collections */; };
@@ -95,6 +96,7 @@
 /* Begin PBXFileReference section */
 		D01366AC293368CB0004CE50 /* DayPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPlanView.swift; sourceTree = "<group>"; };
 		D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceLabel.swift; sourceTree = "<group>"; };
+		D02F4F7A29B4930300328639 /* AppliedAppliancesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedAppliancesView.swift; sourceTree = "<group>"; };
 		D02FCF2329B378B70088BE23 /* PersistentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStore.swift; sourceTree = "<group>"; };
 		D02FCF2529B37AB00088BE23 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		D02FCF2C29B385840088BE23 /* CoreApplianceEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreApplianceEditorView.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				D0D5BD9029A12DF900CCDC5D /* Misc */,
 				D01366AC293368CB0004CE50 /* DayPlanView.swift */,
 				D0E2C7A729212A56003F4DD9 /* MiniChart.swift */,
+				D02F4F7A29B4930300328639 /* AppliedAppliancesView.swift */,
 				D035A967291F7B7B00426722 /* DebugView.swift */,
 				D0CC54C829B2611000263543 /* ApplianceDetailView.swift */,
 				D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */,
@@ -568,6 +571,7 @@
 			files = (
 				D0C923FD29A4BF0700A34E33 /* UserService.swift in Sources */,
 				D0496DDA291F7855008BEDA5 /* ContentView.swift in Sources */,
+				D02F4F7B29B4930300328639 /* AppliedAppliancesView.swift in Sources */,
 				D0C9240729A5377C00A34E33 /* CommonTextField.swift in Sources */,
 				D0C923FB29A4BDC300A34E33 /* UserProfileView.swift in Sources */,
 				D0D5BD8129A10F3300CCDC5D /* HTTPClient.swift in Sources */,
