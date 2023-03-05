@@ -26,18 +26,18 @@ import SwiftUI
 struct AppliedAppliancesView: View {
     
     @ObservedObject var dailyPlan: DailyPlan
-
+    
     static let appliedDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_GB")
         //formatter.dateFormat = "dd HH:mm"
         formatter.dateFormat = "HH:mm"
-//        formatter.timeZone = TimeZone(identifier: "Europe/London")
+        //        formatter.timeZone = TimeZone(identifier: "Europe/London")
         return formatter
     }()
     
-    private let rowSpacing: CGFloat = 0.0
-    private let rowHeight: CGFloat = 30.0
+    private let rowSpacing: CGFloat = 1.0
+    private let rowHeight: CGFloat = 28.0
     private var rowPaddingHeight: CGFloat {
         rowHeight + rowSpacing
     }
@@ -45,33 +45,52 @@ struct AppliedAppliancesView: View {
     
     func startTimeToVerticalPosition(time: Date, duration: Int) -> CGFloat {
         
+        let d = CGFloat(duration)
+        
         let components = Calendar.current.dateComponents([.day, .hour, .minute], from: time)
-//        let day = components.day ?? 0
+        //        let day = components.day ?? 0
         let hour = components.hour ?? 0
-//        let minute = components.minute ?? 0
+        //        let minute = components.minute ?? 0
         
-//        return rowPaddingHeight * CGFloat(hour) + (CGFloat(duration) / 4)
+        var y: CGFloat = CGFloat(hour) * rowPaddingHeight + slotHeight(duration: duration) / 2
         
-        var height: CGFloat = rowPaddingHeight * CGFloat(hour) + (CGFloat(duration) / 4)
+        //        height = height + CGFloat(duration) / 60 * 0.5
         
-        height = height + CGFloat(duration) / 60 * 0.5
-        
-        return height
-        
-//        CGFloat(aa.duration) / 2
+        return y + 1
     }
     
     func slotHeight(duration: Int) -> CGFloat {
         
-//        let components = Calendar.current.dateComponents([.day, .hour, .minute], from: time)
-////        let day = components.day ?? 0
-//        let hour = components.hour ?? 0
-////        let minute = components.minute ?? 0
-//
-//        return rowPaddingHeight * CGFloat(hour) + (CGFloat(duration) / 4)
-//
-        return CGFloat( CGFloat(duration) / 2 + CGFloat(duration) / 60 - 2)
+        let d = CGFloat(duration)
+        
+        //        let components = Calendar.current.dateComponents([.day, .hour, .minute], from: time)
+        ////        let day = components.day ?? 0
+        //        let hour = components.hour ?? 0
+        ////        let minute = components.minute ?? 0
+        //
+        //        return rowPaddingHeight * CGFloat(hour) + (CGFloat(duration) / 4)
+        //
+        var height = rowHeight * (d / 60)
+        
+        height = height + rowSpacing * (d / 60)
+        
+        
+        return CGFloat( height - 3)
     }
+    
+    let slotFontSize: CGFloat = 14
+    
+    
+    func durationToHumanReadable(_ durationInMinutes: Int) -> String {
+        
+        func minutesToHoursAndMinutes(_ minutes: Int) -> (hours: Int , leftMinutes: Int) {
+            return (minutes / 60, (minutes % 60))
+        }
+        let tuple = minutesToHoursAndMinutes(durationInMinutes)
+        return "\(tuple.hours):\( String(format: "%02d", tuple.leftMinutes) )"
+    }
+    
+    
     
     var body: some View {
         ScrollView {
@@ -103,23 +122,32 @@ struct AppliedAppliancesView: View {
                                     
                                     
                                     ZStack(alignment: .leading) {
+                                        //GeometryReader { rectG in
                                         Rectangle()
-                                            .fill(.pink)
-                                            .frame(width: geometry.size.width, height: slotHeight(duration: aa.duration))
-                                            .opacity(0.3)
-                                            .border(.white, width: 1)
+                                            .fill(Palette.brandPurple)
+                                            .frame(width: geometry.size.width - 70, height: slotHeight(duration: aa.duration))
+                                            .opacity(0.65)
+                                            .border(Palette.brandPurpleLight, width: 1)
                                         HStack {
-                                            Text("\(aa.start, formatter: Self.appliedDateFormatter)")
-//                                            Text("\(aa.start)")
-                                            Text("\(aa.duration) minutes")
-                                            Text(aa.appliance.name)
+                                            //                                                Text("\(aa.duration) minutes").font(Font.system(size: slotFontSize))
+                                            Text("\(aa.appliance.name) for \( durationToHumanReadable(aa.duration) ) hrs").font(Font.system(size: slotFontSize))
+                                                .frame(
+                                                    
+                                                    maxWidth: geometry.size.width - 80,
+                                                    maxHeight: slotHeight(duration: aa.duration) - 8,
+                                                    alignment: .topLeading)
+                                            //                                                                    .background(.red)
+                                            //                                                                    .opacity(0.65)
                                         }
+                                        .padding(.leading, 7)
+                                        //.position(x: geometry.size.width / 2 - 130, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration) - 150)
+                                        //}
                                     }
-                                    .position(x: geometry.size.width / 2 + 65, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration))
-//                                    .anchorPreference(
-//                                        key: BoundsPreferenceKey.self,
-//                                        value: .bounds
-//                                    ) { $0 }
+                                    .position(x: geometry.size.width / 2 + 25, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration))
+                                    //                                    .anchorPreference(
+                                    //                                        key: BoundsPreferenceKey.self,
+                                    //                                        value: .bounds
+                                    //                                    ) { $0 }
                                     
                                 }
                                 

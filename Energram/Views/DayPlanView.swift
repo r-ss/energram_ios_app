@@ -55,12 +55,13 @@ struct DayPlanView: View {
                         Text("Error in receiving appliances list")
                     }
                     
+                    Text("Daily plan").font(.headlineCustom)//.padding(.top, 20)
                     
-                    AppliedAppliancesView(dailyPlan: dailyPlan).frame(width: geometry.size.width, height: 31*24)
+                    AppliedAppliancesView(dailyPlan: dailyPlan).frame(width: geometry.size.width, height: 29*24)
                     
                     
-                    Text("Daily plan").font(.headlineCustom).padding(.top, 20)
                     
+                    /*
                     Group {
                         HStack(spacing: 1) {
                             ZStack {
@@ -110,7 +111,7 @@ struct DayPlanView: View {
                                 }.frame(maxHeight: .infinity, alignment: .top)
                             }
                         }
-                    }
+                    }*/
                     
                     Group {
                         Text("Reserved Power: \(self.userReservedPower) Watts")

@@ -43,21 +43,13 @@ struct CoreApplianceEditorView: View {
     }
     
     var humanReadableDuration: String {
-        
         func minutesToHoursAndMinutes(_ minutes: Int) -> (hours: Int , leftMinutes: Int) {
             return (minutes / 60, (minutes % 60))
         }
-        
         if $viewModel.editingAppliance.wrappedValue.typical_duration < 60 {
             return "\($viewModel.editingAppliance.wrappedValue.typical_duration) minutes"
         } else {
-            
             let tuple = minutesToHoursAndMinutes($viewModel.editingAppliance.wrappedValue.typical_duration)
-
-            ///
-            ///
-            ///
-//            minutesToHoursAndMinutes(100)
             return "\(tuple.hours):\( String(format: "%02d", tuple.leftMinutes) )"
         }
         
