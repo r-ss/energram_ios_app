@@ -34,6 +34,7 @@
 		D0590EF429B3920500C61176 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0590EF229B3920500C61176 /* CoreDataModel.xcdatamodeld */; };
 		D05C5B5E298F906E00854C05 /* DailyPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C5B5D298F906E00854C05 /* DailyPlan.swift */; };
 		D0911F3929B4C6CF001DF9C5 /* AppliedApplianceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0911F3829B4C6CF001DF9C5 /* AppliedApplianceTests.swift */; };
+		D0911F3B29B4FD08001DF9C5 /* AppliedAppliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0911F3A29B4FD08001DF9C5 /* AppliedAppliance.swift */; };
 		D0922CB8297ED82600743426 /* ArgentumSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB4297ED82600743426 /* ArgentumSans-Medium.ttf */; };
 		D0922CB9297ED82600743426 /* ArgentumSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB5297ED82600743426 /* ArgentumSans-Regular.ttf */; };
 		D0922CBA297ED82600743426 /* ArgentumSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB6297ED82600743426 /* ArgentumSans-Bold.ttf */; };
@@ -125,6 +126,7 @@
 		D05C5B5D298F906E00854C05 /* DailyPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlan.swift; sourceTree = "<group>"; };
 		D08C1EDD2962B030004BF768 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D0911F3829B4C6CF001DF9C5 /* AppliedApplianceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedApplianceTests.swift; sourceTree = "<group>"; };
+		D0911F3A29B4FD08001DF9C5 /* AppliedAppliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedAppliance.swift; sourceTree = "<group>"; };
 		D0922CB4297ED82600743426 /* ArgentumSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Medium.ttf"; sourceTree = "<group>"; };
 		D0922CB5297ED82600743426 /* ArgentumSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Regular.ttf"; sourceTree = "<group>"; };
 		D0922CB6297ED82600743426 /* ArgentumSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				D0B6198D2938A47400887F00 /* Appliance.swift */,
 				D0B5EE1F29B3B8120084B710 /* AppliancesListViewModel.swift */,
 				D0B5EE2129B3B84E0084B710 /* ApplianceEditorViewModel.swift */,
+				D0911F3A29B4FD08001DF9C5 /* AppliedAppliance.swift */,
 			);
 			path = Appliance;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				D0D59CC029A6B956008DE52B /* UserpicView.swift in Sources */,
 				D0D5BD8F29A11F6600CCDC5D /* ApiInfoView.swift in Sources */,
 				D0C9240F29A608CB00A34E33 /* CommonPrimaryButton.swift in Sources */,
+				D0911F3B29B4FD08001DF9C5 /* AppliedAppliance.swift in Sources */,
 				D02FCF2D29B385850088BE23 /* CoreApplianceEditorView.swift in Sources */,
 				D0C9240929A5426C00A34E33 /* UserLoginRegisterView.swift in Sources */,
 				D02FCF2629B37AB00088BE23 /* DataManager.swift in Sources */,

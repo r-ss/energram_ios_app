@@ -293,7 +293,7 @@ struct DayPlanView: View {
 
 struct DayPlanView_Previews: PreviewProvider {
     static var previews: some View {
-        DayPlanView(dailyPlan: DailyPlan())
+        DayPlanView(dailyPlan: DailyPlan(type: .preview))
     }
 }
 

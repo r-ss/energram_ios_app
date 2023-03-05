@@ -23,59 +23,8 @@ struct Hour: Identifiable {
 
 
 
-
-struct AppliedAppliance: Identifiable, Hashable {
-
-    /* Struct used in labels that selects which appliances will be used during the day */
-
-    var id: UUID = UUID()
-    var start: Date
-    var duration: Int
-    
-//    var time_end: Int
-    var appliance: Appliance
-}
-
-// MARK: Mocked Data
-
-extension AppliedAppliance {
-    struct Mocked {
-        var aa1: AppliedAppliance
-        init() {
-            
-            func dateFromISOString(_ isoString: String) -> Date? {
-                let isoDateFormatter = ISO8601DateFormatter()
-                return isoDateFormatter.date(from: isoString)  // returns nil, if isoString is malformed.
-            }
-            
-
-
-            
-            let d = dateFromISOString("2023-03-05T20:10:56Z")
-//            print("===============")
-//
-//            print("===============")
-            self.aa1 = AppliedAppliance(start: d!, duration: 120, appliance: Appliance.mocked.appliance1)
-        }
-    }
-
-    static var mocked: Mocked {
-        Mocked()
-    }
-}
-
-class AppliedAppliances: ObservableObject {
-    
-    @Published var items: [AppliedAppliance] = []
-    
-    func add(appliance: Appliance, hour: Int) {
-        let aa = AppliedAppliance(start: Date(), duration: appliance.typical_duration, appliance: appliance)
-        self.items.append(aa)
-    }
-    
-    func remove(appliance: Appliance) {
-        items = items.filter(){$0.appliance.id != appliance.id}
-    }
+enum DailyPlanType {
+    case normal, preview
 }
 
 
@@ -94,6 +43,19 @@ class DailyPlan: ObservableObject {
     @Published var selectedApplianceToEdit: Appliance?
     
     // MARK: Init
+    
+    init(type: DailyPlanType = .normal) {
+        switch type {
+        case .normal:
+            self.hours = []
+        case .preview:
+            self.appliances = [Appliance.mocked.appliance1, Appliance.mocked.appliance2]
+            self.appliedAppliances.items = [AppliedAppliance.mocked.aa1, AppliedAppliance.mocked.aa2, AppliedAppliance.mocked.aa3]
+        }
+    }
+        
+        
+        
     
     func priceReceived(price data:DayPrice) {
         self.price = data
