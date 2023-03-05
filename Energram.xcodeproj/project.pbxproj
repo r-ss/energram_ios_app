@@ -33,6 +33,7 @@
 		D0496DF5291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */; };
 		D0590EF429B3920500C61176 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0590EF229B3920500C61176 /* CoreDataModel.xcdatamodeld */; };
 		D05C5B5E298F906E00854C05 /* DailyPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C5B5D298F906E00854C05 /* DailyPlan.swift */; };
+		D0911F3929B4C6CF001DF9C5 /* AppliedApplianceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0911F3829B4C6CF001DF9C5 /* AppliedApplianceTests.swift */; };
 		D0922CB8297ED82600743426 /* ArgentumSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB4297ED82600743426 /* ArgentumSans-Medium.ttf */; };
 		D0922CB9297ED82600743426 /* ArgentumSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB5297ED82600743426 /* ArgentumSans-Regular.ttf */; };
 		D0922CBA297ED82600743426 /* ArgentumSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB6297ED82600743426 /* ArgentumSans-Bold.ttf */; };
@@ -123,6 +124,7 @@
 		D0590EF329B3920500C61176 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		D05C5B5D298F906E00854C05 /* DailyPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlan.swift; sourceTree = "<group>"; };
 		D08C1EDD2962B030004BF768 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D0911F3829B4C6CF001DF9C5 /* AppliedApplianceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedApplianceTests.swift; sourceTree = "<group>"; };
 		D0922CB4297ED82600743426 /* ArgentumSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Medium.ttf"; sourceTree = "<group>"; };
 		D0922CB5297ED82600743426 /* ArgentumSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Regular.ttf"; sourceTree = "<group>"; };
 		D0922CB6297ED82600743426 /* ArgentumSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				D0D5BD8B29A1107C00CCDC5D /* Mockable.swift */,
 				D0D5BD6E29A10EBC00CCDC5D /* JSON */,
 				D0496DE8291F7856008BEDA5 /* EnergramTests.swift */,
+				D0911F3829B4C6CF001DF9C5 /* AppliedApplianceTests.swift */,
 				D040943C296BD0C5007F5625 /* SettingsManagerTests.swift */,
 				D0D5BD9329A159DB00CCDC5D /* EnergramServiceTests.swift */,
 				D02FCF2E29B3893B0088BE23 /* CoreDataTests.swift */,
@@ -623,6 +626,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0496DE9291F7856008BEDA5 /* EnergramTests.swift in Sources */,
+				D0911F3929B4C6CF001DF9C5 /* AppliedApplianceTests.swift in Sources */,
 				D0D5BD8D29A1107C00CCDC5D /* Mockable.swift in Sources */,
 				D0D5BD9429A159DB00CCDC5D /* EnergramServiceTests.swift in Sources */,
 				D040943D296BD0C5007F5625 /* SettingsManagerTests.swift in Sources */,

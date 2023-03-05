@@ -5,6 +5,7 @@
 //  Created by Alex Antipov on 05.02.2023.
 //
 
+import Foundation
 import SwiftUI
 
 
@@ -39,7 +40,23 @@ struct AppliedAppliance: Identifiable, Hashable {
 
 extension AppliedAppliance {
     struct Mocked {
-        let aa1 = AppliedAppliance(start: Date(), duration: 120, appliance: Appliance.mocked.appliance1)
+        var aa1: AppliedAppliance
+        init() {
+            
+            func dateFromISOString(_ isoString: String) -> Date? {
+                let isoDateFormatter = ISO8601DateFormatter()
+                return isoDateFormatter.date(from: isoString)  // returns nil, if isoString is malformed.
+            }
+            
+
+
+            
+            let d = dateFromISOString("2023-03-05T20:10:56Z")
+//            print("===============")
+//
+//            print("===============")
+            self.aa1 = AppliedAppliance(start: d!, duration: 120, appliance: Appliance.mocked.appliance1)
+        }
     }
 
     static var mocked: Mocked {
