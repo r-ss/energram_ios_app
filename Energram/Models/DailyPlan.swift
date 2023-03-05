@@ -165,22 +165,55 @@ class DailyPlan: ObservableObject {
     private func chooseTimeslot(forAppliance appliance: Appliance) -> Int {
         //log("> chooseTimeslot")
         
-        let userReservedPower: Int = SettingsManager.shared.getIntegerValue(name: SettingsNames.reservedPower)
+//        let userReservedPower: Int = SettingsManager.shared.getIntegerValue(name: SettingsNames.reservedPower)
         
-        let sortedByPrice:[Hour] = hours.sorted { $0.price < $1.price}
-        let sortedByPriceAndFiltered:[Hour] = sortedByPrice.filter(){$0.usedPower <= userReservedPower}
+//        let sortedByPrice:[Hour] = hours.sorted { $0.price < $1.price}
+//        let sortedByPriceAndFiltered:[Hour] = sortedByPrice.filter(){$0.usedPower <= userReservedPower}
         
-        for (_, hour) in sortedByPriceAndFiltered.enumerated() {
-            if hour.usedPower < appliance.power {
-                if let idx: Int = self.hours.firstIndex(where: {$0.uid == hour.uid}) {
-                    return idx
-                }
-            }
-            //            return 0
+        let duration: Int = appliance.typical_duration / 60
+        
+        print(duration)
+        
+        guard let prices: [Float] = self.price?.data else {
+            print("Pizdec")
+            return 0
         }
+
+        func calculatePricexDuration(startHourIndex: Int, duration: Int) -> Float {
+            var sum: Float = 0
+//            print(self.price!.data)
+            for index in (0...duration-1) {
+                sum = sum + prices[startHourIndex + index]
+            }
+            return sum
+        }
+
+        var minimumStartHour: Int = 0
+        var minimumFound = calculatePricexDuration(startHourIndex: 0, duration: duration)
+
+        for index in (0...24-duration) {
+            let candidate: Float = calculatePricexDuration(startHourIndex: index, duration: duration)
+        //    minimumFound = min(minimumFound.price, .price)
+            
+            if candidate < minimumFound {
+                minimumFound = candidate
+                minimumStartHour = index
+            }
+
+        }
+        return minimumStartHour
         
-        log("Error, cannot find time slot for appliance")
-        return 0
+//        for (_, hour) in sortedByPriceAndFiltered.enumerated() {
+//            if hour.usedPower < appliance.power {
+//                if let idx: Int = self.hours.firstIndex(where: {$0.uid == hour.uid}) {
+//                    return idx
+//                }
+//            }
+//            //            return 0
+//        }
+        
+//        log("Error, cannot find time slot for appliance")
+//        return 0
     }
     
     

@@ -36,8 +36,11 @@ struct AppliedAppliancesView: View {
         return formatter
     }()
     
+    private let rowSpacing: CGFloat = 0.0
     private let rowHeight: CGFloat = 30.0
-    private let rowPaddingHeight: CGFloat = 31.0
+    private var rowPaddingHeight: CGFloat {
+        rowHeight + rowSpacing
+    }
     
     
     func startTimeToVerticalPosition(time: Date, duration: Int) -> CGFloat {
@@ -75,7 +78,7 @@ struct AppliedAppliancesView: View {
             GeometryReader { geometry in
                 VStack {
                     ZStack {
-                        VStack(spacing: 1) {
+                        VStack(spacing: rowSpacing) {
                             ForEach(self.dailyPlan.hours, id:\.self) { hour in
                                 //                            HourLabel(hour: hour, dailyPlan: dailyPlan)
                                 
