@@ -45,6 +45,7 @@ class DataManager: NSObject, ObservableObject {
                 newAppliance.id = UUID()
                 newAppliance.power = 60
                 newAppliance.typical_duration = 90
+                newAppliance.createdAt = Date()
             }
 //            for i in 0..<4 {
 //                let newProject = ProjectMO(context: managedObjectContext)
@@ -58,7 +59,7 @@ class DataManager: NSObject, ObservableObject {
         }
         
         let applianceFR: NSFetchRequest<ApplianceMO> = ApplianceMO.fetchRequest()
-        applianceFR.sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
+        applianceFR.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
         appliancesFRC = NSFetchedResultsController(fetchRequest: applianceFR,
                                               managedObjectContext: managedObjectContext,
                                               sectionNameKeyPath: nil,
@@ -174,11 +175,11 @@ extension Appliance {
         self.id = applianceMO.id ?? UUID()
         self.name = applianceMO.name ?? ""
         
-        self.created_by = applianceMO.created_by ?? "n/a"
+        self.createdAt = applianceMO.createdAt ?? Date()
         self.power = Int(applianceMO.power)
         self.typical_duration = Int(applianceMO.typical_duration)
         
-        print(Int(applianceMO.power),Int(applianceMO.typical_duration))
+//        print(Int(applianceMO.power),Int(applianceMO.typical_duration))
         
 //        if let projectMO = ApplianceMO.projectMO {
 //            self.projectID = projectMO.id
@@ -231,7 +232,7 @@ extension DataManager {
     
     private func update(applianceMO: ApplianceMO, from appliance: Appliance) {
         applianceMO.name = appliance.name
-        applianceMO.created_by = appliance.created_by
+        applianceMO.createdAt = appliance.createdAt
         applianceMO.power = Int16(appliance.power)
         applianceMO.typical_duration = Int16(appliance.typical_duration)
 //        applianceMO.name = appliance.name

@@ -16,14 +16,14 @@ struct Appliance: Codable, Hashable, Identifiable {
     var name: String
     var typical_duration: Int
     var power: Int
-    var created_by: String
+    var createdAt: Date
     
-    enum CodingKeys: CodingKey {
-        case name // note that id is not listed here
-        case typical_duration
-        case power
-        case created_by
-    }
+//    enum CodingKeys: CodingKey {
+//        case name // note that id is not listed here
+//        case typical_duration
+//        case power
+//        case created_by
+//    }
     
         
 //    init(name: String = "") {
@@ -42,8 +42,8 @@ struct Appliance: Codable, Hashable, Identifiable {
 extension Appliance {
     struct Mocked {
 
-        let appliance1 = Appliance(name: "Kettel", typical_duration: 120, power: 2000, created_by: "alex")
-        let appliance2 = Appliance(name: "Xbox", typical_duration: 60, power: 450, created_by: "Vanya")
+        let appliance1 = Appliance(name: "Kettel", typical_duration: 120, power: 2000, createdAt: Date())
+        let appliance2 = Appliance(name: "Xbox", typical_duration: 60, power: 450, createdAt: Date())
     }
 
     static var mocked: Mocked {
@@ -56,8 +56,8 @@ extension Appliance {
 extension Appliance {
     struct Initial {
         let appliances = [
-            Appliance(name: "EV Charger", typical_duration: 180, power: 1200, created_by: "alex"),
-            Appliance(name: "Kettel", typical_duration: 30, power: 170, created_by: "Vanya")
+            Appliance(name: "EV Charger", typical_duration: 180, power: 1200, createdAt: Date()),
+            Appliance(name: "Kettel", typical_duration: 30, power: 170, createdAt: Date())
         ]
     }
 
@@ -77,20 +77,20 @@ struct SelectedAppliance: Identifiable {
     var appliance: Appliance
 }
 
-extension Appliance {
-    
-    //    jsonEncoder.outputFormatting = .prettyPrinted
-    
-    var as_json_string: String {
-        do {
-            let encodePerson = try jsonEncoder.encode(self)
-            let endcodeStringPerson = String(data: encodePerson, encoding: .utf8)!
-            return(endcodeStringPerson)
-        } catch {
-            return(error.localizedDescription)
-        }
-    }
-}
+//extension Appliance {
+//
+//    //    jsonEncoder.outputFormatting = .prettyPrinted
+//
+//    var as_json_string: String {
+//        do {
+//            let encodePerson = try jsonEncoder.encode(self)
+//            let endcodeStringPerson = String(data: encodePerson, encoding: .utf8)!
+//            return(endcodeStringPerson)
+//        } catch {
+//            return(error.localizedDescription)
+//        }
+//    }
+//}
 
 // DRAGGING
 // https://serialcoder.dev/text-tutorials/swiftui/first-experience-with-transferable-implementing-drag-and-drop-in-swiftui/

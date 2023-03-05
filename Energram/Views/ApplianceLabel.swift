@@ -42,7 +42,7 @@ struct ApplianceLabel: View {
                     Text(appliance.name).font(.headline).foregroundColor(.white).padding([.top, .trailing,. bottom], 10)
                 }
             }.fixedSize()
-        }.onAppear(){
+        }.onAppear {
             
             NotificationCenter.simple(name: .latestPriceRecieved){
                 isSelected = false
@@ -52,7 +52,8 @@ struct ApplianceLabel: View {
             LongPressGesture()
                 .onEnded { _ in
                     
-//                    Notification.fire(name: .applianceLabelLongTapEvent, payload: appliance.name)
+                    Notification.fire(name: .applianceLabelLongTapEvent) // used to set .areAppliancesLabelsTouchLearned setting and hide hint text in DailyPlanView
+                    
                     dailyPlan.selectedApplianceToEdit = appliance
                     
                 }

@@ -31,9 +31,9 @@ struct DayPlanView: View {
                             
                             HStack {
                                 
-                                if receivedAppliances.count > 0 {
-                                    Image(systemName: "arrow.up.forward").font(.system(size: 20)).padding(.trailing, 2)
-                                    Text("Tap and hold to customize").font(.system(size: 16)).padding(.trailing, 10)
+                                if receivedAppliances.count > 0 && !areAppliancesLabelsTouchLearned{
+                                        Image(systemName: "arrow.up.forward").font(.system(size: 20)).padding(.trailing, 2)
+                                        Text("Tap and hold to customize").font(.system(size: 16)).padding(.trailing, 10)
                                 }
                                 
                                 Button(){
@@ -153,6 +153,16 @@ struct DayPlanView: View {
                     if currencyRates == nil {
                         Task { await self.fetchCurrencyRates()}
                     }
+                    
+                    NotificationCenter.simple(name: .applianceLabelLongTapEvent){
+                        if !areAppliancesLabelsTouchLearned {
+                            print("Setting .areAppliancesLabelsTouchLearned to true...")
+                            SettingsManager.shared.setValue(name: .areAppliancesLabelsTouchLearned, value: true)
+                            withAnimation {
+                                areAppliancesLabelsTouchLearned = true
+                            }
+                        }
+                    }
                                         
                     
                 }
@@ -178,6 +188,8 @@ struct DayPlanView: View {
     @State private var pricesLoading: Bool = false
     
     @State private var currencyRatesLoading: Bool = false
+    
+    @State private var areAppliancesLabelsTouchLearned: Bool = false
     
     
     
@@ -215,6 +227,7 @@ struct DayPlanView: View {
         self.selectedCurrency = SettingsManager.shared.getStringValue(name: SettingsNames.selectedCurrency)
         self.currencyLatestCZK = SettingsManager.shared.getDoubleValue(name: SettingsNames.currencyLatestCZK)
         self.userReservedPower = SettingsManager.shared.getIntegerValue(name: SettingsNames.reservedPower)
+        self.areAppliancesLabelsTouchLearned = SettingsManager.shared.getBoolValue(name: SettingsNames.areAppliancesLabelsTouchLearned)
     }
     
 //    private func fetchAppliances() async {

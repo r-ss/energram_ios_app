@@ -29,6 +29,8 @@ enum SettingsNames: String, CaseIterable {
     case refreshToken = "SettingsRefreshToken"
     case selectedCurrency = "SettingsSelectedCurrency"
     case currencyLatestCZK = "SettingsCurrencyLatestCZK"
+    
+    case areAppliancesLabelsTouchLearned = "SettingsAppliancesLabesTouchLearned"
 }
 
 
@@ -56,6 +58,8 @@ struct SettingsManager {
         
         SettingsItem(name: SettingsNames.selectedCurrency, type: "String", defaultValue: "EUR"),
         SettingsItem(name: SettingsNames.currencyLatestCZK, type: "Double", defaultValue: 23.0),
+        
+        SettingsItem(name: SettingsNames.areAppliancesLabelsTouchLearned, type: "Bool", defaultValue: false),
     ]
     
     

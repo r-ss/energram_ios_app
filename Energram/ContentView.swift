@@ -27,19 +27,13 @@ struct ContentView: View {
         VStack {
             TabView {
                 
-                
                                                 
                 DayPlanView(dailyPlan: dailyPlan)
                     .tabItem {
                         Label("Daily plan", systemImage: "list.bullet.clipboard")
                     }
 //                    .badge(applianceService.appliancesCountBadge)
-                
-                CoreAppliancesView()
-                    .tabItem {
-                        Label("Appliances", systemImage: "list.bullet.clipboard")
-                    }
-                
+                                
                 
                 MultipleDaysChartView()
                     .tabItem {

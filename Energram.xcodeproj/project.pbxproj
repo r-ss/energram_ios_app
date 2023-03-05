@@ -12,7 +12,6 @@
 		D02FCF2429B378B70088BE23 /* PersistentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FCF2329B378B70088BE23 /* PersistentStore.swift */; };
 		D02FCF2629B37AB00088BE23 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FCF2529B37AB00088BE23 /* DataManager.swift */; };
 		D02FCF2929B37C8F0088BE23 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = D02FCF2829B37C8F0088BE23 /* Collections */; };
-		D02FCF2B29B381740088BE23 /* CoreAppliancesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FCF2A29B381740088BE23 /* CoreAppliancesView.swift */; };
 		D02FCF2D29B385850088BE23 /* CoreApplianceEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FCF2C29B385840088BE23 /* CoreApplianceEditorView.swift */; };
 		D02FCF2F29B3893B0088BE23 /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FCF2E29B3893B0088BE23 /* CoreDataTests.swift */; };
 		D035A95D291F794500426722 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D035A95C291F794500426722 /* Config.swift */; };
@@ -98,7 +97,6 @@
 		D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceLabel.swift; sourceTree = "<group>"; };
 		D02FCF2329B378B70088BE23 /* PersistentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStore.swift; sourceTree = "<group>"; };
 		D02FCF2529B37AB00088BE23 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		D02FCF2A29B381740088BE23 /* CoreAppliancesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAppliancesView.swift; sourceTree = "<group>"; };
 		D02FCF2C29B385840088BE23 /* CoreApplianceEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreApplianceEditorView.swift; sourceTree = "<group>"; };
 		D02FCF2E29B3893B0088BE23 /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
 		D035A95C291F794500426722 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -288,7 +286,6 @@
 				D035A962291F7A9A00426722 /* Misc */,
 				D035A95E291F7A0900426722 /* Views */,
 				D0496DD7291F7855008BEDA5 /* EnergramApp.swift */,
-				D02FCF2A29B381740088BE23 /* CoreAppliancesView.swift */,
 				D02FCF2C29B385840088BE23 /* CoreApplianceEditorView.swift */,
 				D035A95C291F794500426722 /* Config.swift */,
 				D0496DD9291F7855008BEDA5 /* ContentView.swift */,
@@ -601,7 +598,6 @@
 				D0D59CC029A6B956008DE52B /* UserpicView.swift in Sources */,
 				D0D5BD8F29A11F6600CCDC5D /* ApiInfoView.swift in Sources */,
 				D0C9240F29A608CB00A34E33 /* CommonPrimaryButton.swift in Sources */,
-				D02FCF2B29B381740088BE23 /* CoreAppliancesView.swift in Sources */,
 				D02FCF2D29B385850088BE23 /* CoreApplianceEditorView.swift in Sources */,
 				D0C9240929A5426C00A34E33 /* UserLoginRegisterView.swift in Sources */,
 				D02FCF2629B37AB00088BE23 /* DataManager.swift in Sources */,
