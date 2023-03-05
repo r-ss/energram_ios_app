@@ -117,7 +117,15 @@ struct DayPlanView: View {
                         }
                         
                         if let dp = dailyPlan.price {
-                            MiniChart(forDay: dp)
+                            
+//                            VStack {
+                                if let dateFmt = dailyPlan.price?.dateFormatted {
+                                    Text("Electricity price graph for \(dateFmt):").padding(.top, 20)
+                                }
+                                MiniChart(forDay: dp)
+//                            }.padding(0)
+                            
+                            
                         } else {
                             if pricesLoading {
                                 LoaderSpinner()
@@ -126,7 +134,7 @@ struct DayPlanView: View {
                             }
                         }
                         
-                    }
+                    }.padding(0)
                     
                 }
                 .padding()
