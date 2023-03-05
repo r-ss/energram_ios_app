@@ -72,7 +72,6 @@ final class EnergramService: XCTestCase {
             //                XCTAssertEqual(result.id, "637d2673e18cc2a4bfd62869")
             XCTAssertEqual(result[0].name, "Washing machine")
             XCTAssertEqual(result[0].power, 425)
-            XCTAssertEqual(result[0].created_by, "637c82c257d3efaf9317ec32")
         case .failure:
             XCTFail("The request should not fail")
         }

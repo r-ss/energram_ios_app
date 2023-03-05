@@ -16,14 +16,16 @@ struct Appliance: Codable, Hashable, Identifiable {
     var name: String
     var typical_duration: Int
     var power: Int
-    var createdAt: Date
+    var createdAt: Date = Date()
+    var created_by: String?
     
-//    enum CodingKeys: CodingKey {
-//        case name // note that id is not listed here
-//        case typical_duration
-//        case power
-//        case created_by
-//    }
+    enum CodingKeys: String, CodingKey {
+        case name // note that id is not listed here
+        case typical_duration
+        case power
+        case created_by
+        case createdAt = "created"
+    }
     
         
 //    init(name: String = "") {

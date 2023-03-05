@@ -76,7 +76,7 @@ struct CoreApplianceEditorView: View {
                     
                    
                 
-                //DatePicker("Date", selection: $viewModel.editingTodo.date)
+//                DatePicker("Date", selection: $viewModel.editingAppliance.createdAt)
                 //Toggle("Complete", isOn: $viewModel.editingTodo.isComplete)
             }
             Section {
@@ -90,7 +90,7 @@ struct CoreApplianceEditorView: View {
                         Slider(value: powerIntProxy, in: 100...2500, step: 100, minimumValueLabel: Image(systemName: "light.min"), maximumValueLabel: Image(systemName: "light.beacon.max"), label: {})
                             .accentColor(Palette.brandGreen)
                         
-                        Text("Duration: \(humanReadableDuration)")
+                        Text("Is on for: \(humanReadableDuration)")
                         Slider(value: durationIntProxy, in: 10...60*6, step: 10, minimumValueLabel: Image(systemName: "clock"), maximumValueLabel: Image(systemName: "clock"), label: {})
                             .accentColor(Palette.brandGreen)
                         

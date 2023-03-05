@@ -55,7 +55,7 @@ final class CoreDataTests: XCTestCase {
     }
     
     func test_b_Add_Appliance() {
-        let appliance = Appliance(name: "My Test Device", typical_duration: 60, power: 100, created_by: "TEST")
+        let appliance = Appliance(name: "My Test Device", typical_duration: 60, power: 100, createdAt: Date())
         dataManager.updateAndSave(appliance: appliance)
         
 //        print("ZZZ --------------")
