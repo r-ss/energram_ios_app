@@ -103,11 +103,13 @@ struct AppliedAppliancesView: View {
                                     
                                     ZStack(alignment: .leading) {
                                         //GeometryReader { rectG in
-                                        Rectangle()
+                                        RoundedRectangle(cornerRadius: 4)
                                             .fill(Palette.brandPurple)
                                             .frame(width: geometry.size.width - 136, height: slotHeight(duration: aa.duration))
                                             .opacity(0.65)
-                                            .border(Palette.brandPurpleLight, width: 1)
+                                            .addBorder(Palette.brandPurpleLight, width: 1, cornerRadius: 4)
+//                                            .stroke(Color.black, lineWidth: 1)
+//                                            .border(Palette.brandPurpleLight, width: 1, cornerRadius: 10)
                                         HStack {
                                             //                                                Text("\(aa.duration) minutes").font(Font.system(size: slotFontSize))
                                             Text("\(aa.appliance.name) for \( durationToHumanReadable(aa.duration) ) hrs, \(aa.cost, specifier: "%.2f") €")
@@ -151,5 +153,14 @@ struct AppliedAppliancesView: View {
 struct AppliedAppliancesView_Previews: PreviewProvider {
     static var previews: some View {
         AppliedAppliancesView(dailyPlan: DailyPlan(type: .preview))
+    }
+}
+
+fileprivate extension View {
+    func addBorder<S>(_ content: S, width: CGFloat = 1, cornerRadius: CGFloat) -> some View where S : ShapeStyle {
+        // https://stackoverflow.com/questions/57753997/rounded-borders-in-swiftui
+        let roundedRect = RoundedRectangle(cornerRadius: cornerRadius)
+        return clipShape(roundedRect)
+             .overlay(roundedRect.strokeBorder(content, lineWidth: width))
     }
 }
