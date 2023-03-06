@@ -14,20 +14,10 @@ struct ApplianceLabel: View {
     
     @State var isSelected: Bool
     
-    //    var service: ApplianceService
-    
     var dailyPlan: DailyPlan
     
     var disableInteraction: Bool = false
-    
-    //    func random_label_color() -> Color {
-    //        return Color(
-    //            red: .random(in: 0.15...0.85),
-    //            green: .random(in: 0.15...0.85),
-    //            blue: .random(in: 0.15...0.85)
-    //        )
-    //    }
-    
+        
     var body: some View {
         Button {
             // skipping action here https://stackoverflow.com/a/66539032
@@ -43,6 +33,10 @@ struct ApplianceLabel: View {
                 }
             }.fixedSize()
         }.onAppear {
+                        
+            if dailyPlan.isApplianceApplied(self.appliance) {
+                isSelected = true
+            }
             
             NotificationCenter.simple(name: .latestPriceRecieved){
                 isSelected = false

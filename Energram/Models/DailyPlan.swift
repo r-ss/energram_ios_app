@@ -160,6 +160,22 @@ class DailyPlan: ObservableObject {
         return nil
     }
     
+    func isApplianceApplied(_ appliance: Appliance) -> Bool {
+        
+        if let _: Int = self.appliedAppliances.items.firstIndex(where: {$0.appliance.id == appliance.id}) {
+            return true
+        }
+        return false
+        
+        
+    }
+    
+    func applianceModified(appliance: Appliance) {
+//        print(appliance)
+        self.unassignAppliance(appliance: appliance)
+        self.assignAppliance(appliance: appliance)
+    }
+    
     func toggleApplianceLabel(applianceLabel: ApplianceLabel) {
         applianceLabel.isSelected.toggle()
         if (applianceLabel.isSelected){
@@ -238,7 +254,7 @@ class DailyPlan: ObservableObject {
     }
     
     
-    func assignAppliance(appliance: Appliance) {
+    private func assignAppliance(appliance: Appliance) {
         //log("> assignAppliance")
         let timeslotIndex = chooseTimeslot(forAppliance: appliance)
         self.hours[timeslotIndex].appliancesAssigned.append(appliance)
@@ -249,7 +265,7 @@ class DailyPlan: ObservableObject {
         //self.printPlan()
     }
     
-    func unassignAppliance(appliance: Appliance) {
+    private func unassignAppliance(appliance: Appliance) {
         //log("> unassignAppliance")
         for (index, hour) in self.hours.enumerated() {
             let filtered = hour.appliancesAssigned.filter(){$0.name != appliance.name}

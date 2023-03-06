@@ -190,8 +190,9 @@ struct DayPlanView: View {
                         
                         if let modifiedAppliance = dailyPlan.getAppliancebyId(uuidString) {
                             withAnimation {
-                                dailyPlan.unassignAppliance(appliance: modifiedAppliance)
-                                dailyPlan.assignAppliance(appliance: modifiedAppliance)
+                                dailyPlan.applianceModified(appliance: modifiedAppliance)
+//                                dailyPlan.unassignAppliance(appliance: modifiedAppliance)
+//                                dailyPlan.assignAppliance(appliance: modifiedAppliance)
                             }
                         }
                     })
