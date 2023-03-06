@@ -5,6 +5,7 @@
 //  Created by Alex Antipov on 10.12.2022.
 //
 
+/*
 import SwiftUI
 
 struct HourLabel: View {
@@ -82,3 +83,5 @@ struct HourLabel: View {
 //        HourLabel(hour: 5)
 //    }
 //}
+
+*/

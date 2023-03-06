@@ -33,11 +33,13 @@ class DailyPlan: ObservableObject {
     
     @Published var hours: [Hour] = []
     @Published var price: DayPrice?
-    @Published var appliances: [Appliance]?
+    //@Published var appliances: [Appliance]?
     
     @Published var lastFetch: Date?
     
     @Published var appliedAppliances = AppliedAppliances()
+    
+    @Published var appliancesListViewModel = AppliancesListViewModel()
     
     
     @Published var selectedApplianceToEdit: Appliance?
@@ -45,11 +47,16 @@ class DailyPlan: ObservableObject {
     // MARK: Init
     
     init(type: DailyPlanType = .normal) {
+        
+        
+        
         switch type {
         case .normal:
-            self.hours = []
+            appliancesListViewModel.fetchAppliances()
+            //self.appliances = appliancesListViewModel.appliances
+            
         case .preview:
-            self.appliances = [Appliance.mocked.appliance1, Appliance.mocked.appliance2]
+            //self.appliances = [Appliance.mocked.appliance1, Appliance.mocked.appliance2]
             self.appliedAppliances.items = [AppliedAppliance.mocked.aa1, AppliedAppliance.mocked.aa2, AppliedAppliance.mocked.aa3, AppliedAppliance.mocked.aa4, AppliedAppliance.mocked.aa5]
             
             let pricesBaked: [Float] = [
@@ -109,9 +116,9 @@ class DailyPlan: ObservableObject {
         Notification.fire(name: .latestPriceRecieved)
     }
     
-    func appliancesReceived(appliances data:[Appliance]) {
-        self.appliances = data
-    }
+//    func appliancesReceived(appliances: [Appliance]) {
+//        self.appliances = appliances
+//    }
     
     private func fillPrices(dayPrice: DayPrice){
 //        log("> DailyPlan fillPrices")
@@ -136,6 +143,22 @@ class DailyPlan: ObservableObject {
     }
     
     // MARK: Interaction
+    
+    func getAppliancebyId(_ str: String) -> Appliance? {
+        let uuid = UUID(uuidString: str)
+        
+//        guard let appliances = self.appliancesListViewModel.appliances else {
+//            print("Optional appliances are nil")
+//            return nil
+//        }
+        
+        if let idx: Int = self.appliancesListViewModel.appliances.firstIndex(where: {$0.id == uuid}) {
+            return self.appliancesListViewModel.appliances[idx]
+        }
+        
+        print("Can't find apliance with requested uuid")
+        return nil
+    }
     
     func toggleApplianceLabel(applianceLabel: ApplianceLabel) {
         applianceLabel.isSelected.toggle()
@@ -171,11 +194,9 @@ class DailyPlan: ObservableObject {
 //        let sortedByPriceAndFiltered:[Hour] = sortedByPrice.filter(){$0.usedPower <= userReservedPower}
         
         let duration: Int = appliance.typical_duration / 60
-        
-        print(duration)
-        
+                
         guard let prices: [Float] = self.price?.data else {
-            print("Pizdec")
+            print("Error in set prices in DailyPlan.swift")
             return 0
         }
 
@@ -217,7 +238,7 @@ class DailyPlan: ObservableObject {
     }
     
     
-    private func assignAppliance(appliance: Appliance) {
+    func assignAppliance(appliance: Appliance) {
         //log("> assignAppliance")
         let timeslotIndex = chooseTimeslot(forAppliance: appliance)
         self.hours[timeslotIndex].appliancesAssigned.append(appliance)
@@ -228,7 +249,7 @@ class DailyPlan: ObservableObject {
         //self.printPlan()
     }
     
-    private func unassignAppliance(appliance: Appliance) {
+    func unassignAppliance(appliance: Appliance) {
         //log("> unassignAppliance")
         for (index, hour) in self.hours.enumerated() {
             let filtered = hour.appliancesAssigned.filter(){$0.name != appliance.name}

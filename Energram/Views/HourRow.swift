@@ -12,22 +12,36 @@ struct HourRow: View {
     var hour: Int = 0
     @ObservedObject var dailyPlan: DailyPlan
     
-    var rowWidth: CGFloat
-    var rowHeight: CGFloat
+    var rowWidth: CGFloat = 200
+    var rowHeight: CGFloat = 30
         
     var body: some View {
-        Text("\(hour):00").frame(width: rowWidth, height: rowHeight, alignment: .leading).padding(.leading, 7)
-        .contentShape(Rectangle())
+        HStack {
+            Text("\(hour):00").font(Font.system(size: slotFontSize)).padding(.leading, 7)
+            Spacer()
+            Text("\(accordingHourPrice, specifier: "%.2f") €/kWh").font(Font.system(size: 12)).padding(.trailing, 7)
+        }
+//        .contentShape(Rectangle())
+        .frame(width: rowWidth, height: rowHeight, alignment: .leading)
         .background(cellBackground)
     }
     
     // MARK: Private
+    
+    private let slotFontSize: CGFloat = 16
     
     private var accordingHour: Hour? {
         if let idx: Int = self.dailyPlan.hours.firstIndex(where: {$0.id == hour}) {
             return self.dailyPlan.hours[idx]
         }
         return nil
+    }
+    
+    private var accordingHourPrice: Float {
+        if let idx: Int = self.dailyPlan.hours.firstIndex(where: {$0.id == hour}) {
+            return self.dailyPlan.hours[idx].price
+        }
+        return 0.0
     }
     
     private var appliancesForHour: [Appliance] {
@@ -51,8 +65,8 @@ struct HourRow: View {
     
 }
 
-//struct HourLabel_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HourLabel(hour: 5)
-//    }
-//}
+struct HourLabel_Previews: PreviewProvider {
+    static var previews: some View {
+        HourRow(hour: 5, dailyPlan: DailyPlan(type: .preview))
+    }
+}

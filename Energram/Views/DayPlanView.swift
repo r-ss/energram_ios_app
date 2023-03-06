@@ -10,7 +10,7 @@ import SwiftUI
 struct DayPlanView: View {
     @ObservedObject var dailyPlan: DailyPlan
     
-    @StateObject var appliancesListViewModel = AppliancesListViewModel()
+//    @StateObject var appliancesListViewModel = AppliancesListViewModel()
     
     
  
@@ -26,14 +26,14 @@ struct DayPlanView: View {
                         Text("Consumers").font(.headlineCustom)
                     }
                     
-                    if let receivedAppliances = appliancesListViewModel.appliances {
+                    if let dpAppliances = dailyPlan.appliancesListViewModel.appliances {
                         
                         Group {
-                            TagCloudView(appliances: receivedAppliances, passedDailyPlan: dailyPlan)
+                            TagCloudView(appliances: dpAppliances, passedDailyPlan: dailyPlan)
                             
                             HStack {
                                 
-                                if receivedAppliances.count > 0 && !areAppliancesLabelsTouchLearned{
+                                if dpAppliances.count > 0 && !areAppliancesLabelsTouchLearned{
                                         Image(systemName: "arrow.up.forward").font(.system(size: 20)).padding(.trailing, 2)
                                         Text("Tap and hold to customize").font(.system(size: 16)).padding(.trailing, 10)
                                 }
@@ -57,7 +57,7 @@ struct DayPlanView: View {
                     
                     Text("Daily plan").font(.headlineCustom)//.padding(.top, 20)
                     
-                    AppliedAppliancesView(dailyPlan: dailyPlan).frame(width: geometry.size.width, height: 29*24)
+                    AppliedAppliancesView(dailyPlan: dailyPlan).frame(width: geometry.size.width - 20, height: 29*24)
                     
                     
                     
@@ -154,8 +154,11 @@ struct DayPlanView: View {
                     }
                     
                     //withAnimation{
-                        appliancesListViewModel.fetchAppliances()
+                        
                     //}
+//                    if let receivedAppliances = appliancesListViewModel.appliances {
+//                        self.dailyPlan.appliancesReceived(appliances: appliancesListViewModel.appliances)
+////                    }
                     
                     if let lastFetch = dailyPlan.lastFetch {
                         let difference = Date().timeIntervalSince(lastFetch)
@@ -169,7 +172,9 @@ struct DayPlanView: View {
                         Task { await self.fetchCurrencyRates()}
                     }
                     
-                    NotificationCenter.simple(name: .applianceLabelLongTapEvent){
+                    
+                    // Subscribing to appliance-related notifications
+                    NotificationCenter.simple(name: .someApplianceLabelLongTapEvent){
                         if !areAppliancesLabelsTouchLearned {
                             print("Setting .areAppliancesLabelsTouchLearned to true...")
                             SettingsManager.shared.setValue(name: .areAppliancesLabelsTouchLearned, value: true)
@@ -177,6 +182,26 @@ struct DayPlanView: View {
                                 areAppliancesLabelsTouchLearned = true
                             }
                         }
+                    }
+                    
+                    NotificationCenter.listen(name: .applianceModified, completion: { payload in
+                        
+                        let uuidString = payload as! String
+                        
+                        if let modifiedAppliance = dailyPlan.getAppliancebyId(uuidString) {
+                            withAnimation {
+                                dailyPlan.unassignAppliance(appliance: modifiedAppliance)
+                                dailyPlan.assignAppliance(appliance: modifiedAppliance)
+                            }
+                        }
+                    })
+                    
+                    NotificationCenter.simple(name: .applianceRemoved) {
+                        
+                        print("applianceRemoved event listener tick")
+//                        withAnimation {
+//                            areAppliancesLabelsTouchLearned = true
+//                        }
                     }
                                         
                     

@@ -30,9 +30,7 @@ struct AppliedAppliancesView: View {
     static let appliedDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_GB")
-        //formatter.dateFormat = "dd HH:mm"
         formatter.dateFormat = "HH:mm"
-        //        formatter.timeZone = TimeZone(identifier: "Europe/London")
         return formatter
     }()
     
@@ -44,37 +42,19 @@ struct AppliedAppliancesView: View {
     
     
     func startTimeToVerticalPosition(time: Date, duration: Int) -> CGFloat {
-        
-        let d = CGFloat(duration)
-        
+        //let d = CGFloat(duration)
         let components = Calendar.current.dateComponents([.day, .hour, .minute], from: time)
         //        let day = components.day ?? 0
         let hour = components.hour ?? 0
         //        let minute = components.minute ?? 0
-        
-        var y: CGFloat = CGFloat(hour) * rowPaddingHeight + slotHeight(duration: duration) / 2
-        
-        //        height = height + CGFloat(duration) / 60 * 0.5
-        
+        let y: CGFloat = CGFloat(hour) * rowPaddingHeight + slotHeight(duration: duration) / 2
         return y + 1
     }
     
     func slotHeight(duration: Int) -> CGFloat {
-        
         let d = CGFloat(duration)
-        
-        //        let components = Calendar.current.dateComponents([.day, .hour, .minute], from: time)
-        ////        let day = components.day ?? 0
-        //        let hour = components.hour ?? 0
-        ////        let minute = components.minute ?? 0
-        //
-        //        return rowPaddingHeight * CGFloat(hour) + (CGFloat(duration) / 4)
-        //
         var height = rowHeight * (d / 60)
-        
         height = height + rowSpacing * (d / 60)
-        
-        
         return CGFloat( height - 3)
     }
     
@@ -125,7 +105,7 @@ struct AppliedAppliancesView: View {
                                         //GeometryReader { rectG in
                                         Rectangle()
                                             .fill(Palette.brandPurple)
-                                            .frame(width: geometry.size.width - 70, height: slotHeight(duration: aa.duration))
+                                            .frame(width: geometry.size.width - 136, height: slotHeight(duration: aa.duration))
                                             .opacity(0.65)
                                             .border(Palette.brandPurpleLight, width: 1)
                                         HStack {
@@ -133,7 +113,7 @@ struct AppliedAppliancesView: View {
                                             Text("\(aa.appliance.name) for \( durationToHumanReadable(aa.duration) ) hrs").font(Font.system(size: slotFontSize))
                                                 .frame(
                                                     
-                                                    maxWidth: geometry.size.width - 80,
+                                                    maxWidth: geometry.size.width - 100,
                                                     maxHeight: slotHeight(duration: aa.duration) - 8,
                                                     alignment: .topLeading)
                                             //                                                                    .background(.red)
@@ -143,7 +123,7 @@ struct AppliedAppliancesView: View {
                                         //.position(x: geometry.size.width / 2 - 130, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration) - 150)
                                         //}
                                     }
-                                    .position(x: geometry.size.width / 2 + 25, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration))
+                                    .position(x: geometry.size.width / 2 + 10, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration))
                                     //                                    .anchorPreference(
                                     //                                        key: BoundsPreferenceKey.self,
                                     //                                        value: .bounds

@@ -103,6 +103,7 @@ struct CoreApplianceEditorView: View {
                         withAnimation {
                             viewModel.delete(appliance: $viewModel.editingAppliance.wrappedValue)
                         }
+                        Notification.fire(name: .applianceRemoved)
                     } label: {
                         Label("Delete", systemImage: "trash").foregroundColor(.red)
                     }
@@ -130,6 +131,9 @@ struct CoreApplianceEditorView: View {
                     withAnimation {
                         viewModel.saveAppliance()
                     }
+                    
+                    Notification.fire(name: .applianceModified, payload: String(describing: $viewModel.editingAppliance.wrappedValue.id))
+                    
                 } label: {
                     Label($viewModel.editingAppliance.wrappedValue.name == "" ? "Create" : "Save", systemImage: "checkmark.circle")
                 }

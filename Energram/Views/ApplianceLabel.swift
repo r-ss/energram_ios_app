@@ -52,7 +52,7 @@ struct ApplianceLabel: View {
             LongPressGesture()
                 .onEnded { _ in
                     
-                    Notification.fire(name: .applianceLabelLongTapEvent) // used to set .areAppliancesLabelsTouchLearned setting and hide hint text in DailyPlanView
+                    Notification.fire(name: .someApplianceLabelLongTapEvent) // used to set .areAppliancesLabelsTouchLearned setting and hide hint text in DailyPlanView
                     
                     dailyPlan.selectedApplianceToEdit = appliance
                     

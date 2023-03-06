@@ -102,6 +102,7 @@ extension Appliance {
 // DRAGGING
 // https://serialcoder.dev/text-tutorials/swiftui/first-experience-with-transferable-implementing-drag-and-drop-in-swiftui/
 
+/*
 extension UTType {
     static var applianceUItype = UTType(exportedAs: "com.ress.energram.TransferableType.appliance")
 }
@@ -113,5 +114,4 @@ extension Appliance: Transferable {
     }
     
 }
-
-
+*/

@@ -16,7 +16,9 @@ extension Notification.Name {
     static var currencySettingChanged = Notification.Name("currency.setting.changed")
     static var latestCurrencyRatesRecieved = Notification.Name("data.currencyrates.latest.recieved")
     
-    static var applianceLabelLongTapEvent = Notification.Name("event.longtap.on.appliance.label")
+    static var someApplianceLabelLongTapEvent = Notification.Name("event.longtap.on.some.appliance.label")
+    static var applianceModified = Notification.Name("appliance.modified")
+    static var applianceRemoved = Notification.Name("appliance.removed")
 }
 
 // Method to fire notifications
@@ -34,7 +36,7 @@ extension NotificationCenter {
             queue: .main
         ) { (notification) in
             guard let payload: String = notification.userInfo!["payload"] as? String
-            else { return }
+            else { print("Can not get string payload"); return }
             completion(payload)
         }
     }

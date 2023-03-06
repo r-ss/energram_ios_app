@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-@MainActor
+//@MainActor
 final class AppliancesListViewModel: ObservableObject {
     
     @Published var showEditor = false
