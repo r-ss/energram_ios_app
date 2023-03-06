@@ -8,7 +8,7 @@
 import SwiftUI
 import Charts
 
-struct BarTick: Identifiable {
+private struct BarTick: Identifiable {
     var hour: Int
     var value: Float
     var id = UUID()
@@ -16,7 +16,7 @@ struct BarTick: Identifiable {
     var cheapIndex = 0
 }
 
-struct MinMaxHour {
+private struct MinMaxHour {
     var hour: Int
     var value: Float
     var measure: String
@@ -26,25 +26,27 @@ struct MinMaxHour {
 struct MiniChart: View {
     var forDay: DayPrice
     
-    let y_labels = Array(0...23)
+    @EnvironmentObject private var currency: Currency
     
-    let circleRadius: CGFloat = 8
+    private let y_labels = Array(0...23)
     
-    let smallerFont: Font = Font.system(size: 12)
+    private let circleRadius: CGFloat = 8
     
-    var min_hour: MinMaxHour {
+    private let smallerFont: Font = Font.system(size: 12)
+    
+    private var min_hour: MinMaxHour {
         let minValue: Float = forDay.data.min()!
         let idx: Int = forDay.data.firstIndex(where: {$0 == minValue})!
-        return MinMaxHour(hour: idx, value: minValue, measure: forDay.measure)
+        return MinMaxHour(hour: idx, value: minValue * currency.rate, measure: currency.powerUsageNotation)
     }
     
-    var max_hour: MinMaxHour {
+    private var max_hour: MinMaxHour {
         let maxValue: Float = forDay.data.max()!
         let idx: Int = forDay.data.firstIndex(where: {$0 == maxValue})!
-        return MinMaxHour(hour: idx, value: maxValue, measure: forDay.measure, color: Palette.chartRedTickColor)
+        return MinMaxHour(hour: idx, value: maxValue * currency.rate, measure: currency.powerUsageNotation, color: Palette.chartRedTickColor)
     }
     
-    var ticks: [BarTick] {
+    private var ticks: [BarTick] {
         var bin:[BarTick] = []
         
         let pmax: Float = forDay.data.max()!
@@ -53,9 +55,12 @@ struct MiniChart: View {
         
         var hour = 0
         for i in forDay.data {
-            let fl = CGFloat( (i - pmin) / diff / 24  )
-            var tickColor: Color = Color(UIColor.blend(color1: UIColor(Palette.chartGreenTickColor), intensity1: 1-fl/24, color2: UIColor(Palette.chartRedTickColor), intensity2: fl/24))
-            bin.append(BarTick(hour: hour, value: i, color: tickColor))
+            let fl = CGFloat( (i - pmin) / diff  )           
+            
+//            let tickColor: Color = Color(UIColor.blend(color1: UIColor(Palette.chartGreenTickColor), intensity1: 1-fl/24, color2: UIColor(Palette.chartRedTickColor), intensity2: fl/24))
+            let tickColor: Color = Color(UIColor.blend(color1: UIColor(Palette.chartGreenTickColor), intensity1: 1-fl, color2: UIColor(Palette.chartRedTickColor), intensity2: fl))
+            
+            bin.append(BarTick(hour: hour, value: i * currency.rate, color: tickColor))
             hour+=1
         }
         return bin
@@ -118,7 +123,7 @@ struct MiniChart: View {
                     //                              .foregroundStyle(Color.red)
                     AxisValueLabel() { // construct Text here
                         if let floatVal = value.as(Float.self) {
-                            Text("\(floatVal, specifier: "%.1f") €/kWh")
+                            Text("\(floatVal, specifier: "%.1f") \(currency.powerUsageNotation)")
                                 .font(.system(size: 12)) // style it
                                 .foregroundColor(Palette.textColor)
                         }

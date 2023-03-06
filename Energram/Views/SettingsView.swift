@@ -9,32 +9,24 @@ import Foundation
 
 import SwiftUI
 
+
+
+
+
 struct SettingsView: View {
-    
-    //@State private var showDebugInfo: Bool = false
-    //@State private var userReservedPower: Int = 0
-    
-    //    @State private var country_code_from_settings = "none"
     
     /// Settings
     @State private var showDebugInfo: Bool = false
     @State private var countryCode: String = "es"
-    @State private var selectedCurrency: String = "EUR"
-    @State private var currencyLatestCZK: Double = 23.0
     @State private var userReservedPower: Int = 4600
     
     private let countriesReadable = ["Spain", "Czech Republic"]
     @State private var countryPickerSelection = "Spain"
     
-    private let currenciesReadable = ["EUR", "CZK"]
-    @State private var currencyPickerSelection = "EUR"
     
     
+    @ObservedObject var currency: Currency
     
-    
-    
-    
-    //    @AppStorage("ReservedPower") var userReservedPower: Int = 4600
     
     private func changeCountry(readable: String) {
         
@@ -42,50 +34,22 @@ struct SettingsView: View {
         if readable == "Spain" {
             print("Set country in settings to: es")
             SettingsManager.shared.setValue(name: SettingsNames.countryCode, value: "es")
-            //            self.countryCode = "es"
-            self.changeCurrency(to: "EUR") // Force chagne to EUR if not Czech Rep.
-//            currencyPickerSelection = "EUR"
+            currency.selectedCurrency = .eur
         }
         
         if readable == "Czech Republic" {
             print("Set country in settings to: cz")
             SettingsManager.shared.setValue(name: SettingsNames.countryCode, value: "cz")
-            //            self.countryCode = "cz"
-            self.changeCurrency(to: "CZK")
-//            currencyPickerSelection = "CZK"
         }
         
         Notification.fire(name: .countrySettingChanged)
-        
     }
-    
-    private func changeCurrency(to: String) {
-        print("Set currency in settings to:", to)
-        //        self.currencyPickerSelection = to
-        //        self.currency = to
-        
-        if selectedCurrency != to {
-            SettingsManager.shared.setValue(name: SettingsNames.selectedCurrency, value: to)
-            Notification.fire(name: .currencySettingChanged)
-        }
-        
-        
-        
-        if currencyPickerSelection != to {
-            currencyPickerSelection = to
-        }
-        
-    }
-    
     
     private func readSettings() {
         self.showDebugInfo = SettingsManager.shared.getBoolValue(name: SettingsNames.showDebugInfo)
         self.countryCode = SettingsManager.shared.getStringValue(name: SettingsNames.countryCode)
-        self.selectedCurrency = SettingsManager.shared.getStringValue(name: SettingsNames.selectedCurrency)
-        self.currencyLatestCZK = SettingsManager.shared.getDoubleValue(name: SettingsNames.currencyLatestCZK)
         self.userReservedPower = SettingsManager.shared.getIntegerValue(name: SettingsNames.reservedPower)
     }
-    
     
     private func submitReservedPower() {
         SettingsManager.shared.setValue(name: SettingsNames.reservedPower, value: userReservedPower)
@@ -96,6 +60,7 @@ struct SettingsView: View {
             VStack(alignment: .leading, spacing: 15) {
                 Text("Settings").font(.headlineCustom).padding(.bottom)
                 
+                //Text("Currency: \(currency.symbol)")
                 
                 /// COUNTRY
                 Text("Select a country:").font(.regularCustom)
@@ -112,21 +77,19 @@ struct SettingsView: View {
                 
                 /// CURRENCY
                 if countryPickerSelection == "Czech Republic" {
-                    Picker("Select a currency", selection: $currencyPickerSelection) {
-                        ForEach(currenciesReadable, id: \.self) {
-                            Text($0).font(.regularCustom)
+                    Picker("Select a currency", selection: $currency.selectedCurrency) {
+                        
+                        ForEach(SelectedCurrency.allCases, id: \.self) { selection in
+                            Text(selection.tag)//.tag(flavor)
                         }
+                        
                     }
                     .pickerStyle(SegmentedPickerStyle())
-                    .onChange(of: currencyPickerSelection) { currencyName in
-                        //print("Picked currency: \(currencyName)")
-                        changeCurrency(to: currencyName)
-                    }
                 }
                 
                 /// RATES
-                if currencyPickerSelection == "CZK" {
-                    Text("1 EUR = \(currencyLatestCZK) CZK")
+                if currency.selectedCurrency == .czk {
+                    Text("1 EUR = \(currency.rate) \(currency.symbol)")
                 }
                 
                 /// RESERVED POWER
@@ -163,7 +126,6 @@ struct SettingsView: View {
                 if countryCode == "cz" {
                     self.countryPickerSelection = "Czech Republic"
                 }
-                self.currencyPickerSelection = selectedCurrency
             }
             .padding()
             .frame(width: geometry.size.width, alignment: .leading)
@@ -173,6 +135,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(currency: Currency())
     }
 }

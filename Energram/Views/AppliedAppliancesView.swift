@@ -11,6 +11,7 @@ import SwiftUI
 struct AppliedAppliancesView: View {
     
     @ObservedObject var dailyPlan: DailyPlan
+    @EnvironmentObject private var currency: Currency
     
     static let appliedDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -106,33 +107,23 @@ struct AppliedAppliancesView: View {
                                         withAnimation(.spring()){
                                             RoundedRectangle(cornerRadius: 4)
                                                 .fill(Palette.brandPurple)
-                                                .frame(width: geometry.size.width - 130, height: slotHeight(duration: aa.duration))
+                                                .frame(width: geometry.size.width - 140, height: slotHeight(duration: aa.duration))
                                                 .opacity(0.65)
                                                 .addBorder(Palette.brandPurpleLight, width: 1, cornerRadius: 4)
                                         }
                                         HStack {
-                                            
-                                            if selectedCurrency == "CZK" {
-                                                Text("\(aa.appliance.name) for \( durationToHumanReadable(aa.duration) ) hrs, \(aa.cost * Float(currencyLatestCZK), specifier: "%.2f")CZK")
+                                            Text("\(aa.appliance.name) for \( durationToHumanReadable(aa.duration) ) hrs, \(aa.cost * currency.rate, specifier: "%.2f") \(currency.symbol)")
                                                     .font(Font.system(size: 14))
                                                     .frame(
-                                                        maxWidth: geometry.size.width - 140,
+                                                        maxWidth: geometry.size.width - 150,
                                                         maxHeight: slotHeight(duration: aa.duration) - 8,
                                                         alignment: .topLeading)
-                                            } else {
-                                                Text("\(aa.appliance.name) for \( durationToHumanReadable(aa.duration) ) hrs, \(aa.cost, specifier: "%.2f")€")
-                                                    .font(Font.system(size: 14))
-                                                    .frame(
-                                                        maxWidth: geometry.size.width - 140,
-                                                        maxHeight: slotHeight(duration: aa.duration) - 8,
-                                                        alignment: .topLeading)
-                                            }
                                             
                                         }
                                         .padding(.leading, 5)
                                     }
                                     .offset(y: offsets[aa.appliance.id] ?? 0)
-                                    .position(x: geometry.size.width / 2 - 13, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration))
+                                    .position(x: geometry.size.width / 2 - 16, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration))
                                     
                                     .gesture(
                                         DragGesture(minimumDistance: 1, coordinateSpace: .global)

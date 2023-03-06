@@ -11,6 +11,7 @@ struct HourRow: View {
     
     var hour: Int = 0
     @ObservedObject var dailyPlan: DailyPlan
+    @EnvironmentObject private var currency: Currency
     
     var rowWidth: CGFloat = 200
     var rowHeight: CGFloat = 30
@@ -19,7 +20,7 @@ struct HourRow: View {
         HStack {
             Text("\(hour):00").font(Font.system(size: slotFontSize)).padding(.leading, 7)
             Spacer()
-            Text("\(accordingHourPrice, specifier: "%.2f") €/kWh").font(Font.system(size: 12)).padding(.trailing, 7)
+            Text("\(accordingHourPrice, specifier: "%.2f") \(currency.powerUsageNotation)").font(Font.system(size: 12)).padding(.trailing, 7)
         }
 //        .contentShape(Rectangle())
         .frame(width: rowWidth, height: rowHeight, alignment: .leading)

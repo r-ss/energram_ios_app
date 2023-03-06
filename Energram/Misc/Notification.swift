@@ -13,7 +13,7 @@ extension Notification.Name {
     static var latestPriceRecieved = Notification.Name("data.prices.latest.recieved")
     
     static var countrySettingChanged = Notification.Name("country.setting.changed")
-    static var currencySettingChanged = Notification.Name("currency.setting.changed")
+    //static var currencySettingChanged = Notification.Name("currency.setting.changed")
     static var latestCurrencyRatesRecieved = Notification.Name("data.currencyrates.latest.recieved")
     
     static var someApplianceLabelLongTapEvent = Notification.Name("event.longtap.on.some.appliance.label")

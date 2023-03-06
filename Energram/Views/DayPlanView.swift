@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DayPlanView: View {
     @ObservedObject var dailyPlan: DailyPlan
+    @ObservedObject var currency: Currency
     
     var body: some View {
         GeometryReader { geometry in
@@ -62,11 +63,11 @@ struct DayPlanView: View {
                     Group {
                         //Text("Reserved Power: \(self.userReservedPower) Watts")
                         
-                        if selectedCurrency == "EUR" {
-                            Text("Cost: €\( String(format: "%.2f", dailyPlan.appliedAppliances.totalCost) )").font(.headlineCustom).padding(.top, 10)
+                        if currency.selectedCurrency == .eur {
+                            Text("Cost: \( String(format: "%.2f", dailyPlan.appliedAppliances.totalCost) ) \(currency.symbol)").font(.headlineCustom).padding(.top, 10)
                         }
-                        if selectedCurrency == "CZK" {
-                            Text("Cost: \( String(format: "%.1f", dailyPlan.appliedAppliances.totalCost * Float(currencyLatestCZK)) ) CZK").font(.headlineCustom).padding(.top, 10)
+                        if currency.selectedCurrency == .czk {
+                            Text("Cost: \( String(format: "%.1f", dailyPlan.appliedAppliances.totalCost * Float(currencyLatestCZK)) ) \(currency.symbol)").font(.headlineCustom).padding(.top, 10)
                         }
                         
                         if let dp = dailyPlan.price {
@@ -105,9 +106,9 @@ struct DayPlanView: View {
                         }
                     }
                     
-                    if currencyRates == nil {
-                        Task { await self.fetchCurrencyRates()}
-                    }
+//                    if currencyRates == nil {
+//                        Task { await self.fetchCurrencyRates()}
+//                    }
                     
                     
                     // Subscribing to appliance-related notifications
@@ -179,7 +180,7 @@ struct DayPlanView: View {
     
     
     
-    @State private var currencyRates: CurrencyRateResponse?
+//    @State private var currencyRates: CurrencyRateResponse?
     
     /// SETTINGS
     @State private var countryCode: String = "es"
@@ -210,8 +211,8 @@ struct DayPlanView: View {
     
     private func readSettings() {
         self.countryCode = SettingsManager.shared.getStringValue(name: SettingsNames.countryCode)
-        self.selectedCurrency = SettingsManager.shared.getStringValue(name: SettingsNames.selectedCurrency)
-        self.currencyLatestCZK = SettingsManager.shared.getDoubleValue(name: SettingsNames.currencyLatestCZK)
+//        self.selectedCurrency = SettingsManager.shared.getStringValue(name: SettingsNames.selectedCurrency)
+//        self.currencyLatestCZK = SettingsManager.shared.getDoubleValue(name: SettingsNames.currencyLatestCZK)
         self.userReservedPower = SettingsManager.shared.getIntegerValue(name: SettingsNames.reservedPower)
         self.areAppliancesLabelsTouchLearned = SettingsManager.shared.getBoolValue(name: SettingsNames.areAppliancesLabelsTouchLearned)
     }
@@ -232,25 +233,21 @@ struct DayPlanView: View {
     }
     
     
-    private func fetchCurrencyRates() async {
-        currencyRatesLoading = true
-        Task(priority: .background) {
-            if let rateCZK = await CurrencyRateService().fetchLatestRateCZK() {
-                currencyLatestCZK = rateCZK
-                
-                
-                Notification.fire(name: .latestCurrencyRatesRecieved)
-            }
-            
-            
-        }
-    }
+//    private func fetchCurrencyRates() async {
+//        currencyRatesLoading = true
+//        Task(priority: .background) {
+//            if let rateCZK = await CurrencyRateService().fetchLatestRateCZK() {
+//                currencyLatestCZK = rateCZK
+//                Notification.fire(name: .latestCurrencyRatesRecieved)
+//            }
+//        }
+//    }
     
 }
 
 struct DayPlanView_Previews: PreviewProvider {
     static var previews: some View {
-        DayPlanView(dailyPlan: DailyPlan(type: .preview))
+        DayPlanView(dailyPlan: DailyPlan(type: .preview), currency: Currency())
     }
 }
 

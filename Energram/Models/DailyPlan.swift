@@ -59,32 +59,7 @@ class DailyPlan: ObservableObject {
             //self.appliances = [Appliance.mocked.appliance1, Appliance.mocked.appliance2]
             self.appliedAppliances.items = [AppliedAppliance.mocked.aa1, AppliedAppliance.mocked.aa2, AppliedAppliance.mocked.aa3, AppliedAppliance.mocked.aa4, AppliedAppliance.mocked.aa5]
             
-            let pricesBaked: [Float] = [
-                0.10724,
-                0.10465,
-                0.10397,
-                0.1056,
-                0.10361,
-                0.10448,
-                0.10385,
-                0.10782,
-                0.11107,
-                0.10924,
-                0.10661,
-                0.11204,
-                0.10965,
-                0.11058,
-                0.10933,
-                0.11464,
-                0.13467,
-                0.14514,
-                0.16633,
-                0.17132,
-                0.1622,
-                0.15324,
-                0.14495,
-                0.13524
-            ]
+            let pricesBaked: [Float] = DayPrice.mocked.day1.data
             
             for i in 0..<23 {
                 let newHour = Hour(id: i, price: pricesBaked[i], appliancesAssigned: [])
@@ -100,12 +75,8 @@ class DailyPlan: ObservableObject {
                     self.hours[idx].cheapIndex = index
                 }
             }
-            
-            
         }
     }
-        
-        
         
     
     func priceReceived(price data:DayPrice) {

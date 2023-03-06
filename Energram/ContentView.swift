@@ -21,14 +21,17 @@ struct ContentView: View {
     //@StateObject var priceService = PriceService()
     @StateObject var dailyPlan = DailyPlan()
     
+    @StateObject var currency = Currency()
+    
     @StateObject var userAuthState = UserAuthStateViewModel()
 
     var body: some View {
         VStack {
             TabView {
                 
-                                                
-                DayPlanView(dailyPlan: dailyPlan)
+                
+                
+                DayPlanView(dailyPlan: dailyPlan, currency: currency)
                     .tabItem {
                         Label("Daily plan", systemImage: "list.bullet.clipboard")
                     }
@@ -50,7 +53,7 @@ struct ContentView: View {
                         Label("Profile", systemImage: "person.crop.circle")
                     }
                 
-                SettingsView()
+                SettingsView(currency: currency)
                     .tabItem {
                         Label("Settings", systemImage: "gearshape.2.fill")
                     }
@@ -76,7 +79,8 @@ struct ContentView: View {
             //self.priceService.fetchData(for_country: country_code)
 //        }
         //.environmentObject(applianceService)
-        .environmentObject(dailyPlan)
+//        .environmentObject(dailyPlan)
+        .environmentObject(currency)
         .environmentObject(userAuthState)
         
         

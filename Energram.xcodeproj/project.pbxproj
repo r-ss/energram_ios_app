@@ -42,6 +42,7 @@
 		D0922CBA297ED82600743426 /* ArgentumSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB6297ED82600743426 /* ArgentumSans-Bold.ttf */; };
 		D0922CBB297ED82600743426 /* ArgentumSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB7297ED82600743426 /* ArgentumSans-Light.ttf */; };
 		D0922CBE297EDBAC00743426 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0922CBD297EDBAC00743426 /* Fonts.swift */; };
+		D092FF0529B6567C002639D8 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = D092FF0429B6567C002639D8 /* Currency.swift */; };
 		D0B5EE2029B3B8120084B710 /* AppliancesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5EE1F29B3B8120084B710 /* AppliancesListViewModel.swift */; };
 		D0B5EE2229B3B84E0084B710 /* ApplianceEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5EE2129B3B84E0084B710 /* ApplianceEditorViewModel.swift */; };
 		D0B6198E2938A47400887F00 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6198D2938A47400887F00 /* Appliance.swift */; };
@@ -134,6 +135,7 @@
 		D0922CB6297ED82600743426 /* ArgentumSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Bold.ttf"; sourceTree = "<group>"; };
 		D0922CB7297ED82600743426 /* ArgentumSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Light.ttf"; sourceTree = "<group>"; };
 		D0922CBD297EDBAC00743426 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		D092FF0429B6567C002639D8 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		D0B5EE1F29B3B8120084B710 /* AppliancesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliancesListViewModel.swift; sourceTree = "<group>"; };
 		D0B5EE2129B3B84E0084B710 /* ApplianceEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceEditorViewModel.swift; sourceTree = "<group>"; };
 		D0B6198D2938A47400887F00 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				D035A969291F7DF900426722 /* DayPrice.swift */,
 				D0B5EE1E29B3B7DF0084B710 /* Appliance */,
 				D05C5B5D298F906E00854C05 /* DailyPlan.swift */,
+				D092FF0429B6567C002639D8 /* Currency.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -611,6 +614,7 @@
 				D0C9240F29A608CB00A34E33 /* CommonPrimaryButton.swift in Sources */,
 				D0911F3B29B4FD08001DF9C5 /* AppliedAppliance.swift in Sources */,
 				D02FCF2D29B385850088BE23 /* CoreApplianceEditorView.swift in Sources */,
+				D092FF0529B6567C002639D8 /* Currency.swift in Sources */,
 				D0C9240929A5426C00A34E33 /* UserLoginRegisterView.swift in Sources */,
 				D02FCF2629B37AB00088BE23 /* DataManager.swift in Sources */,
 				D035A95D291F794500426722 /* Config.swift in Sources */,
