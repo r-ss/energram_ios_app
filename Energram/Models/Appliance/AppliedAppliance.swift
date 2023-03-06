@@ -25,20 +25,6 @@ extension AppliedAppliance {
         var aa4: AppliedAppliance
         var aa5: AppliedAppliance
         init() {
-            func dateFromISOString(_ isoString: String) -> Date? {
-                let formatter = DateFormatter()
-                formatter.timeZone = .gmt
-                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
-                return formatter.date(from: isoString)
-            }
-            
-            
-            
-            
-            
-            
-            
-
             self.aa1 = AppliedAppliance(start: dateFromISOString("2023-03-05T10:00:00+03:00")!, duration: 120, appliance: Appliance.mocked.appliance1)
             self.aa2 = AppliedAppliance(start: dateFromISOString("2023-03-05T12:00:00+03:00")!, duration: 60, appliance: Appliance.mocked.appliance2)
             self.aa3 = AppliedAppliance(start: dateFromISOString("2023-03-05T14:00:00+03:00")!, duration: 30, appliance: Appliance.mocked.appliance1)

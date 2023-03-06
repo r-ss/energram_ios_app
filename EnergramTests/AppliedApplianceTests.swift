@@ -26,16 +26,10 @@ final class AppliedApplianceTests: XCTestCase {
         let day = components.day ?? 0
         let hour = components.hour ?? 0
         let minute = components.minute ?? 0
-//        print("===========")
-//        print(aa.start)
-//        print(day)
-//        print(hour)
-//        print(minute)
-//        print("===========")
         
         XCTAssertEqual(day, 5)
-        XCTAssertEqual(hour, 23)
-        XCTAssertEqual(minute, 10)
+        XCTAssertEqual(hour, 10)
+        XCTAssertEqual(minute, 0)
     }
 
     func testPerformanceExample() throws {

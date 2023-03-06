@@ -33,6 +33,7 @@
 		D0496DF5291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */; };
 		D0590EF429B3920500C61176 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0590EF229B3920500C61176 /* CoreDataModel.xcdatamodeld */; };
 		D05C5B5E298F906E00854C05 /* DailyPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C5B5D298F906E00854C05 /* DailyPlan.swift */; };
+		D07AA05B29B63819006513B3 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07AA05A29B63819006513B3 /* DateUtils.swift */; };
 		D0911F3929B4C6CF001DF9C5 /* AppliedApplianceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0911F3829B4C6CF001DF9C5 /* AppliedApplianceTests.swift */; };
 		D0911F3B29B4FD08001DF9C5 /* AppliedAppliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0911F3A29B4FD08001DF9C5 /* AppliedAppliance.swift */; };
 		D0911F3D29B51583001DF9C5 /* HourRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0911F3C29B51583001DF9C5 /* HourRow.swift */; };
@@ -55,7 +56,6 @@
 		D0C9240B29A5EFEB00A34E33 /* UserAuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9240A29A5EFEB00A34E33 /* UserAuthState.swift */; };
 		D0C9240D29A5F07200A34E33 /* UserIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9240C29A5F07200A34E33 /* UserIndexView.swift */; };
 		D0C9240F29A608CB00A34E33 /* CommonPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9240E29A608CB00A34E33 /* CommonPrimaryButton.swift */; };
-		D0CC54C929B2611000263543 /* ApplianceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CC54C829B2611000263543 /* ApplianceDetailView.swift */; };
 		D0D59CC029A6B956008DE52B /* UserpicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D59CBF29A6B956008DE52B /* UserpicView.swift */; };
 		D0D5BD7629A10EBC00CCDC5D /* price_all_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD6F29A10EBC00CCDC5D /* price_all_response.json */; };
 		D0D5BD7729A10EBC00CCDC5D /* auth_success_response.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D5BD7029A10EBC00CCDC5D /* auth_success_response.json */; };
@@ -124,6 +124,7 @@
 		D0496DF4291F7856008BEDA5 /* EnergramUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergramUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D0590EF329B3920500C61176 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		D05C5B5D298F906E00854C05 /* DailyPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlan.swift; sourceTree = "<group>"; };
+		D07AA05A29B63819006513B3 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		D08C1EDD2962B030004BF768 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D0911F3829B4C6CF001DF9C5 /* AppliedApplianceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedApplianceTests.swift; sourceTree = "<group>"; };
 		D0911F3A29B4FD08001DF9C5 /* AppliedAppliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedAppliance.swift; sourceTree = "<group>"; };
@@ -147,7 +148,6 @@
 		D0C9240A29A5EFEB00A34E33 /* UserAuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthState.swift; sourceTree = "<group>"; };
 		D0C9240C29A5F07200A34E33 /* UserIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIndexView.swift; sourceTree = "<group>"; };
 		D0C9240E29A608CB00A34E33 /* CommonPrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonPrimaryButton.swift; sourceTree = "<group>"; };
-		D0CC54C829B2611000263543 /* ApplianceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceDetailView.swift; sourceTree = "<group>"; };
 		D0D59CBF29A6B956008DE52B /* UserpicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserpicView.swift; sourceTree = "<group>"; };
 		D0D5BD6F29A10EBC00CCDC5D /* price_all_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = price_all_response.json; sourceTree = "<group>"; };
 		D0D5BD7029A10EBC00CCDC5D /* auth_success_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = auth_success_response.json; sourceTree = "<group>"; };
@@ -218,7 +218,6 @@
 				D02FCF2C29B385840088BE23 /* CoreApplianceEditorView.swift */,
 				D02F4F7A29B4930300328639 /* AppliedAppliancesView.swift */,
 				D035A967291F7B7B00426722 /* DebugView.swift */,
-				D0CC54C829B2611000263543 /* ApplianceDetailView.swift */,
 				D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */,
 				D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */,
 				D0911F3C29B51583001DF9C5 /* HourRow.swift */,
@@ -246,6 +245,7 @@
 				D0E2C7A3292122DD003F4DD9 /* DataPrettyPrint.swift */,
 				D0922CBD297EDBAC00743426 /* Fonts.swift */,
 				D03D258229A2552900A96531 /* Notification.swift */,
+				D07AA05A29B63819006513B3 /* DateUtils.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -593,13 +593,13 @@
 				D0B5EE2229B3B84E0084B710 /* ApplianceEditorViewModel.swift in Sources */,
 				D0590EF429B3920500C61176 /* CoreDataModel.xcdatamodeld in Sources */,
 				D0BA301529ACE8D5006411CB /* CurrencyRateService.swift in Sources */,
-				D0CC54C929B2611000263543 /* ApplianceDetailView.swift in Sources */,
 				D0D5BD8729A1100300CCDC5D /* EnergramService.swift in Sources */,
 				D0B6198E2938A47400887F00 /* Appliance.swift in Sources */,
 				D0D5BD8229A10F3300CCDC5D /* RequestError.swift in Sources */,
 				D035A966291F7B3400426722 /* Log.swift in Sources */,
 				D035A968291F7B7B00426722 /* DebugView.swift in Sources */,
 				D02FCF2429B378B70088BE23 /* PersistentStore.swift in Sources */,
+				D07AA05B29B63819006513B3 /* DateUtils.swift in Sources */,
 				D0C9240B29A5EFEB00A34E33 /* UserAuthState.swift in Sources */,
 				D0E2C7A6292124DF003F4DD9 /* MultipleDaysChartView.swift in Sources */,
 				D05C5B5E298F906E00854C05 /* DailyPlan.swift in Sources */,

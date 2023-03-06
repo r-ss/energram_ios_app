@@ -67,6 +67,6 @@ struct HourRow: View {
 
 struct HourLabel_Previews: PreviewProvider {
     static var previews: some View {
-        HourRow(hour: 5, dailyPlan: DailyPlan(type: .preview))
+        HourRow(hour: 5, dailyPlan: DailyPlan(type: .preview), rowWidth: 360)
     }
 }

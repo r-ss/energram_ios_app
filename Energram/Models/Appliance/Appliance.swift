@@ -27,16 +27,6 @@ struct Appliance: Codable, Hashable, Identifiable {
         case createdAt = "created"
     }
     
-        
-//    init(name: String = "") {
-//            self.id = UUID()
-//            self.name = name
-//            self.typical_duration = 1
-//            self.power = 1
-//            self.created_by = "Model"
-//        }
-
-    
 }
 
 // MARK: Mocked Data

@@ -10,11 +10,6 @@ import SwiftUI
 struct DayPlanView: View {
     @ObservedObject var dailyPlan: DailyPlan
     
-    //    @StateObject var appliancesListViewModel = AppliancesListViewModel()
-    
-    
-    
-    
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.vertical) {
@@ -65,7 +60,7 @@ struct DayPlanView: View {
                     
                     
                     Group {
-                        Text("Reserved Power: \(self.userReservedPower) Watts")
+                        //Text("Reserved Power: \(self.userReservedPower) Watts")
                         
                         if selectedCurrency == "EUR" {
                             Text("Cost: €\( String(format: "%.2f", dailyPlan.appliedAppliances.totalCost) )").font(.headlineCustom).padding(.top, 10)
@@ -76,7 +71,7 @@ struct DayPlanView: View {
                         
                         if let dp = dailyPlan.price {
                             if let dateFmt = dailyPlan.price?.dateFormatted {
-                                Text("Electricity price graph for \(dateFmt):").padding(.top, 20)
+                                Text("Price graph for \(dateFmt):").padding(.top, 20)
                             }
                             MiniChart(forDay: dp)
                         } else {
@@ -220,22 +215,7 @@ struct DayPlanView: View {
         self.userReservedPower = SettingsManager.shared.getIntegerValue(name: SettingsNames.reservedPower)
         self.areAppliancesLabelsTouchLearned = SettingsManager.shared.getBoolValue(name: SettingsNames.areAppliancesLabelsTouchLearned)
     }
-    
-    //    private func fetchAppliances() async {
-    //        appliancesLoading = true
-    //        Task(priority: .background) {
-    //            let response = await EnergramService().fetchAppliances()
-    //            switch response {
-    //            case .success(let result):
-    //                dailyPlan.appliancesReceived(appliances: result)
-    //                appliancesLoading = false
-    //            case .failure(let error):
-    //                print("Request failed with error: \(error.customMessage)")
-    //                appliancesLoading = false
-    //            }
-    //        }
-    //    }
-    
+        
     private func fetchLatestPrice(forCountry code: String) async {
         pricesLoading = true
         Task(priority: .background) {
