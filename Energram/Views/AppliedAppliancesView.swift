@@ -48,6 +48,8 @@ struct AppliedAppliancesView: View {
         let hour = components.hour ?? 0
         //        let minute = components.minute ?? 0
         let y: CGFloat = CGFloat(hour) * rowPaddingHeight + slotHeight(duration: duration) / 2
+        
+//        print(y)
         return y + 1
     }
     
@@ -56,6 +58,18 @@ struct AppliedAppliancesView: View {
         var height = rowHeight * (d / 60)
         height = height + rowSpacing * (d / 60)
         return CGFloat( height - 3)
+    }
+    
+    func offsetToTimeDiff(_ offset: CGFloat?) -> Int? {
+        
+        guard let diff = offset else {
+            return nil
+        }
+        
+        let timeDiff = diff * (60 / rowPaddingHeight)
+        
+        return Int(timeDiff)
+        
     }
     
     let slotFontSize: CGFloat = 14
@@ -71,80 +85,123 @@ struct AppliedAppliancesView: View {
     }
     
     
+    //    @State private var location: CGPoint = CGPoint(x: 0, y: 0) // 1
+    //
+    //    @GestureState private var fingerLocation: CGPoint? = nil
+    
+    @State private var offsets: Dictionary<UUID, CGFloat> = [:]
+    @State private var lastOffsets: Dictionary<UUID, CGFloat> = [:]
+    
+    //        @State private var offsetY: CGFloat = 0
+    //        @State private var lastOffsetY: CGFloat = 0
+    
+    //    var fingerDrag(initialY: CGFloat): some Gesture {
+    //        DragGesture()
+    //            .updating($fingerLocation) { (value, fingerLocation, transaction) in // 1, 2
+    //                fingerLocation = value.location // 3
+    //            }
+    //    }
     
     var body: some View {
-        ScrollView {
-            GeometryReader { geometry in
-                VStack {
-                    ZStack {
-                        VStack(spacing: rowSpacing) {
-                            ForEach(self.dailyPlan.hours, id:\.self) { hour in
-                                //                            HourLabel(hour: hour, dailyPlan: dailyPlan)
+        //        ScrollView {
+        GeometryReader { geometry in
+            VStack {
+                ZStack {
+                    VStack(spacing: rowSpacing) {
+                        ForEach(self.dailyPlan.hours, id:\.self) { hour in
+                            //                            HourLabel(hour: hour, dailyPlan: dailyPlan)
+                            
+                            ZStack(alignment: .leading) {
+                                Rectangle()
+                                    .fill(.tertiary)
+                                    .frame(width: geometry.size.width, height: rowHeight)
+                                HStack {
+                                    HourRow(hour: hour.id, dailyPlan: dailyPlan, rowWidth: geometry.size.width, rowHeight: rowHeight)
+                                    //Text("\(hour.id):00").padding(.leading, 7)
+                                }
+                            }
+                        }
+                    }
+                    
+                    Group {
+                        
+                        ForEach(self.dailyPlan.appliedAppliances.items, id: \.self) { aa in
+                            VStack {
+                                
+                                
+                                
                                 
                                 ZStack(alignment: .leading) {
-                                    Rectangle()
-                                        .fill(.tertiary)
-                                        .frame(width: geometry.size.width, height: rowHeight)
+                                    //GeometryReader { rectG in
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .fill(Palette.brandPurple)
+                                        .frame(width: geometry.size.width - 130, height: slotHeight(duration: aa.duration))
+                                        .opacity(0.65)
+                                        .addBorder(Palette.brandPurpleLight, width: 1, cornerRadius: 4)
+                                    //                                            .stroke(Color.black, lineWidth: 1)
+                                    //                                            .border(Palette.brandPurpleLight, width: 1, cornerRadius: 10)
                                     HStack {
-                                        HourRow(hour: hour.id, dailyPlan: dailyPlan, rowWidth: geometry.size.width, rowHeight: rowHeight)
-                                        //Text("\(hour.id):00").padding(.leading, 7)
+                                        //                                                Text("\(aa.duration) minutes").font(Font.system(size: slotFontSize))
+                                        Text("\(aa.appliance.name) \(aa.start) for \( durationToHumanReadable(aa.duration) ) hrs, \(aa.cost, specifier: "%.2f") €")
+                                            .font(Font.system(size: slotFontSize))
+                                            .frame(
+                                                maxWidth: geometry.size.width - 140,
+                                                maxHeight: slotHeight(duration: aa.duration) - 8,
+                                                alignment: .topLeading)
+                                                                                                            .background(.red)
+                                                                                                            .opacity(0.65)
                                     }
+                                    .padding(.leading, 5)
+                                    //.position(x: geometry.size.width / 2 - 130, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration) - 150)
+                                    //}
                                 }
-                            }
-                        }
-                        
-                        Group {
-                            
-                            ForEach(self.dailyPlan.appliedAppliances.items, id: \.self) { aa in
-                                VStack {
-                                    
-                                    
-                                    
-                                    
-                                    ZStack(alignment: .leading) {
-                                        //GeometryReader { rectG in
-                                        RoundedRectangle(cornerRadius: 4)
-                                            .fill(Palette.brandPurple)
-                                            .frame(width: geometry.size.width - 136, height: slotHeight(duration: aa.duration))
-                                            .opacity(0.65)
-                                            .addBorder(Palette.brandPurpleLight, width: 1, cornerRadius: 4)
-//                                            .stroke(Color.black, lineWidth: 1)
-//                                            .border(Palette.brandPurpleLight, width: 1, cornerRadius: 10)
-                                        HStack {
-                                            //                                                Text("\(aa.duration) minutes").font(Font.system(size: slotFontSize))
-                                            Text("\(aa.appliance.name) for \( durationToHumanReadable(aa.duration) ) hrs, \(aa.cost, specifier: "%.2f") €")
-                                                .font(Font.system(size: slotFontSize))
-                                                .frame(
-                                                    
-                                                    maxWidth: geometry.size.width - 100,
-                                                    maxHeight: slotHeight(duration: aa.duration) - 8,
-                                                    alignment: .topLeading)
-                                            //                                                                    .background(.red)
-                                            //                                                                    .opacity(0.65)
+                                .offset(y: offsets[aa.appliance.id] ?? 0)
+                                .position(x: geometry.size.width / 2 - 13, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration))
+                                
+                                .gesture(
+                                    DragGesture(minimumDistance: 1, coordinateSpace: .global)
+                                        .onChanged { gesture in
+                                            //withAnimation(.spring()) {
+                                            
+//                                            print(geometry.size.width)
+
+                                            //                                                            let uuid: UUID = aa.appliance.id
+                                            //print(uuid)
+                                            //offsetY = lastOffsetY + gesture.translation.height
+
+                                            offsets[aa.appliance.id] = (lastOffsets[aa.appliance.id] ?? 0) + gesture.translation.height
+
+                                            //}
                                         }
-                                        .padding(.leading, 7)
-                                        //.position(x: geometry.size.width / 2 - 130, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration) - 150)
-                                        //}
-                                    }
-                                    .position(x: geometry.size.width / 2 + 10, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration))
-                                    //                                    .anchorPreference(
-                                    //                                        key: BoundsPreferenceKey.self,
-                                    //                                        value: .bounds
-                                    //                                    ) { $0 }
-                                    
-                                }
+                                        .onEnded { _ in
+                                            //lastOffsetY = offsetY
+                                            lastOffsets[aa.appliance.id] = offsets[aa.appliance.id]
+                                            
+//                                            print( offsetToTimeDiff(lastOffsets[aa.appliance.id]))
+                                            
+                                            if let diff = offsetToTimeDiff(lastOffsets[aa.appliance.id]) {
+                                                lastOffsets[aa.appliance.id] = 0
+                                                offsets[aa.appliance.id] = 0
+                                                
+                                                dailyPlan.applyTimeDiffAfterDrag(aa: aa, diffRecieved: diff)
+                                            }
+                                        }
+                                )
+                                
                                 
                             }
                             
-                            
                         }
-                        
                         
                         
                     }
                     
                     
+                    
                 }
+                
+                
+                //                }
             }
         }
     }
@@ -161,6 +218,6 @@ fileprivate extension View {
         // https://stackoverflow.com/questions/57753997/rounded-borders-in-swiftui
         let roundedRect = RoundedRectangle(cornerRadius: cornerRadius)
         return clipShape(roundedRect)
-             .overlay(roundedRect.strokeBorder(content, lineWidth: width))
+            .overlay(roundedRect.strokeBorder(content, lineWidth: width))
     }
 }

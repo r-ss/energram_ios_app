@@ -185,6 +185,50 @@ class DailyPlan: ObservableObject {
         }
     }
     
+    func applyTimeDiffAfterDrag(aa: AppliedAppliance, diffRecieved: Int?) {
+//        log("> applyTimeDiffAfterDrag")
+        
+        guard let diff = diffRecieved else {
+            log("Received nil time diff")
+            return
+        }
+        
+//        let date = Date(aa.start)
+//        let midnight = Calendar.current.date(bySettingHour: 00, minute: 0, second: 0, of: date)!
+//
+        guard let newStart = Calendar.current.date(byAdding: .minute, value: diff, to: aa.start) else {
+            log("Cannot apply diff")
+            return
+        }
+        
+        let components = Calendar.current.dateComponents([.hour, .minute], from: newStart)
+        let hour = components.hour ?? 0
+        let minute = components.minute ?? 0
+        
+    
+        let midnight = Calendar.current.date(bySettingHour: 00, minute: 0, second: 0, of: Date())!
+        
+        
+        
+        var newcomponents = DateComponents()
+        newcomponents.hour = hour
+        newcomponents.minute = 0
+        
+        
+        let roundedToHour = Calendar.current.date(byAdding: newcomponents, to: midnight)!
+        
+        
+        
+        
+        print(roundedToHour)
+        
+//        self.appliedAppliances.modify(aa: aa, toTime: roundedToHour)
+        
+        self.unassignAppliance(appliance: aa.appliance)
+        self.assignAppliance(appliance: aa.appliance, toHour: hour)
+//        self.hours[hour].appliancesAssigned.append(appliance)
+    }
+    
     func changeApplianceRunTime(appliance: Appliance, newStartTime: Int) {
         //log("> changeApplianceRunTime")
         self.unassignAppliance(appliance: appliance)
@@ -314,16 +358,24 @@ class DailyPlan: ObservableObject {
     }
     
     
-    private func assignAppliance(appliance: Appliance) {
-        //log("> assignAppliance")
-        let timeslotIndex = chooseTimeslot(forAppliance: appliance)
+    private func assignAppliance(appliance: Appliance, toHour: Int? = nil) {
+        log("> assignAppliance to hour \(toHour)")
+        
+        
+        var timeslotIndex: Int = 0
+        
+        if let forcedHour = toHour {
+            timeslotIndex = forcedHour
+        } else {
+            timeslotIndex = chooseTimeslot(forAppliance: appliance)
+        }
+        
         self.hours[timeslotIndex].appliancesAssigned.append(appliance)
         
         let cost = calculatePricexDuration(startHourIndex: timeslotIndex, durationMinutes: appliance.typical_duration)
         
         self.appliedAppliances.add(appliance: appliance, hour: timeslotIndex, cost: cost)
-        
-        //self.printPlan()
+
     }
     
     private func unassignAppliance(appliance: Appliance) {
