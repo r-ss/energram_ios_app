@@ -110,7 +110,8 @@ struct AppliedAppliancesView: View {
                                             .border(Palette.brandPurpleLight, width: 1)
                                         HStack {
                                             //                                                Text("\(aa.duration) minutes").font(Font.system(size: slotFontSize))
-                                            Text("\(aa.appliance.name) for \( durationToHumanReadable(aa.duration) ) hrs").font(Font.system(size: slotFontSize))
+                                            Text("\(aa.appliance.name) for \( durationToHumanReadable(aa.duration) ) hrs, \(aa.cost, specifier: "%.2f") €")
+                                                .font(Font.system(size: slotFontSize))
                                                 .frame(
                                                     
                                                     maxWidth: geometry.size.width - 100,

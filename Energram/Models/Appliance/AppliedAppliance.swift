@@ -12,6 +12,7 @@ struct AppliedAppliance: Identifiable, Hashable {
     var start: Date
     var duration: Int
     var appliance: Appliance
+    var cost: Float = 0.0
 }
 
 // MARK: Mocked Data
@@ -55,15 +56,15 @@ class AppliedAppliances: ObservableObject {
     
     @Published var items: [AppliedAppliance] = []
     
-    func add(appliance: Appliance, hour: Int) {
+    func add(appliance: Appliance, hour: Int, cost: Float) {
         
         let date = Date()
         let midnight = Calendar.current.date(bySettingHour: 00, minute: 0, second: 0, of: date)!
         let adjusted = Calendar.current.date(byAdding: .hour, value: hour, to: midnight)!
         
         
-        
-        let aa = AppliedAppliance(start: adjusted, duration: appliance.typical_duration, appliance: appliance)
+                
+        let aa = AppliedAppliance(start: adjusted, duration: appliance.typical_duration, appliance: appliance, cost: cost)
         self.items.append(aa)
     }
     

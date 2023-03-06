@@ -193,6 +193,63 @@ class DailyPlan: ObservableObject {
     
     // MARK: Calculations
     
+    func calculatePricexDuration(startHourIndex: Int, durationMinutes: Int) -> Float {
+        
+        guard let prices: [Float] = self.price?.data else {
+            print("Error in set prices in DailyPlan.swift")
+            return 0
+        }
+        
+        var sum: Float = 0
+
+        let hours = durationMinutes / 60
+        let andMinutes = durationMinutes % 60
+        
+        var lastCompleteHourIndex: Int = startHourIndex
+        if hours > 0 {
+            for index in 0..<hours {
+                sum = sum + prices[startHourIndex + index]
+                lastCompleteHourIndex = index
+            }
+            sum = sum + (prices[ lastCompleteHourIndex + 1] / 60) * Float(andMinutes)
+        } else {
+            sum = (prices[ startHourIndex ] / 60) * Float(andMinutes)
+        }
+        return sum
+    }
+
+    func findMinimumPriceInDay(durationMinutes: Int) -> (hour: Int, price: Float) {
+        var minimumStartHour: Int = 4
+        var minimumFound = calculatePricexDuration(startHourIndex: 0, durationMinutes: durationMinutes)
+        
+        let hours = durationMinutes / 60
+        //let andMinutes = durationMinutes % 60
+        
+        if hours > 0 {
+            for hour in 0...24-hours {
+                let candidate: Float = calculatePricexDuration(startHourIndex: hour, durationMinutes: durationMinutes)
+                if candidate < minimumFound {
+                    minimumFound = candidate
+                    minimumStartHour = hour
+                }
+            }
+        } else {
+            for hour in 0..<24 {
+                let candidate: Float = calculatePricexDuration(startHourIndex: hour, durationMinutes: durationMinutes)
+                if candidate < minimumFound {
+                    minimumFound = candidate
+                    minimumStartHour = hour
+                }
+                
+            }
+            
+        }
+        return (hour: minimumStartHour, price: minimumFound)
+    }
+    
+    
+    
+    
     private var allPricesArray: [Float] {
         var a: [Float] = []
         for i in hours {
@@ -209,36 +266,39 @@ class DailyPlan: ObservableObject {
 //        let sortedByPrice:[Hour] = hours.sorted { $0.price < $1.price}
 //        let sortedByPriceAndFiltered:[Hour] = sortedByPrice.filter(){$0.usedPower <= userReservedPower}
         
-        let duration: Int = appliance.typical_duration / 60
-                
-        guard let prices: [Float] = self.price?.data else {
-            print("Error in set prices in DailyPlan.swift")
-            return 0
-        }
+        
+        
+        
+        
+        
+        let minimum = findMinimumPriceInDay(durationMinutes: appliance.typical_duration)
+        return minimum.hour
 
-        func calculatePricexDuration(startHourIndex: Int, duration: Int) -> Float {
-            var sum: Float = 0
-//            print(self.price!.data)
-            for index in (0...duration-1) {
-                sum = sum + prices[startHourIndex + index]
-            }
-            return sum
-        }
 
-        var minimumStartHour: Int = 0
-        var minimumFound = calculatePricexDuration(startHourIndex: 0, duration: duration)
-
-        for index in (0...24-duration) {
-            let candidate: Float = calculatePricexDuration(startHourIndex: index, duration: duration)
-        //    minimumFound = min(minimumFound.price, .price)
-            
-            if candidate < minimumFound {
-                minimumFound = candidate
-                minimumStartHour = index
-            }
-
-        }
-        return minimumStartHour
+        
+//        func calculatePricexDuration(startHourIndex: Int, duration: Int) -> Float {
+//            var sum: Float = 0
+////            print(self.price!.data)
+//            for index in (0...duration-1) {
+//                sum = sum + prices[startHourIndex + index]
+//            }
+//            return sum
+//        }
+//
+//        var minimumStartHour: Int = 0
+//        var minimumFound = calculatePricexDuration(startHourIndex: 0, duration: duration)
+//
+//        for index in (0...24-duration) {
+//            let candidate: Float = calculatePricexDuration(startHourIndex: index, duration: duration)
+//        //    minimumFound = min(minimumFound.price, .price)
+//
+//            if candidate < minimumFound {
+//                minimumFound = candidate
+//                minimumStartHour = index
+//            }
+//
+//        }
+//        return minimumStartHour
         
 //        for (_, hour) in sortedByPriceAndFiltered.enumerated() {
 //            if hour.usedPower < appliance.power {
@@ -259,8 +319,9 @@ class DailyPlan: ObservableObject {
         let timeslotIndex = chooseTimeslot(forAppliance: appliance)
         self.hours[timeslotIndex].appliancesAssigned.append(appliance)
         
-        let aa = AppliedAppliance(start: Date(), duration: appliance.typical_duration, appliance: appliance)
-        self.appliedAppliances.add(appliance: appliance, hour: timeslotIndex)
+        let cost = calculatePricexDuration(startHourIndex: timeslotIndex, durationMinutes: appliance.typical_duration)
+        
+        self.appliedAppliances.add(appliance: appliance, hour: timeslotIndex, cost: cost)
         
         //self.printPlan()
     }
