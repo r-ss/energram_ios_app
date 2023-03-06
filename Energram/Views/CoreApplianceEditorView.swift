@@ -100,10 +100,13 @@ struct CoreApplianceEditorView: View {
                 Section {
                     Button(role: .destructive) {
                         presentationMode.wrappedValue.dismiss()
+                        
+                        Notification.fire(name: .applianceWillBeRemoved, payload: String(describing: $viewModel.editingAppliance.wrappedValue.id))
+                        
                         withAnimation {
                             viewModel.delete(appliance: $viewModel.editingAppliance.wrappedValue)
                         }
-                        Notification.fire(name: .applianceRemoved)
+//                        Notification.fire(name: .applianceRemoved)
                     } label: {
                         Label("Delete", systemImage: "trash").foregroundColor(.red)
                     }

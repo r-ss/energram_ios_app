@@ -56,6 +56,20 @@ class AppliedAppliances: ObservableObject {
     
     @Published var items: [AppliedAppliance] = []
     
+    var totalCost: Float {
+        
+        var total: Float = 0.0
+        
+        for a in self.items {
+            
+            total = total + a.cost
+        }
+        
+        return total
+        
+        
+    }
+    
     func add(appliance: Appliance, hour: Int, cost: Float) {
         
         let date = Date()

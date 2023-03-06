@@ -18,7 +18,7 @@ extension Notification.Name {
     
     static var someApplianceLabelLongTapEvent = Notification.Name("event.longtap.on.some.appliance.label")
     static var applianceModified = Notification.Name("appliance.modified")
-    static var applianceRemoved = Notification.Name("appliance.removed")
+    static var applianceWillBeRemoved = Notification.Name("appliance.will.be.removed")
 }
 
 // Method to fire notifications

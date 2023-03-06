@@ -8,21 +8,6 @@
 import SwiftUI
 
 
-//struct BoundsPreferenceKey: PreferenceKey {
-//    typealias Value = Anchor<CGRect>?
-//
-//    static var defaultValue: Value = nil
-//
-//    static func reduce(
-//        value: inout Value,
-//        nextValue: () -> Value
-//    ) {
-//        value = nextValue()
-//    }
-//}
-
-
-
 struct AppliedAppliancesView: View {
     
     @ObservedObject var dailyPlan: DailyPlan
@@ -40,16 +25,20 @@ struct AppliedAppliancesView: View {
         rowHeight + rowSpacing
     }
     
+    @State private var selectedCurrency: String = "EUR"
+    @State private var currencyLatestCZK: Double = 23.0
+    
+    private func readSettings() {
+        self.selectedCurrency = SettingsManager.shared.getStringValue(name: SettingsNames.selectedCurrency)
+        self.currencyLatestCZK = SettingsManager.shared.getDoubleValue(name: SettingsNames.currencyLatestCZK)
+    }
     
     func startTimeToVerticalPosition(time: Date, duration: Int) -> CGFloat {
-        //let d = CGFloat(duration)
         let components = Calendar.current.dateComponents([.day, .hour, .minute], from: time)
         //        let day = components.day ?? 0
         let hour = components.hour ?? 0
         //        let minute = components.minute ?? 0
         let y: CGFloat = CGFloat(hour) * rowPaddingHeight + slotHeight(duration: duration) / 2
-        
-//        print(y)
         return y + 1
     }
     
@@ -61,19 +50,12 @@ struct AppliedAppliancesView: View {
     }
     
     func offsetToTimeDiff(_ offset: CGFloat?) -> Int? {
-        
         guard let diff = offset else {
             return nil
         }
-        
         let timeDiff = diff * (60 / rowPaddingHeight)
-        
         return Int(timeDiff)
-        
     }
-    
-    let slotFontSize: CGFloat = 14
-    
     
     func durationToHumanReadable(_ durationInMinutes: Int) -> String {
         
@@ -84,33 +66,25 @@ struct AppliedAppliancesView: View {
         return "\(tuple.hours):\( String(format: "%02d", tuple.leftMinutes) )"
     }
     
-    
-    //    @State private var location: CGPoint = CGPoint(x: 0, y: 0) // 1
-    //
-    //    @GestureState private var fingerLocation: CGPoint? = nil
+    func calcDragLimit(initial: CGFloat, translate: CGFloat, duration: CGFloat) -> CGFloat {
+        let bounds: (top: CGFloat, bottom: CGFloat) = (top: 0.0 + duration/4, bottom: 700.0 - duration/4)
+        let intention = initial + translate
+        
+        let result = max( min(intention, bounds.bottom), bounds.top )
+        
+        //print("initial: \(initial), translate: \(translate), intention: \(intention), result: \(result), bounds: \(bounds.top)x\(bounds.bottom)")
+        return result
+    }
     
     @State private var offsets: Dictionary<UUID, CGFloat> = [:]
     @State private var lastOffsets: Dictionary<UUID, CGFloat> = [:]
     
-    //        @State private var offsetY: CGFloat = 0
-    //        @State private var lastOffsetY: CGFloat = 0
-    
-    //    var fingerDrag(initialY: CGFloat): some Gesture {
-    //        DragGesture()
-    //            .updating($fingerLocation) { (value, fingerLocation, transaction) in // 1, 2
-    //                fingerLocation = value.location // 3
-    //            }
-    //    }
-    
     var body: some View {
-        //        ScrollView {
         GeometryReader { geometry in
             VStack {
                 ZStack {
                     VStack(spacing: rowSpacing) {
                         ForEach(self.dailyPlan.hours, id:\.self) { hour in
-                            //                            HourLabel(hour: hour, dailyPlan: dailyPlan)
-                            
                             ZStack(alignment: .leading) {
                                 Rectangle()
                                     .fill(.tertiary)
@@ -128,80 +102,62 @@ struct AppliedAppliancesView: View {
                         ForEach(self.dailyPlan.appliedAppliances.items, id: \.self) { aa in
                             VStack {
                                 
-                                
-                                
-                                
-                                ZStack(alignment: .leading) {
-                                    //GeometryReader { rectG in
-                                    RoundedRectangle(cornerRadius: 4)
-                                        .fill(Palette.brandPurple)
-                                        .frame(width: geometry.size.width - 130, height: slotHeight(duration: aa.duration))
-                                        .opacity(0.65)
-                                        .addBorder(Palette.brandPurpleLight, width: 1, cornerRadius: 4)
-                                    //                                            .stroke(Color.black, lineWidth: 1)
-                                    //                                            .border(Palette.brandPurpleLight, width: 1, cornerRadius: 10)
-                                    HStack {
-                                        //                                                Text("\(aa.duration) minutes").font(Font.system(size: slotFontSize))
-                                        Text("\(aa.appliance.name) \(aa.start) for \( durationToHumanReadable(aa.duration) ) hrs, \(aa.cost, specifier: "%.2f") €")
-                                            .font(Font.system(size: slotFontSize))
-                                            .frame(
-                                                maxWidth: geometry.size.width - 140,
-                                                maxHeight: slotHeight(duration: aa.duration) - 8,
-                                                alignment: .topLeading)
-                                                                                                            .background(.red)
-                                                                                                            .opacity(0.65)
-                                    }
-                                    .padding(.leading, 5)
-                                    //.position(x: geometry.size.width / 2 - 130, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration) - 150)
-                                    //}
-                                }
-                                .offset(y: offsets[aa.appliance.id] ?? 0)
-                                .position(x: geometry.size.width / 2 - 13, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration))
-                                
-                                .gesture(
-                                    DragGesture(minimumDistance: 1, coordinateSpace: .global)
-                                        .onChanged { gesture in
-                                            //withAnimation(.spring()) {
-                                            
-//                                            print(geometry.size.width)
-
-                                            //                                                            let uuid: UUID = aa.appliance.id
-                                            //print(uuid)
-                                            //offsetY = lastOffsetY + gesture.translation.height
-
-                                            offsets[aa.appliance.id] = (lastOffsets[aa.appliance.id] ?? 0) + gesture.translation.height
-
-                                            //}
+                                    ZStack(alignment: .leading) {
+                                        withAnimation(.spring()){
+                                            RoundedRectangle(cornerRadius: 4)
+                                                .fill(Palette.brandPurple)
+                                                .frame(width: geometry.size.width - 130, height: slotHeight(duration: aa.duration))
+                                                .opacity(0.65)
+                                                .addBorder(Palette.brandPurpleLight, width: 1, cornerRadius: 4)
                                         }
-                                        .onEnded { _ in
-                                            //lastOffsetY = offsetY
-                                            lastOffsets[aa.appliance.id] = offsets[aa.appliance.id]
+                                        HStack {
                                             
-//                                            print( offsetToTimeDiff(lastOffsets[aa.appliance.id]))
-                                            
-                                            if let diff = offsetToTimeDiff(lastOffsets[aa.appliance.id]) {
-                                                lastOffsets[aa.appliance.id] = 0
-                                                offsets[aa.appliance.id] = 0
-                                                
-                                                dailyPlan.applyTimeDiffAfterDrag(aa: aa, diffRecieved: diff)
+                                            if selectedCurrency == "CZK" {
+                                                Text("\(aa.appliance.name) for \( durationToHumanReadable(aa.duration) ) hrs, \(aa.cost * Float(currencyLatestCZK), specifier: "%.2f")CZK")
+                                                    .font(Font.system(size: 14))
+                                                    .frame(
+                                                        maxWidth: geometry.size.width - 140,
+                                                        maxHeight: slotHeight(duration: aa.duration) - 8,
+                                                        alignment: .topLeading)
+                                            } else {
+                                                Text("\(aa.appliance.name) for \( durationToHumanReadable(aa.duration) ) hrs, \(aa.cost, specifier: "%.2f")€")
+                                                    .font(Font.system(size: 14))
+                                                    .frame(
+                                                        maxWidth: geometry.size.width - 140,
+                                                        maxHeight: slotHeight(duration: aa.duration) - 8,
+                                                        alignment: .topLeading)
                                             }
+                                            
                                         }
-                                )
-                                
+                                        .padding(.leading, 5)
+                                    }
+                                    .offset(y: offsets[aa.appliance.id] ?? 0)
+                                    .position(x: geometry.size.width / 2 - 13, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration))
+                                    
+                                    .gesture(
+                                        DragGesture(minimumDistance: 1, coordinateSpace: .global)
+                                            .onChanged { gesture in
+                                                let initial: CGFloat = self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration)
+                                                let limitedY = calcDragLimit(initial: initial, translate: gesture.translation.height, duration: CGFloat(aa.duration))
+                                                offsets[aa.appliance.id] = (lastOffsets[aa.appliance.id] ?? 0) + limitedY - initial
+                                            }
+                                            .onEnded { _ in
+                                                lastOffsets[aa.appliance.id] = offsets[aa.appliance.id]
+                                                if let diff = offsetToTimeDiff(lastOffsets[aa.appliance.id]) {
+                                                    lastOffsets[aa.appliance.id] = 0
+                                                    offsets[aa.appliance.id] = 0
+                                                    dailyPlan.applyTimeDiffAfterDrag(aa: aa, diffRecieved: diff)
+                                                }
+                                            }
+                                    )
                                 
                             }
-                            
                         }
-                        
-                        
                     }
-                    
-                    
-                    
                 }
-                
-                
-                //                }
+            }
+            .onAppear {
+                self.readSettings()
             }
         }
     }

@@ -10,10 +10,10 @@ import SwiftUI
 struct DayPlanView: View {
     @ObservedObject var dailyPlan: DailyPlan
     
-//    @StateObject var appliancesListViewModel = AppliancesListViewModel()
+    //    @StateObject var appliancesListViewModel = AppliancesListViewModel()
     
     
- 
+    
     
     var body: some View {
         GeometryReader { geometry in
@@ -34,8 +34,8 @@ struct DayPlanView: View {
                             HStack {
                                 
                                 if dpAppliances.count > 0 && !areAppliancesLabelsTouchLearned{
-                                        Image(systemName: "arrow.up.forward").font(.system(size: 20)).padding(.trailing, 2)
-                                        Text("Tap and hold to customize").font(.system(size: 16)).padding(.trailing, 10)
+                                    Image(systemName: "arrow.up.forward").font(.system(size: 20)).padding(.trailing, 2)
+                                    Text("Tap and hold to customize").font(.system(size: 16)).padding(.trailing, 10)
                                 }
                                 
                                 Button(){
@@ -57,82 +57,28 @@ struct DayPlanView: View {
                     
                     Text("Daily plan").font(.headlineCustom)//.padding(.top, 20)
                     
-                    AppliedAppliancesView(dailyPlan: dailyPlan).frame(width: geometry.size.width - 20, height: 29*24)
+                    if let _ = dailyPlan.price {
+                        AppliedAppliancesView(dailyPlan: dailyPlan).frame(width: geometry.size.width - 20, height: 29*24-1)
+                    } else {
+                        LoaderSpinner()
+                    }
                     
-                    
-                    
-                    /*
-                    Group {
-                        HStack(spacing: 1) {
-                            ZStack {
-                                //                            Rectangle().fill(Palette.dayPlanNight).frame(width: quarterWidth, height: tileHeight)
-                                VStack(alignment: .leading, spacing: 0) {
-                                    Text("Night").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
-                                    
-                                    ForEach(0 ..< 6, id:\.self) { hour in
-                                        HourLabel(hour: hour, dailyPlan: dailyPlan)
-                                    }
-                                    
-                                }.frame(maxHeight: .infinity, alignment: .top)
-                            }
-                            ZStack {
-                                //                            Rectangle().fill(Palette.dayPlanMorning).frame(width: quarterWidth, height: tileHeight)
-                                VStack(alignment: .leading, spacing: 0) {
-                                    Text("Morning").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
-                                    
-                                    ForEach(6 ..< 12, id:\.self) { hour in
-                                        HourLabel(hour: hour, dailyPlan: dailyPlan)
-                                    }
-                                    
-                                    
-                                }.frame(maxHeight: .infinity, alignment: .top)
-                            }
-                            ZStack {
-                                //                            Rectangle().fill(Palette.dayPlanDay).frame(width: quarterWidth, height: tileHeight)
-                                VStack(alignment: .leading, spacing: 0) {
-                                    Text("Day").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
-                                    
-                                    
-                                    ForEach(12 ..< 18, id:\.self) { hour in
-                                        HourLabel(hour: hour, dailyPlan: dailyPlan)
-                                    }
-                                    
-                                }.frame(maxHeight: .infinity, alignment: .top)
-                            }
-                            ZStack {
-                                //                            Rectangle().fill(Palette.dayPlanEvening).frame(width: quarterWidth, height: tileHeight)
-                                VStack(alignment: .leading, spacing: 0) {
-                                    Text("Evening").frame(maxWidth: quarterWidth, alignment: .leading).padding(7).fontWeight(.bold).foregroundColor(.white)
-                                    
-                                    ForEach(18 ..< 24, id:\.self) { hour in
-                                        HourLabel(hour: hour, dailyPlan: dailyPlan)
-                                    }
-                                    
-                                }.frame(maxHeight: .infinity, alignment: .top)
-                            }
-                        }
-                    }*/
                     
                     Group {
                         Text("Reserved Power: \(self.userReservedPower) Watts")
                         
                         if selectedCurrency == "EUR" {
-                            Text("Cost: €\( String(format: "%.2f", totalCost) )").font(.headlineCustom).padding(.top, 10)
+                            Text("Cost: €\( String(format: "%.2f", dailyPlan.appliedAppliances.totalCost) )").font(.headlineCustom).padding(.top, 10)
                         }
                         if selectedCurrency == "CZK" {
-                            Text("Cost: \( String(format: "%.1f", totalCost * Float(currencyLatestCZK)) ) CZK").font(.headlineCustom).padding(.top, 10)
+                            Text("Cost: \( String(format: "%.1f", dailyPlan.appliedAppliances.totalCost * Float(currencyLatestCZK)) ) CZK").font(.headlineCustom).padding(.top, 10)
                         }
                         
                         if let dp = dailyPlan.price {
-                            
-//                            VStack {
-                                if let dateFmt = dailyPlan.price?.dateFormatted {
-                                    Text("Electricity price graph for \(dateFmt):").padding(.top, 20)
-                                }
-                                MiniChart(forDay: dp)
-//                            }.padding(0)
-                            
-                            
+                            if let dateFmt = dailyPlan.price?.dateFormatted {
+                                Text("Electricity price graph for \(dateFmt):").padding(.top, 20)
+                            }
+                            MiniChart(forDay: dp)
                         } else {
                             if pricesLoading {
                                 LoaderSpinner()
@@ -148,18 +94,14 @@ struct DayPlanView: View {
                 .frame(width: geometry.size.width, alignment: .leading)
                 .onAppear {
                     self.readSettings()
-
+                    
                     if dailyPlan.price == nil || dailyPlan.price?.country != countryCode {
+                        
+                        dailyPlan.appliedAppliances.items = []
+                        
                         Task { await self.fetchLatestPrice(forCountry: countryCode) }
                     }
-                    
-                    //withAnimation{
-                        
-                    //}
-//                    if let receivedAppliances = appliancesListViewModel.appliances {
-//                        self.dailyPlan.appliancesReceived(appliances: appliancesListViewModel.appliances)
-////                    }
-                    
+                                       
                     if let lastFetch = dailyPlan.lastFetch {
                         let difference = Date().timeIntervalSince(lastFetch)
                         if difference > 60*30 {
@@ -191,29 +133,37 @@ struct DayPlanView: View {
                         if let modifiedAppliance = dailyPlan.getAppliancebyId(uuidString) {
                             withAnimation {
                                 dailyPlan.applianceModified(appliance: modifiedAppliance)
-//                                dailyPlan.unassignAppliance(appliance: modifiedAppliance)
-//                                dailyPlan.assignAppliance(appliance: modifiedAppliance)
                             }
                         }
                     })
                     
-                    NotificationCenter.simple(name: .applianceRemoved) {
+                    NotificationCenter.listen(name: .applianceWillBeRemoved, completion: { payload in
                         
                         print("applianceRemoved event listener tick")
-//                        withAnimation {
-//                            areAppliancesLabelsTouchLearned = true
-//                        }
-                    }
-                                        
+                        
+                        let uuidString = payload as! String
+                        
+                        if let applianceToRemove = dailyPlan.getAppliancebyId(uuidString) {
+                            
+                            
+                            print(applianceToRemove)
+                            dailyPlan.appliedAppliances.remove(appliance: applianceToRemove)
+                        }
+                        
+                        
+                        
+                    })
+                    
+                    
                     
                 }
                 .sheet(isPresented: $showingApplianceCreateView) {
                     CoreApplianceEditorView(appliance: nil, createMode: true)
-                    .presentationDetents([.fraction(0.50)])
+                        .presentationDetents([.fraction(0.50)])
                 }
                 .sheet(item: $dailyPlan.selectedApplianceToEdit) { selected in
                     CoreApplianceEditorView(appliance: selected)
-                    .presentationDetents([.medium, .fraction(0.75)])
+                        .presentationDetents([.medium, .fraction(0.75)])
                 }
             }
         }
@@ -222,10 +172,10 @@ struct DayPlanView: View {
     
     // MARK: Private
     @State private var showingApplianceCreateView = false
-//    @State private var selectedApplianceToEdit: Appliance?
+    //    @State private var selectedApplianceToEdit: Appliance?
     
     @State private var info: String = "not yet"
-//    @State private var appliancesLoading: Bool = false
+    //    @State private var appliancesLoading: Bool = false
     @State private var pricesLoading: Bool = false
     
     @State private var currencyRatesLoading: Bool = false
@@ -271,20 +221,20 @@ struct DayPlanView: View {
         self.areAppliancesLabelsTouchLearned = SettingsManager.shared.getBoolValue(name: SettingsNames.areAppliancesLabelsTouchLearned)
     }
     
-//    private func fetchAppliances() async {
-//        appliancesLoading = true
-//        Task(priority: .background) {
-//            let response = await EnergramService().fetchAppliances()
-//            switch response {
-//            case .success(let result):
-//                dailyPlan.appliancesReceived(appliances: result)
-//                appliancesLoading = false
-//            case .failure(let error):
-//                print("Request failed with error: \(error.customMessage)")
-//                appliancesLoading = false
-//            }
-//        }
-//    }
+    //    private func fetchAppliances() async {
+    //        appliancesLoading = true
+    //        Task(priority: .background) {
+    //            let response = await EnergramService().fetchAppliances()
+    //            switch response {
+    //            case .success(let result):
+    //                dailyPlan.appliancesReceived(appliances: result)
+    //                appliancesLoading = false
+    //            case .failure(let error):
+    //                print("Request failed with error: \(error.customMessage)")
+    //                appliancesLoading = false
+    //            }
+    //        }
+    //    }
     
     private func fetchLatestPrice(forCountry code: String) async {
         pricesLoading = true

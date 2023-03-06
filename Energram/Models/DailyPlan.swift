@@ -203,7 +203,7 @@ class DailyPlan: ObservableObject {
         
         let components = Calendar.current.dateComponents([.hour, .minute], from: newStart)
         let hour = components.hour ?? 0
-        let minute = components.minute ?? 0
+        //let minute = components.minute ?? 0
         
     
         let midnight = Calendar.current.date(bySettingHour: 00, minute: 0, second: 0, of: Date())!
@@ -220,7 +220,7 @@ class DailyPlan: ObservableObject {
         
         
         
-        print(roundedToHour)
+//        print(roundedToHour)
         
 //        self.appliedAppliances.modify(aa: aa, toTime: roundedToHour)
         
@@ -237,7 +237,9 @@ class DailyPlan: ObservableObject {
     
     // MARK: Calculations
     
-    func calculatePricexDuration(startHourIndex: Int, durationMinutes: Int) -> Float {
+    func calculatePricexDuration(startHourIndex: Int, durationMinutes: Int, power: Int) -> Float {
+        
+        let pw: Float = Float(power) / 1000
         
         guard let prices: [Float] = self.price?.data else {
             print("Error in set prices in DailyPlan.swift")
@@ -252,26 +254,34 @@ class DailyPlan: ObservableObject {
         var lastCompleteHourIndex: Int = startHourIndex
         if hours > 0 {
             for index in 0..<hours {
-                sum = sum + prices[startHourIndex + index]
+                sum = sum + prices[startHourIndex + index] * pw
                 lastCompleteHourIndex = index
             }
-            sum = sum + (prices[ lastCompleteHourIndex + 1] / 60) * Float(andMinutes)
+            sum = sum + ((prices[ lastCompleteHourIndex + 1] / 60) * Float(andMinutes)) * pw
         } else {
-            sum = (prices[ startHourIndex ] / 60) * Float(andMinutes)
+            sum = (prices[ startHourIndex ] / 60) * Float(andMinutes) * pw
         }
         return sum
     }
 
-    func findMinimumPriceInDay(durationMinutes: Int) -> (hour: Int, price: Float) {
+    func findMinimumPriceInDay(durationMinutes: Int, power: Int) -> (hour: Int, price: Float) {
         var minimumStartHour: Int = 4
-        var minimumFound = calculatePricexDuration(startHourIndex: 0, durationMinutes: durationMinutes)
+//        let pw = Float(power)
+        var minimumFound = calculatePricexDuration(startHourIndex: 0, durationMinutes: durationMinutes, power: power)
         
         let hours = durationMinutes / 60
-        //let andMinutes = durationMinutes % 60
+        let andMinutes = durationMinutes % 60
         
         if hours > 0 {
-            for hour in 0...24-hours {
-                let candidate: Float = calculatePricexDuration(startHourIndex: hour, durationMinutes: durationMinutes)
+            
+            var minutesPadding = 0
+            if andMinutes > 0 {
+                minutesPadding = 1
+            }
+            
+            
+            for hour in 0...24-hours-minutesPadding {
+                let candidate: Float = calculatePricexDuration(startHourIndex: hour, durationMinutes: durationMinutes, power: power)
                 if candidate < minimumFound {
                     minimumFound = candidate
                     minimumStartHour = hour
@@ -279,7 +289,7 @@ class DailyPlan: ObservableObject {
             }
         } else {
             for hour in 0..<24 {
-                let candidate: Float = calculatePricexDuration(startHourIndex: hour, durationMinutes: durationMinutes)
+                let candidate: Float = calculatePricexDuration(startHourIndex: hour, durationMinutes: durationMinutes, power: power)
                 if candidate < minimumFound {
                     minimumFound = candidate
                     minimumStartHour = hour
@@ -315,7 +325,7 @@ class DailyPlan: ObservableObject {
         
         
         
-        let minimum = findMinimumPriceInDay(durationMinutes: appliance.typical_duration)
+        let minimum = findMinimumPriceInDay(durationMinutes: appliance.typical_duration, power: appliance.power)
         return minimum.hour
 
 
@@ -359,7 +369,7 @@ class DailyPlan: ObservableObject {
     
     
     private func assignAppliance(appliance: Appliance, toHour: Int? = nil) {
-        log("> assignAppliance to hour \(toHour)")
+        //log("> assignAppliance to hour \(toHour)")
         
         
         var timeslotIndex: Int = 0
@@ -372,7 +382,7 @@ class DailyPlan: ObservableObject {
         
         self.hours[timeslotIndex].appliancesAssigned.append(appliance)
         
-        let cost = calculatePricexDuration(startHourIndex: timeslotIndex, durationMinutes: appliance.typical_duration)
+        let cost = calculatePricexDuration(startHourIndex: timeslotIndex, durationMinutes: appliance.typical_duration, power: appliance.power)
         
         self.appliedAppliances.add(appliance: appliance, hour: timeslotIndex, cost: cost)
 

@@ -41,7 +41,6 @@
 		D0922CBA297ED82600743426 /* ArgentumSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB6297ED82600743426 /* ArgentumSans-Bold.ttf */; };
 		D0922CBB297ED82600743426 /* ArgentumSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0922CB7297ED82600743426 /* ArgentumSans-Light.ttf */; };
 		D0922CBE297EDBAC00743426 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0922CBD297EDBAC00743426 /* Fonts.swift */; };
-		D0B56B8329447A29004AE2E5 /* zz_HourLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B56B8229447A29004AE2E5 /* zz_HourLabel.swift */; };
 		D0B5EE2029B3B8120084B710 /* AppliancesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5EE1F29B3B8120084B710 /* AppliancesListViewModel.swift */; };
 		D0B5EE2229B3B84E0084B710 /* ApplianceEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B5EE2129B3B84E0084B710 /* ApplianceEditorViewModel.swift */; };
 		D0B6198E2938A47400887F00 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6198D2938A47400887F00 /* Appliance.swift */; };
@@ -134,7 +133,6 @@
 		D0922CB6297ED82600743426 /* ArgentumSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Bold.ttf"; sourceTree = "<group>"; };
 		D0922CB7297ED82600743426 /* ArgentumSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArgentumSans-Light.ttf"; sourceTree = "<group>"; };
 		D0922CBD297EDBAC00743426 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		D0B56B8229447A29004AE2E5 /* zz_HourLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = zz_HourLabel.swift; sourceTree = "<group>"; };
 		D0B5EE1F29B3B8120084B710 /* AppliancesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliancesListViewModel.swift; sourceTree = "<group>"; };
 		D0B5EE2129B3B84E0084B710 /* ApplianceEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceEditorViewModel.swift; sourceTree = "<group>"; };
 		D0B6198D2938A47400887F00 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 				D0CC54C829B2611000263543 /* ApplianceDetailView.swift */,
 				D0E2C7A5292124DF003F4DD9 /* MultipleDaysChartView.swift */,
 				D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */,
-				D0B56B8229447A29004AE2E5 /* zz_HourLabel.swift */,
 				D0911F3C29B51583001DF9C5 /* HourRow.swift */,
 				D040943A296AB47A007F5625 /* SettingsView.swift */,
 			);
@@ -619,7 +616,6 @@
 				D035A95D291F794500426722 /* Config.swift in Sources */,
 				D03D258329A2552900A96531 /* Notification.swift in Sources */,
 				D0D5BD9229A1328100CCDC5D /* LoaderSpinner.swift in Sources */,
-				D0B56B8329447A29004AE2E5 /* zz_HourLabel.swift in Sources */,
 				D0409439296AB3BA007F5625 /* SettingsManager.swift in Sources */,
 				D0D5BD8529A10F5F00CCDC5D /* EnergramEndpoint.swift in Sources */,
 				D0B5EE2029B3B8120084B710 /* AppliancesListViewModel.swift in Sources */,
