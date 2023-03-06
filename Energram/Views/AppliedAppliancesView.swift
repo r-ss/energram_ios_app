@@ -11,7 +11,7 @@ import SwiftUI
 struct AppliedAppliancesView: View {
     
     @ObservedObject var dailyPlan: DailyPlan
-    @EnvironmentObject private var currency: Currency
+    @EnvironmentObject var currency: Currency
     
     static let appliedDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -80,6 +80,32 @@ struct AppliedAppliancesView: View {
     @State private var offsets: Dictionary<UUID, CGFloat> = [:]
     @State private var lastOffsets: Dictionary<UUID, CGFloat> = [:]
     
+    var momentLineShow: Bool {
+        let todayComponents = Calendar.current.dateComponents([.day, .hour, .minute], from: Date())
+        let today = todayComponents.day ?? 0
+        
+        guard let operatingWithDate = dailyPlan.price?.date else {
+            return false
+        }
+        
+        let operatingComponents = Calendar.current.dateComponents([.day, .hour, .minute], from: operatingWithDate)
+        let operatingDay = operatingComponents.day ?? 0
+        
+        if today == operatingDay {
+            return true
+        }
+        return false
+    }
+    
+    var momentLineY: CGFloat {
+        let components = Calendar.current.dateComponents([.day, .hour, .minute], from: Date())
+        let hour = components.hour ?? 0
+        let minute = components.minute ?? 0
+        return CGFloat(hour) * rowPaddingHeight + ( (CGFloat(minute) / 60) * rowPaddingHeight )
+        
+    }
+    
+   
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -116,7 +142,7 @@ struct AppliedAppliancesView: View {
                                                     .font(Font.system(size: 14))
                                                     .frame(
                                                         maxWidth: geometry.size.width - 150,
-                                                        maxHeight: slotHeight(duration: aa.duration) - 8,
+                                                        maxHeight: max(slotHeight(duration: aa.duration) - 8, 3), // to avoid "Invalid frame dimension (negative or non-finite)"
                                                         alignment: .topLeading)
                                             
                                         }
@@ -144,6 +170,18 @@ struct AppliedAppliancesView: View {
                                 
                             }
                         }
+                    }
+                    
+                    if momentLineShow {
+                        ZStack {
+                            Rectangle().fill(.black)
+                                .frame(width: geometry.size.width, height: 4)
+                                .opacity(0.65)
+                            Rectangle().fill(.white)
+                                .frame(width: geometry.size.width, height: 2)
+                        }
+                        .position(x: geometry.size.width / 2, y: momentLineY)
+                            
                     }
                 }
             }

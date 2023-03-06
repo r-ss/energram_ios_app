@@ -22,7 +22,6 @@ struct HourRow: View {
             Spacer()
             Text("\(accordingHourPrice, specifier: "%.2f") \(currency.powerUsageNotation)").font(Font.system(size: 12)).padding(.trailing, 7)
         }
-//        .contentShape(Rectangle())
         .frame(width: rowWidth, height: rowHeight, alignment: .leading)
         .background(cellBackground)
     }

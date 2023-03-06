@@ -53,38 +53,33 @@ struct DayPlanView: View {
                     
                     Text("Daily plan").font(.headlineCustom)//.padding(.top, 20)
                     
-                    if let _ = dailyPlan.price {
+                    if let dp = dailyPlan.price {
                         AppliedAppliancesView(dailyPlan: dailyPlan).frame(width: geometry.size.width - 20, height: 29*24-1)
-                    } else {
-                        LoaderSpinner()
-                    }
-                    
-                    
-                    Group {
-                        //Text("Reserved Power: \(self.userReservedPower) Watts")
                         
-                        if currency.selectedCurrency == .eur {
-                            Text("Cost: \( String(format: "%.2f", dailyPlan.appliedAppliances.totalCost) ) \(currency.symbol)").font(.headlineCustom).padding(.top, 10)
-                        }
-                        if currency.selectedCurrency == .czk {
-                            Text("Cost: \( String(format: "%.1f", dailyPlan.appliedAppliances.totalCost * Float(currencyLatestCZK)) ) \(currency.symbol)").font(.headlineCustom).padding(.top, 10)
-                        }
-                        
-                        if let dp = dailyPlan.price {
+                        Group {
+                            //Text("Reserved Power: \(self.userReservedPower) Watts")
+                            
+                            if currency.selectedCurrency == .eur {
+                                Text("Cost: \( String(format: "%.2f", dailyPlan.appliedAppliances.totalCost) ) \(currency.symbol)").font(.headlineCustom).padding(.top, 10)
+                            }
+                            if currency.selectedCurrency == .czk {
+                                Text("Cost: \( String(format: "%.1f", dailyPlan.appliedAppliances.totalCost * Float(currencyLatestCZK)) ) \(currency.symbol)").font(.headlineCustom).padding(.top, 10)
+                            }
+                            
                             if let dateFmt = dailyPlan.price?.dateFormatted {
                                 Text("Price graph for \(dateFmt):").padding(.top, 20)
                             }
                             MiniChart(forDay: dp)
-                        } else {
-                            if pricesLoading {
-                                LoaderSpinner()
-                            } else {
-                                Text("Error in receiving chart data")
-                            }
-                        }
+                            
+                        }.padding(0)
                         
-                    }.padding(0)
-                    
+                    } else {
+                        if pricesLoading {
+                            LoaderSpinner()
+                        } else {
+                            Text("Error in receiving chart data")
+                        }
+                    }
                 }
                 .padding()
                 .frame(width: geometry.size.width, alignment: .leading)
@@ -92,12 +87,10 @@ struct DayPlanView: View {
                     self.readSettings()
                     
                     if dailyPlan.price == nil || dailyPlan.price?.country != countryCode {
-                        
                         dailyPlan.appliedAppliances.items = []
-                        
                         Task { await self.fetchLatestPrice(forCountry: countryCode) }
                     }
-                                       
+                    
                     if let lastFetch = dailyPlan.lastFetch {
                         let difference = Date().timeIntervalSince(lastFetch)
                         if difference > 60*30 {
@@ -105,11 +98,6 @@ struct DayPlanView: View {
                             Task { await self.fetchLatestPrice(forCountry: countryCode) }
                         }
                     }
-                    
-//                    if currencyRates == nil {
-//                        Task { await self.fetchCurrencyRates()}
-//                    }
-                    
                     
                     // Subscribing to appliance-related notifications
                     NotificationCenter.simple(name: .someApplianceLabelLongTapEvent){
@@ -123,9 +111,7 @@ struct DayPlanView: View {
                     }
                     
                     NotificationCenter.listen(name: .applianceModified, completion: { payload in
-                        
                         let uuidString = payload as! String
-                        
                         if let modifiedAppliance = dailyPlan.getAppliancebyId(uuidString) {
                             withAnimation {
                                 dailyPlan.applianceModified(appliance: modifiedAppliance)
@@ -134,32 +120,24 @@ struct DayPlanView: View {
                     })
                     
                     NotificationCenter.listen(name: .applianceWillBeRemoved, completion: { payload in
-                        
                         print("applianceRemoved event listener tick")
-                        
                         let uuidString = payload as! String
-                        
                         if let applianceToRemove = dailyPlan.getAppliancebyId(uuidString) {
-                            
-                            
                             print(applianceToRemove)
                             dailyPlan.appliedAppliances.remove(appliance: applianceToRemove)
                         }
-                        
-                        
-                        
                     })
-                    
-                    
-                    
                 }
                 .sheet(isPresented: $showingApplianceCreateView) {
                     CoreApplianceEditorView(appliance: nil, createMode: true)
-                        .presentationDetents([.fraction(0.50)])
+                        .presentationDetents([.fraction(0.60)])
                 }
                 .sheet(item: $dailyPlan.selectedApplianceToEdit) { selected in
                     CoreApplianceEditorView(appliance: selected)
-                        .presentationDetents([.medium, .fraction(0.75)])
+                        .presentationDetents([.fraction(0.75)])
+                }
+                .alert(alertMessage, isPresented: $showAlert) {
+                    Button("OK", role: .cancel) { }
                 }
             }
         }
@@ -167,6 +145,17 @@ struct DayPlanView: View {
     }
     
     // MARK: Private
+    
+    
+    @State private var showAlert = false
+    @State private var alertMessage: String = "Error..."
+    
+    private func makeAlert(message: String) {
+        alertMessage = message
+        showAlert = true
+    }
+    
+    
     @State private var showingApplianceCreateView = false
     //    @State private var selectedApplianceToEdit: Appliance?
     
@@ -180,7 +169,7 @@ struct DayPlanView: View {
     
     
     
-//    @State private var currencyRates: CurrencyRateResponse?
+    //    @State private var currencyRates: CurrencyRateResponse?
     
     /// SETTINGS
     @State private var countryCode: String = "es"
@@ -211,12 +200,12 @@ struct DayPlanView: View {
     
     private func readSettings() {
         self.countryCode = SettingsManager.shared.getStringValue(name: SettingsNames.countryCode)
-//        self.selectedCurrency = SettingsManager.shared.getStringValue(name: SettingsNames.selectedCurrency)
-//        self.currencyLatestCZK = SettingsManager.shared.getDoubleValue(name: SettingsNames.currencyLatestCZK)
+        //        self.selectedCurrency = SettingsManager.shared.getStringValue(name: SettingsNames.selectedCurrency)
+        //        self.currencyLatestCZK = SettingsManager.shared.getDoubleValue(name: SettingsNames.currencyLatestCZK)
         self.userReservedPower = SettingsManager.shared.getIntegerValue(name: SettingsNames.reservedPower)
         self.areAppliancesLabelsTouchLearned = SettingsManager.shared.getBoolValue(name: SettingsNames.areAppliancesLabelsTouchLearned)
     }
-        
+    
     private func fetchLatestPrice(forCountry code: String) async {
         pricesLoading = true
         Task(priority: .background) {
@@ -228,21 +217,10 @@ struct DayPlanView: View {
             case .failure(let error):
                 print("Request failed with error: \(error.customMessage)")
                 pricesLoading = false
+                makeAlert(message: error.customMessage)
             }
         }
     }
-    
-    
-//    private func fetchCurrencyRates() async {
-//        currencyRatesLoading = true
-//        Task(priority: .background) {
-//            if let rateCZK = await CurrencyRateService().fetchLatestRateCZK() {
-//                currencyLatestCZK = rateCZK
-//                Notification.fire(name: .latestCurrencyRatesRecieved)
-//            }
-//        }
-//    }
-    
 }
 
 struct DayPlanView_Previews: PreviewProvider {

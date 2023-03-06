@@ -21,31 +21,23 @@ struct Hour: Identifiable, Hashable {
     }
 }
 
-
-
 enum DailyPlanType {
     case normal, preview
 }
-
-
 
 class DailyPlan: ObservableObject {
     
     @Published var hours: [Hour] = []
     @Published var price: DayPrice?
-    //@Published var appliances: [Appliance]?
     
     @Published var lastFetch: Date?
     
     @Published var appliedAppliances = AppliedAppliances()
-    
     @Published var appliancesListViewModel = AppliancesListViewModel()
-    
     
     @Published var selectedApplianceToEdit: Appliance?
     
     // MARK: Init
-    
     init(type: DailyPlanType = .normal) {
         
         
@@ -69,7 +61,7 @@ class DailyPlan: ObservableObject {
             let sortedByPrice:[Hour] = hours.sorted {
                 $0.price < $1.price
             }
-            
+
             for (index, hour) in sortedByPrice.enumerated() {
                 if let idx: Int = self.hours.firstIndex(where: {$0.uid == hour.uid}) {
                     self.hours[idx].cheapIndex = index
@@ -77,7 +69,7 @@ class DailyPlan: ObservableObject {
             }
         }
     }
-        
+    
     
     func priceReceived(price data:DayPrice) {
         self.price = data
@@ -87,13 +79,7 @@ class DailyPlan: ObservableObject {
         Notification.fire(name: .latestPriceRecieved)
     }
     
-//    func appliancesReceived(appliances: [Appliance]) {
-//        self.appliances = appliances
-//    }
-    
     private func fillPrices(dayPrice: DayPrice){
-//        log("> DailyPlan fillPrices")
-
         self.hours = []
         
         for (index, price) in dayPrice.data.enumerated() {
@@ -104,25 +90,18 @@ class DailyPlan: ObservableObject {
         let sortedByPrice:[Hour] = hours.sorted {
             $0.price < $1.price
         }
-        
+
         for (index, hour) in sortedByPrice.enumerated() {
             if let idx: Int = self.hours.firstIndex(where: {$0.uid == hour.uid}) {
                 self.hours[idx].cheapIndex = index
             }
         }
-        
     }
     
     // MARK: Interaction
     
     func getAppliancebyId(_ str: String) -> Appliance? {
         let uuid = UUID(uuidString: str)
-        
-//        guard let appliances = self.appliancesListViewModel.appliances else {
-//            print("Optional appliances are nil")
-//            return nil
-//        }
-        
         if let idx: Int = self.appliancesListViewModel.appliances.firstIndex(where: {$0.id == uuid}) {
             return self.appliancesListViewModel.appliances[idx]
         }
@@ -132,17 +111,13 @@ class DailyPlan: ObservableObject {
     }
     
     func isApplianceApplied(_ appliance: Appliance) -> Bool {
-        
         if let _: Int = self.appliedAppliances.items.firstIndex(where: {$0.appliance.id == appliance.id}) {
             return true
         }
         return false
-        
-        
     }
     
     func applianceModified(appliance: Appliance) {
-//        print(appliance)
         self.unassignAppliance(appliance: appliance)
         self.assignAppliance(appliance: appliance)
     }
@@ -157,16 +132,11 @@ class DailyPlan: ObservableObject {
     }
     
     func applyTimeDiffAfterDrag(aa: AppliedAppliance, diffRecieved: Int?) {
-//        log("> applyTimeDiffAfterDrag")
-        
         guard let diff = diffRecieved else {
             log("Received nil time diff")
             return
         }
         
-//        let date = Date(aa.start)
-//        let midnight = Calendar.current.date(bySettingHour: 00, minute: 0, second: 0, of: date)!
-//
         guard let newStart = Calendar.current.date(byAdding: .minute, value: diff, to: aa.start) else {
             log("Cannot apply diff")
             return
@@ -176,32 +146,20 @@ class DailyPlan: ObservableObject {
         let hour = components.hour ?? 0
         //let minute = components.minute ?? 0
         
-    
-        let midnight = Calendar.current.date(bySettingHour: 00, minute: 0, second: 0, of: Date())!
-        
-        
+        //let midnight = Calendar.current.date(bySettingHour: 00, minute: 0, second: 0, of: Date())!
         
         var newcomponents = DateComponents()
         newcomponents.hour = hour
         newcomponents.minute = 0
         
-        
-        let roundedToHour = Calendar.current.date(byAdding: newcomponents, to: midnight)!
-        
-        
-        
-        
-//        print(roundedToHour)
-        
-//        self.appliedAppliances.modify(aa: aa, toTime: roundedToHour)
+        //let roundedToHour = Calendar.current.date(byAdding: newcomponents, to: midnight)!
         
         self.unassignAppliance(appliance: aa.appliance)
         self.assignAppliance(appliance: aa.appliance, toHour: hour)
-//        self.hours[hour].appliancesAssigned.append(appliance)
+        //        self.hours[hour].appliancesAssigned.append(appliance)
     }
     
     func changeApplianceRunTime(appliance: Appliance, newStartTime: Int) {
-        //log("> changeApplianceRunTime")
         self.unassignAppliance(appliance: appliance)
         self.hours[newStartTime].appliancesAssigned.append(appliance)
     }
@@ -209,7 +167,6 @@ class DailyPlan: ObservableObject {
     // MARK: Calculations
     
     func calculatePricexDuration(startHourIndex: Int, durationMinutes: Int, power: Int) -> Float {
-        
         let pw: Float = Float(power) / 1000
         
         guard let prices: [Float] = self.price?.data else {
@@ -218,7 +175,7 @@ class DailyPlan: ObservableObject {
         }
         
         var sum: Float = 0
-
+        
         let hours = durationMinutes / 60
         let andMinutes = durationMinutes % 60
         
@@ -234,10 +191,9 @@ class DailyPlan: ObservableObject {
         }
         return sum
     }
-
+    
     func findMinimumPriceInDay(durationMinutes: Int, power: Int) -> (hour: Int, price: Float) {
-        var minimumStartHour: Int = 4
-//        let pw = Float(power)
+        var minimumStartHour: Int = 0
         var minimumFound = calculatePricexDuration(startHourIndex: 0, durationMinutes: durationMinutes, power: power)
         
         let hours = durationMinutes / 60
@@ -283,104 +239,40 @@ class DailyPlan: ObservableObject {
         return a
     }
     
-    private func chooseTimeslot(forAppliance appliance: Appliance) -> Int {
-        //log("> chooseTimeslot")
-        
-//        let userReservedPower: Int = SettingsManager.shared.getIntegerValue(name: SettingsNames.reservedPower)
-        
-//        let sortedByPrice:[Hour] = hours.sorted { $0.price < $1.price}
-//        let sortedByPriceAndFiltered:[Hour] = sortedByPrice.filter(){$0.usedPower <= userReservedPower}
-        
-        
-        
-        
-        
-        
-        let minimum = findMinimumPriceInDay(durationMinutes: appliance.typical_duration, power: appliance.power)
-        return minimum.hour
-
-
-        
-//        func calculatePricexDuration(startHourIndex: Int, duration: Int) -> Float {
-//            var sum: Float = 0
-////            print(self.price!.data)
-//            for index in (0...duration-1) {
-//                sum = sum + prices[startHourIndex + index]
-//            }
-//            return sum
-//        }
-//
-//        var minimumStartHour: Int = 0
-//        var minimumFound = calculatePricexDuration(startHourIndex: 0, duration: duration)
-//
-//        for index in (0...24-duration) {
-//            let candidate: Float = calculatePricexDuration(startHourIndex: index, duration: duration)
-//        //    minimumFound = min(minimumFound.price, .price)
-//
-//            if candidate < minimumFound {
-//                minimumFound = candidate
-//                minimumStartHour = index
-//            }
-//
-//        }
-//        return minimumStartHour
-        
-//        for (_, hour) in sortedByPriceAndFiltered.enumerated() {
-//            if hour.usedPower < appliance.power {
-//                if let idx: Int = self.hours.firstIndex(where: {$0.uid == hour.uid}) {
-//                    return idx
-//                }
-//            }
-//            //            return 0
-//        }
-        
-//        log("Error, cannot find time slot for appliance")
-//        return 0
-    }
-    
     
     private func assignAppliance(appliance: Appliance, toHour: Int? = nil) {
-        //log("> assignAppliance to hour \(toHour)")
-        
+        guard let _ = self.price else {
+            log("Don't have a price data so ca't do anything")
+            return
+        }
         
         var timeslotIndex: Int = 0
-        
         if let forcedHour = toHour {
             timeslotIndex = forcedHour
         } else {
-            timeslotIndex = chooseTimeslot(forAppliance: appliance)
+            let minimum = findMinimumPriceInDay(durationMinutes: appliance.typical_duration, power: appliance.power)
+            timeslotIndex = minimum.hour
         }
         
         self.hours[timeslotIndex].appliancesAssigned.append(appliance)
-        
         let cost = calculatePricexDuration(startHourIndex: timeslotIndex, durationMinutes: appliance.typical_duration, power: appliance.power)
-        
         self.appliedAppliances.add(appliance: appliance, hour: timeslotIndex, cost: cost)
-
     }
     
     private func unassignAppliance(appliance: Appliance) {
-        //log("> unassignAppliance")
         for (index, hour) in self.hours.enumerated() {
             let filtered = hour.appliancesAssigned.filter(){$0.name != appliance.name}
             self.hours[index].appliancesAssigned = filtered
         }
-        
         self.appliedAppliances.remove(appliance: appliance)
-        
-        //self.printPlan()
+        //        self.printPlan()
     }
     
     
     func printPlan() {
         log("> printPlan")
-        
-        //        var sortedByPrice:[Hour] = hours.sorted {
-        //            $0.price < $1.price
-        //        }
-        
         for hour in hours {
-            log("\(hour.id): \(hour.price) - \(hour.appliancesAssigned.count) appliances, cheapIndex: \(hour.cheapIndex ?? -1) used power: \(hour.usedPower)")
+            log("\(hour.id): \(hour.price) - \(hour.appliancesAssigned.count) appliances, used power: \(hour.usedPower)")
         }
     }
     

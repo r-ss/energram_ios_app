@@ -40,6 +40,7 @@ struct SettingsView: View {
         if readable == "Czech Republic" {
             print("Set country in settings to: cz")
             SettingsManager.shared.setValue(name: SettingsNames.countryCode, value: "cz")
+            currency.selectedCurrency = .czk
         }
         
         Notification.fire(name: .countrySettingChanged)

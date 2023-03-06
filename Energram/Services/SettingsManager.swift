@@ -56,7 +56,7 @@ struct SettingsManager {
         SettingsItem(name: SettingsNames.accessToken, type: "String", defaultValue: ""),
         SettingsItem(name: SettingsNames.refreshToken, type: "String", defaultValue: ""),
         
-        SettingsItem(name: SettingsNames.selectedCurrency, type: "String", defaultValue: "czk"),
+        SettingsItem(name: SettingsNames.selectedCurrency, type: "String", defaultValue: "eur"),
         SettingsItem(name: SettingsNames.currencyLatestCZK, type: "Double", defaultValue: 23.0),
         
         SettingsItem(name: SettingsNames.areAppliancesLabelsTouchLearned, type: "Bool", defaultValue: false),
