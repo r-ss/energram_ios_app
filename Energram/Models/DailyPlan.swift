@@ -19,8 +19,10 @@ class DailyPlan: ObservableObject {
     
     @Published var lastFetch: Date?
     
+    @Published var randomStupidHack: Double = 0.0  // to push value here after appliance assignung. Without this, totalCoet in DayPlanView.swift not updating in the view...
+    
     @Published var appliedAppliances = AppliedAppliances()
-    @Published var appliancesListViewModel = AppliancesListViewModel()
+    private var appliancesListViewModel = AppliancesListViewModel()
     
     @Published var selectedApplianceToEdit: Appliance?
     
@@ -169,7 +171,7 @@ class DailyPlan: ObservableObject {
    
     
     private func assignAppliance(appliance: Appliance, toHour: Int? = nil) {
-        log("> assignAppliance")
+        //log("> assignAppliance")
         guard let _ = self.price else {
             log("Don't have a price data so ca't do anything")
             return
@@ -186,10 +188,11 @@ class DailyPlan: ObservableObject {
         let cost = calculatePricexDuration(startHourIndex: timeslotIndex, durationMinutes: appliance.typical_duration, power: appliance.power)
         self.appliedAppliances.add(appliance: appliance, hour: timeslotIndex, cost: cost)
         
+        self.randomStupidHack = Double.random(in: 1...100) // without this, totalCoet in DayPlanView.swift not updating in the view...
     }
     
     private func unassignAppliance(appliance: Appliance) {
-        log("> unassignAppliance")
+        //log("> unassignAppliance")
         self.appliedAppliances.remove(appliance: appliance)
     }
     

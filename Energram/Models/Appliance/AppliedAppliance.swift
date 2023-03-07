@@ -63,6 +63,7 @@ class AppliedAppliances: ObservableObject {
         let midnight = Calendar.current.date(bySettingHour: 00, minute: 0, second: 0, of: date)!
         let adjusted = Calendar.current.date(byAdding: .hour, value: hour, to: midnight)!
         let aa = AppliedAppliance(start: adjusted, duration: appliance.typical_duration, appliance: appliance, cost: cost)
+        
         self.items.append(aa)
     }
         

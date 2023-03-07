@@ -62,7 +62,9 @@ struct ApplianceLabel: View {
             .onEnded { _ in
                 //                print("Tap")
                 if !disableInteraction {
-                    dailyPlan.toggleApplianceLabel(applianceLabel: self)
+                    withAnimation (Animation.easeOut(duration: 0.15)) {
+                        dailyPlan.toggleApplianceLabel(applianceLabel: self)
+                    }
                 }
             })
     }

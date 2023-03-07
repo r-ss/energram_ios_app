@@ -11,6 +11,7 @@ struct DayPlanView: View {
     @ObservedObject var dailyPlan: DailyPlan
     @ObservedObject var currency: Currency
     
+    
     @ObservedObject var appliancesListViewModel = AppliancesListViewModel()
     
     var body: some View {
@@ -25,12 +26,9 @@ struct DayPlanView: View {
                     }
                     
                     if let dpAppliances = appliancesListViewModel.appliances {
-                        
                         Group {
                             TagCloudView(appliances: dpAppliances, passedDailyPlan: dailyPlan)
-                            
                             HStack {
-                                
                                 if dpAppliances.count > 0 && !areAppliancesLabelsTouchLearned{
                                     Image(systemName: "arrow.up.forward").font(.system(size: 20)).padding(.trailing, 2)
                                     Text("Tap and hold to customize").font(.system(size: 16)).padding(.trailing, 10)
@@ -44,11 +42,8 @@ struct DayPlanView: View {
                                         Text("Add").font(.system(size: 16))
                                     }
                                 }
-                                
                             }
                         }
-                        
-                        
                     } else {
                         Text("Error in receiving appliances list")
                     }
@@ -187,19 +182,19 @@ struct DayPlanView: View {
         return (screenWidth - 40 - 3) / 4
     }
     
-    private var totalCost: Float {
-        return 66.6
-//        var total: Float = 0.0
-//        if let pd = dailyPlan.price {
-//            for (index, hour) in dailyPlan.hours.enumerated() {
-//                for appliance in hour.appliancesAssigned {
-//                    let cost = ( pd.data[index] * Float(appliance.power) ) / 1000
-//                    total += cost
-//                }
-//            }
-//        }
-//        return total
-    }
+//    private var totalCost: Float {
+//        return 66.6
+////        var total: Float = 0.0
+////        if let pd = dailyPlan.price {
+////            for (index, hour) in dailyPlan.hours.enumerated() {
+////                for appliance in hour.appliancesAssigned {
+////                    let cost = ( pd.data[index] * Float(appliance.power) ) / 1000
+////                    total += cost
+////                }
+////            }
+////        }
+////        return total
+//    }
     
     private func readSettings() {
         self.countryCode = SettingsManager.shared.getStringValue(name: SettingsNames.countryCode)
@@ -226,11 +221,11 @@ struct DayPlanView: View {
     }
 }
 
-struct DayPlanView_Previews: PreviewProvider {
-    static var previews: some View {
-        DayPlanView(dailyPlan: DailyPlan(type: .preview), currency: Currency(), appliancesListViewModel:AppliancesListViewModel())
-    }
-}
+//struct DayPlanView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DayPlanView(dailyPlan: DailyPlan(type: .preview), currency: Currency())
+//    }
+//}
 
 
 struct TagCloudView: View {
