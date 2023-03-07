@@ -79,10 +79,24 @@ class DailyPlan: ObservableObject {
     }
     
     func applyTimeDiffAfterDrag(aa: AppliedAppliance, diffRecieved: Int?) {
-        guard let diff = diffRecieved else {
+        guard var diff = diffRecieved else {
             log("Received nil time diff")
             return
         }
+        
+        
+        
+        if diff < -15 {
+            //print("correcting minus")
+            diff = diff + 15
+        }
+//        if diff > 30 {
+//            print("correcting plus")
+//            diff = diff - 30
+//        }
+//
+        
+        
         
         guard let newStart = Calendar.current.date(byAdding: .minute, value: diff, to: aa.start) else {
             log("Cannot apply diff")

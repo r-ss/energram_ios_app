@@ -55,13 +55,7 @@ struct DayPlanView: View {
                         
                         Group {
                             //Text("Reserved Power: \(self.userReservedPower) Watts")
-                            
-                            if currency.selectedCurrency == .eur {
-                                Text("Cost: \( String(format: "%.2f", dailyPlan.appliedAppliances.totalCost) ) \(currency.symbol)").font(.headlineCustom).padding(.top, 10)
-                            }
-                            if currency.selectedCurrency == .czk {
-                                Text("Cost: \( String(format: "%.1f", dailyPlan.appliedAppliances.totalCost * Float(currencyLatestCZK)) ) \(currency.symbol)").font(.headlineCustom).padding(.top, 10)
-                            }
+                            Text("Cost: \( String(format: "%.2f", dailyPlan.appliedAppliances.totalCost * currency.rate) ) \(currency.symbol)").font(.headlineCustom).padding(.top, 10)
                             
                             if let dateFmt = dailyPlan.price?.dateFormatted {
                                 Text("Price graph for \(dateFmt):").padding(.top, 20)

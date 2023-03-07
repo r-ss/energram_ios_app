@@ -42,7 +42,7 @@ struct AppliedAppliancesView: View {
         let hour = components.hour ?? 0
         //        let minute = components.minute ?? 0
         let y: CGFloat = CGFloat(hour) * rowPaddingHeight + slotHeight(duration: duration) / 2
-        return withAnimation (Animation.easeInOut(duration: 1.25)) { y + 1 }
+        return y + 1
     }
     
     func slotHeight(duration: Int) -> CGFloat {
@@ -79,7 +79,13 @@ struct AppliedAppliancesView: View {
         return result
     }
     
+    func calculatePositionFor(aa: AppliedAppliance) -> Void {
+        positions[aa.appliance.id] = startTimeToVerticalPosition(time: aa.start, duration: aa.duration)
+    }
+    
     @State private var positions: Dictionary<UUID, CGFloat> = [:]
+//    @State private var lastPositions: Dictionary<UUID, CGFloat> = [:]
+    
     @State private var offsets: Dictionary<UUID, CGFloat> = [:]
     @State private var lastOffsets: Dictionary<UUID, CGFloat> = [:]
     
@@ -151,32 +157,45 @@ struct AppliedAppliancesView: View {
                                     .padding(.leading, 5)
                                 }
                                 .offset(y: offsets[aa.appliance.id] ?? 0)
-                                .position(x: geometry.size.width / 2 - 16, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration))
+                                .position(x: geometry.size.width / 2 - 16, y: positions[aa.appliance.id] ?? 0)
+                                .onAppear {
+//                                    withAnimation (Animation.easeInOut(duration: 1.25)) {
+                                        calculatePositionFor(aa: aa)
+//                                    }
+                                }
                                 
                                 .gesture(
                                     DragGesture(minimumDistance: 1, coordinateSpace: .global)
                                         .onChanged { gesture in
                                             let initial: CGFloat = self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration)
                                             let limitedY = calcDragLimit(initial: initial, translate: gesture.translation.height, duration: CGFloat(aa.duration))
-                                            withAnimation (Animation.easeOut(duration: 0.25)) {
+                                            withAnimation (Animation.easeOut(duration: 0.35)) {
                                                 offsets[aa.appliance.id] = (lastOffsets[aa.appliance.id] ?? 0) + limitedY - initial
                                             }
                                         }
                                         .onEnded { _ in
                                             
-                                            //                                            withAnimation (Animation.easeInOut(duration: 1.25)) {
+//                                            withAnimation (Animation.easeInOut(duration: 1.25)) {
+//                                                calculatePositionFor(aa: aa)
+//                                            }
+                                            
                                             lastOffsets[aa.appliance.id] = offsets[aa.appliance.id]
                                             //}
                                             
                                             
                                             if let diff = offsetToTimeDiff(lastOffsets[aa.appliance.id]) {
+//                                                print(diff)
                                                 
+//                                                withAnimation (Animation.easeInOut(duration: 1.25)) {
                                                 dailyPlan.applyTimeDiffAfterDrag(aa: aa, diffRecieved: diff)
+
                                                 
                                                 
                                                 lastOffsets[aa.appliance.id] = 0
                                                 
                                                 offsets[aa.appliance.id] = 0
+                                                
+                                                
                                                 //                                                }
                                                 
                                                 
@@ -204,6 +223,7 @@ struct AppliedAppliancesView: View {
             }
             .onAppear {
                 self.readSettings()
+                
             }
         }
     }
