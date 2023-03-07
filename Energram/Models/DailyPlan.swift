@@ -14,7 +14,6 @@ struct Hour: Identifiable, Hashable {
     var id: Int
     var price: Float
     var appliancesAssigned: [Appliance]
-    var cheapIndex: Int? // sort hours by price and fill this value to calculate cell color in view
     
     var usedPower: Int {
         return self.appliancesAssigned.reduce(0, { $0 + $1.power })
@@ -51,16 +50,6 @@ class DailyPlan: ObservableObject {
                 let newHour = Hour(id: i, price: pricesBaked[i], appliancesAssigned: [])
                 self.hours.append(newHour)
             }
-            
-            let sortedByPrice:[Hour] = hours.sorted {
-                $0.price < $1.price
-            }
-
-            for (index, hour) in sortedByPrice.enumerated() {
-                if let idx: Int = self.hours.firstIndex(where: {$0.uid == hour.uid}) {
-                    self.hours[idx].cheapIndex = index
-                }
-            }
         }
     }
     
@@ -74,20 +63,8 @@ class DailyPlan: ObservableObject {
     
     private func fillPrices(dayPrice: DayPrice){
         self.hours = []
-        
         for (index, price) in dayPrice.data.enumerated() {
             self.hours.append( Hour(id: index, price: price, appliancesAssigned: []) )
-        }
-        
-        // Filling cheapIndexes
-        let sortedByPrice:[Hour] = hours.sorted {
-            $0.price < $1.price
-        }
-
-        for (index, hour) in sortedByPrice.enumerated() {
-            if let idx: Int = self.hours.firstIndex(where: {$0.uid == hour.uid}) {
-                self.hours[idx].cheapIndex = index
-            }
         }
     }
     
@@ -146,17 +123,11 @@ class DailyPlan: ObservableObject {
         newcomponents.minute = 0
         
         //let roundedToHour = Calendar.current.date(byAdding: newcomponents, to: midnight)!
-        
         self.unassignAppliance(appliance: aa.appliance)
         self.assignAppliance(appliance: aa.appliance, toHour: hour)
-        //        self.hours[hour].appliancesAssigned.append(appliance)
     }
     
-    func changeApplianceRunTime(appliance: Appliance, newStartTime: Int) {
-        self.unassignAppliance(appliance: appliance)
-        self.hours[newStartTime].appliancesAssigned.append(appliance)
-    }
-    
+
     // MARK: Calculations
     
     func calculatePricexDuration(startHourIndex: Int, durationMinutes: Int, power: Int) -> Float {
@@ -220,15 +191,7 @@ class DailyPlan: ObservableObject {
         }
         return (hour: minimumStartHour, price: minimumFound)
     }
-    
-//    private var allPricesArray: [Float] {
-//        var a: [Float] = []
-//        for i in hours {
-//            a.append(i.price)
-//        }
-//        return a
-//    }
-    
+   
     
     private func assignAppliance(appliance: Appliance, toHour: Int? = nil) {
         guard let _ = self.price else {

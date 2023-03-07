@@ -19,6 +19,12 @@ struct HourRow: View {
     var body: some View {
         HStack {
             Text("\(hour):00").font(Font.system(size: slotFontSize)).padding(.leading, 7)
+            
+            if let h = accordingHour {
+                Text("pw: \(h.usedPower)")
+            }
+            
+            
             Spacer()
             Text("\(accordingHourPrice * currency.rate, specifier: "%.2f") \(currency.powerUsageNotation)").font(Font.system(size: 12)).padding(.trailing, 7)
         }
@@ -53,9 +59,12 @@ struct HourRow: View {
     }
     
     private var cellBackground: Color {
-        if let safe = accordingHour?.cheapIndex {
-            let fl = CGFloat(safe)
-            return Color(UIColor.blend(color1: UIColor(Palette.chartGreenTickColor), intensity1: 1-fl/24, color2: UIColor(Palette.chartRedTickColor), intensity2: fl/24))
+        if let prices = dailyPlan.price?.data {
+            let pmax: Float = prices.max()!
+            let pmin: Float = prices.min()!
+            let diff: Float = pmax - pmin
+            let fl = CGFloat( (accordingHourPrice - pmin) / diff  )
+            return Color(UIColor.blend(color1: UIColor(Palette.chartGreenTickColor), intensity1: 1-fl, color2: UIColor(Palette.chartRedTickColor), intensity2: fl))
         }
         return Palette.brandPurple
     }
