@@ -20,7 +20,7 @@ struct HourRow: View {
         HStack {
             Text("\(hour):00").font(Font.system(size: slotFontSize)).padding(.leading, 7)
             Spacer()
-            Text("\(accordingHourPrice, specifier: "%.2f") \(currency.powerUsageNotation)").font(Font.system(size: 12)).padding(.trailing, 7)
+            Text("\(accordingHourPrice * currency.rate, specifier: "%.2f") \(currency.powerUsageNotation)").font(Font.system(size: 12)).padding(.trailing, 7)
         }
         .frame(width: rowWidth, height: rowHeight, alignment: .leading)
         .background(cellBackground)

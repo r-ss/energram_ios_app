@@ -94,7 +94,7 @@ struct DayPlanView: View {
                     if let lastFetch = dailyPlan.lastFetch {
                         let difference = Date().timeIntervalSince(lastFetch)
                         if difference > 60*30 {
-                            log("Updating prices because 20 minutes has passed")
+                            log("Updating prices because 30 minutes has passed")
                             Task { await self.fetchLatestPrice(forCountry: countryCode) }
                         }
                     }

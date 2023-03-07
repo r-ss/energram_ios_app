@@ -39,8 +39,14 @@ struct ApplianceLabel: View {
             }
             
             NotificationCenter.simple(name: .latestPriceRecieved){
-                isSelected = false
+                if dailyPlan.isApplianceApplied(self.appliance) {
+                    isSelected = true
+                } else {
+                    isSelected = false
+                }
+                
             }
+            
             
         }.simultaneousGesture(
             LongPressGesture()

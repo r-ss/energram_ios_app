@@ -39,16 +39,10 @@ class DailyPlan: ObservableObject {
     
     // MARK: Init
     init(type: DailyPlanType = .normal) {
-        
-        
-        
         switch type {
         case .normal:
             appliancesListViewModel.fetchAppliances()
-            //self.appliances = appliancesListViewModel.appliances
-            
         case .preview:
-            //self.appliances = [Appliance.mocked.appliance1, Appliance.mocked.appliance2]
             self.appliedAppliances.items = [AppliedAppliance.mocked.aa1, AppliedAppliance.mocked.aa2, AppliedAppliance.mocked.aa3, AppliedAppliance.mocked.aa4, AppliedAppliance.mocked.aa5]
             
             let pricesBaked: [Float] = DayPrice.mocked.day1.data
@@ -69,7 +63,6 @@ class DailyPlan: ObservableObject {
             }
         }
     }
-    
     
     func priceReceived(price data:DayPrice) {
         self.price = data
@@ -228,16 +221,13 @@ class DailyPlan: ObservableObject {
         return (hour: minimumStartHour, price: minimumFound)
     }
     
-    
-    
-    
-    private var allPricesArray: [Float] {
-        var a: [Float] = []
-        for i in hours {
-            a.append(i.price)
-        }
-        return a
-    }
+//    private var allPricesArray: [Float] {
+//        var a: [Float] = []
+//        for i in hours {
+//            a.append(i.price)
+//        }
+//        return a
+//    }
     
     
     private func assignAppliance(appliance: Appliance, toHour: Int? = nil) {
