@@ -58,7 +58,7 @@ struct DayPlanView: View {
                             Text("Cost: \( String(format: "%.2f", dailyPlan.appliedAppliances.totalCost * currency.rate) ) \(currency.symbol)").font(.headlineCustom).padding(.top, 10)
                             
                             if let dateFmt = dailyPlan.price?.dateFormatted {
-                                Text("Price graph for \(dateFmt):").padding(.top, 20)
+                                Text("Price chart for \(dateFmt):").padding(.top, 20)
                             }
                             MiniChart(forDay: dp)
                             

@@ -65,7 +65,7 @@ struct SettingsView: View {
                 
                 /// COUNTRY
                 Text("Select a country:").font(.regularCustom)
-                Picker("Select a country", selection: $countryPickerSelection.animation(.spring())) {
+                Picker("Select a country", selection: $countryPickerSelection) {
                     ForEach(countriesReadable, id: \.self) {
                         Text($0).font(.regularCustom)
                     }
@@ -78,7 +78,7 @@ struct SettingsView: View {
                 
                 /// CURRENCY
                 if countryPickerSelection == "Czech Republic" {
-                    Picker("Select a currency", selection: $currency.selectedCurrency.animation(.spring())) {
+                    Picker("Select a currency", selection: $currency.selectedCurrency) {
                         
                         ForEach(SelectedCurrency.allCases, id: \.self) { selection in
                             Text(selection.tag)//.tag(flavor)

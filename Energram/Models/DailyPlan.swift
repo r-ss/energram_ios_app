@@ -208,6 +208,7 @@ class DailyPlan: ObservableObject {
     private func unassignAppliance(appliance: Appliance) {
         //log("> unassignAppliance")
         self.appliedAppliances.remove(appliance: appliance)
+        self.randomStupidHack = Double.random(in: 1...100) // without this, totalCoet in DayPlanView.swift not updating in the view...
     }
     
 }

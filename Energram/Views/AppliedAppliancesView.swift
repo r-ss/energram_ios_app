@@ -169,9 +169,9 @@ struct AppliedAppliancesView: View {
                                         .onChanged { gesture in
                                             let initial: CGFloat = self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration)
                                             let limitedY = calcDragLimit(initial: initial, translate: gesture.translation.height, duration: CGFloat(aa.duration))
-                                            withAnimation (Animation.easeOut(duration: 0.35)) {
+                                            //withAnimation (Animation.easeOut(duration: 0.35)) {
                                                 offsets[aa.appliance.id] = (lastOffsets[aa.appliance.id] ?? 0) + limitedY - initial
-                                            }
+                                            //}
                                         }
                                         .onEnded { _ in
                                             
