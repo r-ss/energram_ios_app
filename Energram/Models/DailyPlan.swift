@@ -9,24 +9,12 @@ import Foundation
 import SwiftUI
 
 
-struct Hour: Identifiable, Hashable {
-    var uid: UUID = UUID()
-    var id: Int
-    var price: Float
-    var appliancesAssigned: [Appliance]
-    
-    var usedPower: Int {
-        return self.appliancesAssigned.reduce(0, { $0 + $1.power })
-    }
-}
-
 enum DailyPlanType {
     case normal, preview
 }
 
 class DailyPlan: ObservableObject {
     
-    @Published var hours: [Hour] = []
     @Published var price: DayPrice?
     
     @Published var lastFetch: Date?
@@ -42,30 +30,17 @@ class DailyPlan: ObservableObject {
         case .normal:
             appliancesListViewModel.fetchAppliances()
         case .preview:
+            self.price = DayPrice.mocked.day1
             self.appliedAppliances.items = [AppliedAppliance.mocked.aa1, AppliedAppliance.mocked.aa2, AppliedAppliance.mocked.aa3, AppliedAppliance.mocked.aa4, AppliedAppliance.mocked.aa5]
-            
-            let pricesBaked: [Float] = DayPrice.mocked.day1.data
-            
-            for i in 0..<23 {
-                let newHour = Hour(id: i, price: pricesBaked[i], appliancesAssigned: [])
-                self.hours.append(newHour)
-            }
         }
     }
     
     func priceReceived(price data:DayPrice) {
         self.price = data
-        self.fillPrices(dayPrice: data)
+        //self.fillPrices(dayPrice: data)
         
         self.lastFetch = Date()
         Notification.fire(name: .latestPriceRecieved)
-    }
-    
-    private func fillPrices(dayPrice: DayPrice){
-        self.hours = []
-        for (index, price) in dayPrice.data.enumerated() {
-            self.hours.append( Hour(id: index, price: price, appliancesAssigned: []) )
-        }
     }
     
     // MARK: Interaction
@@ -194,6 +169,7 @@ class DailyPlan: ObservableObject {
    
     
     private func assignAppliance(appliance: Appliance, toHour: Int? = nil) {
+        log("> assignAppliance")
         guard let _ = self.price else {
             log("Don't have a price data so ca't do anything")
             return
@@ -207,26 +183,14 @@ class DailyPlan: ObservableObject {
             timeslotIndex = minimum.hour
         }
         
-        self.hours[timeslotIndex].appliancesAssigned.append(appliance)
         let cost = calculatePricexDuration(startHourIndex: timeslotIndex, durationMinutes: appliance.typical_duration, power: appliance.power)
         self.appliedAppliances.add(appliance: appliance, hour: timeslotIndex, cost: cost)
+        
     }
     
     private func unassignAppliance(appliance: Appliance) {
-        for (index, hour) in self.hours.enumerated() {
-            let filtered = hour.appliancesAssigned.filter(){$0.name != appliance.name}
-            self.hours[index].appliancesAssigned = filtered
-        }
+        log("> unassignAppliance")
         self.appliedAppliances.remove(appliance: appliance)
-        //        self.printPlan()
-    }
-    
-    
-    func printPlan() {
-        log("> printPlan")
-        for hour in hours {
-            log("\(hour.id): \(hour.price) - \(hour.appliancesAssigned.count) appliances, used power: \(hour.usedPower)")
-        }
     }
     
 }

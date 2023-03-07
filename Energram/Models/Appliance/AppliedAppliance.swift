@@ -13,6 +13,14 @@ struct AppliedAppliance: Identifiable, Hashable {
     var duration: Int
     var appliance: Appliance
     var cost: Float = 0.0
+    
+//    var end: Date {
+//        guard let endDate = Calendar.current.date(byAdding: .minute, value: duration, to: start) else {
+//            log("Cannot calculate endDate")
+//            return start
+//        }
+//        return endDate
+//    }
 }
 
 // MARK: Mocked Data
@@ -43,48 +51,21 @@ class AppliedAppliances: ObservableObject {
     @Published var items: [AppliedAppliance] = []
     
     var totalCost: Float {
-        
         var total: Float = 0.0
-        
         for a in self.items {
-            
             total = total + a.cost
         }
-        
         return total
-        
-        
     }
     
     func add(appliance: Appliance, hour: Int, cost: Float) {
-        
         let date = Date()
         let midnight = Calendar.current.date(bySettingHour: 00, minute: 0, second: 0, of: date)!
         let adjusted = Calendar.current.date(byAdding: .hour, value: hour, to: midnight)!
-        
-//        print("Adjusted: \(adjusted)")
-                
         let aa = AppliedAppliance(start: adjusted, duration: appliance.typical_duration, appliance: appliance, cost: cost)
         self.items.append(aa)
     }
-    
-//    func modify(aa: AppliedAppliance, toTime: Date) {
-//
-//        if let idx: Int = self.items.firstIndex(where: {$0.id == aa.id}) {
-//
-//            
-////            let aa = AppliedAppliance(start: toTime, duration: aa.appliance.typical_duration, appliance: aa.appliance, cost: 66.6)
-//
-////            print(aa)
-//
-//            self.items[idx].start = toTime
-//            print(self.items[idx])
-//
-//
-//        }
-//
-//    }
-    
+        
     func remove(appliance: Appliance) {
         items = items.filter(){$0.appliance.id != appliance.id}
     }

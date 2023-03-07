@@ -11,6 +11,8 @@ struct DayPlanView: View {
     @ObservedObject var dailyPlan: DailyPlan
     @ObservedObject var currency: Currency
     
+    @ObservedObject var appliancesListViewModel = AppliancesListViewModel()
+    
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.vertical) {
@@ -22,7 +24,7 @@ struct DayPlanView: View {
                         Text("Consumers").font(.headlineCustom)
                     }
                     
-                    if let dpAppliances = dailyPlan.appliancesListViewModel.appliances {
+                    if let dpAppliances = appliancesListViewModel.appliances {
                         
                         Group {
                             TagCloudView(appliances: dpAppliances, passedDailyPlan: dailyPlan)
@@ -54,7 +56,7 @@ struct DayPlanView: View {
                     Text("Daily plan").font(.headlineCustom)//.padding(.top, 20)
                     
                     if let dp = dailyPlan.price {
-                        AppliedAppliancesView(dailyPlan: dailyPlan).frame(width: geometry.size.width - 20, height: 29*24-1)
+                        AppliedAppliancesView(dailyPlan: dailyPlan, aaaa: dailyPlan.appliedAppliances).frame(width: geometry.size.width - 20, height: 29*24-1)
                         
                         Group {
                             //Text("Reserved Power: \(self.userReservedPower) Watts")
@@ -102,7 +104,7 @@ struct DayPlanView: View {
                     // Subscribing to appliance-related notifications
                     NotificationCenter.simple(name: .someApplianceLabelLongTapEvent){
                         if !areAppliancesLabelsTouchLearned {
-                            print("Setting .areAppliancesLabelsTouchLearned to true...")
+                            log("Setting .areAppliancesLabelsTouchLearned to true...")
                             SettingsManager.shared.setValue(name: .areAppliancesLabelsTouchLearned, value: true)
                             withAnimation {
                                 areAppliancesLabelsTouchLearned = true
@@ -120,10 +122,10 @@ struct DayPlanView: View {
                     })
                     
                     NotificationCenter.listen(name: .applianceWillBeRemoved, completion: { payload in
-                        print("applianceRemoved event listener tick")
+                        //print("applianceRemoved event listener tick")
                         let uuidString = payload as! String
                         if let applianceToRemove = dailyPlan.getAppliancebyId(uuidString) {
-                            print(applianceToRemove)
+                            //print(applianceToRemove)
                             dailyPlan.appliedAppliances.remove(appliance: applianceToRemove)
                         }
                     })
@@ -186,16 +188,17 @@ struct DayPlanView: View {
     }
     
     private var totalCost: Float {
-        var total: Float = 0.0
-        if let pd = dailyPlan.price {
-            for (index, hour) in dailyPlan.hours.enumerated() {
-                for appliance in hour.appliancesAssigned {
-                    let cost = ( pd.data[index] * Float(appliance.power) ) / 1000
-                    total += cost
-                }
-            }
-        }
-        return total
+        return 66.6
+//        var total: Float = 0.0
+//        if let pd = dailyPlan.price {
+//            for (index, hour) in dailyPlan.hours.enumerated() {
+//                for appliance in hour.appliancesAssigned {
+//                    let cost = ( pd.data[index] * Float(appliance.power) ) / 1000
+//                    total += cost
+//                }
+//            }
+//        }
+//        return total
     }
     
     private func readSettings() {
@@ -225,7 +228,7 @@ struct DayPlanView: View {
 
 struct DayPlanView_Previews: PreviewProvider {
     static var previews: some View {
-        DayPlanView(dailyPlan: DailyPlan(type: .preview), currency: Currency())
+        DayPlanView(dailyPlan: DailyPlan(type: .preview), currency: Currency(), appliancesListViewModel:AppliancesListViewModel())
     }
 }
 

@@ -19,10 +19,10 @@ struct HourRow: View {
     var body: some View {
         HStack {
             Text("\(hour):00").font(Font.system(size: slotFontSize)).padding(.leading, 7)
-            
-            if let h = accordingHour {
-                Text("pw: \(h.usedPower)")
-            }
+//
+//            if let h = accordingHour {
+//                Text("pw: \(h.usedPower)")
+//            }
             
             
             Spacer()
@@ -36,27 +36,30 @@ struct HourRow: View {
     
     private let slotFontSize: CGFloat = 16
     
-    private var accordingHour: Hour? {
-        if let idx: Int = self.dailyPlan.hours.firstIndex(where: {$0.id == hour}) {
-            return self.dailyPlan.hours[idx]
-        }
-        return nil
-    }
+//    private var accordingHour: Int? {
+//        if let idx: Int = self.dailyPlan.hours.firstIndex(where: {$0.id == hour}) {
+//            return self.dailyPlan.hours[idx]
+//        }
+//        return nil
+//    }
     
     private var accordingHourPrice: Float {
-        if let idx: Int = self.dailyPlan.hours.firstIndex(where: {$0.id == hour}) {
-            return self.dailyPlan.hours[idx].price
+//        if let idx: Int = self.dailyPlan.hours.firstIndex(where: {$0.id == hour}) {
+//            return self.dailyPlan.hours[idx].price
+//        }
+        if let prices = self.dailyPlan.price?.data {
+            return prices[self.hour]
         }
         return 0.0
     }
     
-    private var appliancesForHour: [Appliance] {
-        if dailyPlan.hours.isEmpty {
-            return []
-        } else {
-            return dailyPlan.hours[hour].appliancesAssigned
-        }
-    }
+//    private var appliancesForHour: [Appliance] {
+//        if dailyPlan.hours.isEmpty {
+//            return []
+//        } else {
+//            return dailyPlan.hours[hour].appliancesAssigned
+//        }
+//    }
     
     private var cellBackground: Color {
         if let prices = dailyPlan.price?.data {

@@ -13,6 +13,8 @@ struct AppliedAppliancesView: View {
     @ObservedObject var dailyPlan: DailyPlan
     @EnvironmentObject var currency: Currency
     
+    @ObservedObject var aaaa: AppliedAppliances
+    
     static let appliedDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_GB")
@@ -105,19 +107,19 @@ struct AppliedAppliancesView: View {
         
     }
     
-   
+    
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 ZStack {
                     VStack(spacing: rowSpacing) {
-                        ForEach(self.dailyPlan.hours, id:\.self) { hour in
+                        ForEach(0...23, id:\.self) { hour in
                             ZStack(alignment: .leading) {
                                 Rectangle()
                                     .fill(.tertiary)
                                     .frame(width: geometry.size.width, height: rowHeight)
                                 HStack {
-                                    HourRow(hour: hour.id, dailyPlan: dailyPlan, rowWidth: geometry.size.width, rowHeight: rowHeight)
+                                    HourRow(hour: hour, dailyPlan: dailyPlan, rowWidth: geometry.size.width, rowHeight: rowHeight)
                                     //Text("\(hour.id):00").padding(.leading, 7)
                                 }
                             }
@@ -125,49 +127,48 @@ struct AppliedAppliancesView: View {
                     }
                     
                     Group {
-                        
-                        ForEach(self.dailyPlan.appliedAppliances.items, id: \.self) { aa in
+                        ForEach(aaaa.items, id: \.self) { aa in
+                            
+//                            Text(aa.appliance.name)
                             VStack {
-                                
-                                    ZStack(alignment: .leading) {
-                                        withAnimation(.spring()){
-                                            RoundedRectangle(cornerRadius: 4)
-                                                .fill(Palette.brandPurple)
-                                                .frame(width: geometry.size.width - 140, height: slotHeight(duration: aa.duration))
-                                                .opacity(0.65)
-                                                .addBorder(Palette.brandPurpleLight, width: 1, cornerRadius: 4)
-                                        }
-                                        HStack {
-                                            Text("\(aa.appliance.name) for \( durationToHumanReadable(aa.duration) ) hrs, \(aa.cost * currency.rate, specifier: "%.2f") \(currency.symbol)")
-                                                    .font(Font.system(size: 14))
-                                                    .frame(
-                                                        maxWidth: geometry.size.width - 150,
-                                                        maxHeight: max(slotHeight(duration: aa.duration) - 8, 3), // to avoid "Invalid frame dimension (negative or non-finite)"
-                                                        alignment: .topLeading)
-                                            
-                                        }
-                                        .padding(.leading, 5)
+
+                                ZStack(alignment: .leading) {
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .fill(Palette.brandPurple)
+                                        .frame(width: geometry.size.width - 140, height: slotHeight(duration: aa.duration))
+                                        .opacity(0.65)
+                                        .addBorder(Palette.brandPurpleLight, width: 1, cornerRadius: 4)
+                                    HStack {
+                                        Text("\(aa.appliance.name) for \( durationToHumanReadable(aa.duration) ) hrs, \(aa.cost * currency.rate, specifier: "%.2f") \(currency.symbol)")
+                                            .font(Font.system(size: 14))
+                                            .frame(
+                                                maxWidth: geometry.size.width - 150,
+                                                maxHeight: max(slotHeight(duration: aa.duration) - 8, 3), // to avoid "Invalid frame dimension (negative or non-finite)"
+                                                alignment: .topLeading)
+
                                     }
-                                    .offset(y: offsets[aa.appliance.id] ?? 0)
-                                    .position(x: geometry.size.width / 2 - 16, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration))
-                                    
-                                    .gesture(
-                                        DragGesture(minimumDistance: 1, coordinateSpace: .global)
-                                            .onChanged { gesture in
-                                                let initial: CGFloat = self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration)
-                                                let limitedY = calcDragLimit(initial: initial, translate: gesture.translation.height, duration: CGFloat(aa.duration))
-                                                offsets[aa.appliance.id] = (lastOffsets[aa.appliance.id] ?? 0) + limitedY - initial
+                                    .padding(.leading, 5)
+                                }
+                                .offset(y: offsets[aa.appliance.id] ?? 0)
+                                .position(x: geometry.size.width / 2 - 16, y: self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration))
+
+                                .gesture(
+                                    DragGesture(minimumDistance: 1, coordinateSpace: .global)
+                                        .onChanged { gesture in
+                                            let initial: CGFloat = self.startTimeToVerticalPosition(time: aa.start, duration: aa.duration)
+                                            let limitedY = calcDragLimit(initial: initial, translate: gesture.translation.height, duration: CGFloat(aa.duration))
+                                            offsets[aa.appliance.id] = (lastOffsets[aa.appliance.id] ?? 0) + limitedY - initial
+                                        }
+                                        .onEnded { _ in
+                                            lastOffsets[aa.appliance.id] = offsets[aa.appliance.id]
+                                            if let diff = offsetToTimeDiff(lastOffsets[aa.appliance.id]) {
+                                                lastOffsets[aa.appliance.id] = 0
+                                                offsets[aa.appliance.id] = 0
+                                                dailyPlan.applyTimeDiffAfterDrag(aa: aa, diffRecieved: diff)
                                             }
-                                            .onEnded { _ in
-                                                lastOffsets[aa.appliance.id] = offsets[aa.appliance.id]
-                                                if let diff = offsetToTimeDiff(lastOffsets[aa.appliance.id]) {
-                                                    lastOffsets[aa.appliance.id] = 0
-                                                    offsets[aa.appliance.id] = 0
-                                                    dailyPlan.applyTimeDiffAfterDrag(aa: aa, diffRecieved: diff)
-                                                }
-                                            }
-                                    )
-                                
+                                        }
+                                )
+
                             }
                         }
                     }
@@ -181,7 +182,7 @@ struct AppliedAppliancesView: View {
                                 .frame(width: geometry.size.width, height: 2)
                         }
                         .position(x: geometry.size.width / 2, y: momentLineY)
-                            
+                        
                     }
                 }
             }
@@ -194,7 +195,7 @@ struct AppliedAppliancesView: View {
 
 struct AppliedAppliancesView_Previews: PreviewProvider {
     static var previews: some View {
-        AppliedAppliancesView(dailyPlan: DailyPlan(type: .preview))
+        AppliedAppliancesView(dailyPlan: DailyPlan(type: .preview), aaaa: AppliedAppliances())
     }
 }
 
