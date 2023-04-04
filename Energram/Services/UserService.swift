@@ -13,6 +13,10 @@ struct SecretPageResponse: Codable {
     var message: String
 }
 
+struct UserDeleteResponse: Codable {
+    var result: String
+}
+
 protocol UserServiceable {
     func requestLogin(email: String, password: String) async -> Result<LoginResponse, RequestError>
     func requestRegister(email: String, password: String) async -> Result<User, RequestError>
@@ -50,6 +54,14 @@ struct UserService: HTTPClient, UserServiceable {
     
     func uploadUserpic(image: UIImage) async -> Result<UserpicUploadResponse, RequestError> {
         return await uploadImageRequest(endpoint: EnergramEndpoint.userpic, image: image, responseModel: UserpicUploadResponse.self)
+    }
+    
+    func deleteProfile() async -> Result<UserDeleteResponse, RequestError> {
+        if let authData = self.readAuthData() {
+            return await sendRequest(endpoint: EnergramEndpoint.deleteProfile(id: authData.id), responseModel: UserDeleteResponse.self)
+        } else {
+            return .failure(RequestError.custom(message: "Cannot read user's auth data from device"))
+        }
     }
     
     

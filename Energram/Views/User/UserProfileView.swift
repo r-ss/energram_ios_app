@@ -50,6 +50,10 @@ struct UserProfileView: View {
                             UserService().eraseAuthData()
                             userAuthState.checkAuth()
                         }
+                        
+                        Button("Delete Profile"){
+                            showUserDeleteConfirmation = true
+                        }
                     }
                     
                     if Config.enableDebugUI {
@@ -94,6 +98,17 @@ struct UserProfileView: View {
                 .onAppear {
                     self.readFromSettings()
                 }
+                .alert(isPresented:$showUserDeleteConfirmation) {
+                            Alert(
+                                title: Text("Are you sure you want to delete your Energram profile?"),
+                                message: Text("This action cannot be undone"),
+                                primaryButton: .destructive(Text("Delete")) {
+                                    print("Deleting...")
+                                    requestProfileDelete()
+                                },
+                                secondaryButton: .cancel()
+                            )
+                        }
             }
         }
         
@@ -106,6 +121,8 @@ struct UserProfileView: View {
     //    @State private var input_password: String = "bb7DMsMXAZE8"
 //    @State private var input_email: String = ""
 //    @State private var input_password: String = ""
+    
+    @State private var showUserDeleteConfirmation = false
     
     @State private var loading: Bool = false
     
@@ -144,6 +161,29 @@ struct UserProfileView: View {
             switch response {
             case .success(let result):
                 secretPageContent = result
+                loading = false
+            case .failure(let error):
+                print("Request failed with error: \(error.customMessage)")
+                secretPageContent = SecretPageResponse(message: error.customMessage)
+                loading = false
+            }
+        }
+    }
+    
+    private func requestProfileDelete() {
+        loading = true
+        Task(priority: .background) {
+            let response = await UserService().deleteProfile()
+            switch response {
+            case .success(let result):
+                print(result)
+                
+                secretPageContent = nil
+                authData = nil
+                UserService().eraseAuthData()
+                userAuthState.checkAuth()
+                
+                
                 loading = false
             case .failure(let error):
                 print("Request failed with error: \(error.customMessage)")

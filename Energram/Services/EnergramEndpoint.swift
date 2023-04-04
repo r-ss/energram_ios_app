@@ -20,6 +20,7 @@ enum EnergramEndpoint {
     case refreshToken
     
     case userProfile(id: String)
+    case deleteProfile(id: String)
     case userpic
 }
 
@@ -48,6 +49,10 @@ extension EnergramEndpoint: Endpoint {
             
         case .userProfile(let id):
             return URLComponents(string: "\(self.host)/users/\(id)")
+        case .deleteProfile(let id):
+            return URLComponents(string: "\(self.host)/users/\(id)")
+//            return URLComponents(string: "\(self.host)/users/642819001970d95b06b652fe")
+            
         case .userpic:
             return URLComponents(string: "\(self.host)/userpic")
         }
@@ -66,6 +71,8 @@ extension EnergramEndpoint: Endpoint {
             return .post
         case .refreshToken:
             return .patch
+        case .deleteProfile:
+            return .delete
         default:
             return .get
         }
