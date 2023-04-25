@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct DayPlanView: View {
     @ObservedObject var dailyPlan: DailyPlan
@@ -118,6 +119,15 @@ struct DayPlanView: View {
                             dailyPlan.appliedAppliances.remove(appliance: applianceToRemove)
                         }
                     })
+                    
+                    // Google Analytics
+                    Task(priority: .background) {
+                    Analytics.logEvent(AnalyticsEventScreenView,
+                                       parameters: [AnalyticsParameterScreenName: "\(DayPlanView.self)",
+                                                   AnalyticsParameterScreenClass: "\(DayPlanView.self)"])
+                    }
+                
+                
                 }
                 .sheet(isPresented: $showingApplianceCreateView) {
                     CoreApplianceEditorView(appliance: nil, createMode: true)

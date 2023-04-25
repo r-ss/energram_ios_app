@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>144510387814-r04vu7mo6bkb8aerrf0dk64785hv46pe.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.144510387814-r04vu7mo6bkb8aerrf0dk64785hv46pe</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCLgRu7qluUD21WaM2_hhm70F9U-th0FBs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>144510387814</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.energram.app</string>
+	<key>PROJECT_ID</key>
+	<string>energram-ios-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>energram-ios-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:144510387814:ios:6965648f909d697f350fa7</string>
+</dict>
+</plist>

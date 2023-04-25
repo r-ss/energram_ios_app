@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Charts
+import Firebase
 
 struct BarTick2: Identifiable {
     var hour: Int
@@ -43,6 +44,13 @@ struct MultipleDaysChartView: View {
             .onAppear {
                 countryCode = SettingsManager.shared.getStringValue(name: SettingsNames.countryCode)
                 Task { await self.fetchPrices(forCountry: countryCode) }
+                
+                // Google Analytics
+                Task(priority: .background) {
+                Analytics.logEvent(AnalyticsEventScreenView,
+                                   parameters: [AnalyticsParameterScreenName: "\(MultipleDaysChartView.self)",
+                                               AnalyticsParameterScreenClass: "\(MultipleDaysChartView.self)"])
+                }
             }
         }
     }

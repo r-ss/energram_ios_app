@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D01366AD293368CB0004CE50 /* DayPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01366AC293368CB0004CE50 /* DayPlanView.swift */; };
+		D0285CCB29F833A3003E8742 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0285CCA29F833A2003E8742 /* GoogleService-Info.plist */; };
+		D0285CCE29F833F1003E8742 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D0285CCD29F833F1003E8742 /* FirebaseAnalytics */; };
 		D02968D92939E1A6003C7DA1 /* ApplianceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */; };
 		D02F4F7B29B4930300328639 /* AppliedAppliancesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02F4F7A29B4930300328639 /* AppliedAppliancesView.swift */; };
 		D02FCF2429B378B70088BE23 /* PersistentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FCF2329B378B70088BE23 /* PersistentStore.swift */; };
@@ -100,6 +102,7 @@
 
 /* Begin PBXFileReference section */
 		D01366AC293368CB0004CE50 /* DayPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPlanView.swift; sourceTree = "<group>"; };
+		D0285CCA29F833A2003E8742 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D02968D82939E1A6003C7DA1 /* ApplianceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceLabel.swift; sourceTree = "<group>"; };
 		D02F4F7A29B4930300328639 /* AppliedAppliancesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedAppliancesView.swift; sourceTree = "<group>"; };
 		D02FCF2329B378B70088BE23 /* PersistentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStore.swift; sourceTree = "<group>"; };
@@ -184,6 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0285CCE29F833F1003E8742 /* FirebaseAnalytics in Frameworks */,
 				D02FCF2929B37C8F0088BE23 /* Collections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +300,7 @@
 		D0496DD6291F7855008BEDA5 /* Energram */ = {
 			isa = PBXGroup;
 			children = (
+				D0285CCA29F833A2003E8742 /* GoogleService-Info.plist */,
 				D08C1EDD2962B030004BF768 /* Info.plist */,
 				D0EFCB0F2920E51000EC32C3 /* Energram.entitlements */,
 				D02FCF2229B378A70088BE23 /* CoreData */,
@@ -465,6 +470,7 @@
 			name = Energram;
 			packageProductDependencies = (
 				D02FCF2829B37C8F0088BE23 /* Collections */,
+				D0285CCD29F833F1003E8742 /* FirebaseAnalytics */,
 			);
 			productName = Energram;
 			productReference = D0496DD4291F7855008BEDA5 /* Energram.app */;
@@ -542,6 +548,7 @@
 			mainGroup = D0496DCB291F7855008BEDA5;
 			packageReferences = (
 				D02FCF2729B37C8F0088BE23 /* XCRemoteSwiftPackageReference "swift-collections" */,
+				D0285CCC29F833F1003E8742 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = D0496DD5291F7855008BEDA5 /* Products */;
 			projectDirPath = "";
@@ -560,6 +567,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0922CB8297ED82600743426 /* ArgentumSans-Medium.ttf in Resources */,
+				D0285CCB29F833A3003E8742 /* GoogleService-Info.plist in Resources */,
 				D0922CBB297ED82600743426 /* ArgentumSans-Light.ttf in Resources */,
 				D0496DDF291F7856008BEDA5 /* Preview Assets.xcassets in Resources */,
 				D07BCCA929F7E41100313B82 /* Localizable.strings in Resources */,
@@ -839,7 +847,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.energram.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -871,7 +879,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.energram.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -998,6 +1006,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D0285CCC29F833F1003E8742 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		D02FCF2729B37C8F0088BE23 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections.git";
@@ -1009,6 +1025,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D0285CCD29F833F1003E8742 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0285CCC29F833F1003E8742 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
 		D02FCF2829B37C8F0088BE23 /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D02FCF2729B37C8F0088BE23 /* XCRemoteSwiftPackageReference "swift-collections" */;

@@ -8,7 +8,7 @@
 import Foundation
 
 import SwiftUI
-
+import Firebase
 
 
 
@@ -128,6 +128,12 @@ struct SettingsView: View {
                 }
                 if countryCode == "cz" {
                     self.countryPickerSelection = "Czech Republic"
+                }
+                
+                Task(priority: .background) {
+                Analytics.logEvent(AnalyticsEventScreenView,
+                                   parameters: [AnalyticsParameterScreenName: "\(SettingsView.self)",
+                                               AnalyticsParameterScreenClass: "\(SettingsView.self)"])
                 }
             }
             .padding()
