@@ -29,6 +29,8 @@ struct DebugView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Debug Info").font(.title)
                     
+                    Text("Locale \( String(describing: Locale.current.language.languageCode?.identifier) )")
+                    
                     Text("Screen: \(screenWidth)x\(screenHeight)")
                     Text("Device: \(modelIdentifier())")
                     Text("Palette:").fontWeight(.bold)

@@ -11,7 +11,7 @@ struct Config {
     
     static let websiteUrl: String = "https://energram.co"
     
-    static let enableDebugUI: Bool = false
+    static let enableDebugUI: Bool = true
     
 //    static let urlApiInfo: String = urlApi + "/info"
 //    static let urlLatestPrice: String = urlApi + "/price/latest"

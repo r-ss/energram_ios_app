@@ -17,6 +17,55 @@ struct ApplianceLabel: View {
     var dailyPlan: DailyPlan
     
     var disableInteraction: Bool = false
+    
+    var localizedApplianceName: String {
+        
+        if Locale.current.language.languageCode?.identifier == "es" {
+            switch appliance.name {
+            case "Washing machine":
+                return "Lavadora"
+            case "Dish wascher":
+                return "Lavaplatos"
+            case "Dryer":
+                return "Secadora"
+            case "EV Charger":
+                return "Cargador EV"
+            case "Iron":
+                return "Plancha"
+            case "Boiler":
+                return "Caldera"
+            case "Electric Sauna":
+                return "Sauna eléctrica"
+            default:
+                return appliance.name
+            }
+        }
+        
+
+        if Locale.current.language.languageCode?.identifier == "cs" {
+            switch appliance.name {
+            case "Washing machine":
+                return "Pračka"
+            case "Myčka":
+                return "Lavaplatos"
+            case "Dryer":
+                return "Sušička"
+            case "EV Charger":
+                return "Nabíječka elektromobilů"
+            case "Iron":
+                return "Žehlička"
+            case "Boiler":
+                return "Bojler"
+            case "Electric Sauna":
+                return "Elektrická sauna"
+            default:
+                return appliance.name
+            }
+        }
+        
+        return appliance.name
+        
+    }
         
     var body: some View {
         Button {
@@ -29,7 +78,7 @@ struct ApplianceLabel: View {
                 RoundedRectangle(cornerRadius: 8).foregroundColor( isSelected ? Palette.brandGreen : Palette.brandPurple )
                 HStack(spacing: 0){
                     Image(systemName: isSelected ? "checkmark.circle.fill" : "checkmark.circle").resizable().padding(8).foregroundColor(.white).frame(width: 32, height: 32)
-                    Text(appliance.name).font(.headline).foregroundColor(.white).padding([.top, .trailing,. bottom], 10)
+                    Text(localizedApplianceName).font(.headline).foregroundColor(.white).padding([.top, .trailing,. bottom], 10)
                 }
             }.fixedSize()
         }.onAppear {

@@ -29,14 +29,14 @@ struct DayPrice: Codable, Identifiable {
     
     var dateFormatted: String {
         let ftt = DateFormatter()
-        ftt.locale = Locale(identifier: "en_US")
+//        ftt.locale = Locale(identifier: "en_US")
         ftt.setLocalizedDateFormatFromTemplate("EEEE, dMMMM")
         return ftt.string(from: self.date)
     }
     
     var receivedFormatted: String {
         let ftt = DateFormatter()
-        ftt.locale = Locale(identifier: "en_US")
+//        ftt.locale = Locale(identifier: "en_US")
         ftt.setLocalizedDateFormatFromTemplate("yyyy-MM-dd HH:mm")
         return ftt.string(from: self.received)
     }

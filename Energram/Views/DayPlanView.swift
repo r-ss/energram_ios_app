@@ -20,16 +20,16 @@ struct DayPlanView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     
                     if let dateFmt = dailyPlan.price?.dateFormatted {
-                        Text("Choose Consumers for \(dateFmt)").font(.headlineCustom)
+                        Text("Choose Appliances for \(dateFmt)").font(.headlineCustom)
                     } else {
-                        Text("Consumers").font(.headlineCustom)
+                        Text("Appliances").font(.headlineCustom)
                     }
                     
-                    if let dpAppliances = appliancesListViewModel.appliances {
+                    if appliancesListViewModel.appliances.count > 0 {
                         Group {
-                            TagCloudView(appliances: dpAppliances, passedDailyPlan: dailyPlan)
+                            TagCloudView(appliances: appliancesListViewModel.appliances, passedDailyPlan: dailyPlan)
                             HStack {
-                                if dpAppliances.count > 0 && !areAppliancesLabelsTouchLearned{
+                                if appliancesListViewModel.appliances.count > 0 && !areAppliancesLabelsTouchLearned{
                                     Image(systemName: "arrow.up.forward").font(.system(size: 20)).padding(.trailing, 2)
                                     Text("Tap and hold to customize").font(.system(size: 16)).padding(.trailing, 10)
                                 }

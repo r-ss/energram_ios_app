@@ -1,0 +1,140 @@
+/* 
+  Localizable.strings
+  Energram
+
+  Created by Alex Antipov on 25.04.2023.
+  
+*/
+
+"%.1f %@" = "%.1f %@";
+"%.2f %@" = "%.2f %@";
+"%@ %@" = "%@ %@";
+"%lld" = "%lld";
+"%lld:00" = "%lld:00";
+"%@:00 — %@:00" = "%@:00 — %@:00";
+
+
+"Shake" = "Potřást";
+"Screen: %@x%@" = "Obrazovka: %@x%@";
+"Refresh Token" = "Obnovit token";
+"Palette:" = "Paleta:";
+"Get Secret Page" = "Získat tajnou stránku";
+"Device: %@" = "Zařízení: %@";
+"Debug Info" = "Ladicí informace";
+"API info:" = "Informace o API:";
+"Secret message %@" = "Tajná zpráva %@";
+"Show Debug Info" = "Zobrazit ladicí informaci";
+"Some debug buttons..." = "Některá ladicí tlačítka...";
+
+
+/* ===================================== */
+/* Actual localization texts starts here */
+
+"%@ for %@ hrs, %.2f %@" = "%@ na %@ hod., %.2f %@";
+
+"1 EUR = %f %@" = "1 EUR = %f %@";
+
+"Add" = "Přidat";
+
+"Already have one?" = "Už ho máte?";
+
+"Are you sure you want to delete your Energram profile?" = "Opravdu chcete smazat svůj uživatelský Energram profil?";
+
+"Cancel" = "Zrušit";
+
+"Choose Appliances for %@" = "Vyberte si spotřebiče na %@";
+
+"Code was sent. Please check email." = "Kód byl odeslán. Zkontrolujte prosím e-mail.";
+
+"Appliances" = "Spotřebiče";
+
+"Cost: %@ %@" = "Cena: %@ %@";
+
+"Create" = "Vytvořit";
+
+"Create account" = "Vytvořit účet";
+
+"Daily plan" = "Denní plán";
+
+"Delete" = "Smazat";
+
+"Delete Profile" = "Smazat profil";
+
+"Don't have an account?" = "Zatím nemáte účet?";
+
+"Edit Appliance" = "Úprava spotřebiče";
+
+"Electricity price 🇨🇿" = "Cena elektřiny 🇨🇿";
+
+"Electricity price 🇪🇸" = "Cena elektřiny 🇪🇸";
+
+"Email" = "Email:";
+
+"Enter text..." = "Zadejte text...";
+
+"Enter your email and get a code to change your password" = "Zadejte svou e-mailovou adresu na kterou obdržíte kód pro změnu hesla.";
+
+"Error in receiving appliances list" = "Chyba při příjmu seznamu spotřebičů";
+
+"Error in receiving chart data" = "Chyba při příjmu dat grafu";
+
+"Forgot password?" = "Zapomněli jste heslo?";
+
+"Go back" = "Zpět";
+
+"Having an account on Energram allows more personalized experience and services" = "Vytvoření Energram účtu umožňuje personalizovanější přístup a služby.";
+
+"Hour" = "Hodina";
+
+"Is on for: %@" = "Je zapnuto(a) po dobu: %@";
+
+"Login" = "Přihlášení";
+
+"Logout" = "Odhlášení";
+
+"Name" = "Jmeno";
+
+"OK" = "OK";
+
+"Password" = "Heslo";
+
+"Power: %@ kWh" = "Výkon: %@ kWh";
+
+"Price Chart" = "Cenový diagram";
+
+"Price chart for %@:" = "Cenový diagram %@:";
+
+"Profile" = "Profil";
+
+"Register" = "Registrace";
+
+"Reserved Power:" = "Rezervovaný výkon:";
+
+"Reset password" = "Obnovit heslo";
+
+"Save" = "Uložit";
+
+"Select a country" = "Vyberte zemi";
+
+"Select a country:" = "Vyberte zemi:";
+
+"Select a currency" = "Vyberte měnu";
+
+"Settings" = "Nastavení";
+
+"Tap and hold to customize" = "Klepnutím a podržením upravíte";
+
+"This action cannot be undone" = "Tuto akci nelze vrátit zpět";
+
+"Value" = "Hodnota";
+
+"Your Reserved Power (Watts):" = "Váš rezervovaný výkon (ve wattech):";
+
+/* Initial appliances labels */
+//"Washing machine" = "Pračka"
+//"Dish wascher" = "Myčka"
+//"Dryer" = "Sušička"
+//"EV Charger" = "Nabíječka elektromobilů"
+//"Iron" = "Žehlička"
+//"Boiler" = "Bojler"
+//"Electric Sauna" = "Elektrická sauna"

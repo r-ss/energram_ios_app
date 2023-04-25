@@ -1,0 +1,136 @@
+/* MESS AREA */
+
+"%.1f %@" = "%.1f %@";
+"%.2f %@" = "%.2f %@";
+"%@ %@" = "%@ %@";
+"%lld" = "%lld";
+"%lld:00" = "%lld:00";
+"%@:00 — %@:00" = "%@:00 — %@:00";
+
+
+/* Debug and internal texts - can be left as is  */
+
+"Shake" = "Agitar";
+"Screen: %@x%@" = "Pantalla: %@x%@";
+"Refresh Token" = "Ficha de actualización";
+"Palette:" = "La paleta:";
+"Get Secret Page" = "Obtener página secreta";
+"Device: %@" = "Aparato: %@";
+"Debug Info" = "Información de depuración";
+"API info:" = "Información de la API:";
+"Secret message %@" = "Mensaje secreto %@";
+"Show Debug Info" = "Mostrar información de depuración";
+"Some debug buttons..." = "Algunos botones de depuración...";
+
+
+/* ===================================== */
+/* Actual localization texts starts here */
+
+"%@ for %@ hrs, %.2f %@" = "%@ por %@ hrs, %.2f %@";
+
+"1 EUR = %f %@" = "1 EUR = %f %@";
+
+"Add" = "Añada";
+
+"Already have one?" = "¿Ya tiene uno?";
+
+"Are you sure you want to delete your Energram profile?" = "¿Estás seguro de que quieres borrar tu perfil Energram?";
+
+"Cancel" = "Cancelar";
+
+"Choose Appliances for %@" = "Elija Electrodomésticos para %@";
+
+"Code was sent. Please check email." = "Se ha enviado el código. Por favor, revise su correo electrónico.";
+
+"Appliances" = "Electrodomésticos";
+
+"Cost: %@ %@" = "Precio: %@ %@";
+
+"Create" = "Crear";
+
+"Create account" = "Crear cuenta";
+
+"Daily plan" = "Plan del día";
+
+"Delete" = "Borrar";
+
+"Delete Profile" = "Eliminar perfil";
+
+"Don't have an account?" = "¿No tiene cuenta?";
+
+"Edit Appliance" = "Editar electrodoméstico";
+
+"Electricity price 🇨🇿" = "Tarifa eléctrica 🇨🇿";
+
+"Electricity price 🇪🇸" = "Tarifa eléctrica 🇪🇸";
+
+"Email" = "Correo electrónico";
+
+"Enter text..." = "Introduce el texto...";
+
+"Enter your email and get a code to change your password" = "Introduce tu correo electrónico y obtén un código para cambiar tu contraseña";
+
+"Error in receiving appliances list" = "Error al recibir la lista de aparatos";
+
+"Error in receiving chart data" = "Error en la recepción de datos gráficos";
+
+"Forgot password?" = "¿Ha olvidado su contraseña?";
+
+"Go back" = "Volver";
+
+"Having an Energram account allows more personalized experience and services" = "Tener una cuenta Energram permite obtener una experiencia y unos servicios más personalizados";
+
+"Hour" = "Hora";
+
+"Is on for: %@" = "Está encendido para: %@";
+
+"Login" = "Iniciar sesión";
+
+"Logout" = "Cerrar sesión";
+
+"Name" = "Nombre";
+
+"OK" = "OK";
+
+"Password" = "Contraseña";
+
+"Power: %@ kWh" = "Potencia: %@ kWh";
+
+"Price Chart" = "Gráficos";
+
+"Price chart for %@:" = "Gráfico de precios para %@:";
+
+"Profile" = "Perfil";
+
+"Register" = "Registrarse";
+
+"Reserved Power:" = "Potencia reservada:";
+
+"Reset password" = "Restablecer contraseña";
+
+"Save" = "Guardar";
+
+"Select a country" = "Seleccione un país";
+
+"Select a country:" = "Seleccione un país:";
+
+"Select a currency" = "Seleccione una moneda";
+
+"Settings" = "Configuración";
+
+"Tap and hold to customize" = "Mantén pulsado para personalizar";
+
+"This action cannot be undone" = "Esta acción no puede deshacerse";
+
+"Value" = "Valor";
+
+"Your Reserved Power (Watts):" = "Su potencia reservada (Vatios):";
+
+/* Initial appliances labels */
+//"Washing machine" = "Lavadora";
+//"Dish wascher" = "Lavaplatos";
+//"Dryer" = "Secadora";
+//"EV Charger" = "Cargador EV";
+//"Iron" = "Plancha";
+//"Boiler" = "Caldera";
+//"Electric Sauna" = "Sauna eléctrica";
